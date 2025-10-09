@@ -1,0 +1,6 @@
+heading_prefix "{\bfseries\hfill "
+heading_suffix "\hfill}\nopagebreak
+"
+delim_0 "\dotfill "
+delim_1 "\dotfill "
+delim_2 "\dotfill "

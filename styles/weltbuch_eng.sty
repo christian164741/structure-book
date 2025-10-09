@@ -1,0 +1,191 @@
+% ===========================================
+%  weltbuch_eng.sty – Style-Datei für englische Bücher
+%  Autor: Dipl.-Ing. (FH) Christian Weilharter
+%  Version: v1.0 – 2025-09-06
+% ===========================================
+% in weltbuch.sty (weit oben)
+\RequirePackage[
+paperwidth=6in,
+paperheight=9in,
+inner=1in,
+outer=0.9in,
+top=1in,
+bottom=1in
+]{geometry}
+
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{weltbuch_eng}[2025/09/06 v1.0 Weltbuch-Englisch-Stil]
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{weltbuch}[2025/09/06 v1.1 Weltbuch-Stil]
+% -------------------------------------------------
+% Sprache & Typografie
+% -------------------------------------------------
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[american]{babel}   % American English
+\RequirePackage{lmodern}
+\RequirePackage[protrusion=true,expansion=true]{microtype}
+
+
+% -------------------------------------------------
+% Mathe & Physik
+% -------------------------------------------------
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{physics}
+\RequirePackage{siunitx}
+\RequirePackage{slashed}
+
+% -------------------------------------------------
+% Grafiken & Plots
+% -------------------------------------------------
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=newest} % immer aktuelle Version nutzen
+
+% -------------------------------------------------
+% Tabellen, Floats, Captions
+% -------------------------------------------------
+\RequirePackage{float}
+\RequirePackage{booktabs}
+\RequirePackage{caption}
+
+% -------------------------------------------------
+% Farben, Boxen
+% -------------------------------------------------
+\RequirePackage{xcolor}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{csquotes}
+\RequirePackage{etoolbox}
+\AtBeginEnvironment{tcolorbox}{\pretocmd{\tcbtitletext}{\ignorespaces}{}{}}
+
+% -------------------------------------------------
+% Inhaltsverzeichnis
+% -------------------------------------------------
+\RequirePackage{tocstyle}
+\usetocstyle{KOMAlike}
+\RequirePackage{tocloft}
+
+% Abstände und Einrückungen im ToC
+\setlength{\cftbeforesecskip}{0.2em}
+\setlength{\cftbeforesubsecskip}{0.1em}
+\cftsetindents{chapter}{0em}{3.0em}
+\cftsetindents{section}{1.5em}{3.8em}
+\cftsetindents{subsection}{3.5em}{4.8em}
+\renewcommand{\cftchapnumwidth}{3em}
+\renewcommand{\cftsecnumwidth}{4em}
+\renewcommand{\cftsubsecnumwidth}{5em}
+
+% -------------------------------------------------
+% Nummerierungen
+% -------------------------------------------------
+\renewcommand*{\thechapter}{\Roman{chapter}}          % Kapitel: I, II, ...
+\renewcommand*{\thesection}{\arabic{section}}         % Section: 1, 2, ...
+\renewcommand*{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\setcounter{tocdepth}{5}
+% -------------------------------------------------
+% Kopf- und Fußzeilen (fancyhdr-Konfiguration)
+% -------------------------------------------------
+\RequirePackage{fancyhdr}
+
+% Grundlayout
+\pagestyle{fancy}
+\fancyhf{}  % alles leeren
+
+% Kopfzeilen (zweiseitig üblich):
+\fancyhead[LE]{\nouppercase{\leftmark}}   % gerade Seiten (links): Kapitel
+\fancyhead[RO]{\nouppercase{\rightmark}}  % ungerade Seiten (rechts): Abschnitt
+
+% Falls du stattdessen IMMER nur das Kapitel oben willst:
+% \fancyhead[LE,RO]{\nouppercase{\leftmark}}
+
+% Fußzeilen: Seitenzahl außen
+\fancyfoot[LE,RO]{\thepage}
+
+% Linie oben (Standard: 0.4pt)
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Kapitel- und Abschnittsmarken (sprachneutral)
+\renewcommand{\chaptermark}[1]{%
+	\markboth{\textbf{\chaptername\ \thechapter\quad #1}}{}}
+\renewcommand{\sectionmark}[1]{%
+	\markright{\thesection\quad #1}}
+
+% Kopfhöhe (gegen Warnung „\headheight too small“)
+\setlength{\headheight}{14pt}
+
+% Kapitelanfangsseiten (plain) → ohne Kopf, nur Seitenzahl unten
+\fancypagestyle{plain}{%
+	\fancyhf{}
+	\fancyfoot[LE,RO]{\thepage}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+% -------------------------------------------------
+% Index (einspaltig)
+% -------------------------------------------------
+\RequirePackage{makeidx}
+\makeindex
+\RequirePackage[columns=1]{idxlayout}
+
+% -------------------------------------------------
+% Literaturverwaltung (BibLaTeX)
+% -------------------------------------------------
+\RequirePackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{../bib/literatur.bib} % gemeinsame Bibliographie-Datei für alle Projekte
+
+
+% -------------------------------------------------
+% Box-Stile
+% -------------------------------------------------
+\tcbset{physikbox/.style={ colback=blue!5!white,   colframe=blue!75!black,  fonttitle=\bfseries}}
+\tcbset{mathebox/.style={  colback=green!5!white,  colframe=green!50!black, fonttitle=\bfseries}}
+\tcbset{didaktikbox/.style={colback=yellow!5!white,colframe=yellow!50!black,fonttitle=\bfseries}}
+\tcbset{hypobox/.style={   colback=orange!5!white, colframe=orange!75!black,fonttitle=\bfseries}}
+\tcbset{hinweisbox/.style={colback=gray!10!white,  colframe=black!40!black, fonttitle=\bfseries}}
+\tcbset{historybox/.style={colback=brown!5!white,  colframe=brown!60!black, fonttitle=\bfseries}}
+
+% -------------------------------------------------
+% Box-Makros (immer mit Label)
+% -------------------------------------------------
+\newcommand{\PhysikBox}[3]{%
+	\begin{tcolorbox}[physikbox, title={#1}]
+		\label{#2}
+		\small #3
+	\end{tcolorbox}
+}
+\newcommand{\MatheBox}[3]{%
+	\begin{tcolorbox}[mathebox, title={#1}]
+		\label{#2}
+		\small #3
+	\end{tcolorbox}
+}
+\newcommand{\DidaktikBox}[3]{%
+	\begin{tcolorbox}[didaktikbox, title={#1}]
+		\label{#2}
+		\small #3
+	\end{tcolorbox}
+}
+\newcommand{\HinweisBox}[3]{%
+	\begin{tcolorbox}[hinweisbox, title={#1}]
+		\label{#2}
+		\small #3
+	\end{tcolorbox}
+}
+\newcommand{\HypoBox}[3]{%
+	\begin{tcolorbox}[hypobox, title={#1}]
+		\label{#2}
+		\small #3
+	\end{tcolorbox}
+}
+\newcommand{\HistoryBox}[3]{%
+	\begin{tcolorbox}[historybox, title={#1}]
+		\label{#2}
+		\small #3
+	\end{tcolorbox}
+}
+
+% Ende der Datei
+\endinput
