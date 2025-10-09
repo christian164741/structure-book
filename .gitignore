@@ -317,6 +317,18 @@ TSWLatexianTemp*
 # Makeindex log files
 *.lpz
 
+# Eigene PDF-Dateien nicht ins Repo (werden lokal erzeugt)
+*.pdf
+
+# Ausnahme: Cover-PNGs sollen im Repo bleiben (z. B. für Vorschau)
+de/cover/*.pdf
+en/cover/*.pdf
+!de/cover/*.png
+!en/cover/*.png
+
+# macOS
+.DS_Store
+
 # xwatermark package
 *.xwm
 
