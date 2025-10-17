@@ -1,3 +1,17 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon and metadata files
+Icon?
+._*
+
+# Thumbnails
+ehthumbs.db
+Thumbs.db
+
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -326,8 +340,7 @@ en/cover/*.pdf
 !de/cover/*.png
 !en/cover/*.png
 
-# macOS
-.DS_Store
+
 
 # xwatermark package
 *.xwm
