@@ -1,0 +1,67 @@
+\documentclass[10pt]{book}
+
+% --- KDP 6x9 MIT Bleed ---
+\usepackage[paperwidth=6.125in,paperheight=9.25in,margin=0in]{geometry}
+
+\usepackage[pages=all]{background}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{xcolor}
+\usepackage{anyfontsize}
+\pagestyle{empty}
+
+% Farben
+\definecolor{coveraccent}{HTML}{00B7C2} % Akzent (wie Rückseite)
+\definecolor{covertext}{HTML}{E6E6E6}   % Fließ-/Autor-Text (helles Grau)
+
+% Hintergrund
+\backgroundsetup{
+	scale=1, angle=0, opacity=1,
+	contents={\includegraphics[width=\paperwidth,height=\paperheight]{lichtspuren.png}}
+}
+
+% Safe-Area Offsets
+\newlength{\bleed}\setlength{\bleed}{0.125in}
+\newlength{\safe}\setlength{\safe}{0.35in}
+\newlength{\inset}\setlength{\inset}{\dimexpr\bleed+\safe\relax} % = 0.475in
+
+\begin{document}
+	\thispagestyle{empty}
+	
+	% --- Dunkelblende (zentraler Bereich für Text) ---
+	\begin{tikzpicture}[remember picture,overlay]
+		\fill[black,opacity=0.35]
+		([xshift=0.45in,yshift=6.9in]current page.south west) rectangle
+		([xshift=-0.45in,yshift=1.3in]current page.north east);
+	\end{tikzpicture}
+	
+	% --- TITELBLOCK ---
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[
+		anchor=north, inner sep=0pt,
+		text width=\dimexpr\paperwidth-2\inset\relax,
+		align=center
+		] at ($(current page.north)+(0,-1.05in)$) {%
+			% Haupttitel
+			{\color{coveraccent}\fontsize{58}{62}\selectfont\bfseries \kern0.5pt P H O T O N\par}
+			\vspace{0.5em}
+			% Untertitel
+			{\color{coveraccent}\fontsize{22}{26}\selectfont\bfseries THEORIE\ UND\par}
+			\vspace{0.6em}
+			{\color{coveraccent}\fontsize{22}{26}\selectfont\bfseries ANWENDUNGEN\par}
+			\vspace{0.6em}
+			% Claim
+			{\color{covertext}\fontsize{15}{19}\selectfont
+				Von der klassischen Physik zur Quantenmechanik\par}
+		};
+	\end{tikzpicture}
+	
+	% --- AUTOR unten ---
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=south, inner sep=0pt]
+		at ($(current page.south)+(0,\inset+0.08in)$)
+		{\color{covertext}\fontsize{18}{22}\selectfont\bfseries CHRISTIAN WEILHARTER};
+	\end{tikzpicture}
+	
+\end{document}

@@ -132,58 +132,22 @@ bottom=1in
 % Literaturverwaltung (BibLaTeX)
 % -------------------------------------------------
 \RequirePackage[backend=biber,style=numeric]{biblatex}
-\addbibresource{bib/literatur.bib} % gemeinsame Bibliographie-Datei für alle Projekte
+\addbibresource{../bib/literatur.bib} % gemeinsame Bibliographie-Datei für alle Projekte
 
+\tcbset{physicsbox/.style={ colback=blue!5!white,   colframe=blue!75!black,   fonttitle=\bfseries}}
+\tcbset{mathbox/.style={    colback=green!5!white,  colframe=green!50!black,  fonttitle=\bfseries}}
+\tcbset{didacticbox/.style={colback=yellow!5!white, colframe=yellow!50!black, fonttitle=\bfseries}}
+\tcbset{hypobox/.style={    colback=orange!5!white, colframe=orange!75!black, fonttitle=\bfseries}}
+\tcbset{notebox/.style={    colback=gray!10!white,  colframe=gray!60!black,  fonttitle=\bfseries}}
+\tcbset{historybox/.style={ colback=brown!5!white,  colframe=brown!60!black,  fonttitle=\bfseries}}
 
-% -------------------------------------------------
-% Box-Stile
-% -------------------------------------------------
-\tcbset{physikbox/.style={ colback=blue!5!white,   colframe=blue!75!black,  fonttitle=\bfseries}}
-\tcbset{mathebox/.style={  colback=green!5!white,  colframe=green!50!black, fonttitle=\bfseries}}
-\tcbset{didaktikbox/.style={colback=yellow!5!white,colframe=yellow!50!black,fonttitle=\bfseries}}
-\tcbset{hypobox/.style={   colback=orange!5!white, colframe=orange!75!black,fonttitle=\bfseries}}
-\tcbset{hinweisbox/.style={colback=gray!10!white,  colframe=black!40!black, fonttitle=\bfseries}}
-\tcbset{historybox/.style={colback=brown!5!white,  colframe=brown!60!black, fonttitle=\bfseries}}
-
-% -------------------------------------------------
-% Box-Makros (immer mit Label)
-% -------------------------------------------------
-\newcommand{\PhysikBox}[3]{%
-	\begin{tcolorbox}[physikbox, title={#1}]
-		\label{#2}
-		\small #3
-	\end{tcolorbox}
-}
-\newcommand{\MatheBox}[3]{%
-	\begin{tcolorbox}[mathebox, title={#1}]
-		\label{#2}
-		\small #3
-	\end{tcolorbox}
-}
-\newcommand{\DidaktikBox}[3]{%
-	\begin{tcolorbox}[didaktikbox, title={#1}]
-		\label{#2}
-		\small #3
-	\end{tcolorbox}
-}
-\newcommand{\HinweisBox}[3]{%
-	\begin{tcolorbox}[hinweisbox, title={#1}]
-		\label{#2}
-		\small #3
-	\end{tcolorbox}
-}
-\newcommand{\HypoBox}[3]{%
-	\begin{tcolorbox}[hypobox, title={#1}]
-		\label{#2}
-		\small #3
-	\end{tcolorbox}
-}
-\newcommand{\HistoryBox}[3]{%
-	\begin{tcolorbox}[historybox, title={#1}]
-		\label{#2}
-		\small #3
-	\end{tcolorbox}
-}
+% Convenient wrappers
+\newenvironment{PhysicsBox}[1][]{\begin{tcolorbox}[physicsbox,title={#1}]}{\end{tcolorbox}}
+\newenvironment{MathBox}[1][]{\begin{tcolorbox}[mathbox,title={#1}]}{\end{tcolorbox}}
+\newenvironment{DidacticBox}[1][]{\begin{tcolorbox}[didacticbox,title={#1}]}{\end{tcolorbox}}
+\newenvironment{HypoBox}[1][]{\begin{tcolorbox}[hypobox,title={#1}]}{\end{tcolorbox}}
+\newenvironment{NoteBox}[1][]{\begin{tcolorbox}[notebox,title={#1}]}{\end{tcolorbox}}
+\newenvironment{HistoryBox}[1][]{\begin{tcolorbox}[historybox,title={#1}]}{\end{tcolorbox}}
 
 % Ende der Datei
 \endinput

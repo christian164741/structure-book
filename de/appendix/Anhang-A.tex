@@ -1,114 +1,27 @@
-%===========================
-% Anhang A: Mathematische Grundlagen
-%===========================
 
-
+\cleardoublepage
 \appendix
-\renewcommand{\thesection}{A.\arabic{section}}
-
 \renewcommand{\thechapter}{A}
-\chapter{Mathematische Grundlagen}
-\label{anhangA_mathe}
 
+\renewcommand{\thesection}{\Alph{chapter}.\arabic{section}}
 
+\chapter{Mathematische Hintergründe und Herleitungen}
+\label{anhangA}
 
-\noindent
-Die Kapitel des Hauptteils haben gezeigt, wie sich der Zahlbegriff im Laufe der Geschichte 
-erweitert hat – von den natürlichen Zahlen bis zu den komplexen Zahlen. 
-Um den Lesefluss nicht zu überfrachten, wurden die mathematischen Details dabei 
-meist nur skizziert. 
+In diesem Anhang werden die im Haupttext angesprochenen physikalischen Konzepte
+formal und mathematisch vertieft. Ziel ist es, die didaktische Lesbarkeit der
+Kapitel nicht zu beeinträchtigen und zugleich interessierten Lesern die
+vollständigen Herleitungen zugänglich zu machen. 
 
-In diesem Anhang finden sich einige der klassischen Herleitungen, die für das Verständnis 
-der Entwicklung des Zahlbegriffs zentral sind. Sie zeigen, wie Logik und Beweisführung 
-neue Zahlarten notwendig machten. 
+Die Abschnitte sind thematisch nach den zentralen Eigenschaften des Photons
+gegliedert, darunter Energie-Impuls-Relation, Massehypothese, Helizität und
+Polarisation.\index{Photon!Eigenschaften} Auf diese Weise bildet der Anhang eine Brücke zwischen den
+intuitiven Erklärungen im Haupttext und der mathematischen Strenge der
+Quantenfeldtheorie.
 
-
-Damit dient dieser Anhang als Ergänzung: Er bietet die mathematische Tiefe für alle, 
-die genauer verstehen möchten, wie die neuen Zahlbereiche Schritt für Schritt 
-logisch begründet wurden.
-
-\newpage
-\refstepcounter{section}\label{anhangA_wurzel2}
-\section*{A.1 Widerspruchsbeweis für die Irrationalität von $\sqrt{2}$}
-\addcontentsline{toc}{section}{A.1 Widerspruchsbeweis für die Irrationalität von $\sqrt{2}$}
-\label{anhangA_wurzel2}
-
-\noindent
-% --- A.1 Beweis der Irrationalität von sqrt(2) ---
-
-
-
-\subsubsection*{Vorbemerkung (Lemma)}
+%\section{Kapitel I}
 \phantomsection
-\textbf{Lemma.} Ist $p^2$ eine \emph{gerade} Zahl, so ist auch $p$ gerade.
+\section{Energie- und Impulsrelation des Photons}\index{Energie-Impuls-Relation!Photon}
+\label{anhangA:energie_impuls}
 
-\emph{Begründung.} Wäre $p$ ungerade, dann $p=2k+1$ und damit
-$p^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1$ ungerade — Widerspruch. \hfill$\square$
-
-\vspace{0.5em}
-
-\subsubsection*{Beweis (Widerspruchsbeweis)}
-\phantomsection
-Angenommen, $\sqrt{2}$ sei \emph{rational}. Dann existieren ganze Zahlen $p,q$ ohne gemeinsamen Teiler
-($\gcd(p,q)=1$) mit
-\[
-\sqrt{2}=\frac{p}{q}.
-\]
-Quadrieren liefert
-\[
-2=\frac{p^2}{q^2}\quad\Longrightarrow\quad p^2=2q^2.
-\]
-Damit ist $p^2$ gerade, also nach dem Lemma auch $p$ gerade. Schreibe $p=2r$.
-Dann folgt
-\[
-p^2=(2r)^2=4r^2=2q^2 \;\Longrightarrow\; q^2=2r^2,
-\]
-also ist auch $q^2$ gerade und damit $q$ gerade.
-
-Damit sind \emph{beide} Zahlen $p$ und $q$ gerade — sie besitzen also den gemeinsamen Teiler $2$.
-Das widerspricht der getroffenen Annahme, dass $p$ und $q$ teilerfremd sind. 
-Die Ausgangsannahme war folglich falsch, also ist $\sqrt{2}$ \emph{irrational}. \hfill$\square$
-
-\DidaktikBox{Was hier passiert (Idee des Widerspruchs)}{box:idee_wurzel2_lang}{%
-	Wir nehmen an, $\sqrt{2}$ sei \emph{doch} eine Bruchzahl in vollständig gekürzter Form $\frac{p}{q}$.
-	Aus der Gleichung $p^2=2q^2$ folgt nacheinander, dass $p$ gerade ist und \emph{deshalb} auch $q$ gerade sein muss.
-	Damit wäre $\frac{p}{q}$ aber \emph{nicht} vollständig gekürzt. Genau dieser \glqq Teilerfremdheits-Widerspruch\grqq{}
-	zeigt: Die Annahme war unmöglich — also ist $\sqrt{2}$ irrational.
-}
-
-\HinweisBox{Alternative Sichtweisen}{box:alternativen_wurzel2}{%
-	\textbf{(1) Primfaktorzerlegung:} In der eindeutigen Primfaktorzerlegung besitzt $2$ einen \emph{ungeraden}
-	Exponenten, während ein Quadrat stets nur \emph{gerade} Exponenten hat — das passt nicht zusammen.\\[0.3em]
-	\textbf{(2) Kettenbruch:} Die Darstellung $\sqrt{2}=[1;\overline{2}]$ ist \emph{periodisch unendlich};
-	solche Kettenbrüche entsprechen irrationalen Zahlen.
-}
-
-\newpage
-\refstepcounter{section}\label{anhangA_i}
-\section*{A.2 Von negativen Wurzeln zu $i^2=-1$}
-\addcontentsline{toc}{section}{A.2 Von negativen Wurzeln zu $i^2=-1$}
-\label{anhangA_i}
-
-\noindent
-Im 16.~Jahrhundert stießen italienische Mathematiker bei der Lösung kubischer Gleichungen 
-auf Ausdrücke wie $\sqrt{-1}$.  
-Zunächst galten diese als „unmöglich“, doch \textbf{Rafael (Raffaele) Bombelli}\index{Bombelli, Rafael} 
-zeigte, dass man sie konsistent behandeln kann, wenn man $i^2=-1$ setzt.  
-
-\MatheBox{Definition der imaginären Einheit}{box:anhang_i}{%
-	Die imaginäre Einheit $i$ wird definiert durch
-	\[
-	i^2 = -1.
-	\]
-	Jede komplexe Zahl lässt sich dann als 
-	\[
-	z = a + bi \quad \text{mit } a,b \in \mathbb{R}
-	\]
-	schreiben. 
-}
-
-\noindent
-Dieser Schritt führte zu einer völlig neuen Zahlenwelt. 
-Zunächst misstrauisch betrachtet, wurden komplexe Zahlen später durch 
-Euler, Gauss und Argand in der Mathematik fest verankert. 
-Heute bilden sie eine unverzichtbare Grundlage vieler Gebiete der Mathematik und Physik.
+In diesem Abschnitt wird formal hergeleitet, warum ein Photon die Energie

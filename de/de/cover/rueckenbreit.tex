@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage[margin=0in,
+paperwidth=12.8175in,  % 6.125 + 0.5675 + 6.125  (CREME)
+paperheight=9.25in
+]{geometry}
+
+
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{xcolor}
+\pagestyle{empty}
+
+% Maße
+\newlength{\panel}\setlength{\panel}{6.125in}    % jede Seite inkl. Bleed
+\newlength{\spine}\setlength{\spine}{0.5675in}   % Rückenbreite (Creme)
+
+
+% Farben
+\definecolor{coverblue}{HTML}{1E4A66}  % Rückenfarbe/Titel
+%\definecolor{spinebg}{HTML}{D9CFC1} % neutrales Graubeige, dezenter Kontrast
+%\definecolor{spinebg}{HTML}{CFC0A9} % dunkleres Creme, sticht mehr hervor
+%\definecolor{spinebg}{HTML}{F0E8D6}    % dezenter Rücken-Hintergrund (anpassbar)
+\definecolor{spinebg}{HTML}{E6D8B9} % warmes Beige, etwas kräftiger
+\begin{document}
+	\begin{tikzpicture}[remember picture,overlay]
+		% Seitenreferenzen
+		\coordinate (SW) at (current page.south west);
+		
+		% --- Rückseite links ---
+		\node[anchor=south west, inner sep=0pt] at (SW)
+		{\includegraphics[width=\panel,height=9.25in]{rueckseite.pdf}};
+		
+		% --- Vorderseite rechts ---
+		\node[anchor=south west, inner sep=0pt]
+		at ($(SW)+(\panel+\spine,0)$)
+		{\includegraphics[width=\panel,height=9.25in]{vorderseite.pdf}};
+		
+		% --- Rücken mittig ---
+		\fill[spinebg] ($(SW)+(\panel,0)$) rectangle ++(\spine,9.25in);
+		
+		% Rücken-Text (90° gedreht, mittig)
+		\node[rotate=90, align=center, text=coverblue]
+		at ($(SW)+(\panel+0.5\spine,0.5*9.25in)$)
+		{\bfseries \large PHOTON \\[-2pt] \normalsize Theorie und Anwendungen \\[2pt] \bfseries Christian Weilharter};
+	\end{tikzpicture}
+\end{document}

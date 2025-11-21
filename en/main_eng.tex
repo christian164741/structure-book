@@ -1,0 +1,51 @@
+\documentclass[10pt]{book}
+\usepackage{../styles/print-en}
+
+
+
+% Hyperref bitte im main.tex lassen (sollte fast zuletzt geladen werden)
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=teal, urlcolor=magenta}
+\begin{document}
+%	\begin{titlepage}
+%	\centering
+%	\includegraphics[width=\textwidth]{bilder/cover.png} % Pfad und Dateiname anpassen
+%\end{titlepage}
+
+	
+	\hyphenation{ex-is-ts}
+	%\maketitle
+	\include{Vorwort}     % Insert your translated preface here
+	\tableofcontents
+	%\maketitle
+	
+	\include{chapters/chapter01}
+	\include{chapters/chapter02}
+	\include{chapters/chapter03}
+	\include{chapters/chapter04}
+	\include{chapters/chapter05}
+	\include{chapters/chapter06}
+	\include{chapters/chapter07}
+	\include{chapters/chapter08}
+	\include{appendix/appendix-A}
+		\include{appendix/appendix-B}
+		\include{appendix/appendix-C}
+	
+	% Bibliography
+	%\bibliographystyle{plainnat}        % remove if using biblatex
+	%\bibliography{literature/literature} % replace if using biblatex
+	\printbibliography[title=References]
+	\addcontentsline{toc}{chapter}{References}
+	
+	\clearpage
+	\phantomsection
+	\addcontentsline{toc}{chapter}{Index}
+	\renewcommand{\indexname}{Index}
+	\cleardoublepage
+	\printindex
+	
+	%\include{impressum}
+\end{document}
+
+
+

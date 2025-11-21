@@ -1,0 +1,9 @@
+
+heading_prefix "{\\section*{"
+heading_suffix "}}\n"
+item_0 "\n\\item "
+item_1 "\n  \\subitem "
+item_2 "\n    \\subsubitem "
+delim_0 " \\dotfill "
+delim_1 " \\dotfill "
+delim_2 " \\dotfill "
