@@ -60,23 +60,33 @@ bottom=1in
 \RequirePackage{csquotes}
 \RequirePackage{etoolbox}
 \AtBeginEnvironment{tcolorbox}{\pretocmd{\tcbtitletext}{\ignorespaces}{}{}}
-
+\usepackage[makeroom]{cancel}
 % -------------------------------------------------
 % Inhaltsverzeichnis
 % -------------------------------------------------
-\RequirePackage{tocstyle}
-\usetocstyle{KOMAlike}
 \RequirePackage{tocloft}
 
-% Abstände und Einrückungen im ToC
-\setlength{\cftbeforesecskip}{0.2em}
-\setlength{\cftbeforesubsecskip}{0.1em}
-\cftsetindents{chapter}{0em}{3.0em}
-\cftsetindents{section}{1.5em}{3.8em}
-\cftsetindents{subsection}{3.5em}{4.8em}
-\renewcommand{\cftchapnumwidth}{3em}
-\renewcommand{\cftsecnumwidth}{4em}
-\renewcommand{\cftsubsecnumwidth}{5em}
+% Abstände
+\setlength{\cftbeforesubsecskip}{0.2em}
+\setlength{\cftbeforesubsubsecskip}{0.1em}
+
+% Kapitel (optional)
+\cftsetindents{chapter}{0em}{2.6em}
+
+% HIER ist der Punkt: gleiche Textkante für 1.1 und 1.1.1
+\cftsetindents{subsection}{1.5em}{2.8em}
+\cftsetindents{subsubsection}{1.5em}{2.8em}
+
+% Nummernspaltenbreiten konsistent
+\renewcommand{\cftsubsecnumwidth}{2.8em}
+\renewcommand{\cftsubsubsecnumwidth}{2.8em}
+
+% Mehr Abstand vor der Seitenzahl im Inhaltsverzeichnis
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftchappagefont}{\normalfont}
+\makeatletter
+\renewcommand{\cftchapfillnum}[1]{\cftdotfill{\cftdotsep}\hspace{0.8em}#1}
+\makeatother
 
 % -------------------------------------------------
 % Nummerierungen
@@ -141,7 +151,7 @@ bottom=1in
 \tcbset{mathbox/.style={    colback=green!5!white,  colframe=green!50!black,  fonttitle=\bfseries}}
 \tcbset{didacticbox/.style={colback=yellow!5!white, colframe=yellow!50!black, fonttitle=\bfseries}}
 \tcbset{hypobox/.style={    colback=orange!5!white, colframe=orange!75!black, fonttitle=\bfseries}}
-\tcbset{notebox/.style={    colback=gray!10!white,  colframe=gray!40!black,  fonttitle=\bfseries}}
+\tcbset{notebox/.style={    colback=gray!10!white,  colframe=red!60!black,  fonttitle=\bfseries}}
 \tcbset{historybox/.style={ colback=brown!5!white,  colframe=brown!60!black,  fonttitle=\bfseries}}
 
 % Convenient wrappers
