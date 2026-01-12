@@ -124,14 +124,32 @@ bottom=1in
 	\fancyfoot[LE,RO]{\thepage}
 	\renewcommand{\headrulewidth}{0pt}
 }
+% --- Subsection soll die erste Ebene unter Kapitel sein: 1.1, 1.2, ...
+\usepackage{chngcntr}
 
-% -------------------------------------------------
-% Nummerierungen
-% -------------------------------------------------
+% Nummernformate
 \renewcommand*{\thechapter}{\Roman{chapter}}          % Kapitel: I, II, ...
-\renewcommand*{\thesection}{\arabic{section}}         % Section: 1, 2, ...
-\renewcommand*{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
-\setcounter{tocdepth}{5}
+\renewcommand{\thesubsection}{\arabic{chapter}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+% Reset: pro Kapitel neu anfangen
+\counterwithin*{subsection}{chapter}
+\counterwithin*{subsubsection}{subsection}
+
+% Nummerierungstiefe
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2} % oder 3, wenn subsubsections ins ToC sollen
+
+\providecommand{\theHchapter}{\arabic{chapter}}
+\renewcommand{\theHsubsection}{\arabic{chapter}.\arabic{subsection}}
+\renewcommand{\theHsubsubsection}{\arabic{chapter}.\arabic{subsection}.\arabic{subsubsection}}
+% -------------------------------------------------
+% Nummerierungen alt
+% -------------------------------------------------
+%\renewcommand*{\thechapter}{\Roman{chapter}}          % Kapitel: I, II, ...
+%\renewcommand*{\thesection}{\arabic{section}}         % Section: 1, 2, ...
+%\renewcommand*{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+%\setcounter{tocdepth}{5}
 
 % -------------------------------------------------
 % Index (einspaltig)
