@@ -107,7 +107,7 @@ zurück und zeigt eindrucksvoll, wie Widerspruchsbeweise funktionieren.
 
 \section{Konstruktion der komplexen Zahlen}\index{komplexe Zahlen}
 \label{anhangA_komplexe}
-\subsection*{A.2 Konstruktion der komplexen Zahl}
+%\subsection*{A.2 Konstruktion der komplexen Zahl}
 \phantomsection
 \index{komplexe Zahlen}
 Die Notwendigkeit komplexer Zahlen ergibt sich aus einem einfachen
@@ -333,3 +333,130 @@ Die komplexen Zahlen erweitern die reellen Zahlen um genau das, was
 fehlt, um alle Gleichungen lösbar zu machen. Aus der einzelnen
 Definition $i^2=-1$ entsteht ein vollständiger Zahlenbereich mit klaren
 Regeln und einer geometrischen Struktur.
+%============================================================
+\section{Mandelbrot-Landkarte: mathematische Erzeugung und Farbgebung}
+\label{app:mandelbrot-rendering}
+
+\index{Mandelbrotmenge}
+\index{Iteration}
+\index{Escape-Radius}
+\index{Fluchtzeit}
+\index{Parameterraum}
+\index{komplexe Ebene}
+\index{Farbgebung}
+\index{Algorithmus}
+
+\textbf{Ziel dieses Anhangs:} Hier wird gezeigt, wie eine typische Mandelbrot-Grafik algorithmisch entsteht:
+vom Bildpixel über den Parameter \(c\) bis zur Fluchtzeit und zur Farbzuordnung.
+
+\begin{MathBox}[Grundprinzip: Pixel \(\rightarrow\) Parameter \(c\) \(\rightarrow\) Iteration]
+	Wir berechnen für jeden Bildpunkt einen Parameter \(c\in\mathbb{C}\) und iterieren
+	\[
+	z_{n+1}=z_n^2+c,\qquad z_0=0.
+	\]
+	Die Mandelbrotmenge ist die Menge der Parameter \(c\), für die die Folge \(\{z_n\}\) beschränkt bleibt.
+\end{MathBox}
+
+%------------------------------------------------------------
+\subsection*{Koordinatentransformation: vom Pixel in die komplexe Ebene}
+\index{Koordinatentransformation}
+
+Ein Bild habe Breite \(W\) und Höhe \(H\). Wir wählen ein Sichtfenster
+\[
+x\in[x_{\min},x_{\max}],\qquad y\in[y_{\min},y_{\max}]
+\]
+und ordnen jedem Pixel \((i,j)\) (mit \(0\le i<W\), \(0\le j<H\)) einen Parameter \(c=x+iy\) zu:
+\[
+x(i)=x_{\min}+\frac{i}{W-1}\,(x_{\max}-x_{\min}),\qquad
+y(j)=y_{\max}-\frac{j}{H-1}\,(y_{\max}-y_{\min}),
+\]
+\[
+c(i,j)=x(i)+i\,y(j).
+\]
+Das Minuszeichen bei \(y(j)\) kommt daher, dass Bildkoordinaten typischerweise nach unten wachsen.
+
+\begin{NoteBox}[Typisches Standardfenster]
+	Ein häufig verwendetes Fenster ist
+	\[
+	x\in[-2.5,1.0],\qquad y\in[-1.2,1.2].
+	\]
+	Für Details (Zoom) wählt man ein kleineres Fenster um ein Zentrum \(c_0\).
+\end{NoteBox}
+
+%------------------------------------------------------------
+\subsection*{Escape-Time-Algorithmus: Fluchtkriterium und Iterationszahl}
+\index{Fluchtkriterium}
+
+Für jedes \(c\) iterieren wir bis zu einer Maximalzahl \(N_{\max}\). Sobald \(|z_n|>R\) gilt, stoppen wir.
+Für die Mandelbrotiteration reicht klassisch \(R=2\):
+
+\begin{MathBox}[Escape-Radius \(R=2\)]
+	Für \(z_{n+1}=z_n^2+c\) gilt: Wenn für ein \(n\) \(|z_n|>2\), dann divergiert die Folge sicher.
+\end{MathBox}
+
+Formal definieren wir die \textbf{Fluchtzeit}
+\[
+n_\text{esc}(c)=\min\{n\in\mathbb{N}\mid |z_n|>2\},
+\]
+falls sie existiert; andernfalls setzen wir \(n_\text{esc}(c)=N_{\max}\) und markieren den Punkt als „innen“ (typisch schwarz).
+
+%------------------------------------------------------------
+\subsection*{Farbgebung: diskret, glatt und „schön“}
+\index{Farbskala}
+
+\subsubsection*{(a) Diskrete Farbgebung über Fluchtzeit}
+Die einfachste Methode: ordne die Farbe nur nach \(n_\text{esc}\) zu.
+Das führt oft zu sichtbaren „Bändern“ (Banding), ist aber didaktisch klar.
+
+\subsubsection*{(b) Glatte Farbgebung (Continuous Coloring)}
+Um Banding zu vermeiden, nutzt man eine \textbf{kontinuierliche} Iterationszahl. Eine verbreitete Variante ist:
+\[
+\nu(c)=n + 1 - \log_2\!\bigl(\log |z_n|\bigr),
+\]
+wobei \(n\) der erste Index ist mit \(|z_n|>2\). (Hier ist \(z_n\) bereits außerhalb; \(\nu\) liegt zwischen \(n\) und \(n+1\).)
+
+\begin{DidacticBox}[Warum diese „Log-Log“-Formel?]
+	Außerhalb wächst \(|z_n|\) ungefähr quadratisch. Durch \(\log(\log(\cdot))\) wird dieses Wachstum „linearisiert“,
+	sodass Farbverläufe glatt werden und die Struktur am Rand deutlich besser sichtbar ist.
+\end{DidacticBox}
+
+Aus \(\nu\) macht man dann eine Zahl \(t\in[0,1]\) (z.B. durch Skalierung) und führt \(t\) durch eine Farbpalette.
+
+\subsubsection*{(c) Histogramm-Equalization (optional, für sehr gleichmäßige Kontraste)}
+Fortgeschritten: man zählt, wie viele Pixel welche Fluchtzeit haben, bildet eine kumulative Verteilung und verteilt Farben so,
+dass häufige Werte nicht „zusammenkleben“. Das liefert sehr ausgewogene Bilder, ist aber reiner Rendering-Komfort.
+
+%------------------------------------------------------------
+\subsection*{Pseudocode: kompakt und nachvollziehbar}
+\index{Pseudocode}
+
+% Wenn du listings nutzt:
+% \usepackage{listings}
+
+\begin{verbatim}
+	Input: W,H, x_min,x_max, y_min,y_max, N_max, R=2
+	for j = 0..H-1:
+	y = y_max - j*(y_max-y_min)/(H-1)
+	for i = 0..W-1:
+	x = x_min + i*(x_max-x_min)/(W-1)
+	c = x + I*y
+	z = 0
+	n = 0
+	while n < N_max and |z| <= R:
+	z = z*z + c
+	n = n + 1
+	if n == N_max:
+	color(i,j) = black   // inside (bounded up to N_max)
+	else:
+	// smooth iteration count (optional):
+	nu = n + 1 - log2(log(|z|))
+	color(i,j) = palette(nu)
+	Output: PNG image
+\end{verbatim}
+
+\begin{NoteBox}[Wichtig für den Leser]
+	Die Mandelbrotmenge selbst ist \emph{mathematisch} nur „innen vs. außen“ (beschränkt vs. divergent).
+	Alles, was danach kommt (Palette, Glättung, Histogramm), ist \textbf{Darstellungstechnik}.
+\end{NoteBox}
+
+%============================================================

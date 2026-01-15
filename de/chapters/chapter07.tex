@@ -362,16 +362,250 @@ Damit lässt sich „dazugehörig“ versus „nicht dazuzugehörig“ rechneris
 Für welche Parameter $c$ bleibt der Orbit von $z_0=0$ beschränkt?
 Die Antwort ist die Mandelbrot-Menge.
 
+%------------------------------------------------------------
+\subsection{Die Mandelbrotmenge als Landkarte}
+\label{sec:VII-7-3}
 
+\index{Mandelbrotmenge}
+\index{Parameterraum}
+\index{komplexe Ebene}
+\index{Iteration}
+\index{Beschränktheit}
+\index{Divergenz}
+\index{Stabilität}
+\index{Fraktal}
+\index{Selbstähnlichkeit}
+\index{Fluchtzeit}
+\index{Escape-Radius}
 
+\textbf{Leitfrage:} \emph{Wie liest man die Mandelbrotmenge wie eine Landkarte – und was bedeuten „Land“, „Meer“ und „Küste“ mathematisch?}
 
+Die Mandelbrotmenge ist keine Bahnkurve einer einzelnen Rechnung. Sie ist eine \emph{Landkarte im Parameterraum}:
+Jeder Punkt \(c\) in der komplexen Ebene steht für ein eigenes Iterationssystem. Das Bild ordnet also nicht Werte \(z_n\),
+sondern \emph{Systeme nach ihrem Verhalten}.
 
+\begin{MathBox}[Definition: Landkarte im Parameterraum]
+	Wir betrachten die Iteration
+	\[
+	z_{n+1} = z_n^2 + c, \qquad z_0 = 0, \qquad c\in\mathbb{C}.
+	\]
+	Die \textbf{Mandelbrotmenge} ist die Menge aller Parameter \(c\), für die die Folge \(\{z_n\}\) \textbf{beschränkt} bleibt:
+	\[
+	\mathcal{M}=\{\,c\in\mathbb{C}\mid \sup_n |z_n| < \infty\,\}.
+	\]
+\end{MathBox}
 
-\subsection{Die Mandelbrot-Menge als Landkarte}
-Kant
+\begin{DidacticBox}[Der häufigste Denkfehler]
+	In der Grafik ist \textbf{nicht} \(z\) die Koordinate, sondern der Parameter \(c\).
+	Für \emph{jeden} Bildpunkt wird dieselbe Iteration gestartet (immer \(z_0=0\)), aber mit anderem \(c\).
+	Darum ist das Bild eine \textbf{Landkarte}: Jeder Punkt entspricht einem eigenen Dynamik-„Universum“.
+\end{DidacticBox}
 
+\subsubsection*{Land, Meer und Küste}
+Die Landkarten-Metapher ist nicht nur hübsch, sie ist präzise:
+
+\begin{itemize}
+	\item \textbf{Land (innen, oft schwarz):} \(\{z_n\}\) bleibt beschränkt \(\Rightarrow c\in\mathcal{M}\).
+	\item \textbf{Meer (außen, farbig):} \(\{z_n\}\) entweicht \(\Rightarrow\) Divergenz.
+	\item \textbf{Küste (Grenze):} Übergangsgebiet, in dem kleinste Änderungen in \(c\) das Verhalten kippen lassen.
+\end{itemize}
+
+\begin{NoteBox}[Fluchtkriterium und Einfärbung]
+	Für \(z_{n+1}=z_n^2+c\) gilt: Sobald \(|z_n|>2\), ist Divergenz sicher (\textbf{Escape-Radius} \(2\)).
+	Außerhalb der Menge zeigt die Farbgebung meist die \textbf{Fluchtzeit}:
+	wie viele Iterationen bis \(|z_n|>2\) erreicht ist. Das ist Visualisierung, nicht Definition.
+\end{NoteBox}
+
+\subsubsection*{Die Grenze als „Bühne der Struktur“}
+Der eigentliche Kern der Mandelbrotmenge ist nicht das „Innen“ oder „Außen“, sondern die \textbf{Grenze}:
+Dort sitzt die gesamte Komplexität. Winzige Parameteränderungen entscheiden über Beschränktheit oder Divergenz.
+Beim Hineinzoomen erscheinen immer neue Strukturen – das ist das typische Merkmal fraktaler Geometrie.
+
+\begin{figure}[htbp]
+	\centering
+	% Datei anpassen:
+	\includegraphics[width=0.88\linewidth]{Bilder/Mandelbrot.png}
+	\caption{Die Mandelbrotmenge als Landkarte im Parameterraum \(c\): innen beschränkt (Land),
+		außen Fluchtzeit-Färbung (Meer), die Grenze als strukturreiches „Küstengebiet“.}
+	\label{fig:mandelbrot_landkarte}
+\end{figure}
+
+\subsubsection*{Merksätze}
+\begin{itemize}
+	\item Das Bild ist ein \textbf{Parameterraum}: Jeder Punkt ist ein eigenes Iterationssystem.
+	\item \textbf{Innen} bedeutet: beschränkt \(\Rightarrow c\in\mathcal{M}\).
+	\item \textbf{Farben außen} zeigen meist die \textbf{Fluchtzeit} (Hilfsmittel).
+	\item Die \textbf{Grenze} ist das entscheidende Gebiet: dort entsteht die Detailtiefe.
+\end{itemize}
+Eine detaillierte, nachvollziehbare Erzeugung der Mandelbrot-Grafik (Pixel \(\to c\), Iteration, Fluchtzeit und Farbgebung)
+findet sich in Anhang~\ref{app:mandelbrot-rendering}.
+
+\medskip
+\noindent\textbf{Übergang zu 7.4:} Jetzt wird die „Landkarte“ praktisch: Wir schauen auf Stabilität, Divergenz und Grenzfälle.
+Dazu wählen wir konkrete Parameter \(c\) (klar \emph{innen}, klar \emph{außen}, und knapp an der Grenze) und sehen,
+wie die Iteration sichtbar kippt.
+%------------------------------------------------------------
 \subsection{Julia-Mengen: lokale Dynamik und Struktur}
-Heu
+\label{sec:julia-mengen}
+\index{Julia-Menge}
+\index{komplexe Dynamik}
+\index{Iteration}
+\index{Mandelbrot-Menge}
+
+\textbf{Leitfrage:} Was passiert \emph{lokal} im $z$-Raum, wenn der Parameter $c$ fest ist – und warum entstehen dabei so unterschiedliche, oft fraktale Grenzen?
+
+Die Mandelbrotmenge aus Abschnitt~\ref{sec:VII-7-3} ist eine \emph{Landkarte des Parameterraums} (jedes $c$ ein Punkt).
+Julia-Mengen sind die passende \emph{Landkarte des Zustandsraums}: Für ein \emph{festes} $c$ betrachten wir die Bahn eines Startwerts $z_0$ unter Iteration.
+So wird aus „wo liegt $c$?“ die Frage „welche Startwerte $z_0$ bleiben gebunden – und welche fliegen davon?“.
+
+\begin{MathBox}[Definition: Iteration, gefüllte Julia-Menge, Julia-Rand]
+	\index{gef\"ullte Julia-Menge}
+	\index{Fixpunkt}
+	\index{Attraktor}
+	Wir betrachten die quadratische Iteration
+	\[
+	z_{n+1}=f_c(z_n)=z_n^2+c \qquad (c\in\mathbb{C} \ \text{fest}).
+	\]
+	\begin{itemize}
+		\item Die \emph{Bahn} von $z_0$ ist die Folge $(z_n)_{n\ge 0}$.
+		\item Die \emph{gef\"ullte Julia-Menge} ist
+		\[
+		K_c=\{z_0\in\mathbb{C}\mid (z_n)\ \text{bleibt beschr\"ankt}\}.
+		\]
+		\item Die \emph{Julia-Menge} ist der Rand
+		\[
+		J_c=\partial K_c.
+		\]
+	\end{itemize}
+	Anschaulich: $K_c$ sind die „Startwerte, die nicht explodieren“; $J_c$ ist die scharfe, fraktale Grenze zwischen gebunden und divergent.
+\end{MathBox}
+
+\subsubsection*{Lokale Dynamik: Stabilit\"at, Flucht und empfindliche Grenzen}
+\index{Stabilit\"at}
+\index{Divergenz}
+Für viele Startwerte entscheidet sich das Schicksal schnell: Entweder die Folge bleibt in einem begrenzten Bereich oder sie wächst rasch über alle Schranken.
+Das \emph{Erstaunliche} ist nicht das „Fliehen“ selbst, sondern die Geometrie der Trennlinie: $J_c$ ist typischerweise extrem zerklüftet und empfindlich.
+Ein minimaler Unterschied in $z_0$ kann darüber entscheiden, ob die Bahn gebunden bleibt oder entkommt.
+
+\begin{DidacticBox}[Warum ist der Rand so kompliziert?]
+	\index{chaotisches Verhalten}
+	Im Inneren von $K_c$ (und außerhalb davon) ist das Verhalten oft robust: kleine Änderungen von $z_0$ ändern das Ergebnis nicht.
+	\emph{Am Rand} gilt das Gegenteil: Dort liegen „gebundene“ und „fliehende“ Startwerte beliebig nahe beieinander.
+	Genau diese Vermischung auf allen Skalen erzeugt die fraktale Struktur der Julia-Menge.
+\end{DidacticBox}
+
+\subsubsection*{Drei einfache Beispiele (zum Einprägen)}
+\index{Beispiel}
+Man muss nicht viele Formeln kennen – drei Beispiele geben sofort Orientierung:
+
+\begin{itemize}
+	\item \textbf{$c=0$:} $z_{n+1}=z_n^2$.
+	Dann ist $K_0$ die Einheitskreisscheibe und $J_0$ der Einheitskreis.
+	(Hier ist alles „glatt“: keine Fraktalgrenze.)
+	\index{Einheitskreis}
+	\item \textbf{$c=-1$:} Das klassische „Basilica“-Bild: zwei große Loben, klar erkennbar, aber der Rand ist bereits nicht-trivial.
+	\index{Basilica}
+	\item \textbf{$c$ nahe dem Rand der Mandelbrotmenge:} Dann werden Julia-Mengen oft besonders „filigran“ (Dendriten, Staubstrukturen).
+	Das ist genau der Grenzbereich, wo lokale Dynamik maximal empfindlich wird.
+\end{itemize}
+
+\begin{HistoryBox}[Historischer Kontext: Julia und Fatou]
+	\index{Julia, Gaston}
+	\index{Fatou, Pierre}
+	Die systematische Untersuchung komplexer Iterationen begann um 1918–1920 mit Gaston Julia und Pierre Fatou.
+	Die zentralen Begriffe „normaler Bereich“ (Fatou-Menge) und „chaotischer Rand“ (Julia-Menge) stammen aus dieser Zeit.
+	Das ist ein schönes Beispiel dafür, wie reine Mathematik Jahrzehnte später zur Bildsprache moderner Fraktale wurde.
+\end{HistoryBox}
+
+\subsubsection*{Schl\"usselzusammenhang: Julia und Mandelbrot}
+\index{Zusammenhang}
+\index{Mandelbrot-Menge}
+
+Die Mandelbrotmenge ist nicht nur ein sch\"ones Bild, sondern eine \emph{Klassifikationskarte}:
+Sie ordnet jedem Parameter $c$ den \glqq Typ\grqq\ der zugeh\"origen Julia-Menge zu.
+Genau an dieser Stelle trifft der Parameterraum ($c$) direkt auf den Zustandsraum ($z$).
+
+\begin{PhysicsBox}[Merksatz: Zusammenhang von $c$ und der Geometrie von $J_c$]
+	\index{Zusammenhang!Julia und Mandelbrot}
+	Für die Iteration $z_{n+1}=z_n^2+c$ gilt:
+	\begin{itemize}
+		\item Liegt $c$ \emph{in} der Mandelbrotmenge, dann ist die gef\"ullte Julia-Menge $K_c$ (und damit auch der Rand $J_c$) \emph{zusammenh\"angend}.
+		\item Liegt $c$ \emph{au\ss erhalb}, dann zerf\"allt $J_c$ typischerweise in viele getrennte Inseln (\glqq Staub\grqq).
+	\end{itemize}
+\end{PhysicsBox}
+
+Damit wird die Idee aus Abschnitt~\ref{sec:VII-7-3} pr\"azise:
+Die Mandelbrotmenge sagt dir nicht, \emph{wie} eine Julia-Menge im Detail aussieht,
+aber sie sagt dir sofort, ob du eine zusammenh\"angende Struktur oder einen zerfallenden \glqq Staub\grqq erwarten musst.
+
+\subsubsection*{Wie entstehen die Bilder? (und wo die Details stehen)}
+\index{Rendering}
+Für die Visualisierung testet man in der Praxis für jeden Pixelstartwert $z_0$,
+ob die Bahn \emph{entkommt} (Escape) und nach wie vielen Schritten.
+Die Farbe kodiert dann typischerweise die \emph{Escape-Time} oder eine geglättete Variante davon.
+Die saubere, nachvollziehbare Rendering-Idee (Iteration, Abbruchkriterium, Farbzuordnung) ist im Anhang ausführlich dokumentiert:
+siehe Anhang~\ref{app:mandelbrot-rendering}.
+% (Optional: Falls du für Julia zusätzlich einen eigenen Anhangspunkt willst, lege später app:julia-rendering an.)
+
+\begin{NoteBox}[Mini-Checkliste f\"ur den Leser]
+	\begin{itemize}
+		\item Mandelbrot: \emph{Parameterraum} ($c$ variieren, $z_0=0$).
+		\item Julia: \emph{Zustandsraum} ($c$ fest, $z_0$ variieren).
+		\item $K_c$: gebundene Startwerte; $J_c$: fraktaler Rand.
+		\item Randnahes $c$ $\Rightarrow$ besonders empfindliche, filamentartige Strukturen.
+	\end{itemize}
+\end{NoteBox}
+\newpage
+\noindent
+\subsubsection*{Beispiel 1: Glatter Grenzfall ($c=0$)}
+\index{Julia-Menge}
+\index{Einheitskreis}
+
+Hier ist die Dynamik besonders anschaulich: Die Grenze ist glatt.
+Die Julia-Menge ist der Einheitskreis, innen bleiben Bahnen gebunden, außen fliehen sie.
+
+\begin{center}
+		\includegraphics[width=0.82\textwidth]{Bilder/Julia_0.png}
+\end{center}
+
+%	\includegraphics[width=0.32\textwidth]{Bilder/Julia_0.png}
+%	\caption{Julia-Menge für $c=0$: $J_c$ ist der Einheitskreis (glatt).}
+	\label{fig:julia-c0}
+\begin{figure}[H]
+	\caption{Julia-Menge für $c=0$: $J_c$ ist der Einheitskreis (glatt).}
+\end{figure}
+\newpage
+\noindent
+\subsubsection*{Beispiel 2: Zusammenhängend, aber fraktal ($c=-1$)}
+\index{Basilica}
+
+Trotz klarer Struktur ist der Rand bereits hochkomplex:
+Gebundene und entkommende Startwerte liegen am Rand beliebig nahe beieinander.
+\begin{center}
+		\includegraphics[width=0.82\textwidth]{Bilder/Julia-1.png}
+\end{center}
+\begin{figure}[H]
+	
+	\caption{Julia-Menge für $c=-1$ (``Basilica''): zusammenhängend, fraktaler Rand.}
+	\label{fig:julia-cminus1}
+\end{figure}
+\newpage
+\noindent
+\subsubsection*{Beispiel 3: Außerhalb der Mandelbrotmenge (``Staub'')}
+\index{Mandelbrot-Menge}
+\index{Cantor-Staub}
+
+Außerhalb der Mandelbrotmenge zerfällt $J_c$ typischerweise in viele getrennte Inseln:
+die Grenze ist nicht mehr zusammenhängend, sondern ein ``Staub''.
+\begin{center}
+		\includegraphics[width=0.82\textwidth]{Bilder/Julia-2.png}
+\end{center}
+\begin{figure}[H]
+
+	\caption{Julia-Menge für ein $c$ außerhalb der Mandelbrotmenge: zerfallender ``Staub''.}
+	\label{fig:julia-outside}
+\end{figure}
+
 \subsection{Selbstähnlichkeit und Skaleninvarianz}
 He
 
