@@ -1,9 +1,18 @@
 
 \cleardoublepage
 \appendix
-\renewcommand{\thechapter}{A}
+% --- Start Anhang (A, B, C, ...) ---
+\setcounter{chapter}{0} % 1 -> A
+\renewcommand{\thechapter}{\Alph{chapter}}
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 
-\renewcommand{\thesection}{\Alph{chapter}.\arabic{section}}
+% --- Hyperref: eindeutige Link-Anker (wichtig für korrektes Inhaltsverzeichnis) ---
+\renewcommand{\theHchapter}{app.\Alph{chapter}}
+\renewcommand{\theHsection}{\theHchapter.\arabic{section}}
+\renewcommand{\theHsubsection}{\theHsection.\arabic{subsection}}
+\renewcommand{\theHsubsubsection}{\theHsubsection.\arabic{subsubsection}}
 
 \chapter{Mathematische Hintergründe und Herleitungen}
 \label{anhangA}
@@ -358,7 +367,7 @@ vom Bildpixel über den Parameter \(c\) bis zur Fluchtzeit und zur Farbzuordnung
 \end{MathBox}
 
 %------------------------------------------------------------
-\subsection*{Koordinatentransformation: vom Pixel in die komplexe Ebene}
+\subsection{Koordinatentransformation: vom Pixel in die komplexe Ebene}
 \index{Koordinatentransformation}
 
 Ein Bild habe Breite \(W\) und Höhe \(H\). Wir wählen ein Sichtfenster
@@ -384,7 +393,7 @@ Das Minuszeichen bei \(y(j)\) kommt daher, dass Bildkoordinaten typischerweise n
 \end{NoteBox}
 
 %------------------------------------------------------------
-\subsection*{Escape-Time-Algorithmus: Fluchtkriterium und Iterationszahl}
+\subsection{Escape-Time-Algorithmus: Fluchtkriterium und Iterationszahl}
 \index{Fluchtkriterium}
 
 Für jedes \(c\) iterieren wir bis zu einer Maximalzahl \(N_{\max}\). Sobald \(|z_n|>R\) gilt, stoppen wir.
@@ -401,14 +410,14 @@ n_\text{esc}(c)=\min\{n\in\mathbb{N}\mid |z_n|>2\},
 falls sie existiert; andernfalls setzen wir \(n_\text{esc}(c)=N_{\max}\) und markieren den Punkt als „innen“ (typisch schwarz).
 
 %------------------------------------------------------------
-\subsection*{Farbgebung: diskret, glatt und „schön“}
+\subsection{Farbgebung: diskret, glatt und „schön“}
 \index{Farbskala}
 
-\subsubsection*{(a) Diskrete Farbgebung über Fluchtzeit}
+\subsubsection{(a) Diskrete Farbgebung über Fluchtzeit}
 Die einfachste Methode: ordne die Farbe nur nach \(n_\text{esc}\) zu.
 Das führt oft zu sichtbaren „Bändern“ (Banding), ist aber didaktisch klar.
 
-\subsubsection*{(b) Glatte Farbgebung (Continuous Coloring)}
+\subsubsection{(b) Glatte Farbgebung (Continuous Coloring)}
 Um Banding zu vermeiden, nutzt man eine \textbf{kontinuierliche} Iterationszahl. Eine verbreitete Variante ist:
 \[
 \nu(c)=n + 1 - \log_2\!\bigl(\log |z_n|\bigr),
@@ -422,12 +431,12 @@ wobei \(n\) der erste Index ist mit \(|z_n|>2\). (Hier ist \(z_n\) bereits auße
 
 Aus \(\nu\) macht man dann eine Zahl \(t\in[0,1]\) (z.B. durch Skalierung) und führt \(t\) durch eine Farbpalette.
 
-\subsubsection*{(c) Histogramm-Equalization (optional, für sehr gleichmäßige Kontraste)}
+\subsubsection{(c) Histogramm-Equalization (optional, für sehr gleichmäßige Kontraste)}
 Fortgeschritten: man zählt, wie viele Pixel welche Fluchtzeit haben, bildet eine kumulative Verteilung und verteilt Farben so,
 dass häufige Werte nicht „zusammenkleben“. Das liefert sehr ausgewogene Bilder, ist aber reiner Rendering-Komfort.
 
 %------------------------------------------------------------
-\subsection*{Pseudocode: kompakt und nachvollziehbar}
+\subsection{Pseudocode: kompakt und nachvollziehbar}
 \index{Pseudocode}
 
 % Wenn du listings nutzt:
@@ -460,3 +469,154 @@ dass häufige Werte nicht „zusammenkleben“. Das liefert sehr ausgewogene Bil
 \end{NoteBox}
 
 %============================================================
+%========================================================
+\section{Von Minimall\"ange zu Minimalfl\"ache: Optimale Verzweigungsnetzwerke}
+\label{app:netzwerke-minimalflaeche}
+\index{Optimierung}
+\index{Minimalfl\"ache}
+\index{Netzwerk}
+\index{Verzweigung}
+\index{Transportnetzwerk}
+
+Im Haupttext wurde ein moderner Methodentransfer angesprochen:
+Biologische Strukturen wie Nervenzellen, Blutgef\"a{\ss}e oder B\"aume sind keine idealen \glqq Dr\"ahte\grqq,
+sondern \emph{R\"ohrennetzwerke} mit endlicher Dicke.
+Dadurch \"andert sich die nat\"urliche Zielfunktion der Optimierung:
+Nicht nur die Gesamtl\"ange ist relevant, sondern insbesondere die ben\"otigte \emph{Oberfl\"ache}
+(sowie der geometrische Aufwand an Verzweigungsstellen).
+
+\subsection{Das 1D-Modell: Minimierung der Gesamtl\"ange}
+\index{Graph}
+\index{Steiner-Baum}
+
+Ein Netzwerk werde als Graph modelliert: Knoten sind Verzweigungen oder Endpunkte, Kanten $e$ sind Verbindungen mit L\"ange $\ell_e$.
+Ein naheliegendes Minimalprinzip lautet:
+\begin{equation}
+	K_{\text{L}} = \sum_{e} \ell_e.
+	\label{eq:cost_length}
+\end{equation}
+Dieses Modell ist geeignet f\"ur Systeme, in denen \glqq Material\grqq\ proportional zur L\"ange ist und Verzweigungen als ideale Punkte gelten.
+In der Mathematik f\"uhrt das in die N\"ahe des Steiner-Problems: Man sucht ein Netzwerk, das vorgegebene Endpunkte mit minimaler Gesamtl\"ange verbindet.
+
+\medskip
+\noindent
+\textbf{Grenze des 1D-Modells.}
+Sobald Verbindungen eine endliche Dicke besitzen, wird ein reines L\"angenfunktional zu grob:
+Ein \glqq Kabel\grqq\ ist dann nicht mehr eindimensional, sondern besitzt eine Mantelfl\"ache, die gebaut und erhalten werden muss.
+
+\subsection{Das 2D-Modell: R\"ohrenoberfl\"ache statt L\"ange}
+\index{Zylinder}
+\index{Oberfl\"ache}
+
+Eine Kante $e$ werde als Zylinder mit Radius $r_e$ und L\"ange $\ell_e$ angen\"ahert.
+Dann ist die Mantelfl\"ache
+\begin{equation}
+	A_e \approx 2\pi r_e\, \ell_e,
+	\qquad
+	A \approx \sum_e 2\pi r_e\, \ell_e.
+	\label{eq:area_sum}
+\end{equation}
+Hier ist mit \glqq Fl\"ache\grqq\ die Summe der Mantelfl\"achen der R\"ohrensegmente als Kostenma{\ss} gemeint,
+nicht eine zusammenh\"angende Minimalfl\"ache wie bei einer Seifenhaut.
+
+Wenn Oberfl\"ache als Kosten f\"ur Material, Membran, Wartung oder Stabilit\"at steht, ist eine einfache Kostenfunktion
+\begin{equation}
+	K_{\text{A}} = \alpha \sum_e r_e\, \ell_e.
+	\label{eq:cost_area}
+\end{equation}
+Dabei ist $\alpha>0$ ein Gewichtungsfaktor, der Einheiten und Skalierung festlegt und in Anwendungen
+weitere Effekte (Materialkonstante, biologische Kosten) zusammenfassen kann.
+
+\begin{MathBox}[Vom Draht zum Rohr: der entscheidende Schritt]
+	\index{Minimalfl\"ache}
+	Das 1D-Modell minimiert L\"ange $\sum \ell_e$.
+	Das 2D-Modell ber\"ucksichtigt Dicke und minimiert (proportional) Oberfl\"ache
+	$\sum r_e\ell_e$.
+	Damit wird aus einem \emph{Linienproblem} ein \emph{Fl\"achenproblem}:
+	Die Geometrie von Verzweigungen wird nicht nur durch \glqq k\"urzeste Wege\grqq\,
+	sondern durch \glqq m\"oglichst glatte und fl\"achenarme Struktur\grqq\ bestimmt.
+\end{MathBox}
+
+\subsection{Verzweigungen sind nicht kostenlos: Junction-Kosten}
+\index{Junction}
+\index{Kr\"ummung}
+
+In realen Netzwerken ist eine Verzweigung keine ideale Punktoperation.
+Geometrisch entstehen lokale Kr\"ummungen, \"Ubergangsregionen, mechanische Spannungen; funktional kommen
+Regelung, Stabilit\"at und Fehlertoleranz hinzu.
+Das kann modellhaft durch einen Zusatzterm erfasst werden:
+\begin{equation}
+	K = \alpha \sum_e r_e\,\ell_e \;+\; J\,N_{\text{J}},
+	\label{eq:cost_with_junctions}
+\end{equation}
+wobei $N_{\text{J}}$ die Anzahl der Verzweigungsstellen und $J>0$ eine \glqq Nahtstellenstrafe\grqq\ ist.
+Die Parameter $\alpha$ und $J$ tragen die Einheiten und gewichten die Beitr\"age; entscheidend sind ihre relativen Gr\"o{\ss}enordnungen.
+
+\paragraph{Mini-Beispiel: Trifurkation vs.\ zwei Bifurkationen.}
+\index{Trifurkation}
+\index{Bifurkation}
+
+Drei Endpunkte sollen versorgt werden. Zwei plausible Designs:
+\begin{itemize}
+	\item \textbf{Design A:} eine Dreifach-Verzweigung (eine Junction), Gesamtl\"ange $L_A$.
+	\item \textbf{Design B:} zwei Zweifach-Verzweigungen (zwei Junctions), Gesamtl\"ange $L_B$.
+\end{itemize}
+F\"ur konstanten Radius (oder \"ahnliche Radien) gen\"ugt der Vergleich
+\[
+K_A \approx \alpha L_A + J,
+\qquad
+K_B \approx \alpha L_B + 2J.
+\]
+Design A ist g\"unstiger, falls
+\begin{equation}
+	\alpha(L_A-L_B) < J.
+	\label{eq:threshold_J}
+\end{equation}
+\textbf{Interpretation:}
+Selbst wenn Design A etwas l\"anger ist, kann es optimal sein, sobald die Verzweigungsstelle \glqq teuer genug\grqq\ ist.
+Die Schwelle ist $J/\alpha$: Erst wenn die \glqq Nahtstelle\grqq\ teurer ist als die eingesparte effektive L\"ange,
+lohnt sich die zus\"atzliche Verzweigung nicht.
+Das erkl\"art, warum reale Netze systematisch von reinen Minimall\"angen-L\"osungen abweichen k\"onnen.
+
+\subsection{Transportkosten (Druckverlust) als zweiter Mechanismus}
+\index{Poiseuille-Gesetz}
+\index{Str\"omungswiderstand}
+
+Oberfl\"ache ist nicht alles: Ein Netzwerk transportiert Fluss (Wasser, Blut, Signale).
+F\"ur laminare Str\"omung in einem zylindrischen Rohr (Poiseuille-Regime) skaliert der Str\"omungswiderstand stark mit dem Radius,
+n\"aherungsweise $R \sim \ell/r^4$ (bis auf Konstanten wie Viskosit\"at).
+Daraus folgt eine weitere plausible Kostenkomponente:
+\begin{equation}
+	K_{\text{T}} = \beta \sum_e \frac{\ell_e}{r_e^4},
+	\label{eq:transport_cost}
+\end{equation}
+wobei $\beta>0$ die Gewichtung der Transportverluste beschreibt.
+Ein zusammengesetztes Modell lautet dann:
+\begin{equation}
+	K = \alpha \sum_e r_e\,\ell_e \;+\;
+	\beta \sum_e \frac{\ell_e}{r_e^4}
+	\;+\; J\,N_{\text{J}}.
+	\label{eq:full_cost}
+\end{equation}
+\textbf{Interpretation:}
+\begin{itemize}
+	\item Gr\"o{\ss}ere Radien senken Transportverluste (zweiter Term), sind aber fl\"achen- bzw.\ materialteurer (erster Term).
+	\item Zus\"atzliche Verzweigungen k\"onnen Fluss verteilen, erzeugen aber Nahtstellenkosten (dritter Term).
+\end{itemize}
+Genau solche Zielkonflikte erzeugen die typischen, \emph{auffallend optimierten} Verzweigungsarchitekturen in der Natur.
+
+\begin{DidacticBox}[Merksatz: Nicht Strings im Gehirn -- sondern Fl\"achen-Optimierung]
+	\index{Stringtheorie}
+	Der Bezug zur Stringtheorie ist \emph{methodisch}, nicht ontologisch:
+	Viele Aufgaben lassen sich als Minimierung eines Fl\"achenfunktionals formulieren.
+	In der modernen Physik (u.\,a.\ in der Stringtheorie) wurden daf\"ur leistungsf\"ahige mathematische Werkzeuge entwickelt.
+	Hier werden diese Werkzeuge genutzt, um reale Verzweigungsnetzwerke als Optimierungsproblem zu beschreiben.
+\end{DidacticBox}
+
+\subsection{Fazit}
+\index{Mathematik}
+
+Der zentrale Schritt ist der Wechsel des Modells:
+Von \glqq k\"urzesten Linien\grqq\ zu \glqq fl\"achenarmen R\"ohren mit Verzweigungsaufwand\grqq.
+Damit wird klar, warum die Natur in vielen Kontexten (B\"aume, Gef\"a{\ss}e, Neuronen) auf \"ahnliche Geometrien f\"uhrt:
+Nicht weil die Systeme identisch sind, sondern weil die \emph{Optimierungslogik} strukturell verwandt ist.
