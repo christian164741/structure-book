@@ -88,31 +88,75 @@ x = \frac{525}{2} = 262{,}5 \text{ Dinar}.
 	\label{box:erbe}
 \end{NoteBox}
 
+
+\subsection{Al-Chwarizmi: Quadratische Ergänzung als Flächenargument}
+
 Ein bekanntes Beispiel aus Al-Chwarizmis Werk lautet:
 \begin{quote}
 	„Ein Quadrat und zehn seiner Wurzeln ergeben neununddreißig.“
 \end{quote}
-Heute würden wir dies als quadratische Gleichung\index{Quadratische Gleichung}
+Heute schreiben wir dies als Gleichung
 \[
-x^2 + 10x = 39
+x^2 + 10x = 39.
 \]
-schreiben.  
 
-Al-Chwarizmi dachte jedoch geometrisch\index{Geometrie}: 
-Das Glied \(x^2\) stellte ein Quadrat dar, dessen Seitenlänge \(x\) ist. 
-Die Terme \(10x\) bildeten zwei Rechtecke der Breite~5, die an zwei Seiten des Quadrats anliegen.  
-Das fehlende kleine Quadrat in der Ecke, das die Figur zu einem größeren Quadrat ergänzt, 
-hat die Fläche \(5^2 = 25\).  
-Durch Hinzufügen dieser Fläche wird das Gebilde zu einem vollständigen Quadrat\index{Quadratische Ergänzung}:
+Al-Chwarizmi dachte geometrisch: \(x^2\) ist die Fläche eines Quadrats mit Seitenlänge \(x\).
+Der Term \(10x\) ist ebenfalls eine Fläche und kann als Rechteck dargestellt werden.
+
+\vspace{0.6em}
+
+\begin{figure}[htbp]
+	\centering
+	
+	\begin{subfigure}[t]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{bilder/alch02.png}
+		\caption{Flächen: \(x^2\) und \(10x\).}
+		\label{fig:alch02}
+	\end{subfigure}\hfill
+	\begin{subfigure}[t]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{bilder/alch01.png}
+	\caption{Zerlegung: \(10x=2\cdot 5x\).}
+		\label{fig:alch01}
+	\end{subfigure}\hfill
+	\begin{subfigure}[t]{0.32\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{bilder/alch03.png}
+		\caption{\(+25\Rightarrow (x+5)^2\).}
+		\label{fig:alch03}
+	\end{subfigure}
+	
+	\caption{Quadratische Ergänzung nach Al-Chwarizmi als Flächenargument.}
+	\label{fig:alchwarizmi}
+\end{figure}
+	
+
+Den Term \(10x\) zerlegt man als
+\[
+10x = 5x + 5x,
+\]
+also als zwei Rechtecke der Größe \(x\times 5\), die man an zwei Seiten des Quadrats anlegt.
+Dadurch entsteht fast ein größeres Quadrat; es fehlt nur noch das Eckquadrat \(5\times 5\) mit Fläche \(25\).
+
+Addiert man diese fehlende Fläche auf beiden Seiten, erhält man
 \[
 x^2 + 10x + 25 = 39 + 25,
 \]
-also \((x+5)^2 = 64\), woraus \(x = 3\) folgt.
+also
+\[
+(x+5)^2 = 64.
+\]
+Geometrisch bedeutet das: Das ergänzte Quadrat hat die Fläche \(39+25=64\) und damit die Seitenlänge \(8\).
+\[
+x+5 = \sqrt{64} = 8.
+\]
+Folglich ist
+\[
+x = 8 - 5 = 3.
+\]
 
-\subsubsection*{Graphische Darstellung der quadratischen Ergänzung}
-\phantomsection
 
-% (TikZ bleibt unverändert)
 
 \begin{DidacticBox}[Der Ursprung des Wortes „Algorithmus“]
 	Der Name \emph{al-Chwarizmi} wurde im Lateinischen zu „Algoritmi“ verfremdet. 
