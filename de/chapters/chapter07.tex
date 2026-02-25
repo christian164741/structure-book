@@ -204,6 +204,31 @@ Da $|a|=0{,}85<1$ gilt
 \[
 |z_n|=|a|^n|z_0|\le |z_0|=:R=\sqrt{5}.
 \]
+
+\subsubsection*{Zwei Iterationsschritte zum Verständnis}
+Wir schreiben
+\[
+a=0{,}85e^{i\pi/5}=0{,}85(\cos36^\circ+i\sin36^\circ)
+\approx 0{,}687664+i\,0{,}499617.
+\]
+Mit $z_0=2+i$ ergibt sich
+\begin{align*}
+	z_1 &= a z_0 \notag\\
+	&= (0{,}687664+i\,0{,}499617)(2+i) \notag\\
+	&= (2\cdot0{,}687664-0{,}499617)+i(0{,}687664+2\cdot0{,}499617) \notag\\
+	&\approx 0{,}876+i\,1{,}687.
+\end{align*}
+Der nächste Schritt ist
+\[
+z_2=a z_1\approx (0{,}687664+i\,0{,}499617)(0{,}876+i\,1{,}687)
+\approx -0{,}241+i\,1{,}598.
+\]
+Man erkennt bereits: jeder Schritt dreht den Punkt um $36^\circ$ und verkleinert den Betrag um den Faktor $0{,}85$.
+Allgemein gilt nämlich
+\[
+|z_n|=0{,}85^n|z_0|,\qquad \arg(z_n)=\arg(z_0)+n\frac{\pi}{5},
+\]
+also spiralisiert der Orbit gegen $0$.
 Der Orbit bleibt also für alle $n$ im Kreisradius $R$ und spiralt gegen $0$.
 
 \begin{figure}[h]
@@ -255,6 +280,10 @@ Der Orbit bleibt also für alle $n$ im Kreisradius $R$ und spiralt gegen $0$.
 		\end{axis}
 	\end{tikzpicture}
 \end{figure}
+
+\newpage
+\noindent
+
 \subsubsection*{Der Grenzfall: die eigentliche Bühne der Struktur}
 Jetzt kommt der entscheidende Punkt für das ganze Kapitel:
 Zwischen eindeutig stabil und eindeutig divergent liegt ein Randbereich, der extrem empfindlich ist.
@@ -606,11 +635,262 @@ die Grenze ist nicht mehr zusammenhängend, sondern ein ``Staub''.
 	\label{fig:julia-outside}
 \end{figure}
 
-\subsection{Selbstähnlichkeit und Skaleninvarianz}
-He
+ 
+\subsection{Selbstähnlichkeit und Skaleninvarianz}\label{sec:7.5}
 
-\subsection{Warum diese Formen keine Naturmodelle sind}
-Heute
+\textbf{Leitfrage:} Warum tauchen beim Hineinzoomen in Mandelbrot- und Julia-Mengen immer wieder ähnliche Strukturen auf -- und was bedeutet das mathematisch?
 
-\subsection{	Fazit: Struktur ohne Materie}
-Heut
+\medskip
+Bei vielen Objekten der klassischen Geometrie wird das Bild beim Vergrößern irgendwann \emph{einfacher}: Eine Kreislinie bleibt glatt, ein Polygon zeigt gerade Kanten. 
+Bei fraktalen Mengen ist es umgekehrt: Vergrößerung erzeugt nicht Klarheit, sondern neue Details. Genau dieses Verhalten beschreibt man mit den Begriffen \emph{Selbstähnlichkeit} und \emph{Skaleninvarianz}.
+
+\subsubsection*{Selbstähnlichkeit: Wiederkehr von Struktur}
+Im Alltag meint Selbstähnlichkeit oft eine direkte Kopie: ein Muster erscheint exakt noch einmal, nur kleiner. 
+Bei dynamisch erzeugten Fraktalen (wie Mandelbrot- und Julia-Mengen) ist das meistens \emph{nicht} so streng. 
+Man beobachtet vielmehr eine \emph{quasi-selbstähnliche} Wiederkehr:
+bestimmte Motive (Bulben, Filamente, Spiralformen, ``Seepferdchen''-Strukturen) treten auf unterschiedlichen Skalen erneut auf, aber nicht als perfekte Duplikate.
+
+\begin{DidacticBox}[Selbstähnlichkeit heißt nicht: identische Kopie]
+	\small
+	Bei iterierten komplexen Abbildungen ist Selbstähnlichkeit häufig \emph{qualitativ}: 
+	Beim Zoomen erscheinen ähnliche Formen und Stabilitätsinseln wieder, aber meist mit Verzerrungen, Rotation oder leichten Variationen. 
+	Der entscheidende Punkt ist nicht ``Copy--Paste'', sondern: \emph{Die Art der Struktur bleibt erhalten}.
+\end{DidacticBox}
+
+Trotzdem ist es hilfreich, die \emph{exakte} Idee dahinter kurz zu kennen.
+In der klassischen Fraktalgeometrie heißt eine Menge $S$ selbstähnlich, wenn sie sich aus verkleinerten Kopien ihrer selbst zusammensetzt. 
+Formal existieren Ähnlichkeitsabbildungen $f_k$ mit
+\[
+S=\bigcup_{k=1}^m f_k(S),\qquad 
+f_k(z)=r_k e^{i\theta_k}z+t_k,\quad 0<r_k<1.
+\]
+Das ist das Prinzip der Koch-Kurve oder des Sierpi\'nski-Dreiecks.
+Für Mandelbrot- und Julia-Mengen ist das Bild subtiler: Die Selbstähnlichkeit entsteht nicht durch einen \emph{Bauplan}, sondern durch die \emph{Dynamik} der Iteration.
+
+\subsubsection*{Skaleninvarianz: keine charakteristische Größe}
+Skaleninvarianz bedeutet: Es gibt keine ``typische'' Längenskala, auf der die Struktur plötzlich verschwindet.
+Wenn man um den Faktor $\lambda>0$ vergrößert,
+\[
+z \mapsto \lambda z,
+\]
+dann bleibt die Struktur nicht \emph{identisch}, aber sie bleibt \emph{vom selben Typ}.
+Genau das ist der visuelle Kern vieler Fraktale: Es gibt auf immer kleineren Skalen weiterhin Grenzstruktur.
+
+\subsubsection*{Warum tritt das bei der Mandelbrotmenge auf?}
+Die Mandelbrotmenge ist eine ``Landkarte'' der Stabilität der Iteration
+\[
+z_{n+1}=z_n^2+c.
+\]
+Für Parameter $c$ \emph{innerhalb} der Mandelbrotmenge bleibt der Orbit von $z_0=0$ beschränkt; außerhalb divergiert er.
+Die \emph{Grenze} der Menge markiert den Übergang zwischen Stabilität und Divergenz.
+Gerade solche Übergänge sind die Orte, an denen Dynamik empfindlich wird und auf vielen Skalen neue Struktur erzeugt.
+
+Beim Zoomen in diese Grenzregionen findet man immer wieder sogenannte \emph{Baby-Mandelbrots}:
+kleine, mandelbrotähnliche Teilstrukturen.
+Didaktisch ist das der zentrale Punkt:
+
+\begin{quote}
+	\emph{Selbstähnlichkeit ist die geometrische Signatur von Dynamik am Rand der Stabilität.}
+\end{quote}
+
+Man sieht damit nicht nur ein ``schönes Bild'', sondern eine wiederkehrende Ordnung:
+Stabile Periodenfenster (Bulben) sitzen eingebettet in ein chaotisch-filamentöses Grenzgewebe.
+
+\subsubsection*{Julia-Mengen: Struktur hängt am Parameter}
+Die Julia-Menge gehört zur selben Iteration, aber für ein festes $c$:
+\[
+f_c(z)=z^2+c.
+\]
+Ein fundamentaler Zusammenhang lautet:
+
+\begin{itemize}
+	\item Liegt $c$ \emph{in} der Mandelbrotmenge, dann ist die zugehörige Julia-Menge \emph{zusammenhängend}.
+	\item Liegt $c$ \emph{außerhalb}, dann zerfällt die Julia-Menge in ``Staub'' (Cantor-artige Menge).
+\end{itemize}
+
+Damit wird klar, warum Julia-Mengen beim Zoomen zwar ebenfalls oft selbstähnliche Motive zeigen, aber in ihrer Optik stark variieren: 
+Der Parameter $c$ entscheidet, ob man eine geschlossene, filamentöse Struktur oder ein zerfetztes Punktensemble erhält.
+
+\subsubsection*{Skaleninvarianz messbar machen: fraktale Dimension}
+Dass ein Objekt auf vielen Skalen Detail trägt, lässt sich auch quantitativ ausdrücken.
+Eine robuste Methode ist das \emph{Box-Counting}:
+Man überdeckt die Menge mit Quadraten der Kantenlänge $\varepsilon$ und zählt, wie viele Kästchen $N(\varepsilon)$ benötigt werden.
+
+\begin{MathBox}[Box-Counting-Dimension]
+	\small
+	Für viele fraktale Mengen gilt näherungsweise eine Potenzrelation
+	\[
+	N(\varepsilon)\sim \varepsilon^{-D}.
+	\]
+	Dann definiert man die (Box-Counting-)Dimension durch
+	\[
+	D=\lim_{\varepsilon\to 0}\frac{\log N(\varepsilon)}{\log(1/\varepsilon)}.
+	\]
+	Für glatte Kurven ist $D=1$, für Flächen $D=2$. 
+	Fraktale Grenzen liegen typischerweise dazwischen: $1<D<2$.
+\end{MathBox}
+
+In diesem Sinn ist Skaleninvarianz nicht nur ein optischer Eindruck, sondern eine messbare Eigenschaft:
+Die Komplexität der Grenze bleibt beim Hineinzoomen erhalten.
+
+\subsubsection*{Fazit}
+Selbstähnlichkeit und Skaleninvarianz sind keine ``Dekoration'' der Mandelbrot- und Julia-Mengen, sondern Ausdruck ihrer Entstehung:
+Iterierte komplexe Abbildungen erzeugen Struktur gerade dort, wo Stabilität kippt.
+Damit wirken diese Mengen wie Naturmuster -- und genau deshalb ist die nächste Frage zwingend:
+
+\medskip
+\noindent\emph{Warum sind diese Formen trotz ihrer Naturähnlichkeit keine direkten Naturmodelle?}
+Das führt unmittelbar zu Abschnitt~\ref{sec:7.6}.
+
+%7.6
+\subsection{Warum diese Formen keine Naturmodelle sind}\label{sec:7.6}
+
+\textbf{Leitfrage:} Wenn Mandelbrot- und Julia-Mengen wie ``Naturstrukturen'' aussehen -- warum sind sie dann trotzdem \emph{keine} Naturmodelle?
+
+\medskip
+Fraktale Bilder wirken oft verblüffend vertraut: Küstenlinien, Wolkenränder, Verästelungen, Flammenformen, biologische Muster. 
+Es ist daher verlockend zu sagen: \emph{Die Natur ist eben ``mandelbrotartig''.}
+Genau hier muss man jedoch sauber trennen: zwischen \emph{Ähnlichkeit im Bild} und \emph{Modellcharakter in der Physik}.
+Mandelbrot- und Julia-Mengen sind primär \emph{mathematische Grenzobjekte}, die aus einer idealisierten Iteration entstehen.
+Die Natur produziert dagegen Strukturen durch reale Prozesse: Material, Energieflüsse, Dissipation, Rauschen, Wechselwirkungen und Randbedingungen.
+
+\begin{NoteBox}[Warum manche Fraktale wie Blätter aussehen]
+	\small
+	Es gibt Fraktale, die wie Blätter oder Farne wirken (klassisch: rekursive ``Farn''-Konstruktionen).
+	Das ist nicht überraschend: Auch Pflanzen erzeugen ihre Formen oft durch wiederholte lokale Wachstumsregeln
+	(Verzweigung: Hauptader $\to$ Nebenader $\to$ feinere Adern).
+	Die optische Ähnlichkeit erklärt sich also aus dem \emph{Prinzip der Wiederholung} -- sie macht die Mandelbrot- oder Julia-Mengen
+	aber noch nicht zu einem Naturmodell.
+	In der Natur endet Selbstähnlichkeit an physikalischen Skalen (Zellen, Material, Diffusion, Rauschen); die mathematische Iteration kennt diese Grenze nicht.
+\end{NoteBox}
+
+\subsubsection*{Ein Naturmodell braucht Mechanismus, nicht nur Geometrie}
+Ein physikalisches Modell erklärt nicht nur \emph{wie etwas aussieht}, sondern \emph{warum} es so entsteht.
+Bei Fraktalen aus komplexer Iteration ist der Mechanismus rein formal:
+\[
+z_{n+1}=f(z_n)
+\]
+und ein Kriterium wie ``beschränkt oder unbeschränkt''. 
+Das erzeugt Grenzstrukturen, aber es beschreibt keinen Stofftransport, keine Kräfte, keine Materialgesetze, keine thermodynamischen Bedingungen.
+
+\begin{DidacticBox}[Optische Ähnlichkeit ist kein Modell]
+	\small
+	Dass zwei Formen ähnlich aussehen, heißt nicht, dass sie durch denselben Prozess entstehen.
+	In der Physik zählt die \emph{Erzeugungsregel} (Mechanismus) mehr als die Geometrie des Endbilds.
+\end{DidacticBox}
+
+\subsubsection*{Die Natur hat Rauschen, Imperfektionen und endliche Auflösung}
+Die Mandelbrotmenge besitzt mathematisch unendliche Detailtiefe: 
+Man kann ohne Ende hineinzoomen und findet immer neue Struktur.
+In der Natur ist das unmöglich.
+Jeder reale Prozess hat eine kleinste relevante Skala:
+Atomabstände, Körnung, Viskosität, Wärmeleitung, Diffusion, Quantenrauschen oder Messgrenzen.
+Damit bricht Skaleninvarianz irgendwann ab.
+Viele Naturstrukturen sind daher nur \emph{über einen begrenzten Skalenbereich} fraktalähnlich.
+
+\subsubsection*{Die Iteration ist nicht ``dynamisch'' im physikalischen Sinn}
+Die Iteration $z_{n+1}=z_n^2+c$ beschreibt keine Zeitentwicklung eines Systems in Raum und Zeit.
+Sie ist eine Rechenvorschrift im Zahlenraum.
+Der Index $n$ ist ein Iterationsschritt, nicht notwendigerweise eine physikalische Zeit.
+Ein Naturmodell müsste angeben:
+\begin{itemize}
+	\item welche Größen sich in der Zeit ändern (Felder, Dichten, Geschwindigkeiten),
+	\item welche Gleichungen gelten (z.\,B. Differentialgleichungen),
+	\item welche Rand- und Anfangsbedingungen vorliegen,
+	\item wie Dissipation und Fluktuationen wirken.
+\end{itemize}
+Bei Mandelbrot/Julia fehlt diese Kopplung an physikalische Größen vollständig.
+
+\subsubsection*{Parameterraum vs. Realraum}
+Ein weiterer entscheidender Punkt: 
+Die Mandelbrotmenge ist eine Struktur im \emph{Parameterraum} $c$.
+Sie ist eine Landkarte darüber, für welche Parameter die Dynamik stabil bleibt.
+Naturmodelle beschreiben dagegen Strukturen im \emph{Realraum} (in Metern, Sekunden, Kilogramm).
+Die Verwechslung ist häufig:
+Man sieht eine ``Landkarte'' und interpretiert sie als ``Landschaft''.
+
+\begin{NoteBox}[Wichtige Unterscheidung: Parameterraum vs.\ Realraum]
+	\small
+	Die Mandelbrotmenge lebt im $c$-Raum (Parameterraum), nicht im physikalischen Raum.
+	Sie ist eine Stabilitätskarte: Sie zeigt, für welche Parameter $c$ die Iteration
+	\[
+	z_{n+1}=z_n^2+c
+	\]
+	beschränkt bleibt.
+	Ein Naturmodell dagegen beschreibt Strukturen im Realraum und muss Größen, Einheiten und Prozesse (Zeit, Felder, Flüsse) explizit enthalten.
+\end{NoteBox}
+
+\subsubsection*{Warum die Natur trotzdem oft fraktalähnlich wirkt}
+Dass Mandelbrot-Bilder naturähnlich wirken, ist kein Zufall: 
+Viele reale Prozesse erzeugen Grenzflächen, Verzweigungen oder Instabilitätsmuster.
+Typische Mechanismen sind z.\,B.
+\begin{itemize}
+	\item Wachstum unter Diffusion (z.\,B. Kristallwachstum, DLA),
+	\item Turbulenz und Kaskaden,
+	\item Rissbildung und Bruchmechanik,
+	\item Perkolation und kritische Phänomene,
+	\item Konkurrenz von Stabilität und Instabilität.
+\end{itemize}
+Diese Prozesse können über gewisse Skalenbereiche fraktale Kennwerte zeigen.
+Aber: Der erzeugende Mechanismus ist physikalisch, nicht die komplexe Iteration selbst.
+
+\subsubsection*{Fazit}
+Mandelbrot- und Julia-Mengen sind keine Naturmodelle, weil sie
+\begin{itemize}
+	\item keinen physikalischen Mechanismus (Kräfte, Flüsse, Dissipation) enthalten,
+	\item unendliche Skaleninvarianz besitzen, die in der Natur immer endet,
+	\item keine Zeitentwicklung im Realraum beschreiben,
+	\item im Parameterraum entstehen und daher nicht direkt ``räumliche'' Naturformen sind.
+\end{itemize}
+Sie sind dennoch extrem wertvoll:
+Sie zeigen, wie aus einer einfachen mathematischen Vorschrift \emph{Struktur ohne Materie} entsteht -- als Grenzobjekt zwischen Stabilität und Chaos.
+Damit sind sie ein idealer Abschluss der Dynamik-Kapitel und führen direkt zum Fazit in Abschnitt~7.7.
+%7.7
+\subsection{Fazit: Struktur ohne Materie}\label{sec:7.7}
+
+\textbf{Leitfrage:} Was ist die eigentliche Erkenntnis dieses Kapitels -- jenseits der spektakulären Bilder?
+
+\medskip
+Dieses Kapitel begann mit einem erstaunlich einfachen Prinzip: \emph{Iteration}.
+Eine feste Regel wird immer wieder angewandt, Schritt für Schritt.
+Keine Materie, keine Kräfte, keine Energieflüsse, keine Messgeräte.
+Und dennoch entsteht eine Welt von Formen, die reich, stabil, reproduzierbar und zugleich unerschöpflich ist.
+
+\medskip
+\begin{quote}
+	\emph{Struktur kann aus reiner Mathematik entstehen.}
+\end{quote}
+\medskip
+
+Die Mandelbrotmenge ist dabei nicht nur ein ``Fraktalbild'', sondern eine präzise Aussage über Stabilität:
+Sie ist eine Landkarte, die Parameter nach dem Kriterium trennt, ob eine Iteration beschränkt bleibt oder divergiert.
+Und gerade an der Grenze zwischen Stabilität und Divergenz entsteht jene feine, fraktale Struktur, die beim Hineinzoomen immer neue Details zeigt.
+Die Selbstähnlichkeit ist hier nicht Dekoration, sondern die geometrische Signatur eines Übergangs.
+
+\subsubsection*{Was bleibt als zentrale Einsicht?}
+\begin{itemize}
+	\item Eine einfache mathematische Vorschrift kann eine Grenze erzeugen, die geometrisch extrem reich ist.
+	\item Selbstähnlichkeit und Skaleninvarianz sind Ausdruck davon, dass diese Grenze keine charakteristische Skala besitzt:
+	Struktur tritt auf vielen Größenordnungen auf.
+	\item Mandelbrot- und Julia-Mengen sind \emph{keine} Naturmodelle: Sie erklären keine physikalischen Prozesse.
+	Aber gerade dadurch zeigen sie etwas Grundsätzliches: \emph{Mathematik kann Struktur aus sich heraus erzeugen.}
+\end{itemize}
+
+\begin{NoteBox}[Kernaussage dieses Kapitels]
+	\small
+	Die Formen wirken naturähnlich, aber ihr Ursprung ist rein formal:
+	Iteration + Stabilitätskriterium $\Rightarrow$ Grenzstruktur.
+	Damit ist dieses Kapitel ein Beispiel dafür, dass Mathematik nicht nur \emph{beschreibt}, sondern als System von Regeln selbst \emph{Struktur hervorbringt}.
+\end{NoteBox}
+
+\subsubsection*{Einordnung in den roten Faden des Buchs}
+Damit schließt sich der Bogen zu der Leitidee dieses Buchs:
+Mathematik ist nicht bloß eine Sprache, die wir der Welt überstülpen.
+Sie ist eine \emph{entdeckbare Struktur}, die aus klaren Regeln folgt und objektive Konsequenzen besitzt.
+Dass aus einer simplen Iteration eine ``Welt'' von Formen entsteht, ist ein besonders anschaulicher Beleg dafür.
+
+\subsubsection*{Übergang}
+Kapitel~VII hat gezeigt, wie aus einer elementaren Vorschrift im Zahlenraum eine geometrische Komplexität entsteht,
+die sich nicht auf einzelne Rechenschritte reduzieren lässt, sondern als Struktur verstanden werden muss.
+Damit sind wir bereit, den Blick wieder zu weiten: weg von der reinen Iteration hin zu den nächsten Bausteinen,
+mit denen Mathematik die Welt strukturiert.
