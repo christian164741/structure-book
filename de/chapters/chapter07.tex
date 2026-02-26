@@ -1,10 +1,10 @@
 \chapter{Wie komplexe Zahlen Struktur erzeugen}
-\label{chap:VII_komplexe Struktur}
+\label{chap:VII_komplexe_struktur}
 
 
 \subsection{Iteration als mathematisches Prinzip}
 
-\index{Iteration}
+
 \index{Dynamisches System}
 \index{Abbildung}
 
@@ -40,7 +40,7 @@ Diese Zahl ist ein \emph{Fixpunkt}, denn $f(2)=2$ gilt.
 \index{Fixpunkt}
 
 \begin{DidacticBox}[Was man hier wirklich lernen soll]
-	\index{Iteration}
+
 	Iteration bedeutet nicht „eine Rechnung“, sondern \emph{eine Regel in der Zeit}:
 	Aus $x_0$ wird $x_1$, daraus $x_2$, daraus $x_3$.
 	Schon bei einer simplen Vorschrift entstehen typische Verhaltensweisen:
@@ -49,12 +49,10 @@ Diese Zahl ist ein \emph{Fixpunkt}, denn $f(2)=2$ gilt.
 
 Diese Sicht ist entscheidend: Zahlen werden zu Zuständen, und die Funktion $f$ wird zur Dynamik.
 Damit ist Iteration bereits ein dynamisches System – im reinsten, abstraktesten Sinn.
-\index{Dynamisches System}
+
 
 \begin{MathBox}[Begriffe: Orbit und Fixpunkt]
-	\index{Orbit}
-	\index{Fixpunkt}
-	Gegeben sei $f:\mathbb{C}\to\mathbb{C}$ und ein Startwert $z_0\in\mathbb{C}$.
+Gegeben sei $f:\mathbb{C}\to\mathbb{C}$ und ein Startwert $z_0\in\mathbb{C}$.
 	Die Iteration ist
 	\[
 	z_{n+1}=f(z_n)\qquad (n=0,1,2,\dots).
@@ -84,14 +82,14 @@ Wir starten bei einem $z_0$ und verfolgen die Iteration. Die Leitfrage ist dabei
 	\item In der komplexen Ebene wird dieses Verhalten sichtbar als Form.
 \end{itemize}
 
-\noindent\textbf{Übergang:} Im nächsten Abschnitt klären wir präzise, was „beschränkt“ und „divergent“ bedeutet
-und warum genau der Grenzbereich zwischen beidem später die Struktur trägt.
+Jetzt folgt der entscheidende Schritt: Was heißt „beschränkt“, was heißt „divergent“ --
+und warum sitzt die Struktur genau am Rand dazwischen?
 
 \subsection{Stabilität, Divergenz und Grenzfälle}
-\index{Stabilität}
-\index{Divergenz}
+
 \index{Grenzfall}
-\index{Orbit}
+\index{Beschränktheit}
+\index{Betrag}
 
 Wenn wir eine Iteration $z_{n+1}=f(z_n)$ betrachten, dann ist die zentrale Frage nicht „Welche Zahl kommt als nächste?“,
 sondern: \emph{Was passiert langfristig?}
@@ -104,7 +102,6 @@ aber nicht ihr qualitatives Verhalten. Man kann sich das so vorstellen:
 Die Iteration zieht Bahnen in einen bestimmten Bereich hinein, statt sie hinauszutreiben.
 Typisch ist dabei die Annäherung an einen Fixpunkt oder an einen periodischen Zyklus.
 \index{Fixpunkt}
-\index{Periode}
 
 \subsubsection*{Divergenz: Bahnen fliegen weg}
 Im instabilen Fall passiert das Gegenteil: Die Iteration verstärkt Abweichungen.
@@ -112,8 +109,8 @@ Die Folge wächst im Betrag immer weiter, sie „entkommt“ aus jedem beschrän
 Genau dieses Verhalten werden wir später als Kriterium verwenden: \emph{Wer wegfliegt, gehört nicht zur Struktur.}
 \index{Betrag}
 \subsubsection*{Zwei Mini-Beispiele: stabil vs.\ divergent}
-\index{Stabilität}
-\index{Divergenz}
+
+
 
 \begin{figure}[h]
 	\centering
@@ -169,8 +166,7 @@ Genau dieses Verhalten werden wir später als Kriterium verwenden: \emph{Wer weg
 	
 \end{figure}
 \begin{DidacticBox}[Stabil vs.\ chaotisch: nicht verwechseln]
-	\index{Chaos}
-	Stabilität bedeutet nicht „langweilig“, und Instabilität bedeutet nicht automatisch „Zufall“.
+Stabilität bedeutet nicht „langweilig“, und Instabilität bedeutet nicht automatisch „Zufall“.
 	Auch chaotische Bahnen sind deterministisch, aber sie sind empfindlich gegenüber kleinsten Änderungen.
 	Für unsere Zwecke reicht zunächst eine robustere Leitidee:
 	\emph{beschränkt} versus \emph{unbeschränkt}.
@@ -186,25 +182,24 @@ Wir nennen einen Orbit \emph{beschränkt}, wenn es eine Zahl $R>0$ gibt, so dass
 Existiert kein solches $R$, dann läuft der Orbit ins Unendliche: $|z_n|\to\infty$.
 
 \begin{MathBox}[Beschränkt oder unbeschränkt]
-	\index{Beschränktheit}
-	\index{Betrag}
-	Für die Iteration $z_{n+1}=f(z_n)$ heißt der Orbit von $z_0$ \emph{beschränkt}, wenn
+    Für die Iteration $z_{n+1}=f(z_n)$ heißt der Orbit von $z_0$ \emph{beschränkt}, wenn
 	\[
 	\exists\, R>0:\ \forall n\in\mathbb{N}\ \ |z_n|\le R.
 	\]
 	Ist das nicht der Fall, nennt man den Orbit \emph{unbeschränkt} (oder divergent);
 	typisch ist dann $|z_n|\to\infty$.
 \end{MathBox}
+
 \subsubsection*{Ein einfaches komplexes Beispiel: Spiralbahn im Kreis}
 Wir betrachten die Iteration
 \[
 z_{n+1}=a\,z_n,\qquad a=0{,}85\,e^{i\pi/5},\qquad z_0=2+i.
 \]
-Da $|a|=0{,}85<1$ gilt
+Da $|a|=0{,}85<1$ gilt für alle $n$:
 \[
 |z_n|=|a|^n|z_0|\le |z_0|=:R=\sqrt{5}.
 \]
-
+Der Orbit bleibt also im Kreisradius $R$ und spiralisiert gegen $0$.
 \subsubsection*{Zwei Iterationsschritte zum Verständnis}
 Wir schreiben
 \[
@@ -213,9 +208,9 @@ a=0{,}85e^{i\pi/5}=0{,}85(\cos36^\circ+i\sin36^\circ)
 \]
 Mit $z_0=2+i$ ergibt sich
 \begin{align*}
-	z_1 &= a z_0 \notag\\
-	&= (0{,}687664+i\,0{,}499617)(2+i) \notag\\
-	&= (2\cdot0{,}687664-0{,}499617)+i(0{,}687664+2\cdot0{,}499617) \notag\\
+	z_1 &= a z_0\\
+	&= (0{,}687664+i\,0{,}499617)(2+i)\\
+	&= (2\cdot0{,}687664-0{,}499617)+i(0{,}687664+2\cdot0{,}499617)\\
 	&\approx 0{,}876+i\,1{,}687.
 \end{align*}
 Der nächste Schritt ist
@@ -292,8 +287,8 @@ Der eine Orbit bleibt beschränkt, der andere fliegt weg.
 Dieser „Übergang“ ist kein Nebeneffekt, sondern das Zentrum des Phänomens.
 
 Genau deshalb entstehen später scharfe, fransige Grenzen und scheinbar unendliche Detailtiefe.
-Nicht weil wir Natur modellieren, sondern weil wir eine mathematische Grenzfrage stellen.
-\subsubsection*{Grenzfall: eine minimale Änderung entscheidet alles}
+Nicht weil wir Natur modellieren, sondern weil wir eine Grenzfrage stellen.
+\subsubsection*{Extrem empfindlich: minimale Änderung, völlig anderes Verhalten}
 Wir betrachten die Iteration
 \[
 z_{n+1}=z_n^2,
@@ -386,26 +381,19 @@ z_0=0{,}99 \quad (\text{knapp innerhalb}),
 Für die Familie $f_c(z)=z^2+c$ wird es sogar ein praktisches Kriterium geben:
 Wenn der Betrag eines Orbit irgendwann groß genug wird, dann ist sicher, dass er weiter wächst und entkommt.
 Damit lässt sich „dazugehörig“ versus „nicht dazuzugehörig“ rechnerisch entscheiden.
-
-\noindent\textbf{Übergang:} Im nächsten Abschnitt verwenden wir genau diese Idee als Landkarte:
-Für welche Parameter $c$ bleibt der Orbit von $z_0=0$ beschränkt?
-Die Antwort ist die Mandelbrot-Menge.
+Jetzt wird die Idee zur Landkarte: Für welche Parameter $c$ bleibt der Orbit von $z_0=0$ beschränkt?
+Genau diese Menge ist die Mandelbrot-Menge.
 
 %------------------------------------------------------------
 \subsection{Die Mandelbrotmenge als Landkarte}
 \label{sec:VII-7-3}
-
 \index{Mandelbrotmenge}
 \index{Parameterraum}
-\index{komplexe Ebene}
-\index{Iteration}
 \index{Beschränktheit}
-\index{Divergenz}
-\index{Stabilität}
-\index{Fraktal}
-\index{Selbstähnlichkeit}
 \index{Fluchtzeit}
 \index{Escape-Radius}
+\index{Fraktal}
+
 
 \textbf{Leitfrage:} \emph{Wie liest man die Mandelbrotmenge wie eine Landkarte – und was bedeuten „Land“, „Meer“ und „Küste“ mathematisch?}
 
@@ -469,17 +457,15 @@ Beim Hineinzoomen erscheinen immer neue Strukturen – das ist das typische Merk
 Eine detaillierte, nachvollziehbare Erzeugung der Mandelbrot-Grafik (Pixel \(\to c\), Iteration, Fluchtzeit und Farbgebung)
 findet sich in Anhang~\ref{app:mandelbrot-rendering}.
 
-\medskip
-\noindent\textbf{Übergang zu 7.4:} Jetzt wird die „Landkarte“ praktisch: Wir schauen auf Stabilität, Divergenz und Grenzfälle.
-Dazu wählen wir konkrete Parameter \(c\) (klar \emph{innen}, klar \emph{außen}, und knapp an der Grenze) und sehen,
-wie die Iteration sichtbar kippt.
+ Julia-Mengen sind die Landkarten des \emph{Zustandsraums}: Für ein festes \(c\) zeigt sich,
+ welche Startwerte \(z_0\) gebunden bleiben und welche entkommen.
+
 %------------------------------------------------------------
 \subsection{Julia-Mengen: lokale Dynamik und Struktur}
 \label{sec:julia-mengen}
 \index{Julia-Menge}
-\index{komplexe Dynamik}
-\index{Iteration}
-\index{Mandelbrot-Menge}
+\index{Komplexe Dynamik}
+\index{Mandelbrotmenge}
 
 \textbf{Leitfrage:} Was passiert \emph{lokal} im $z$-Raum, wenn der Parameter $c$ fest ist – und warum entstehen dabei so unterschiedliche, oft fraktale Grenzen?
 
@@ -488,9 +474,6 @@ Julia-Mengen sind die passende \emph{Landkarte des Zustandsraums}: Für ein \emp
 So wird aus „wo liegt $c$?“ die Frage „welche Startwerte $z_0$ bleiben gebunden – und welche fliegen davon?“.
 
 \begin{MathBox}[Definition: Iteration, gefüllte Julia-Menge, Julia-Rand]
-	\index{gef\"ullte Julia-Menge}
-	\index{Fixpunkt}
-	\index{Attraktor}
 	Wir betrachten die quadratische Iteration
 	\[
 	z_{n+1}=f_c(z_n)=z_n^2+c \qquad (c\in\mathbb{C} \ \text{fest}).
@@ -517,14 +500,13 @@ Das \emph{Erstaunliche} ist nicht das „Fliehen“ selbst, sondern die Geometri
 Ein minimaler Unterschied in $z_0$ kann darüber entscheiden, ob die Bahn gebunden bleibt oder entkommt.
 
 \begin{DidacticBox}[Warum ist der Rand so kompliziert?]
-	\index{chaotisches Verhalten}
-	Im Inneren von $K_c$ (und außerhalb davon) ist das Verhalten oft robust: kleine Änderungen von $z_0$ ändern das Ergebnis nicht.
+Im Inneren von $K_c$ (und außerhalb davon) ist das Verhalten oft robust: kleine Änderungen von $z_0$ ändern das Ergebnis nicht.
 	\emph{Am Rand} gilt das Gegenteil: Dort liegen „gebundene“ und „fliehende“ Startwerte beliebig nahe beieinander.
 	Genau diese Vermischung auf allen Skalen erzeugt die fraktale Struktur der Julia-Menge.
 \end{DidacticBox}
 
 \subsubsection*{Drei einfache Beispiele (zum Einprägen)}
-\index{Beispiel}
+
 Man muss nicht viele Formeln kennen – drei Beispiele geben sofort Orientierung:
 
 \begin{itemize}
@@ -539,36 +521,33 @@ Man muss nicht viele Formeln kennen – drei Beispiele geben sofort Orientierung
 \end{itemize}
 
 \begin{HistoryBox}[Historischer Kontext: Julia und Fatou]
-	\index{Julia, Gaston}
-	\index{Fatou, Pierre}
-	Die systematische Untersuchung komplexer Iterationen begann um 1918–1920 mit Gaston Julia und Pierre Fatou.
+Die systematische Untersuchung komplexer Iterationen begann um 1918–1920 mit Gaston Julia und Pierre Fatou.
 	Die zentralen Begriffe „normaler Bereich“ (Fatou-Menge) und „chaotischer Rand“ (Julia-Menge) stammen aus dieser Zeit.
 	Das ist ein schönes Beispiel dafür, wie reine Mathematik Jahrzehnte später zur Bildsprache moderner Fraktale wurde.
 \end{HistoryBox}
 
 \subsubsection*{Schl\"usselzusammenhang: Julia und Mandelbrot}
-\index{Zusammenhang}
-\index{Mandelbrot-Menge}
+
+\index{Mandelbrotmenge}
 
 Die Mandelbrotmenge ist nicht nur ein sch\"ones Bild, sondern eine \emph{Klassifikationskarte}:
 Sie ordnet jedem Parameter $c$ den \glqq Typ\grqq\ der zugeh\"origen Julia-Menge zu.
 Genau an dieser Stelle trifft der Parameterraum ($c$) direkt auf den Zustandsraum ($z$).
 
-\begin{PhysicsBox}[Merksatz: Zusammenhang von $c$ und der Geometrie von $J_c$]
-	\index{Zusammenhang!Julia und Mandelbrot}
+\begin{NoteBox}[Merksatz: Zusammenhang von $c$ und der Geometrie von $J_c$]
 	Für die Iteration $z_{n+1}=z_n^2+c$ gilt:
 	\begin{itemize}
 		\item Liegt $c$ \emph{in} der Mandelbrotmenge, dann ist die gef\"ullte Julia-Menge $K_c$ (und damit auch der Rand $J_c$) \emph{zusammenh\"angend}.
 		\item Liegt $c$ \emph{au\ss erhalb}, dann zerf\"allt $J_c$ typischerweise in viele getrennte Inseln (\glqq Staub\grqq).
 	\end{itemize}
-\end{PhysicsBox}
+\end{NoteBox}
 
 Damit wird die Idee aus Abschnitt~\ref{sec:VII-7-3} pr\"azise:
 Die Mandelbrotmenge sagt dir nicht, \emph{wie} eine Julia-Menge im Detail aussieht,
 aber sie sagt dir sofort, ob du eine zusammenh\"angende Struktur oder einen zerfallenden \glqq Staub\grqq erwarten musst.
 
 \subsubsection*{Wie entstehen die Bilder? (und wo die Details stehen)}
-\index{Rendering}
+
 Für die Visualisierung testet man in der Praxis für jeden Pixelstartwert $z_0$,
 ob die Bahn \emph{entkommt} (Escape) und nach wie vielen Schritten.
 Die Farbe kodiert dann typischerweise die \emph{Escape-Time} oder eine geglättete Variante davon.
@@ -592,17 +571,13 @@ siehe Anhang~\ref{app:mandelbrot-rendering}.
 
 Hier ist die Dynamik besonders anschaulich: Die Grenze ist glatt.
 Die Julia-Menge ist der Einheitskreis, innen bleiben Bahnen gebunden, außen fliehen sie.
-
-\begin{center}
-		\includegraphics[width=0.82\textwidth]{Bilder/Julia_0.png}
-\end{center}
-
-%	\includegraphics[width=0.32\textwidth]{Bilder/Julia_0.png}
-%	\caption{Julia-Menge für $c=0$: $J_c$ ist der Einheitskreis (glatt).}
-	\label{fig:julia-c0}
-\begin{figure}[H]
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.82\textwidth]{Bilder/Julia_0.png}
 	\caption{Julia-Menge für $c=0$: $J_c$ ist der Einheitskreis (glatt).}
+	\label{fig:julia-c0}
 \end{figure}
+
 \newpage
 \noindent
 \subsubsection*{Beispiel 2: Zusammenhängend, aber fraktal ($c=-1$)}
@@ -610,34 +585,40 @@ Die Julia-Menge ist der Einheitskreis, innen bleiben Bahnen gebunden, außen fli
 
 Trotz klarer Struktur ist der Rand bereits hochkomplex:
 Gebundene und entkommende Startwerte liegen am Rand beliebig nahe beieinander.
-\begin{center}
-		\includegraphics[width=0.82\textwidth]{Bilder/Julia-1.png}
-\end{center}
-\begin{figure}[H]
-	
-	\caption{Julia-Menge für $c=-1$ (``Basilica''): zusammenhängend, fraktaler Rand.}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.82\textwidth]{Bilder/Julia-1.png}
+		\caption{Julia-Menge für $c=-1$ (``Basilica''): zusammenhängend, fraktaler Rand.}
 	\label{fig:julia-cminus1}
+	
 \end{figure}
+
+
+
 \newpage
 \noindent
 \subsubsection*{Beispiel 3: Außerhalb der Mandelbrotmenge (``Staub'')}
-\index{Mandelbrot-Menge}
+\index{Mandelbrotmenge}
 \index{Cantor-Staub}
 
 Außerhalb der Mandelbrotmenge zerfällt $J_c$ typischerweise in viele getrennte Inseln:
 die Grenze ist nicht mehr zusammenhängend, sondern ein ``Staub''.
-\begin{center}
-		\includegraphics[width=0.82\textwidth]{Bilder/Julia-2.png}
-\end{center}
-\begin{figure}[H]
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.82\textwidth]{Bilder/Julia-2.png}
 	\caption{Julia-Menge für ein $c$ außerhalb der Mandelbrotmenge: zerfallender ``Staub''.}
-	\label{fig:julia-outside}
+	\label{fig:julia-c2}
 \end{figure}
+
+
 
  
 \subsection{Selbstähnlichkeit und Skaleninvarianz}\label{sec:7.5}
-
+\index{Selbstähnlichkeit}
+\index{Skaleninvarianz}
+\index{Fraktale Dimension}
+\index{Box-Counting-Dimension}
 \textbf{Leitfrage:} Warum tauchen beim Hineinzoomen in Mandelbrot- und Julia-Mengen immer wieder ähnliche Strukturen auf -- und was bedeutet das mathematisch?
 
 \medskip
@@ -740,7 +721,7 @@ Damit wirken diese Mengen wie Naturmuster -- und genau deshalb ist die nächste 
 
 \medskip
 \noindent\emph{Warum sind diese Formen trotz ihrer Naturähnlichkeit keine direkten Naturmodelle?}
-Das führt unmittelbar zu Abschnitt~\ref{sec:7.6}.
+
 
 %7.6
 \subsection{Warum diese Formen keine Naturmodelle sind}\label{sec:7.6}
@@ -843,8 +824,8 @@ Mandelbrot- und Julia-Mengen sind keine Naturmodelle, weil sie
 	\item im Parameterraum entstehen und daher nicht direkt ``räumliche'' Naturformen sind.
 \end{itemize}
 Sie sind dennoch extrem wertvoll:
-Sie zeigen, wie aus einer einfachen mathematischen Vorschrift \emph{Struktur ohne Materie} entsteht -- als Grenzobjekt zwischen Stabilität und Chaos.
-Damit sind sie ein idealer Abschluss der Dynamik-Kapitel und führen direkt zum Fazit in Abschnitt~7.7.
+Sie zeigen, wie aus einer einfachen mathematischen Vorschrift \emph{Struktur ohne Materie} entsteht --
+als Grenzobjekt zwischen Stabilität und Chaos.
 %7.7
 \subsection{Fazit: Struktur ohne Materie}\label{sec:7.7}
 
