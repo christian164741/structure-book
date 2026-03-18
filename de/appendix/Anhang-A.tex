@@ -620,3 +620,35 @@ Der zentrale Schritt ist der Wechsel des Modells:
 Von \glqq k\"urzesten Linien\grqq\ zu \glqq fl\"achenarmen R\"ohren mit Verzweigungsaufwand\grqq.
 Damit wird klar, warum die Natur in vielen Kontexten (B\"aume, Gef\"a{\ss}e, Neuronen) auf \"ahnliche Geometrien f\"uhrt:
 Nicht weil die Systeme identisch sind, sondern weil die \emph{Optimierungslogik} strukturell verwandt ist.
+\section{Die Fibonacci-Folge und der goldene Schnitt}
+\label{app:fibonacci-goldener-schnitt}
+
+Die Fibonacci-Folge ist eine rekursiv definierte Zahlenfolge. Sie beginnt mit
+\[
+F_1 = 1,\qquad F_2 = 1
+\]
+und jede weitere Zahl entsteht als Summe der beiden vorhergehenden:
+\[
+F_{n+2} = F_{n+1} + F_n \qquad (n \geq 1).
+\]
+
+Die ersten Glieder lauten also:
+\[
+1,\;1,\;2,\;3,\;5,\;8,\;13,\;21,\;34,\dots
+\]
+
+Mathematisch interessant ist, dass sich die Quotienten zweier aufeinanderfolgender Fibonacci-Zahlen
+\[
+\frac{F_{n+1}}{F_n}
+\]
+mit wachsendem \(n\) immer mehr einer festen Zahl annähern, nämlich dem \emph{goldenen Schnitt}
+\[
+\varphi = \frac{1+\sqrt{5}}{2} \approx 1{,}618.
+\]
+
+Es gilt also:
+\[
+\lim_{n\to\infty} \frac{F_{n+1}}{F_n} = \varphi.
+\]
+
+Dieser Zusammenhang ist für viele Wachstums- und Anordnungsprobleme interessant. In Pflanzen erscheinen Fibonacci-Zahlen nicht deshalb, weil eine Pflanze \glqq rechnet\grqq, sondern weil bestimmte Regeln der Platzverteilung und des Wachstums zu Spiralstrukturen führen, bei denen solche Zahlen häufig auftreten.
