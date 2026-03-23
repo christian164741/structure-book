@@ -40,6 +40,7 @@ Diese Zahl ist ein \emph{Fixpunkt}, denn $f(2)=2$ gilt.
 \index{Fixpunkt}
 
 \begin{DidacticBox}[Was man hier wirklich lernen soll]
+	\phantomsection\label{box:lernen}
 
 	Iteration bedeutet nicht „eine Rechnung“, sondern \emph{eine Regel in der Zeit}:
 	Aus $x_0$ wird $x_1$, daraus $x_2$, daraus $x_3$.
@@ -52,6 +53,7 @@ Damit ist Iteration bereits ein dynamisches System – im reinsten, abstrakteste
 
 
 \begin{MathBox}[Begriffe: Orbit und Fixpunkt]
+	\phantomsection\label{box:orbit}
 Gegeben sei $f:\mathbb{C}\to\mathbb{C}$ und ein Startwert $z_0\in\mathbb{C}$.
 	Die Iteration ist
 	\[
@@ -166,6 +168,7 @@ Genau dieses Verhalten werden wir später als Kriterium verwenden: \emph{Wer weg
 	
 \end{figure}
 \begin{DidacticBox}[Stabil vs.\ chaotisch: nicht verwechseln]
+	\phantomsection\label{box:stabil}
 Stabilität bedeutet nicht „langweilig“, und Instabilität bedeutet nicht automatisch „Zufall“.
 	Auch chaotische Bahnen sind deterministisch, aber sie sind empfindlich gegenüber kleinsten Änderungen.
 	Für unsere Zwecke reicht zunächst eine robustere Leitidee:
@@ -182,6 +185,7 @@ Wir nennen einen Orbit \emph{beschränkt}, wenn es eine Zahl $R>0$ gibt, so dass
 Existiert kein solches $R$, dann läuft der Orbit ins Unendliche: $|z_n|\to\infty$.
 
 \begin{MathBox}[Beschränkt oder unbeschränkt]
+	\phantomsection\label{box:beschraenkt}
     Für die Iteration $z_{n+1}=f(z_n)$ heißt der Orbit von $z_0$ \emph{beschränkt}, wenn
 	\[
 	\exists\, R>0:\ \forall n\in\mathbb{N}\ \ |z_n|\le R.
@@ -402,6 +406,7 @@ Jeder Punkt \(c\) in der komplexen Ebene steht für ein eigenes Iterationssystem
 sondern \emph{Systeme nach ihrem Verhalten}.
 
 \begin{MathBox}[Definition: Landkarte im Parameterraum]
+	\phantomsection\label{box:landkarte}
 	Wir betrachten die Iteration
 	\[
 	z_{n+1} = z_n^2 + c, \qquad z_0 = 0, \qquad c\in\mathbb{C}.
@@ -413,6 +418,7 @@ sondern \emph{Systeme nach ihrem Verhalten}.
 \end{MathBox}
 
 \begin{DidacticBox}[Der häufigste Denkfehler]
+	\phantomsection\label{box:denkfehler}
 	In der Grafik ist \textbf{nicht} \(z\) die Koordinate, sondern der Parameter \(c\).
 	Für \emph{jeden} Bildpunkt wird dieselbe Iteration gestartet (immer \(z_0=0\)), aber mit anderem \(c\).
 	Darum ist das Bild eine \textbf{Landkarte}: Jeder Punkt entspricht einem eigenen Dynamik-„Universum“.
@@ -428,6 +434,7 @@ Die Landkarten-Metapher ist nicht nur hübsch, sie ist präzise:
 \end{itemize}
 
 \begin{NoteBox}[Fluchtkriterium und Einfärbung]
+	\phantomsection\label{box:einfaerbung}
 	Für \(z_{n+1}=z_n^2+c\) gilt: Sobald \(|z_n|>2\), ist Divergenz sicher (\textbf{Escape-Radius} \(2\)).
 	Außerhalb der Menge zeigt die Farbgebung meist die \textbf{Fluchtzeit}:
 	wie viele Iterationen bis \(|z_n|>2\) erreicht ist. Das ist Visualisierung, nicht Definition.
@@ -474,6 +481,7 @@ Julia-Mengen sind die passende \emph{Landkarte des Zustandsraums}: Für ein \emp
 So wird aus „wo liegt $c$?“ die Frage „welche Startwerte $z_0$ bleiben gebunden – und welche fliegen davon?“.
 
 \begin{MathBox}[Definition: Iteration, gefüllte Julia-Menge, Julia-Rand]
+	\phantomsection\label{box:iteration}
 	Wir betrachten die quadratische Iteration
 	\[
 	z_{n+1}=f_c(z_n)=z_n^2+c \qquad (c\in\mathbb{C} \ \text{fest}).
@@ -500,6 +508,7 @@ Das \emph{Erstaunliche} ist nicht das „Fliehen“ selbst, sondern die Geometri
 Ein minimaler Unterschied in $z_0$ kann darüber entscheiden, ob die Bahn gebunden bleibt oder entkommt.
 
 \begin{DidacticBox}[Warum ist der Rand so kompliziert?]
+	\phantomsection\label{box:rand}
 Im Inneren von $K_c$ (und außerhalb davon) ist das Verhalten oft robust: kleine Änderungen von $z_0$ ändern das Ergebnis nicht.
 	\emph{Am Rand} gilt das Gegenteil: Dort liegen „gebundene“ und „fliehende“ Startwerte beliebig nahe beieinander.
 	Genau diese Vermischung auf allen Skalen erzeugt die fraktale Struktur der Julia-Menge.
@@ -521,6 +530,7 @@ Man muss nicht viele Formeln kennen – drei Beispiele geben sofort Orientierung
 \end{itemize}
 
 \begin{HistoryBox}[Historischer Kontext: Julia und Fatou]
+	\phantomsection\label{box:julia}
 Die systematische Untersuchung komplexer Iterationen begann um 1918–1920 mit Gaston Julia und Pierre Fatou.
 	Die zentralen Begriffe „normaler Bereich“ (Fatou-Menge) und „chaotischer Rand“ (Julia-Menge) stammen aus dieser Zeit.
 	Das ist ein schönes Beispiel dafür, wie reine Mathematik Jahrzehnte später zur Bildsprache moderner Fraktale wurde.
@@ -535,6 +545,7 @@ Sie ordnet jedem Parameter $c$ den \glqq Typ\grqq\ der zugeh\"origen Julia-Menge
 Genau an dieser Stelle trifft der Parameterraum ($c$) direkt auf den Zustandsraum ($z$).
 
 \begin{NoteBox}[Merksatz: Zusammenhang von $c$ und der Geometrie von $J_c$]
+	\phantomsection\label{box:merksatz}
 	Für die Iteration $z_{n+1}=z_n^2+c$ gilt:
 	\begin{itemize}
 		\item Liegt $c$ \emph{in} der Mandelbrotmenge, dann ist die gef\"ullte Julia-Menge $K_c$ (und damit auch der Rand $J_c$) \emph{zusammenh\"angend}.
@@ -556,6 +567,7 @@ siehe Anhang~\ref{app:mandelbrot-rendering}.
 % (Optional: Falls du für Julia zusätzlich einen eigenen Anhangspunkt willst, lege später app:julia-rendering an.)
 
 \begin{NoteBox}[Mini-Checkliste f\"ur den Leser]
+	\phantomsection\label{box:checkliste}
 	\begin{itemize}
 		\item Mandelbrot: \emph{Parameterraum} ($c$ variieren, $z_0=0$).
 		\item Julia: \emph{Zustandsraum} ($c$ fest, $z_0$ variieren).
@@ -632,6 +644,7 @@ Man beobachtet vielmehr eine \emph{quasi-selbstähnliche} Wiederkehr:
 bestimmte Motive (Bulben, Filamente, Spiralformen, ``Seepferdchen''-Strukturen) treten auf unterschiedlichen Skalen erneut auf, aber nicht als perfekte Duplikate.
 
 \begin{DidacticBox}[Selbstähnlichkeit heißt nicht: identische Kopie]
+	\phantomsection\label{box:kopie}
 	\small
 	Bei iterierten komplexen Abbildungen ist Selbstähnlichkeit häufig \emph{qualitativ}: 
 	Beim Zoomen erscheinen ähnliche Formen und Stabilitätsinseln wieder, aber meist mit Verzerrungen, Rotation oder leichten Variationen. 
@@ -698,6 +711,7 @@ Eine robuste Methode ist das \emph{Box-Counting}:
 Man überdeckt die Menge mit Quadraten der Kantenlänge $\varepsilon$ und zählt, wie viele Kästchen $N(\varepsilon)$ benötigt werden.
 
 \begin{MathBox}[Box-Counting-Dimension]
+	\phantomsection\label{box:boxcounting}
 	\small
 	Für viele fraktale Mengen gilt näherungsweise eine Potenzrelation
 	\[
@@ -724,7 +738,7 @@ Damit wirken diese Mengen wie Naturmuster -- und genau deshalb ist die nächste 
 
 
 %7.6
-\subsection{Warum diese Formen keine Naturmodelle sind}\label{sec:7.6}
+\subsection{Warum diese Formen keine Naturmodelle sind}
 
 \textbf{Leitfrage:} Wenn Mandelbrot- und Julia-Mengen wie ``Naturstrukturen'' aussehen -- warum sind sie dann trotzdem \emph{keine} Naturmodelle?
 
@@ -736,6 +750,7 @@ Mandelbrot- und Julia-Mengen sind primär \emph{mathematische Grenzobjekte}, die
 Die Natur produziert dagegen Strukturen durch reale Prozesse: Material, Energieflüsse, Dissipation, Rauschen, Wechselwirkungen und Randbedingungen.
 
 \begin{NoteBox}[Warum manche Fraktale wie Blätter aussehen]
+	\phantomsection\label{box:blaetter}
 	\small
 	Es gibt Fraktale, die wie Blätter oder Farne wirken (klassisch: rekursive ``Farn''-Konstruktionen).
 	Das ist nicht überraschend: Auch Pflanzen erzeugen ihre Formen oft durch wiederholte lokale Wachstumsregeln
@@ -755,6 +770,7 @@ und ein Kriterium wie ``beschränkt oder unbeschränkt''.
 Das erzeugt Grenzstrukturen, aber es beschreibt keinen Stofftransport, keine Kräfte, keine Materialgesetze, keine thermodynamischen Bedingungen.
 
 \begin{DidacticBox}[Optische Ähnlichkeit ist kein Modell]
+	\phantomsection\label{box:optisch}
 	\small
 	Dass zwei Formen ähnlich aussehen, heißt nicht, dass sie durch denselben Prozess entstehen.
 	In der Physik zählt die \emph{Erzeugungsregel} (Mechanismus) mehr als die Geometrie des Endbilds.
@@ -791,6 +807,7 @@ Die Verwechslung ist häufig:
 Man sieht eine ``Landkarte'' und interpretiert sie als ``Landschaft''.
 
 \begin{NoteBox}[Wichtige Unterscheidung: Parameterraum vs.\ Realraum]
+	\phantomsection\label{box:unterscheidung}
 	\small
 	Die Mandelbrotmenge lebt im $c$-Raum (Parameterraum), nicht im physikalischen Raum.
 	Sie ist eine Stabilitätskarte: Sie zeigt, für welche Parameter $c$ die Iteration
@@ -859,6 +876,7 @@ Die Selbstähnlichkeit ist hier nicht Dekoration, sondern die geometrische Signa
 \end{itemize}
 
 \begin{NoteBox}[Kernaussage dieses Kapitels]
+	\phantomsection\label{box:kernaussage}
 	\small
 	Die Formen wirken naturähnlich, aber ihr Ursprung ist rein formal:
 	Iteration + Stabilitätskriterium $\Rightarrow$ Grenzstruktur.
