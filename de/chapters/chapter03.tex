@@ -1,111 +1,130 @@
-
 \chapter{Algebra und Gleichungen}
 \label{chap:III_algebra}
 
+Mathematik beginnt nicht nur mit Zahlen, sondern auch mit Beziehungen.
+Sobald nicht mehr bloß gezählt, sondern ein Zusammenhang beschrieben werden soll,
+tritt eine neue Form des Denkens auf:
+die Algebra\index{Algebra}.
 
+Während Zahlen einzelne Mengen oder Größen ausdrücken,
+fragt die Algebra nach dem Allgemeinen.
+Sie untersucht, wie Größen miteinander verknüpft sind,
+wie sich Unbekanntes aus Bekanntem bestimmen lässt
+und wie aus konkreten Aufgaben allgemeine Strukturen werden.
+
+Damit markiert die Algebra einen entscheidenden Schritt
+in der Entwicklung der Mathematik:
+Sie löst sich vom einzelnen Rechenfall
+und wird zu einer Sprache der Beziehungen, Regeln und Formen.
+Gleichungen\index{Gleichung} sind in diesem Sinn
+nicht bloß Rechenaufgaben,
+sondern präzise Aussagen über Zusammenhänge.
+
+Dieses Kapitel zeigt,
+wie aus praktischen Problemen eine allgemeine Methode entstand,
+wie Gleichungen zum Werkzeug mathematischen Denkens wurden
+und warum die Algebra weit mehr ist
+als Rechnen mit Buchstaben.
+% =====================================================
+% 3.1 Die arabische Mathematik und die Geburt der Algebra
+% =====================================================
 \subsection{Die arabische Mathematik und die Geburt der Algebra}
 \label{sec:3.1_arabische_mathematik}
 
-Nach den Griechen\index{Griechen}, Indern\index{Indien} und Babyloniern\index{Babylonien} 
-war es die arabisch-islamische Welt\index{Arabische Mathematik}, 
-die die Mathematik\index{Mathematik} auf eine neue, systematische Ebene hob. 
-Während in Europa\index{Europa} das antike Wissen weitgehend verloren ging, 
-bewahrten und erweiterten Gelehrte wie 
-\emph{al-Chwarizmi}\index{al-Chwarizmi, Muhammad ibn Musa}, 
-\emph{Omar Chayyām}\index{Chayyām, Omar} und 
-\emph{al-Karaji}\index{al-Karaji, Abu Bakr} die Erkenntnisse ihrer Vorgänger. 
+Nach den Griechen\index{Griechen}, Indern\index{Indien} und Babyloniern\index{Babylonien}
+war es die arabisch-islamische Welt\index{Arabische Mathematik},
+die die Mathematik\index{Mathematik} auf eine neue, systematische Ebene hob.
+Während in Europa\index{Europa} ein großer Teil des antiken Wissens nur bruchstückhaft weiterlebte,
+bewahrten, übersetzten und erweiterten Gelehrte wie
+\emph{al-Chwarizmi}\index{al-Chwarizmi, Muhammad ibn Musa},
+\emph{Omar Chayyām}\index{Chayyām, Omar} und
+\emph{al-Karaji}\index{al-Karaji, Abu Bakr}
+die Erkenntnisse ihrer Vorgänger.
 
-Im 9.~Jahrhundert verfasste \emph{al-Chwarizmi} in Bagdad\index{Bagdad} das Werk 
-\emph{„Kitāb al-jabr wa’l-muqābala“}\index{Kitāb al-jabr wa’l-muqābala}, 
-das als Geburtsstunde der 
-\emph{Algebra}\index{Algebra} gilt. 
-Der Begriff „al-jabr“ bedeutet sinngemäß „das Wiederherstellen“ oder „das Ergänzen“, 
-„al-muqabala“ bezeichnet „das Gegenüberstellen“. 
-Gemeint war damit eine Methode, Unbekanntes\index{Unbekannte} zu isolieren und 
-Gleichungen\index{Gleichungen} zu vereinfachen – 
-eine Revolution im Denken über Zahlen\index{Zahlen} und Formen.
-\newpage
-\noindent
+Im 9.~Jahrhundert verfasste \emph{al-Chwarizmi} in Bagdad\index{Bagdad} das Werk
+\emph{Kitāb al-jabr wa’l-muqābala}\index{Kitāb al-jabr wa’l-muqābala},
+das als Geburtsstunde der \emph{Algebra}\index{Algebra} gilt.
+Der Begriff \glqq al-jabr\grqq{} bedeutet sinngemäß \glqq Wiederherstellen\grqq{} oder \glqq Ergänzen\grqq,
+\glqq al-muqābala\grqq{} bezeichnet das \glqq Gegenüberstellen\grqq.
+Gemeint war damit ein Verfahren, Unbekanntes\index{Unbekannte} zu isolieren
+und Gleichungen\index{Gleichungen} systematisch zu vereinfachen.
+Damit begann ein neuer Abschnitt in der Mathematik:
+Nicht mehr nur einzelne Zahlen oder geometrische Figuren standen im Mittelpunkt,
+sondern allgemeine Beziehungen zwischen Größen.
+
 \begin{HistoryBox}[Von der Praxis zur Theorie]
-	Im Mittelpunkt der arabischen Mathematik stand anfangs die Lösung praktischer Probleme: 
-	Verteilung von Erbschaften, Berechnung von Grundstücksflächen, 
-	Bestimmung von Handelsanteilen oder astronomische Messungen\index{Astronomie}. 
-	Doch aus diesen konkreten Aufgaben entwickelte sich ein allgemeines Verfahren, 
-	Unbekannte systematisch zu bestimmen – die Geburt der symbolischen Methode.
-\phantomsection\label{box:praxis}
+	Im Mittelpunkt der arabischen Mathematik standen zunächst praktische Probleme:
+	die Verteilung von Erbschaften, die Berechnung von Grundstücksflächen,
+	die Bestimmung von Handelsanteilen oder astronomische Messungen\index{Astronomie}.
+	Aus solchen konkreten Aufgaben entwickelte sich jedoch ein allgemeines Verfahren,
+	Unbekannte systematisch zu bestimmen.
+	Darin liegt der eigentliche Ursprung der Algebra.
+	\phantomsection\label{box:praxis}
 \end{HistoryBox}
 
-Ein klassisches Beispiel aus der frühen arabischen Mathematik ist die Berechnung 
-von Erbanteilen\index{Erbanteil}. 
-Nach islamischem Recht\index{Islamisches Recht} erhält eine Frau den achten Teil 
-des Nachlasses, der Rest wird unter den Söhnen gleich verteilt. 
+Ein klassisches Beispiel aus diesem Umfeld ist die Berechnung von Erbanteilen\index{Erbanteil}.
+Nach islamischem Recht\index{Islamisches Recht} erhält eine Frau den achten Teil des Nachlasses,
+der Rest wird unter den Söhnen gleich verteilt.
 Beträgt das Erbe insgesamt 600~Dinar, so ergibt sich:
-
 \[
-600 = \tfrac{1}{8}\cdot 600 + 2x,
+600 = \tfrac{1}{8}\cdot 600 + 2x.
 \]
 
-Die Frau erhält daher
+Die Frau erhält
 \[
 \frac{1}{8}\cdot 600 = 75,
 \]
-und für die zwei Söhne bleiben
+für die zwei Söhne bleiben also
 \[
 600 - 75 = 525.
 \]
-
 Damit erhält jeder Sohn
 \[
 x = \frac{525}{2} = 262{,}5 \text{ Dinar}.
 \]
-\newpage
-\noindent
+
 \begin{HistoryBox}[Vom praktischen Problem zur abstrakten Gleichung]
 	\phantomsection\label{box:abstraktegleichung}
-	Die arabischen Mathematiker formulierten alltägliche Aufgaben wie die 
-	Berechnung von Erbanteilen in symbolischer Form. 
-	
-	Ein Beispiel: Aus einem Nachlass von 600~Dinar erhält die Frau ein Achtel. 
-	Der Rest wird zu gleichen Teilen an die zwei Söhne verteilt. 
-	Das praktische Problem lässt sich direkt in eine Gleichung übersetzen:
+	Der entscheidende Schritt der Algebra bestand darin,
+	eine konkrete Situation in eine allgemeine Form zu übersetzen.
+	Das Erbproblem wird nicht mehr nur erzählt, sondern als Gleichung formuliert:
 	\[
 	600 = \frac{1}{8}\cdot 600 + 2x.
 	\]
-	
-	Durch Umformen ergibt sich der Anteil eines Sohnes. 
-	Aus solchen realen Situationen entwickelte sich die allgemeine Idee, 
-	Unbekannte systematisch zu bestimmen – der Beginn der Algebra als abstraktes Denken.
+	Damit wird aus einer praktischen Frage ein mathematisches Problem,
+	das mit festen Regeln gelöst werden kann.
 \end{HistoryBox}
 
 \begin{NoteBox}[Ein gemeinsames Erbe]
-		\phantomsection\label{box:erben}
-	Die arabischen Mathematiker erfanden die Algebra nicht aus dem Nichts. 
-	Sie knüpften an das Wissen der Babylonier, Griechen und Inder an. 
-	Schon die Babylonier lösten Gleichungen der Form \(x^2 + bx = c\) 
-	mit tabellarischen Methoden, und die Griechen beschrieben geometrische Zusammenhänge, 
-	die im Kern algebraisch waren. 
-	In Indien entstanden symbolische Rechenverfahren für Unbekannte 
-	(\emph{yāvattavat}). 
-	Die arabischen Gelehrten verbanden all diese Traditionen, 
-	gaben ihnen eine einheitliche Sprache und machten daraus ein geschlossenes System – 
-	die \emph{al-jabr}, die wir heute Algebra nennen.
-
+	\phantomsection\label{box:erben}
+	Die arabischen Mathematiker erfanden die Algebra nicht aus dem Nichts.
+	Sie knüpften an das Wissen der Babylonier, Griechen und Inder an.
+	Schon die Babylonier lösten Gleichungen der Form \(x^2 + bx = c\)
+	mit tabellarischen Verfahren, die Griechen beschrieben geometrische Zusammenhänge,
+	die im Kern algebraisch waren,
+	und in Indien entstanden symbolische Rechenweisen für Unbekannte
+	(\emph{yāvattavat}).
+	Die Leistung der arabischen Gelehrten bestand darin,
+	diese Traditionen zu verbinden, zu ordnen und zu einem geschlossenen Verfahren auszubauen.
 \end{NoteBox}
 
-
+% =====================================================
+% 3.2 Al-Chwarizmi: Quadratische Ergänzung als Flächenargument
+% =====================================================
 \subsection{Al-Chwarizmi: Quadratische Ergänzung als Flächenargument}
 
-Ein bekanntes Beispiel aus Al-Chwarizmis Werk lautet:
+Ein bekanntes Beispiel aus al-Chwarizmis Werk lautet:
 \begin{quote}
-	„Ein Quadrat und zehn seiner Wurzeln ergeben neununddreißig.“
+	\glqq Ein Quadrat und zehn seiner Wurzeln ergeben neununddreißig.\grqq
 \end{quote}
 Heute schreiben wir dies als Gleichung
 \[
 x^2 + 10x = 39.
 \]
 
-Al-Chwarizmi dachte geometrisch: \(x^2\) ist die Fläche eines Quadrats mit Seitenlänge \(x\).
-Der Term \(10x\) ist ebenfalls eine Fläche und kann als Rechteck dargestellt werden.
+Al-Chwarizmi dachte geometrisch:
+\(x^2\) ist die Fläche eines Quadrats mit Seitenlänge \(x\),
+und auch der Term \(10x\) lässt sich als Fläche auffassen.
 
 \vspace{0.6em}
 
@@ -121,7 +140,7 @@ Der Term \(10x\) ist ebenfalls eine Fläche und kann als Rechteck dargestellt we
 	\begin{subfigure}[t]{0.32\linewidth}
 		\centering
 		\includegraphics[width=\linewidth]{bilder/alch01.png}
-	\caption{Zerlegung: \(10x=2\cdot 5x\).}
+		\caption{Zerlegung: \(10x=2\cdot 5x\).}
 		\label{fig:alch01}
 	\end{subfigure}\hfill
 	\begin{subfigure}[t]{0.32\linewidth}
@@ -131,17 +150,17 @@ Der Term \(10x\) ist ebenfalls eine Fläche und kann als Rechteck dargestellt we
 		\label{fig:alch03}
 	\end{subfigure}
 	
-	\caption{Quadratische Ergänzung nach Al-Chwarizmi als Flächenargument.}
+	\caption{Quadratische Ergänzung nach al-Chwarizmi als Flächenargument.}
 	\label{fig:alchwarizmi}
 \end{figure}
-	
 
 Den Term \(10x\) zerlegt man als
 \[
 10x = 5x + 5x,
 \]
-also als zwei Rechtecke der Größe \(x\times 5\), die man an zwei Seiten des Quadrats anlegt.
-Dadurch entsteht fast ein größeres Quadrat; es fehlt nur noch das Eckquadrat \(5\times 5\) mit Fläche \(25\).
+also in zwei Rechtecke der Größe \(x\times 5\), die man an zwei Seiten des Quadrats anlegt.
+Dadurch entsteht fast ein größeres Quadrat;
+es fehlt nur noch das Eckquadrat \(5\times 5\) mit Fläche \(25\).
 
 Addiert man diese fehlende Fläche auf beiden Seiten, erhält man
 \[
@@ -151,34 +170,35 @@ also
 \[
 (x+5)^2 = 64.
 \]
-Geometrisch bedeutet das: Das ergänzte Quadrat hat die Fläche \(39+25=64\) und damit die Seitenlänge \(8\).
+Geometrisch bedeutet das:
+Das ergänzte Quadrat hat die Fläche \(64\) und damit die Seitenlänge \(8\).
+Da hier Längen betrachtet werden, kommt nur die positive Lösung in Frage.
+Also gilt
 \[
-x+5 = \sqrt{64} = 8.
+x+5 = 8
 \]
-Folglich ist
+und damit
 \[
-x = 8 - 5 = 3.
+x = 3.
 \]
-
-
 
 \begin{DidacticBox}[Der Ursprung des Wortes „Algorithmus“]
-	Der Name \emph{al-Chwarizmi} wurde im Lateinischen zu „Algoritmi“ verfremdet. 
-	Daraus entstand das Wort \emph{Algorithmus}\index{Algorithmus}. 
-	Damit geht auch ein zweiter Grundpfeiler der modernen Mathematik – 
-	die systematische, regelhafte Berechnung\index{Berechnung} – 
+	Der Name \emph{al-Chwarizmi} wurde im Lateinischen zu \glqq Algoritmi\grqq{} umgeformt.
+	Daraus entstand das Wort \emph{Algorithmus}\index{Algorithmus}.
+	Damit geht auch die Idee der regelhaften, schrittweisen Berechnung\index{Berechnung}
 	auf die arabische Wissenschaft zurück.
 	\label{box:ursprung}
 \end{DidacticBox}
 
-Die Algebra war also weniger eine Entdeckung im modernen Sinn, 
-sondern eine geistige Neuordnung des vorhandenen Wissens. 
-Sie verband die indischen Zahlensysteme\index{Zahlensystem} 
-mit griechischer Geometrie und formte daraus ein allgemeines Rechenverfahren\index{Rechenverfahren}. 
-Damit begann die Mathematik, ihre eigene Sprache zu entwickeln – 
-eine Sprache der Symbole, Regeln und Abstraktionen\index{Abstraktion}.
+Die Algebra war damit nicht einfach eine neue Sammlung von Rechentricks,
+sondern eine Neuordnung mathematischen Wissens.
+Sie verband Zahlrechnung, Geometrie und Verfahren des Umformens
+zu einer allgemeinen Sprache der Beziehungen.
+Gerade darin liegt ihre eigentliche Bedeutung.
 
-% 3.2
+% =====================================================
+% 3.3 Gleichungen als Werkzeuge zur Problemlösung
+% =====================================================
 
 \subsection{Gleichungen als Werkzeuge zur Problemlösung}
 \label{sec:3.2_gleichungen}
@@ -186,331 +206,321 @@ eine Sprache der Symbole, Regeln und Abstraktionen\index{Abstraktion}.
 
 \subsubsection*{Einleitung}
 \phantomsection
-Seit dem Altertum\index{Altertum} tauchten in Handel\index{Handel}, 
-Geometrie\index{Geometrie} und Astronomie\index{Astronomie} immer wieder
-Aufgaben auf, bei denen man eine unbekannte Größe\index{Unbekannte} bestimmen musste.
+Seit dem Altertum\index{Altertum} tauchten in Handel\index{Handel},
+Geometrie\index{Geometrie} und Astronomie\index{Astronomie}
+immer wieder Aufgaben auf, bei denen eine unbekannte Größe\index{Unbekannte}
+bestimmt werden musste.
 Anfangs geschah dies mit Worten, Tabellen oder geometrischen Konstruktionen.
-Erst allmählich kristallisierte sich eine Methode heraus, die den Umgang mit
-dem Unbekannten radikal vereinfachte: die \emph{Gleichung}\index{Gleichung}.
+Erst allmählich entstand daraus eine Methode,
+die den Umgang mit dem Unbekannten grundlegend vereinfachte:
+die \emph{Gleichung}\index{Gleichung}.
 
-Eine Gleichung macht ein Problem berechenbar.  
-Sie übersetzt eine Situation in eine präzise Form, die sich Schritt für Schritt
-bearbeiten lässt. Damit wird ein praktisches Problem zu einem mathematischen.
+Eine Gleichung macht ein Problem nicht nur berechenbar,
+sondern auch allgemein formulierbar.
+Sie übersetzt eine konkrete Situation in eine Form,
+die sich mit festen Regeln bearbeiten lässt.
 
 \subsubsection*{Vom Satz zur Gleichung}
 \phantomsection
 Frühe Gleichungen entstanden meist aus Textaufgaben:
-„Ein Händler verkauft die Hälfte seiner Ware plus drei Körbe …“.
-Solche Beschreibungen wurden nach und nach durch symbolische
-Schreibweisen ersetzt. Besonders die arabische Mathematik\index{Arabische Mathematik} – vertreten durch
-\textbf{Muhammad ibn Musa al-Chwarizmi}\index{al-Chwarizmi, Muhammad ibn Musa} –
-entwickelte systematische Verfahren, um Gleichungen\index{Gleichung} zu lösen und zu klassifizieren.
+Ein Händler verkauft einen Teil seiner Ware,
+ein Feld hat eine gesuchte Seitenlänge,
+ein astronomischer Zusammenhang verlangt eine unbekannte Größe.
+Solche Situationen wurden zunächst in Worten beschrieben.
+Erst später setzte sich die symbolische Schreibweise durch.
 
-Der entscheidende Fortschritt war die Erkenntnis, dass eine Gleichung nicht nur
-ein Rechentrick ist, sondern ein Bild der Realität:  
-Sie beschreibt Beziehungen\index{Beziehung}. Wer diese Beziehungen beherrscht, kann
-unbekannte Größen bestimmen.
+Der entscheidende Fortschritt bestand darin,
+dass eine Gleichung nicht mehr nur als Rechenhilfe verstanden wurde,
+sondern als Ausdruck eines Zusammenhangs.
+Sie beschreibt, dass zwei Ausdrücke denselben Wert haben.
+Wer diesen Zusammenhang beherrscht,
+kann unbekannte Größen systematisch bestimmen.
 
 \subsubsection*{Gleichungen als universelles Werkzeug}
 \phantomsection
-Mit der \emph{Algebra}\index{Algebra} entstand ein neuer Zugang zu Problemen:
+Mit der \emph{Algebra}\index{Algebra} entstand damit ein neuer Zugang zu Problemen:
 
 \begin{itemize}
-	\item Geometrische Zusammenhänge konnten algebraisch formuliert werden.
-	\item Handels- und Zinsrechnungen\index{Zinsrechnung} ließen sich als 
-	lineare Gleichungen\index{Lineare Gleichung} ausdrücken.
-	\item Flächen und Volumina führten zu quadratischen\index{Quadratische Gleichung} 
-	und kubischen Gleichungen\index{Kubische Gleichung}.
+	\item Geometrische Beziehungen konnten algebraisch formuliert werden.
+	\item Handels- und Zinsrechnungen\index{Zinsrechnung} ließen sich als lineare Gleichungen\index{Lineare Gleichung} ausdrücken.
+	\item Flächen und Volumina führten zu quadratischen\index{Quadratische Gleichung} und kubischen Gleichungen\index{Kubische Gleichung}.
 	\item Bewegungsprobleme wurden zu Gleichungen in der Zeit\index{Bewegungsgleichung}.
 \end{itemize}
 
-Die Gleichung wurde damit zu einem universellen Werkzeug.
-Statt jedes Problem einzeln zu lösen, genügte ein standardisiertes Vorgehen:
-Gleichung aufstellen, umformen, Lösung bestimmen.
+Damit wurde die Gleichung zu einem universellen Werkzeug.
+Nicht jedes Problem musste mehr einzeln gelöst werden;
+entscheidend war nun, seine Struktur zu erkennen und in eine passende Gleichung zu übersetzen.
 
 \subsubsection*{Gleichungen und der erweiterte Zahlbegriff}
 \phantomsection
-Im 16.~Jahrhundert\index{16. Jahrhundert} zeigte sich, dass Gleichungen nicht nur Lösungen
-\emph{finden}, sondern auch Lösungen \emph{fordern}, die außerhalb der bekannten
-Zahlenwelt\index{Zahlenwelt} liegen. Damit entstand eine zentrale Einsicht:
+Die Geschichte der Gleichungen zeigt noch etwas Tieferes:
+Gleichungen finden nicht nur Lösungen,
+sie erzwingen mitunter auch neue Zahlenbereiche.
+
+Quadratische Gleichungen führten auf Ausdrücke,
+die ohne irrationale oder negative Zahlen nicht sinnvoll behandelt werden konnten.
+Kubische Gleichungen führten in bestimmten Rechenwegen sogar auf Terme wie \(\sqrt{-1}\)
+und öffneten damit den Weg zu den komplexen Zahlen\index{Komplexe Zahlen}.
+
+Darin liegt ein grundlegender Gedanke:
+\medskip
+
+\textit{Die Algebra zeigt, welche Zahlen existieren müssen,
+	damit ihre Gleichungen lösbar werden.}
 
 \medskip
-\textit{Die Algebra bestimmt, welche Zahlen existieren müssen, damit ihre
-	Gleichungen lösbar sind.}
-\medskip
-
-Quadratische Gleichungen\index{Quadratische Gleichung} erzwangen die 
-negativen Zahlen\index{Negative Zahlen}.
-Geometrische Konstruktionen führten zur Null\index{Null}.
-Kubische Gleichungen\index{Kubische Gleichung} brachten erstmals Ausdrücke wie $\sqrt{-1}$ hervor —
-der erste Hinweis auf die späteren komplexen Zahlen\index{Komplexe Zahlen}.
-
-Damit öffnete sich der Weg zu einem völlig neuen Zahlenbereich\index{Zahlenbereich}, 
-der sich erst langsam durchsetzte.
 
 \subsubsection*{Ein reales Beispiel}
 \phantomsection
-Ein einfaches Alltagsproblem zeigt die Denkweise der Algebra besonders klar.
+Ein einfaches Alltagsproblem zeigt diese Denkweise besonders klar.
 Ein Wasserbehälter verliert durch ein kleines Leck pro Minute
-3 Liter Wasser. Zu Beginn enthält er 20 Liter Wasser.  
+3 Liter Wasser.
+Zu Beginn enthält er 20 Liter.
 Wann ist der Behälter leer?
 
-Die Situation lässt sich unmittelbar in eine Gleichung übersetzen:
+Die Situation lässt sich direkt als Gleichung schreiben:
 \[
 20 - 3t = 0.
 \]
 
-Durch Umformen erhält man:
+Durch Umformen erhält man
 \[
 t = \frac{20}{3} \approx \SI{6.7}{\minute}.
 \]
 
-Dieses kleine Beispiel zeigt, wie eine Gleichung eine reale Situation
-\emph{formalisiert}\index{Formalisierung}. Die Methode ist universell – unabhängig vom
-konkreten Kontext.
+Das Beispiel ist einfach,
+aber die Struktur ist allgemein.
+Eine reale Situation wird formalisiert\index{Formalisierung},
+und genau dadurch wird sie berechenbar.
 
 \begin{DidacticBox}[Warum Gleichungen die Realität abbilden]
 	\phantomsection\label{box:realitaet}
 	In vielen Alltagssituationen entsteht eine Gleichung ganz natürlich.
-	Die Formulierung fasst die wesentlichen Größen zusammen und
-	macht den Zusammenhang berechenbar.
+	Sie fasst die wesentlichen Größen zusammen
+	und macht ihren Zusammenhang berechenbar.
 	
-	Beim Beispiel des auslaufenden Wasserbehälters:
+	Beim auslaufenden Wasserbehälter
 	\[
 	20 - 3t = 0
 	\]
-	
 	erzwingt die Struktur des Problems die Gleichung.
-	Die algebraischen Schritte zur Lösung funktionieren für jedes ähnliche
-	Problem. Gleichungen sind deshalb ein universelles Werkzeug zur
-	Beschreibung von Realität.
+	Deshalb sind Gleichungen nicht bloß Rechenhilfen,
+	sondern allgemeine Werkzeuge zur Beschreibung realer Beziehungen.
 \end{DidacticBox}
 
 \subsubsection*{Übergang}
 \phantomsection
-An diesem Punkt beginnt die eigentliche Geschichte der komplexen Zahlen\index{Komplexe Zahlen}.
-Was zunächst wie eine Rechenkuriosität aussah, entwickelte sich zu einer
-fundamentalen Erweiterung des Zahlbegriffs\index{Zahlbegriff}.
-Die Entstehung dieser neuen Zahlenart wird im nächsten Abschnitt behandelt.
+An diesem Punkt wird eine zweite Leistung der Algebra sichtbar.
+Sie hilft nicht nur dabei, einzelne Probleme zu lösen,
+sondern macht aus konkreten Aufgaben allgemeine Formen.
+Gerade darin zeigt sich der Schritt
+vom praktischen Rechnen zum strukturellen Denken.
 
+% =====================================================
+% 3.4 Von der konkreten Aufgabe zur allgemeinen Form
+% =====================================================
 
-
-%3.3
-\subsection{Die Entstehung der komplexen Zahlen}
-\label{sec:3.3_entstehung}
+\subsection{Von der konkreten Aufgabe zur allgemeinen Form}
+\label{sec:3.4_allgemeine_form}
 \phantomsection
 
 \subsubsection*{Einleitung}
 \phantomsection
-Im 16.~Jahrhundert\index{16. Jahrhundert} entwickelten italienische Mathematiker (u.\,a. Tartaglia und Cardano)
-Methoden zur Lösung von \emph{Gleichungen dritten Grades}\index{Gleichung dritten Grades} (kubischer Gleichung).
-Dabei tauchte ein Ausdruck auf, 
-den niemand verstand und den viele für eine Rechenkuriosität hielten: 
-die Wurzel einer negativen Zahl\index{Negative Zahlen}. 
-Obwohl solche Ausdrücke im Rechenweg auftraten, verschwanden sie im Endergebnis oft wieder. 
-Die Mathematiker befanden sich in einer paradoxen Situation: Etwas, das „nicht existieren konnte“, 
-war im Lösungsweg unverzichtbar.
+Die eigentliche Stärke der Algebra liegt nicht nur darin,
+einzelne Aufgaben zu lösen.
+Entscheidend ist vielmehr,
+dass sie aus konkreten Problemen allgemeine Formen gewinnt.
+Ein Erbfall, eine Handelsrechnung oder eine Flächenaufgabe
+sind zunächst sehr verschieden.
+Algebraisch betrachtet können sie jedoch dieselbe Struktur besitzen.
 
-Dieser Abschnitt zeigt, wie aus dieser Irritation schrittweise eine der
-mächtigsten Erweiterungen der Mathematik\index{Mathematik} entstand: 
-die komplexen Zahlen\index{Komplexe Zahlen}.
-
-\subsubsection*{Cardano und das Problem der negativen Wurzeln}
+\subsubsection*{Das Allgemeine im Besonderen}
 \phantomsection
-Gerolamo Cardano\index{Cardano, Gerolamo} veröffentlichte 1545 in seinem Werk 
-\emph{Ars Magna}\index{Ars Magna} die erste systematische Darstellung der Lösungen 
-kubischer Gleichungen. Bei manchen kubischen Gleichungen (dem \emph{casus irreducibilis}\index{Casus irreducibilis})
-erscheinen beim Rechnen Zwischenwerte, die zunächst keinen Sinn zu ergeben scheinen:
+Ein konkretes Problem enthält meist Zahlen,
+einen sachlichen Zusammenhang und eine gesuchte Größe.
+Die Algebra löst sich von diesem äußeren Rahmen
+und konzentriert sich auf die Beziehung zwischen den Größen.
+
+So wird aus einer Erzählung über Besitz, Anteile oder Längen
+eine Gleichung.
+Nicht der Einzelfall steht dann im Mittelpunkt,
+sondern das Muster, das in ihm sichtbar wird.
+
+\subsubsection*{Warum Buchstaben mehr sind als Platzhalter}
+\phantomsection
+Die Einführung von Symbolen wie \(x\) oder \(y\)
+ist deshalb weit mehr als eine Abkürzung.
+Ein Buchstabe steht nicht nur für eine unbekannte Zahl,
+sondern für eine Stelle in einer allgemeinen Struktur.
+
+Die Gleichung
 \[
-\sqrt{-121}\,.
+ax+b=0
 \]
-Das ist eine \emph{Wurzel aus einer negativen Zahl} — also der Punkt, an dem die komplexen Zahlen
-ins Spiel kommen.
-Cardano erkannte klar, dass dieser Ausdruck keinen Sinn ergibt.
-Er bezeichnete ihn als \emph{sophistische Wurzel}. Dennoch notierte er
-ihn, weil der Rechenweg am Ende das richtige Ergebnis lieferte.
+ist nicht eine einzelne Aufgabe,
+sondern die Form aller linearen Gleichungen dieser Art.
+Wer diese Form versteht,
+versteht zugleich unendlich viele konkrete Aufgaben.
 
-Damit war der Grundstein gelegt: Eine neue Art von Zahl tauchte auf —
-noch ohne Bedeutung, aber mathematisch unausweichlich.
-
-\subsubsection*{Bombellis Durchbruch}
+\subsubsection*{Vom Beispiel zur Form}
 \phantomsection
-Der italienische Mathematiker Rafael (Raffaele) Bombelli\index{Bombelli, Rafael} erkannte um
-1572, dass die merkwürdigen Ausdrücke mit $\sqrt{-1}$ nicht ignoriert werden konnten. 
-Er führte systematische Rechenregeln\index{Rechenregeln} ein und zeigte,
-dass man mit diesen Ausdrücken konsistent rechnen kann — sofern man sie
-wie eigenständige Einheiten behandelt.
+Ein einzelnes Problem ist oft der Ausgangspunkt,
+aber nicht das eigentliche Ziel der Algebra.
+Entscheidend ist,
+dass sich hinter einem konkreten Beispiel
+eine allgemeine Form erkennen lässt.
 
-\begin{HistoryBox}[Bombellis entscheidender Schritt]
-	\label{box:schritt}
-	Rafael (Raffaele) Bombelli erkannte um 1572, dass die merkwürdigen Ausdrücke 
-	mit $\sqrt{-1}$ nicht ignoriert werden können. 
-	Er führte systematische Rechenregeln ein und interpretierte $i^2=-1$
-	als konsistente Erweiterung des bekannten Zahlensystems\index{Zahlensystem}. 
-	Damit legte er den Grundstein für die Theorie der komplexen Zahlen.
-\end{HistoryBox}
+So wird aus einer Erbaufgabe eine lineare Gleichung,
+aus einer Flächenaufgabe eine quadratische Gleichung.
+Die einzelnen Zahlen können wechseln,
+doch die zugrunde liegende Struktur bleibt dieselbe.
+Gerade dadurch wird Mathematik übertragbar und allgemein.
 
-Bombelli selbst hatte noch keine geometrische Interpretation\index{Geometrie}. 
-Aber er verstand: Wenn die Algebra\index{Algebra} solche Zahlen erfordert, müssen sie
-ernst genommen werden.
-
-\subsubsection*{Euler, Gauss und die mathematische Legitimation}
+\subsubsection*{Algebra als Verallgemeinerung}
 \phantomsection
-Erst im 18.~und frühen 19.~Jahrhundert\index{19. Jahrhundert} erhielten die komplexen Zahlen
-ihre volle mathematische Anerkennung.
+Gerade darin liegt der Fortschritt der Algebra:
+Sie befreit das Rechnen vom Einzelfall.
+Statt jedes Problem neu zu behandeln,
+erkennt sie gemeinsame Muster
+und entwickelt Verfahren,
+die auf viele Situationen zugleich anwendbar sind.
 
-Leonhard Euler\index{Euler, Leonhard} entdeckte den tiefen Zusammenhang zwischen komplexen
-Zahlen und trigonometrischen Funktionen\index{Trigonometrische Funktionen}. Seine Formel
-\[
-e^{i\varphi} = \cos\varphi + i\sin\varphi
-\]
-zeigte, dass komplexe Zahlen keineswegs künstlich sind, sondern
-natürlich in fundamentalen Beziehungen der Mathematik auftauchen.
+Damit wird Mathematik nicht nur praktischer,
+sondern auch tiefer.
+Sie beschreibt nicht mehr bloß einzelne Ergebnisse,
+sondern allgemeine Beziehungen.
 
-Carl Friedrich Gauss\index{Gauss, Carl Friedrich} ging noch einen Schritt weiter. 
-Er interpretierte komplexe Zahlen als Punkte in einer Ebene und gab ihnen damit eine
-geometrische Bedeutung. Diese Gaußsche Zahlenebene\index{Gaußsche Zahlenebene} machte sichtbar, dass
-komplexe Zahlen genauso „real“ sind wie reelle Zahlen — nur mit einer
-zweiten Dimension\index{Zweite Dimension}.
-
-Auch Jean-Robert Argand\index{Argand, Jean-Robert} trug wesentlich zur Verbreitung dieser
-geometrischen Sichtweise bei.
-
-\begin{MathBox}[Die grundlegende Beziehung]
-	\phantomsection\label{box:beziehung}
-	Die neue Zahl $i$ wird durch die Beziehung
-	\[
-	i^2 = -1
-	\]
-	definiert\index{$i^2=-1$}. Jede komplexe Zahl lässt sich als Kombination
-	\[
-	a + bi, \qquad a,b \in \mathbb{R},
-	\]
-	darstellen. Addition und Multiplikation bilden nach dieser Definition 
-	einen vollständigen Körper\index{Körper (algebraisch)}. 
-	Die geometrische Interpretation verbindet diese Darstellung mit der Ebene.
-\end{MathBox}
-
-\subsubsection*{Vom Rechenphänomen zur mathematischen Notwendigkeit}
-\phantomsection
-Mit der geometrischen Interpretation wurde klar: Komplexe Zahlen sind
-keine willkürliche Erweiterung, sondern eine mathematische Notwendigkeit\index{Mathematische Notwendigkeit}.
-Der \emph{Fundamentalsatz der Algebra}\index{Fundamentalsatz der Algebra} garantiert, 
-dass jedes Polynom\index{Polynom} mindestens eine Lösung besitzt — und dieser Satz ist ohne komplexe Zahlen
-nicht gültig.
-
-Damit wurde der Zahlenbereich endgültig geschlossen: von den natürlichen
-Zahlen\index{Natürliche Zahlen} über die ganzen\index{Ganze Zahlen} und reellen Zahlen\index{Reelle Zahlen} 
-bis hin zu den komplexen Zahlen. 
-Jede Erweiterung wurde von Problemen erzwungen, die ohne sie nicht vollständig lösbar waren.
-
-Eine ausführliche mathematische Herleitung der komplexen Zahlen findet
-sich im Anhang~\ref{anhangA_komplexe}. Dort werden die formale
-Definition, die Rechenregeln und die geometrische Struktur vollständig
-entwickelt.
+\begin{DidacticBox}[Was Algebra wirklich leistet]
+	\phantomsection\label{box:allgemeinform}
+	Algebra bedeutet nicht einfach,
+	mit Buchstaben statt mit Zahlen zu rechnen.
+	Ihre eigentliche Leistung besteht darin,
+	im Besonderen das Allgemeine zu erkennen.
+	
+	Eine Gleichung steht deshalb nie nur für einen Einzelfall,
+	sondern für eine Struktur,
+	die in vielen verschiedenen Problemen wiederkehrt.
+\end{DidacticBox}
 
 \subsubsection*{Übergang}
 \phantomsection
-Die Geschichte der komplexen Zahlen zeigt, dass mathematische Strukturen
-nicht erfunden werden, sondern aus der inneren Logik der Probleme
-hervorgehen. Dieser Gedanke führt direkt zur nächsten Frage:
-Warum funktioniert Mathematik überhaupt so zuverlässig?
-Dies wird im nächsten Abschnitt behandelt.
+Sobald Mathematik als System allgemeiner Formen verstanden wird,
+stellt sich die nächste Frage:
+Warum funktionieren diese Formen so zuverlässig?
+Damit rückt die Rolle der Regeln und Axiome in den Mittelpunkt.
 
+% =====================================================
+% 3.5 Mathematik als System von Regeln
+% =====================================================
 
-%3.4
 \subsection{Mathematik als System von Regeln}
-\label{sec:3.4_regelsystem}
+\label{sec:3.5_regelsystem}
 \phantomsection
 
 \subsubsection*{Einleitung}
 \phantomsection
-Die bisherigen Entwicklungen – von negativen Zahlen\index{Negative Zahlen} 
-bis zu den komplexen Zahlen\index{Komplexe Zahlen} – 
-zeigen ein zentrales Muster: Die \emph{Mathematik}\index{Mathematik} 
-wächst nicht durch willkürliche Erfindungen, sondern durch die innere Logik ihrer Regeln\index{Regeln}. 
-Sobald man feste Rechenvorschriften akzeptiert, ergeben sich neue Strukturen\index{Struktur} zwangsläufig.
+Die bisherigen Entwicklungen -- von den ersten Gleichungsverfahren
+bis zur allgemeinen symbolischen Form --
+zeigen ein zentrales Muster:
+Die \emph{Mathematik}\index{Mathematik}
+wächst nicht durch willkürliche Einfälle,
+sondern durch die innere Logik ihrer Regeln\index{Regeln}.
+Sobald feste Rechenvorschriften akzeptiert sind,
+ergeben sich neue Strukturen\index{Struktur} oft zwangsläufig.
 
-Mathematik ist deshalb kein Sammelsurium einzelner Tricks, sondern ein kohärentes 
-System von klaren Regeln.
+Mathematik ist deshalb kein Sammelsurium einzelner Tricks,
+sondern ein kohärentes System.
 
 \subsubsection*{Regeln als Grundlage mathematischen Denkens}
 \phantomsection
-Seit der Antike\index{Antike} beruhen mathematische Methoden auf festen Operationen: 
-Addition\index{Addition}, Subtraktion\index{Subtraktion}, 
-Multiplikation\index{Multiplikation} und Division\index{Division}. 
-Jede Erweiterung des Zahlbegriffs\index{Zahlbegriff} konnte nur bestehen, 
+Seit der Antike\index{Antike}
+beruht mathematisches Denken auf festen Operationen:
+Addition\index{Addition}, Subtraktion\index{Subtraktion},
+Multiplikation\index{Multiplikation} und Division\index{Division}.
+Jede Erweiterung des Zahlbegriffs\index{Zahlbegriff}
+konnte sich nur dann behaupten,
 wenn diese Regeln konsistent blieben.
 
-Das gilt für:
+Das gilt für
 \begin{itemize}
 	\item die Einführung der Null\index{Null},
 	\item die Akzeptanz negativer Zahlen,
-	\item die Irrationalität von $\sqrt{2}$\index{Irrationale Zahlen},
-	\item die komplexen Zahlen $a + bi$,
+	\item die Einsicht in die Irrationalität von $\sqrt{2}$\index{Irrationale Zahlen},
+	\item die komplexen Zahlen \(a+bi\),
 	\item und spätere Strukturen wie Vektoren\index{Vektor} oder Funktionen\index{Funktion}.
 \end{itemize}
 
 Der entscheidende Punkt ist:
-Sobald die Regeln definiert sind, dürfen sie angewendet werden – unabhängig davon, 
-ob das Ergebnis intuitiv erscheint.
+Sind die Regeln einmal klar festgelegt,
+dann müssen ihre Konsequenzen ernst genommen werden --
+auch wenn sie zunächst ungewohnt erscheinen.
 
 \subsubsection*{Die Idee der Axiome}
 \phantomsection
-Ein System von Regeln ist nur dann mächtig, wenn es auf eindeutigen Grundannahmen beruht. 
-Solche Grundannahmen nennt man \emph{Axiome}\index{Axiom}. 
-Sie legen fest, wie Objekte miteinander verknüpft werden dürfen, ohne Widersprüche zu erzeugen.
+Ein Regelsystem ist nur dann tragfähig,
+wenn es auf eindeutigen Grundannahmen beruht.
+Solche Grundannahmen nennt man \emph{Axiome}\index{Axiom}.
+Sie legen fest,
+wie mathematische Objekte miteinander verknüpft werden dürfen,
+ohne Widersprüche zu erzeugen.
 
-Bei den komplexen Zahlen etwa genügen wenige Vorgaben:
+Bei den komplexen Zahlen genügen dafür wenige Vorgaben:
 \begin{itemize}
-	\item $i^2 = -1$\index{$i^2=-1$},
-	\item reelle und imaginäre Teile\index{Reelle Zahlen} addieren sich getrennt,
-	\item die bekannten Rechenregeln bleiben gültig.
+	\item \(i^2 = -1\)\index{$i^2=-1$},
+	\item reelle und imaginäre Teile werden komponentenweise addiert,
+	\item die bekannten Rechenregeln werden konsistent fortgeführt.
 \end{itemize}
 
-Aus diesen wenigen Vorgaben entsteht ein vollständiger Zahlenbereich\index{Zahlenbereich}.  
-Axiome begrenzen nicht – sie ermöglichen Struktur.
+Aus solchen Vorgaben entsteht ein vollständiger Zahlenbereich\index{Zahlenbereich}.
+Axiome beschränken die Mathematik nicht --
+sie machen ihre Struktur überhaupt erst möglich.
 
 \subsubsection*{Regelsysteme erzeugen mathematische Welten}
 \phantomsection
-Sobald Regeln feststehen, kann man untersuchen, welche Objekte in diesem System existieren. 
-Beispiele:
+Sind die Regeln einmal festgelegt,
+kann man untersuchen,
+welche Objekte und Beziehungen in diesem System existieren.
+So entstehen mathematische Welten mit eigener innerer Ordnung.
 
 \begin{itemize}
-	\item Aus den Regeln der Arithmetik\index{Arithmetik} entstehen die 
-	natürlichen\index{Natürliche Zahlen}, ganzen\index{Ganze Zahlen} und 
-	rationalen Zahlen\index{Rationale Zahlen}.
+	\item Aus der Arithmetik\index{Arithmetik} entwickeln sich die natürlichen\index{Natürliche Zahlen}, ganzen\index{Ganze Zahlen} und rationalen Zahlen\index{Rationale Zahlen}.
 	\item Aus geometrischen Axiomen entsteht die euklidische Geometrie\index{Euklidische Geometrie}.
 	\item Aus den Körperaxiomen\index{Körperaxiome} entwickelt sich die Analysis\index{Analysis}.
-	\item Aus den Regeln der Algebra\index{Algebra} entstehen Polynomgleichungen\index{Polynomgleichung} 
-	und deren Lösungen.
+	\item Aus den Regeln der Algebra\index{Algebra} entstehen Polynomgleichungen\index{Polynomgleichung} und ihre Lösungsstrukturen.
 \end{itemize}
 
-Die Mathematik entwickelt sich also von innen heraus – nicht durch äußere Entscheidungen.
+Mathematik entwickelt sich damit gewissermaßen von innen heraus.
+Sie wird nicht beliebig konstruiert,
+sondern aus klaren Voraussetzungen entfaltet.
 
 \begin{DidacticBox}[Warum Regeln die Mathematik tragen]
 	\phantomsection\label{box:regeln}
-	Mathematik wirkt manchmal wie eine Sammlung einzelner Themen – Zahlen, Gleichungen, 
-	Funktionen oder Geometrie. Tatsächlich entsteht alles aus einem kleinen Satz klarer Regeln.
+	Mathematik wirkt oft wie eine Sammlung getrennter Themen:
+	Zahlen, Gleichungen, Funktionen oder Geometrie.
+	Tatsächlich hängen diese Bereiche zusammen,
+	weil sie auf wenigen grundlegenden Regeln beruhen.
 	
-	Sind diese Regeln einmal festgelegt, folgen viele mathematische Strukturen unausweichlich.
-	Deshalb „erfindet“ man neue Zahlen nicht, sondern entdeckt, dass sie notwendig sind, 
-	um die Regeln widerspruchsfrei anzuwenden.
+	Sind diese Regeln einmal festgelegt,
+	folgen viele Strukturen nicht aus Willkür,
+	sondern aus Konsequenz.
+	Deshalb werden neue Zahlenbereiche nicht einfach erfunden,
+	sondern als notwendig erkannt.
 \end{DidacticBox}
 
 \subsubsection*{Mathematik ist nicht erfunden, sondern entdeckt}
 \phantomsection
-Die Geschichte der Zahlen\index{Zahlen} zeigt ein klares Muster:
-Keine Zahl wurde eingeführt, weil jemand sie erfinden wollte. Jede neue Zahl entstand, 
-weil die bestehenden Regeln sie erzwungen haben. 
-Negative Zahlen, irrationale Zahlen und komplexe Zahlen sind nicht Produkte der Fantasie, 
-sondern Konsequenzen der mathematischen Struktur.
+Die Geschichte der Zahlen\index{Zahlen} und der Algebra\index{Algebra}
+zeigt daher ein klares Muster:
+Neue Strukturen entstehen nicht,
+weil man sie frei erfinden möchte,
+sondern weil die bestehenden Regeln sie nahelegen oder sogar erzwingen.
+Negative Zahlen, irrationale Zahlen und komplexe Zahlen
+sind keine Produkte bloßer Fantasie,
+sondern Konsequenzen mathematischer Struktur.
 
 \subsubsection*{Übergang}
 \phantomsection
-Wenn mathematische Regeln eine konsistente Welt\index{Welt} erzeugen, 
-stellt sich die Frage, warum diese Welt die Struktur der Natur widerspiegelt. 
-Diese Verbindung wird im nächsten Kapitel untersucht.
-
-
-
+Wenn mathematische Regeln eine konsistente Welt erzeugen,
+stellt sich die nächste Frage fast von selbst:
+Warum spiegelt diese Welt so häufig die Struktur der Natur wider?
+Genau dieser Zusammenhang führt in das folgende Kapitel.
