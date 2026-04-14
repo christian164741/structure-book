@@ -1,28 +1,44 @@
 \chapter{Wie komplexe Zahlen Struktur erzeugen}
 \label{chap:VII_komplexe_struktur}
+Komplexe Zahlen sind nicht nur eine Erweiterung des Zahlbegriffs,
+sondern ein Raum, in dem aus einfachen Regeln überraschend reiche Strukturen entstehen können.
+Besonders deutlich zeigt sich das bei iterierten Abbildungen:
+Eine einzige Vorschrift wird immer wieder auf ihr eigenes Ergebnis angewandt
+und erzeugt dabei Bahnen, Grenzen und Formen,
+die weit über das einzelne Rechenschema hinausweisen.
+
+Dieses Kapitel zeigt,
+wie aus der Iteration komplexer Zahlen Stabilität, Divergenz und Grenzstrukturen entstehen,
+wie die Mandelbrotmenge als Landkarte des Parameterraums gelesen werden kann
+und warum Julia-Mengen lokale Dynamik sichtbar machen.
+Am Ende wird deutlich,
+dass hier keine Natur abgebildet,
+sondern Struktur aus Mathematik selbst erzeugt wird.
+
 % =====================================================
 % 7.1 Iteration als mathematisches Prinzip
 % =====================================================
 
 \subsection{Iteration als mathematisches Prinzip}
 
-
 \index{Dynamisches System}
 \index{Abbildung}
 
 Iteration ist eines der einfachsten und zugleich mächtigsten Prinzipien der Mathematik:
-Man nimmt eine Vorschrift, wendet sie an – und wendet das Ergebnis wieder auf dieselbe Vorschrift an.
-Aus einer einzigen Regel entsteht eine Folge von Zuständen. Genau hier beginnt „Struktur aus Mathematik“.
+Eine Vorschrift wird angewandt, und dann wird ihr Ergebnis erneut derselben Vorschrift unterworfen.
+So entsteht aus einer einzigen Regel eine Folge von Zuständen.
+Genau hier beginnt das, was man als \emph{Struktur aus Mathematik} bezeichnen kann.
 
-Formal betrachtet ist Iteration die wiederholte Anwendung einer Abbildung $f$:
+Formal ist Iteration die wiederholte Anwendung einer Abbildung $f$:
 \[
-z_{0},\quad z_{1}=f(z_{0}),\quad z_{2}=f(z_{1})=f(f(z_{0})),\quad \ldots,\quad z_{n+1}=f(z_n).
+z_0,\quad z_1=f(z_0),\quad z_2=f(z_1)=f(f(z_0)),\quad \ldots,\quad z_{n+1}=f(z_n).
 \]
-Damit wird aus einer Zahl $z_0$ eine ganze Bahn durch den Zustandsraum.
+Damit wird aus einem einzigen Startwert $z_0$ eine ganze Bahn im Zustandsraum.
 \index{Orbit}
 
-\subsubsection*{Ein wirkliches Zahlenbeispiel (damit das Schema greifbar wird)}
-Nehmen wir eine extrem einfache Funktion auf den reellen Zahlen:
+\subsubsection*{Ein einfaches Zahlenbeispiel}
+
+Nehmen wir eine besonders einfache Funktion auf den reellen Zahlen:
 \[
 f(x)=\frac12 x + 1.
 \]
@@ -37,57 +53,91 @@ Wir starten mit $x_0=0$ und wenden immer wieder dieselbe Vorschrift an:
 	x_6 &= 1{,}96875.
 \end{aligned}
 \]
-Man sieht sofort: Die Folge nähert sich einer festen Zahl an, nämlich $2$.
-Diese Zahl ist ein \emph{Fixpunkt}, denn $f(2)=2$ gilt.
+Man erkennt sofort:
+Die Folge nähert sich einer festen Zahl an, nämlich $2$.
+Diese Zahl heißt \emph{Fixpunkt}, denn es gilt
+\[
+f(2)=2.
+\]
 \index{Fixpunkt}
 
-\begin{DidacticBox}[Was man hier wirklich lernen soll]
+\begin{DidacticBox}[Was man hier lernen soll]
 	\phantomsection\label{box:lernen}
-
-	Iteration bedeutet nicht „eine Rechnung“, sondern \emph{eine Regel in der Zeit}:
-	Aus $x_0$ wird $x_1$, daraus $x_2$, daraus $x_3$.
-	Schon bei einer simplen Vorschrift entstehen typische Verhaltensweisen:
-	\emph{Annäherung} (stabil), \emph{Schwanken} (periodisch) oder \emph{Weglaufen} (divergent).
+	Iteration bedeutet nicht einfach eine einzelne Rechnung,
+	sondern die wiederholte Anwendung einer Regel.
+	Aus $x_0$ wird $x_1$,
+	daraus $x_2$,
+	daraus $x_3$.
+	Schon bei sehr einfachen Vorschriften
+	entstehen typische Verhaltensweisen:
+	\emph{Annäherung} (stabil),
+	\emph{Schwanken} (periodisch)
+	oder \emph{Weglaufen} (divergent).
 \end{DidacticBox}
 
-Diese Sicht ist entscheidend: Zahlen werden zu Zuständen, und die Funktion $f$ wird zur Dynamik.
-Damit ist Iteration bereits ein dynamisches System – im reinsten, abstraktesten Sinn.
-
+Gerade diese Sichtweise ist entscheidend:
+Zahlen werden zu Zuständen,
+und die Funktion $f$ wird zur Dynamik.
+Damit ist Iteration bereits ein dynamisches System
+im reinsten und abstraktesten Sinn.
 
 \begin{MathBox}[Begriffe: Orbit und Fixpunkt]
 	\phantomsection\label{box:orbit}
-Gegeben sei $f:\mathbb{C}\to\mathbb{C}$ und ein Startwert $z_0\in\mathbb{C}$.
-	Die Iteration ist
+	Gegeben sei $f:\mathbb{C}\to\mathbb{C}$ und ein Startwert $z_0\in\mathbb{C}$.
+	Die Iteration lautet
 	\[
 	z_{n+1}=f(z_n)\qquad (n=0,1,2,\dots).
 	\]
-	Die Folge $(z_0,z_1,z_2,\dots)$ heißt \emph{Orbit} (Bahn) von $z_0$.
-	Ein Punkt $z^\ast$ heißt \emph{Fixpunkt}, wenn $f(z^\ast)=z^\ast$ gilt.
+	Die Folge $(z_0,z_1,z_2,\dots)$ heißt \emph{Orbit} oder \emph{Bahn} von $z_0$.
+	Ein Punkt $z^\ast$ heißt \emph{Fixpunkt}, wenn
+	\[
+	f(z^\ast)=z^\ast
+	\]
+	gilt.
 \end{MathBox}
 
 \subsubsection*{Warum komplexe Zahlen hier etwas Besonderes sind}
 \index{Komplexe Zahl}
 \index{Komplexe Ebene}
-In $\mathbb{R}$ läuft eine Iteration entlang einer Zahlengeraden. In $\mathbb{C}$ bewegt sie sich in einer Ebene.
-Allein dieser Schritt verändert alles: Bahnen können kreisen, spiralförmig streben, Grenzen ausbilden,
-Inseln erzeugen und feine Ränder entwickeln. Aus einer Vorschrift wird Geometrie.
 
-Für die späteren Bilder (Mandelbrot- und Julia-Mengen) genügt im Kern eine einzige Familie:
+Auf der reellen Achse verläuft eine Iteration entlang einer Zahlengeraden.
+In der komplexen Ebene bewegt sie sich dagegen in zwei Dimensionen.
+Schon dieser Schritt verändert die Situation grundlegend:
+Bahnen können kreisen,
+spiralförmig streben,
+Grenzen ausbilden,
+Inseln erzeugen
+und fein verzweigte Ränder entwickeln.
+Aus einer Rechenvorschrift wird Geometrie.
+
+Für die späteren Bilder der Mandelbrot- und Julia-Mengen
+genügt im Kern bereits eine einzige Familie von Abbildungen:
 \[
 f_c(z)=z^2+c \qquad (z,c\in\mathbb{C}).
 \]
-Wir starten bei einem $z_0$ und verfolgen die Iteration. Die Leitfrage ist dabei brutal simpel:
-\emph{Bleibt die Bahn beschränkt oder fliegt sie ins Unendliche?}
+Man startet bei einem Wert $z_0$
+und verfolgt dann die weitere Iteration.
+Die Leitfrage ist dabei einfach,
+aber folgenreich:
+\emph{Bleibt die Bahn beschränkt oder entweicht sie ins Unendliche?}
 
 \subsubsection*{Kurzfazit}
+
 \begin{itemize}
-	\item Iteration heißt: dieselbe Vorschrift immer wieder anwenden.
-	\item Das erzeugt Bahnen (Orbits) mit qualitativ verschiedenem Verhalten: stabil, periodisch oder divergent.
-	\item In der komplexen Ebene wird dieses Verhalten sichtbar als Form.
+	\item Iteration bedeutet: dieselbe Vorschrift wiederholt anwenden.
+	\item Dadurch entstehen Bahnen mit qualitativ unterschiedlichem Verhalten: stabil, periodisch oder divergent.
+	\item In der komplexen Ebene wird dieses Verhalten unmittelbar als Form sichtbar.
 \end{itemize}
 
-Jetzt folgt der entscheidende Schritt: Was heißt „beschränkt“, was heißt „divergent“ --
-und warum sitzt die Struktur genau am Rand dazwischen?
+Damit ist der nächste Schritt vorbereitet:
+Was genau heißt \glqq beschränkt\grqq{},
+was heißt \glqq divergent\grqq{}
+und warum sitzt die eigentliche Struktur gerade am Rand zwischen beidem?
+
+
+
+
+
 % =====================================================
 % 7.2 Stabilität, Divergenz und Grenzfälle
 % =====================================================
@@ -404,74 +454,106 @@ Genau diese Menge ist die Mandelbrot-Menge.
 \index{Escape-Radius}
 \index{Fraktal}
 
+\textbf{Leitfrage:} \emph{Wie lässt sich die Mandelbrotmenge wie eine Landkarte lesen -- und was bedeuten „Land“, „Meer“ und „Küste“ mathematisch?}
 
-\textbf{Leitfrage:} \emph{Wie liest man die Mandelbrotmenge wie eine Landkarte – und was bedeuten „Land“, „Meer“ und „Küste“ mathematisch?}
-
-Die Mandelbrotmenge ist keine Bahnkurve einer einzelnen Rechnung. Sie ist eine \emph{Landkarte im Parameterraum}:
-Jeder Punkt \(c\) in der komplexen Ebene steht für ein eigenes Iterationssystem. Das Bild ordnet also nicht Werte \(z_n\),
-sondern \emph{Systeme nach ihrem Verhalten}.
+Die Mandelbrotmenge ist keine Bahnkurve einer einzelnen Iteration.
+Sie ist eine \emph{Landkarte im Parameterraum}:
+Jeder Punkt \(c\) in der komplexen Ebene steht für ein eigenes Iterationssystem.
+Das Bild ordnet also nicht die Werte einer einzelnen Folge \(z_n\),
+sondern ganze \emph{Systeme nach ihrem Verhalten}.
 
 \begin{MathBox}[Definition: Landkarte im Parameterraum]
 	\phantomsection\label{box:landkarte}
 	Wir betrachten die Iteration
 	\[
-	z_{n+1} = z_n^2 + c, \qquad z_0 = 0, \qquad c\in\mathbb{C}.
+	z_{n+1}=z_n^2+c,\qquad z_0=0,\qquad c\in\mathbb{C}.
 	\]
-	Die \textbf{Mandelbrotmenge} ist die Menge aller Parameter \(c\), für die die Folge \(\{z_n\}\) \textbf{beschränkt} bleibt:
+	Die \textbf{Mandelbrotmenge} ist die Menge aller Parameter \(c\),
+	für die die Folge \(\{z_n\}\) \textbf{beschränkt} bleibt:
 	\[
-	\mathcal{M}=\{\,c\in\mathbb{C}\mid \sup_n |z_n| < \infty\,\}.
+	\mathcal{M}=\{\,c\in\mathbb{C}\mid \sup_n |z_n|<\infty\,\}.
 	\]
 \end{MathBox}
 
 \begin{DidacticBox}[Der häufigste Denkfehler]
 	\phantomsection\label{box:denkfehler}
-	In der Grafik ist \textbf{nicht} \(z\) die Koordinate, sondern der Parameter \(c\).
-	Für \emph{jeden} Bildpunkt wird dieselbe Iteration gestartet (immer \(z_0=0\)), aber mit anderem \(c\).
-	Darum ist das Bild eine \textbf{Landkarte}: Jeder Punkt entspricht einem eigenen Dynamik-„Universum“.
+	In der Grafik ist \textbf{nicht} \(z\) die Koordinate,
+	sondern der Parameter \(c\).
+	Für \emph{jeden} Bildpunkt wird dieselbe Iteration gestartet
+	(immer mit \(z_0=0\)),
+	aber jeweils mit einem anderen \(c\).
+	Darum ist das Bild eine \textbf{Landkarte}:
+	Jeder Punkt entspricht einem eigenen kleinen Dynamik-„Universum“.
 \end{DidacticBox}
 
 \subsubsection*{Land, Meer und Küste}
-Die Landkarten-Metapher ist nicht nur hübsch, sie ist präzise:
+
+Die Metapher der Landkarte ist nicht nur anschaulich,
+sondern mathematisch präzise:
 
 \begin{itemize}
-	\item \textbf{Land (innen, oft schwarz):} \(\{z_n\}\) bleibt beschränkt \(\Rightarrow c\in\mathcal{M}\).
-	\item \textbf{Meer (außen, farbig):} \(\{z_n\}\) entweicht \(\Rightarrow\) Divergenz.
-	\item \textbf{Küste (Grenze):} Übergangsgebiet, in dem kleinste Änderungen in \(c\) das Verhalten kippen lassen.
+	\item \textbf{Land} (innen, oft schwarz): Die Folge \(\{z_n\}\) bleibt beschränkt, also \(c\in\mathcal{M}\).
+	\item \textbf{Meer} (außen, meist farbig): Die Folge entweicht, also divergiert sie.
+	\item \textbf{Küste} (die Grenze): Übergangsgebiet, in dem kleinste Änderungen von \(c\) das Verhalten kippen lassen.
 \end{itemize}
 
 \begin{NoteBox}[Fluchtkriterium und Einfärbung]
 	\phantomsection\label{box:einfaerbung}
-	Für \(z_{n+1}=z_n^2+c\) gilt: Sobald \(|z_n|>2\), ist Divergenz sicher (\textbf{Escape-Radius} \(2\)).
-	Außerhalb der Menge zeigt die Farbgebung meist die \textbf{Fluchtzeit}:
-	wie viele Iterationen bis \(|z_n|>2\) erreicht ist. Das ist Visualisierung, nicht Definition.
+	Für die Iteration \(z_{n+1}=z_n^2+c\) gilt:
+	Sobald \(|z_n|>2\) erreicht wird,
+	ist Divergenz sicher.
+	Diese Zahl \(2\) heißt \textbf{Escape-Radius}.
+	
+	Außerhalb der Mandelbrotmenge zeigt die Farbgebung meist die \textbf{Fluchtzeit},
+	also die Anzahl der Iterationen,
+	bis \(|z_n|>2\) erreicht wird.
+	Das ist ein Mittel der Visualisierung,
+	nicht Teil der eigentlichen Definition.
 \end{NoteBox}
 
-\subsubsection*{Die Grenze als „Bühne der Struktur“}
-Der eigentliche Kern der Mandelbrotmenge ist nicht das „Innen“ oder „Außen“, sondern die \textbf{Grenze}:
-Dort sitzt die gesamte Komplexität. Winzige Parameteränderungen entscheiden über Beschränktheit oder Divergenz.
-Beim Hineinzoomen erscheinen immer neue Strukturen – das ist das typische Merkmal fraktaler Geometrie.
+\subsubsection*{Die Grenze als Bühne der Struktur}
+
+Der eigentliche Kern der Mandelbrotmenge
+liegt weder einfach im Inneren noch im Äußeren,
+sondern an ihrer \textbf{Grenze}.
+Dort konzentriert sich die gesamte Komplexität.
+Winzige Änderungen des Parameters \(c\)
+entscheiden darüber,
+ob die Bahn beschränkt bleibt oder entweicht.
+Gerade in diesem Übergangsbereich
+erscheinen beim Hineinzoomen immer neue Strukturen --
+das ist das charakteristische Merkmal fraktaler Geometrie.
 
 \begin{figure}[htbp]
 	\centering
-	% Datei anpassen:
 	\includegraphics[width=0.88\linewidth]{Bilder/Mandelbrot.png}
-	\caption{Die Mandelbrotmenge als Landkarte im Parameterraum \(c\): innen beschränkt (Land),
-		außen Fluchtzeit-Färbung (Meer), die Grenze als strukturreiches „Küstengebiet“.}
+	\caption{Die Mandelbrotmenge als Landkarte im Parameterraum \(c\):
+		innen beschränkt (Land),
+		außen Fluchtzeit-Färbung (Meer),
+		und an der Grenze ein strukturreiches „Küstengebiet“.}
 	\label{fig:mandelbrot_landkarte}
 \end{figure}
 
 \subsubsection*{Merksätze}
+
 \begin{itemize}
-	\item Das Bild ist ein \textbf{Parameterraum}: Jeder Punkt ist ein eigenes Iterationssystem.
-	\item \textbf{Innen} bedeutet: beschränkt \(\Rightarrow c\in\mathcal{M}\).
-	\item \textbf{Farben außen} zeigen meist die \textbf{Fluchtzeit} (Hilfsmittel).
-	\item Die \textbf{Grenze} ist das entscheidende Gebiet: dort entsteht die Detailtiefe.
+	\item Die Mandelbrotmenge ist ein Bild des \textbf{Parameterraums}: Jeder Punkt steht für ein eigenes Iterationssystem.
+	\item \textbf{Innen} bedeutet: Der Orbit von \(z_0=0\) bleibt beschränkt.
+	\item \textbf{Außen} bedeutet: Der Orbit entweicht; die Farben zeigen meist die Fluchtzeit.
+	\item Die \textbf{Grenze} ist das entscheidende Gebiet: Dort sitzt die gesamte Detailtiefe.
 \end{itemize}
-Eine detaillierte, nachvollziehbare Erzeugung der Mandelbrot-Grafik (Pixel \(\to c\), Iteration, Fluchtzeit und Farbgebung)
+
+Eine detaillierte und nachvollziehbare Erzeugung der Mandelbrot-Grafik
+-- von der Zuordnung der Pixel zu \(c\)-Werten
+über die Iteration bis zur Fluchtzeit und Farbgebung --
 findet sich in Anhang~\ref{app:mandelbrot-rendering}.
 
- Julia-Mengen sind die Landkarten des \emph{Zustandsraums}: Für ein festes \(c\) zeigt sich,
- welche Startwerte \(z_0\) gebunden bleiben und welche entkommen.
+Damit ist der nächste Schritt vorbereitet:
+Während die Mandelbrotmenge eine Landkarte des \emph{Parameterraums} ist,
+zeigen Julia-Mengen die Dynamik im \emph{Zustandsraum}.
+Für ein festes \(c\) wird dort sichtbar,
+welche Startwerte \(z_0\) gebunden bleiben
+und welche entkommen.
 
 % =====================================================
 % 7.4 Julia-Mengen: lokale Dynamik und Struktur
@@ -482,99 +564,137 @@ findet sich in Anhang~\ref{app:mandelbrot-rendering}.
 \index{Komplexe Dynamik}
 \index{Mandelbrotmenge}
 
-\textbf{Leitfrage:} Was passiert \emph{lokal} im $z$-Raum, wenn der Parameter $c$ fest ist – und warum entstehen dabei so unterschiedliche, oft fraktale Grenzen?
+\textbf{Leitfrage:} Was geschieht \emph{lokal} im $z$-Raum, wenn der Parameter $c$ fest ist -- und warum entstehen dabei so unterschiedliche, oft fraktale Grenzen?
 
-Die Mandelbrotmenge aus Abschnitt~\ref{sec:VII-7-3} ist eine \emph{Landkarte des Parameterraums} (jedes $c$ ein Punkt).
-Julia-Mengen sind die passende \emph{Landkarte des Zustandsraums}: Für ein \emph{festes} $c$ betrachten wir die Bahn eines Startwerts $z_0$ unter Iteration.
-So wird aus „wo liegt $c$?“ die Frage „welche Startwerte $z_0$ bleiben gebunden – und welche fliegen davon?“.
+Die Mandelbrotmenge aus Abschnitt~\ref{sec:VII-7-3} ist eine \emph{Landkarte des Parameterraums}:
+Jeder Punkt $c$ steht für ein eigenes Iterationssystem.
+Julia-Mengen sind dazu die passende \emph{Landkarte des Zustandsraums}:
+Für ein \emph{festes} $c$ betrachtet man die Bahn eines Startwerts $z_0$ unter Iteration.
+So wird aus der Frage
+\glqq Wo liegt $c$?\grqq{}
+die Frage:
+\glqq Welche Startwerte $z_0$ bleiben gebunden -- und welche entkommen?\grqq
 
 \begin{MathBox}[Definition: Iteration, gefüllte Julia-Menge, Julia-Rand]
 	\phantomsection\label{box:iteration}
 	Wir betrachten die quadratische Iteration
 	\[
-	z_{n+1}=f_c(z_n)=z_n^2+c \qquad (c\in\mathbb{C} \ \text{fest}).
+	z_{n+1}=f_c(z_n)=z_n^2+c \qquad (c\in\mathbb{C}\ \text{fest}).
 	\]
 	\begin{itemize}
 		\item Die \emph{Bahn} von $z_0$ ist die Folge $(z_n)_{n\ge 0}$.
-		\item Die \emph{gef\"ullte Julia-Menge} ist
+		\item Die \emph{gefüllte Julia-Menge} ist
 		\[
-		K_c=\{z_0\in\mathbb{C}\mid (z_n)\ \text{bleibt beschr\"ankt}\}.
+		K_c=\{z_0\in\mathbb{C}\mid (z_n)\ \text{bleibt beschränkt}\}.
 		\]
 		\item Die \emph{Julia-Menge} ist der Rand
 		\[
 		J_c=\partial K_c.
 		\]
 	\end{itemize}
-	Anschaulich: $K_c$ sind die „Startwerte, die nicht explodieren“; $J_c$ ist die scharfe, fraktale Grenze zwischen gebunden und divergent.
+	Anschaulich gesprochen:
+	$K_c$ sind die Startwerte, die nicht entkommen,
+	und $J_c$ ist die scharfe, fraktale Grenze zwischen gebunden und divergent.
 \end{MathBox}
 
-\subsubsection*{Lokale Dynamik: Stabilit\"at, Flucht und empfindliche Grenzen}
-\index{Stabilit\"at}
+\subsubsection*{Lokale Dynamik: Stabilität, Flucht und empfindliche Grenzen}
+\index{Stabilität}
 \index{Divergenz}
-Für viele Startwerte entscheidet sich das Schicksal schnell: Entweder die Folge bleibt in einem begrenzten Bereich oder sie wächst rasch über alle Schranken.
-Das \emph{Erstaunliche} ist nicht das „Fliehen“ selbst, sondern die Geometrie der Trennlinie: $J_c$ ist typischerweise extrem zerklüftet und empfindlich.
-Ein minimaler Unterschied in $z_0$ kann darüber entscheiden, ob die Bahn gebunden bleibt oder entkommt.
+
+Für viele Startwerte entscheidet sich das Verhalten schnell:
+Entweder die Folge bleibt in einem begrenzten Bereich,
+oder sie wächst rasch über alle Schranken.
+Das Erstaunliche ist dabei nicht das Entweichen selbst,
+sondern die Geometrie der Trennlinie.
+Der Rand $J_c$ ist typischerweise extrem zerklüftet und empfindlich.
+Ein minimaler Unterschied in $z_0$
+kann darüber entscheiden,
+ob die Bahn gebunden bleibt oder entkommt.
 
 \begin{DidacticBox}[Warum ist der Rand so kompliziert?]
 	\phantomsection\label{box:rand}
-Im Inneren von $K_c$ (und außerhalb davon) ist das Verhalten oft robust: kleine Änderungen von $z_0$ ändern das Ergebnis nicht.
-	\emph{Am Rand} gilt das Gegenteil: Dort liegen „gebundene“ und „fliehende“ Startwerte beliebig nahe beieinander.
-	Genau diese Vermischung auf allen Skalen erzeugt die fraktale Struktur der Julia-Menge.
+	Im Inneren von $K_c$ und auch außerhalb davon
+	ist das Verhalten oft robust:
+	Kleine Änderungen von $z_0$ ändern das qualitative Ergebnis nicht.
+	\emph{Am Rand} gilt das Gegenteil:
+	Dort liegen gebundene und fliehende Startwerte beliebig nahe beieinander.
+	Genau diese Vermischung auf immer kleineren Skalen
+	erzeugt die fraktale Struktur der Julia-Menge.
 \end{DidacticBox}
 
-\subsubsection*{Drei einfache Beispiele (zum Einprägen)}
+\subsubsection*{Drei einfache Beispiele zur Orientierung}
 
-Man muss nicht viele Formeln kennen – drei Beispiele geben sofort Orientierung:
+Man muss nicht viele Formeln kennen --
+drei Beispiele genügen, um das Grundmuster zu verstehen:
 
 \begin{itemize}
-	\item \textbf{$c=0$:} $z_{n+1}=z_n^2$.
-	Dann ist $K_0$ die Einheitskreisscheibe und $J_0$ der Einheitskreis.
-	(Hier ist alles „glatt“: keine Fraktalgrenze.)
+	\item \textbf{$c=0$:} Dann gilt $z_{n+1}=z_n^2$.
+	Die gefüllte Julia-Menge $K_0$ ist die Einheitskreisscheibe,
+	und $J_0$ ist ihr Rand, also der Einheitskreis.
+	Hier ist die Grenze glatt und noch nicht fraktal.
 	\index{Einheitskreis}
-	\item \textbf{$c=-1$:} Das klassische „Basilica“-Bild: zwei große Loben, klar erkennbar, aber der Rand ist bereits nicht-trivial.
+	\item \textbf{$c=-1$:} Es entsteht das klassische \glqq Basilica\grqq-Bild:
+	zwei große Loben, klar erkennbar,
+	aber mit bereits hochkomplexem Rand.
 	\index{Basilica}
-	\item \textbf{$c$ nahe dem Rand der Mandelbrotmenge:} Dann werden Julia-Mengen oft besonders „filigran“ (Dendriten, Staubstrukturen).
-	Das ist genau der Grenzbereich, wo lokale Dynamik maximal empfindlich wird.
+	\item \textbf{$c$ nahe dem Rand der Mandelbrotmenge:} Dann werden Julia-Mengen oft besonders filigran.
+	Dendriten und Staubstrukturen treten auf,
+	und die lokale Dynamik reagiert besonders empfindlich.
 \end{itemize}
 
 \begin{HistoryBox}[Historischer Kontext: Julia und Fatou]
 	\phantomsection\label{box:julia}
-Die systematische Untersuchung komplexer Iterationen begann um 1918–1920 mit Gaston Julia und Pierre Fatou.
-	Die zentralen Begriffe „normaler Bereich“ (Fatou-Menge) und „chaotischer Rand“ (Julia-Menge) stammen aus dieser Zeit.
-	Das ist ein schönes Beispiel dafür, wie reine Mathematik Jahrzehnte später zur Bildsprache moderner Fraktale wurde.
+	Die systematische Untersuchung komplexer Iterationen begann um 1918 bis 1920 mit Gaston Julia und Pierre Fatou.
+	Die zentralen Begriffe des stabilen Bereichs (Fatou-Menge) und des chaotischen Randes (Julia-Menge) stammen aus dieser Zeit.
+	Das ist ein eindrucksvolles Beispiel dafür,
+	wie reine Mathematik Jahrzehnte später zur Bildsprache moderner Fraktale wurde.
 \end{HistoryBox}
 
-\subsubsection*{Schl\"usselzusammenhang: Julia und Mandelbrot}
-
+\subsubsection*{Der Schlüsselzusammenhang zwischen Julia und Mandelbrot}
 \index{Mandelbrotmenge}
 
-Die Mandelbrotmenge ist nicht nur ein sch\"ones Bild, sondern eine \emph{Klassifikationskarte}:
-Sie ordnet jedem Parameter $c$ den \glqq Typ\grqq\ der zugeh\"origen Julia-Menge zu.
-Genau an dieser Stelle trifft der Parameterraum ($c$) direkt auf den Zustandsraum ($z$).
+Die Mandelbrotmenge ist nicht nur ein schönes Bild,
+sondern eine \emph{Klassifikationskarte}.
+Sie ordnet jedem Parameter $c$
+den Typ der zugehörigen Julia-Menge zu.
+Genau hier treffen Parameterraum ($c$)
+und Zustandsraum ($z$) unmittelbar aufeinander.
 
 \begin{NoteBox}[Merksatz: Zusammenhang von $c$ und der Geometrie von $J_c$]
 	\phantomsection\label{box:merksatz}
 	Für die Iteration $z_{n+1}=z_n^2+c$ gilt:
 	\begin{itemize}
-		\item Liegt $c$ \emph{in} der Mandelbrotmenge, dann ist die gef\"ullte Julia-Menge $K_c$ (und damit auch der Rand $J_c$) \emph{zusammenh\"angend}.
-		\item Liegt $c$ \emph{au\ss erhalb}, dann zerf\"allt $J_c$ typischerweise in viele getrennte Inseln (\glqq Staub\grqq).
+		\item Liegt $c$ \emph{in} der Mandelbrotmenge,
+		dann ist die gefüllte Julia-Menge $K_c$
+		und damit auch ihr Rand $J_c$
+		\emph{zusammenhängend}.
+		\item Liegt $c$ \emph{außerhalb},
+		dann zerfällt $J_c$ typischerweise
+		in viele getrennte Inseln,
+		also in einen \glqq Staub\grqq.
 	\end{itemize}
 \end{NoteBox}
 
-Damit wird die Idee aus Abschnitt~\ref{sec:VII-7-3} pr\"azise:
-Die Mandelbrotmenge sagt dir nicht, \emph{wie} eine Julia-Menge im Detail aussieht,
-aber sie sagt dir sofort, ob du eine zusammenh\"angende Struktur oder einen zerfallenden \glqq Staub\grqq erwarten musst.
+Damit wird die Idee aus Abschnitt~\ref{sec:VII-7-3} präzise:
+Die Mandelbrotmenge sagt nicht,
+\emph{wie} eine Julia-Menge im Detail aussieht,
+aber sie sagt sofort,
+ob man eine zusammenhängende Struktur
+oder einen zerfallenden Staub erwarten muss.
 
-\subsubsection*{Wie entstehen die Bilder? (und wo die Details stehen)}
+\subsubsection*{Wie entstehen die Bilder?}
 
-Für die Visualisierung testet man in der Praxis für jeden Pixelstartwert $z_0$,
-ob die Bahn \emph{entkommt} (Escape) und nach wie vielen Schritten.
-Die Farbe kodiert dann typischerweise die \emph{Escape-Time} oder eine geglättete Variante davon.
-Die saubere, nachvollziehbare Rendering-Idee (Iteration, Abbruchkriterium, Farbzuordnung) ist im Anhang ausführlich dokumentiert:
+Für die Visualisierung testet man in der Praxis für jeden Pixel-Startwert $z_0$,
+ob die Bahn entkommt
+und nach wie vielen Schritten dies geschieht.
+Die Farbe kodiert dann typischerweise die \emph{Fluchtzeit}
+oder eine geglättete Variante davon.
+Die saubere und nachvollziehbare Rendering-Idee
+-- Iteration, Abbruchkriterium und Farbzuordnung --
+ist im Anhang ausführlich dokumentiert;
 siehe Anhang~\ref{app:mandelbrot-rendering}.
-% (Optional: Falls du für Julia zusätzlich einen eigenen Anhangspunkt willst, lege später app:julia-rendering an.)
 
-\begin{NoteBox}[Mini-Checkliste f\"ur den Leser]
+\begin{NoteBox}[Mini-Checkliste für den Leser]
 	\phantomsection\label{box:checkliste}
 	\begin{itemize}
 		\item Mandelbrot: \emph{Parameterraum} ($c$ variieren, $z_0=0$).
@@ -583,18 +703,23 @@ siehe Anhang~\ref{app:mandelbrot-rendering}.
 		\item Randnahes $c$ $\Rightarrow$ besonders empfindliche, filamentartige Strukturen.
 	\end{itemize}
 \end{NoteBox}
+
 \newpage
 \noindent
 \subsubsection*{Beispiel 1: Glatter Grenzfall ($c=0$)}
 \index{Julia-Menge}
 \index{Einheitskreis}
 
-Hier ist die Dynamik besonders anschaulich: Die Grenze ist glatt.
-Die Julia-Menge ist der Einheitskreis, innen bleiben Bahnen gebunden, außen fliehen sie.
+Hier ist die Dynamik besonders anschaulich:
+Die Grenze ist glatt.
+Die Julia-Menge ist der Einheitskreis,
+innen bleiben die Bahnen gebunden,
+außen entkommen sie.
+
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.82\textwidth]{Bilder/Julia_0.png}
-	\caption{Julia-Menge für $c=0$: $J_c$ ist der Einheitskreis (glatt).}
+	\caption{Julia-Menge für $c=0$: $J_c$ ist der Einheitskreis.}
 	\label{fig:julia-c0}
 \end{figure}
 
@@ -603,105 +728,133 @@ Die Julia-Menge ist der Einheitskreis, innen bleiben Bahnen gebunden, außen fli
 \subsubsection*{Beispiel 2: Zusammenhängend, aber fraktal ($c=-1$)}
 \index{Basilica}
 
-Trotz klarer Struktur ist der Rand bereits hochkomplex:
-Gebundene und entkommende Startwerte liegen am Rand beliebig nahe beieinander.
+Trotz klarer Gesamtform ist der Rand bereits hochkomplex:
+Gebundene und entkommende Startwerte
+liegen dort beliebig nahe beieinander.
+
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.82\textwidth]{Bilder/Julia-1.png}
-		\caption{Julia-Menge für $c=-1$ (``Basilica''): zusammenhängend, fraktaler Rand.}
+	\caption{Julia-Menge für $c=-1$ (\glqq Basilica\grqq): zusammenhängend, aber mit fraktalem Rand.}
 	\label{fig:julia-cminus1}
-	
 \end{figure}
-
-
 
 \newpage
 \noindent
-\subsubsection*{Beispiel 3: Außerhalb der Mandelbrotmenge (``Staub'')}
+\subsubsection*{Beispiel 3: Außerhalb der Mandelbrotmenge (\glqq Staub\grqq)}
 \index{Mandelbrotmenge}
 \index{Cantor-Staub}
 
-Außerhalb der Mandelbrotmenge zerfällt $J_c$ typischerweise in viele getrennte Inseln:
-die Grenze ist nicht mehr zusammenhängend, sondern ein ``Staub''.
+Außerhalb der Mandelbrotmenge
+zerfällt $J_c$ typischerweise in viele getrennte Inseln:
+Die Grenze ist dann nicht mehr zusammenhängend,
+sondern erscheint als zerstreuter \glqq Staub\grqq.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.82\textwidth]{Bilder/Julia-2.png}
-	\caption{Julia-Menge für ein $c$ außerhalb der Mandelbrotmenge: zerfallender ``Staub''.}
+	\caption{Julia-Menge für ein $c$ außerhalb der Mandelbrotmenge: zerfallender \glqq Staub\grqq.}
 	\label{fig:julia-c2}
 \end{figure}
+
+
 
 % =====================================================
 % 7.5 Selbstähnlichkeit und Skaleninvarianz
 % =====================================================
-
- 
-\subsection{Selbstähnlichkeit und Skaleninvarianz}\label{sec:7.5}
+\subsection{Selbstähnlichkeit und Skaleninvarianz}
+\label{sec:7.5}
 \index{Selbstähnlichkeit}
 \index{Skaleninvarianz}
 \index{Fraktale Dimension}
 \index{Box-Counting-Dimension}
+
 \textbf{Leitfrage:} Warum tauchen beim Hineinzoomen in Mandelbrot- und Julia-Mengen immer wieder ähnliche Strukturen auf -- und was bedeutet das mathematisch?
 
-\medskip
-Bei vielen Objekten der klassischen Geometrie wird das Bild beim Vergrößern irgendwann \emph{einfacher}: Eine Kreislinie bleibt glatt, ein Polygon zeigt gerade Kanten. 
-Bei fraktalen Mengen ist es umgekehrt: Vergrößerung erzeugt nicht Klarheit, sondern neue Details. Genau dieses Verhalten beschreibt man mit den Begriffen \emph{Selbstähnlichkeit} und \emph{Skaleninvarianz}.
+Bei vielen Objekten der klassischen Geometrie wird das Bild beim Vergrößern irgendwann \emph{einfacher}:
+Eine Kreislinie bleibt glatt, ein Polygon zeigt gerade Kanten.
+Bei fraktalen Mengen ist es umgekehrt:
+Vergrößerung erzeugt nicht weniger, sondern mehr sichtbare Struktur.
+Genau dieses Verhalten beschreibt man mit den Begriffen \emph{Selbstähnlichkeit} und \emph{Skaleninvarianz}.
 
 \subsubsection*{Selbstähnlichkeit: Wiederkehr von Struktur}
-Im Alltag meint Selbstähnlichkeit oft eine direkte Kopie: ein Muster erscheint exakt noch einmal, nur kleiner. 
-Bei dynamisch erzeugten Fraktalen (wie Mandelbrot- und Julia-Mengen) ist das meistens \emph{nicht} so streng. 
+
+Im Alltag meint Selbstähnlichkeit oft eine direkte Kopie:
+Ein Muster erscheint erneut, nur in kleinerem Maßstab.
+Bei dynamisch erzeugten Fraktalen wie Mandelbrot- und Julia-Mengen ist dies meist nicht in strenger Form der Fall.
 Man beobachtet vielmehr eine \emph{quasi-selbstähnliche} Wiederkehr:
-bestimmte Motive (Bulben, Filamente, Spiralformen, ``Seepferdchen''-Strukturen) treten auf unterschiedlichen Skalen erneut auf, aber nicht als perfekte Duplikate.
+Bestimmte Motive -- etwa Bulben, Filamente, Spiralformen oder sogenannte \glqq Seepferdchen\grqq-Strukturen --
+treten auf unterschiedlichen Skalen wieder auf,
+jedoch nicht als perfekte Duplikate.
 
 \begin{DidacticBox}[Selbstähnlichkeit heißt nicht: identische Kopie]
 	\phantomsection\label{box:kopie}
 	\small
-	Bei iterierten komplexen Abbildungen ist Selbstähnlichkeit häufig \emph{qualitativ}: 
-	Beim Zoomen erscheinen ähnliche Formen und Stabilitätsinseln wieder, aber meist mit Verzerrungen, Rotation oder leichten Variationen. 
-	Der entscheidende Punkt ist nicht ``Copy--Paste'', sondern: \emph{Die Art der Struktur bleibt erhalten}.
+	Bei iterierten komplexen Abbildungen ist Selbstähnlichkeit oft \emph{qualitativ}:
+	Beim Zoomen erscheinen ähnliche Formen und Stabilitätsinseln erneut,
+	aber meist mit Verzerrungen, Rotationen oder leichten Variationen.
+	Der entscheidende Punkt ist daher nicht \glqq Copy--Paste\grqq,
+	sondern:
+	\emph{Die Art der Struktur bleibt erhalten.}
 \end{DidacticBox}
 
-Trotzdem ist es hilfreich, die \emph{exakte} Idee dahinter kurz zu kennen.
-In der klassischen Fraktalgeometrie heißt eine Menge $S$ selbstähnlich, wenn sie sich aus verkleinerten Kopien ihrer selbst zusammensetzt. 
-Formal existieren Ähnlichkeitsabbildungen $f_k$ mit
+Trotzdem ist es hilfreich, die exakte Idee kurz zu kennen.
+In der klassischen Fraktalgeometrie heißt eine Menge $S$ selbstähnlich,
+wenn sie sich aus verkleinerten Kopien ihrer selbst zusammensetzt.
+Formal existieren dann Ähnlichkeitsabbildungen $f_k$ mit
 \[
-S=\bigcup_{k=1}^m f_k(S),\qquad 
+S=\bigcup_{k=1}^m f_k(S),\qquad
 f_k(z)=r_k e^{i\theta_k}z+t_k,\quad 0<r_k<1.
 \]
-Das ist das Prinzip der Koch-Kurve oder des Sierpi\'nski-Dreiecks.
-Für Mandelbrot- und Julia-Mengen ist das Bild subtiler: Die Selbstähnlichkeit entsteht nicht durch einen \emph{Bauplan}, sondern durch die \emph{Dynamik} der Iteration.
+Das ist das Prinzip der Koch-Kurve oder des Sierpiński-Dreiecks.
+Bei Mandelbrot- und Julia-Mengen ist die Situation subtiler:
+Die Selbstähnlichkeit entsteht nicht durch einen festen \emph{Bauplan},
+sondern aus der \emph{Dynamik} der Iteration.
 
 \subsubsection*{Skaleninvarianz: keine charakteristische Größe}
-Skaleninvarianz bedeutet: Es gibt keine ``typische'' Längenskala, auf der die Struktur plötzlich verschwindet.
-Wenn man um den Faktor $\lambda>0$ vergrößert,
+
+Skaleninvarianz bedeutet,
+dass es keine ausgezeichnete Längenskala gibt,
+auf der die Struktur plötzlich verschwindet.
+Vergrößert man um einen Faktor $\lambda>0$,
 \[
 z \mapsto \lambda z,
 \]
-dann bleibt die Struktur nicht \emph{identisch}, aber sie bleibt \emph{vom selben Typ}.
-Genau das ist der visuelle Kern vieler Fraktale: Es gibt auf immer kleineren Skalen weiterhin Grenzstruktur.
+so bleibt die Struktur nicht notwendig identisch,
+wohl aber vom gleichen Typ.
+Gerade darin liegt der visuelle Kern vieler Fraktale:
+Auch auf immer kleineren Skalen bleibt Grenzstruktur erhalten.
 
 \subsubsection*{Warum tritt das bei der Mandelbrotmenge auf?}
-Die Mandelbrotmenge ist eine ``Landkarte'' der Stabilität der Iteration
+
+Die Mandelbrotmenge ist eine Landkarte der Stabilität der Iteration
 \[
 z_{n+1}=z_n^2+c.
 \]
-Für Parameter $c$ \emph{innerhalb} der Mandelbrotmenge bleibt der Orbit von $z_0=0$ beschränkt; außerhalb divergiert er.
+Für Parameter $c$ \emph{innerhalb} der Mandelbrotmenge bleibt der Orbit von $z_0=0$ beschränkt,
+außerhalb divergiert er.
 Die \emph{Grenze} der Menge markiert den Übergang zwischen Stabilität und Divergenz.
-Gerade solche Übergänge sind die Orte, an denen Dynamik empfindlich wird und auf vielen Skalen neue Struktur erzeugt.
+Gerade solche Übergänge sind die Orte,
+an denen Dynamik empfindlich wird
+und auf vielen Skalen neue Struktur erzeugt.
 
-Beim Zoomen in diese Grenzregionen findet man immer wieder sogenannte \emph{Baby-Mandelbrots}:
-kleine, mandelbrotähnliche Teilstrukturen.
-Didaktisch ist das der zentrale Punkt:
+Beim Hineinzoomen in diese Grenzregionen erscheinen immer wieder sogenannte \emph{Baby-Mandelbrots},
+also kleine mandelbrotähnliche Teilstrukturen.
+Didaktisch ist das der entscheidende Punkt:
 
 \begin{quote}
 	\emph{Selbstähnlichkeit ist die geometrische Signatur von Dynamik am Rand der Stabilität.}
 \end{quote}
 
-Man sieht damit nicht nur ein ``schönes Bild'', sondern eine wiederkehrende Ordnung:
-Stabile Periodenfenster (Bulben) sitzen eingebettet in ein chaotisch-filamentöses Grenzgewebe.
+Man sieht damit nicht nur ein beeindruckendes Bild,
+sondern eine wiederkehrende Ordnung:
+Stabile Periodenfenster liegen eingebettet
+in ein filigranes und empfindliches Grenzgewebe.
 
 \subsubsection*{Julia-Mengen: Struktur hängt am Parameter}
-Die Julia-Menge gehört zur selben Iteration, aber für ein festes $c$:
+
+Die Julia-Menge gehört zur selben Iteration,
+jedoch für ein festes $c$:
 \[
 f_c(z)=z^2+c.
 \]
@@ -709,16 +862,119 @@ Ein fundamentaler Zusammenhang lautet:
 
 \begin{itemize}
 	\item Liegt $c$ \emph{in} der Mandelbrotmenge, dann ist die zugehörige Julia-Menge \emph{zusammenhängend}.
-	\item Liegt $c$ \emph{außerhalb}, dann zerfällt die Julia-Menge in ``Staub'' (Cantor-artige Menge).
+	\item Liegt $c$ \emph{außerhalb}, dann zerfällt die Julia-Menge in einen \glqq Staub\grqq, also in eine Cantor-artige Menge.
 \end{itemize}
 
-Damit wird klar, warum Julia-Mengen beim Zoomen zwar ebenfalls oft selbstähnliche Motive zeigen, aber in ihrer Optik stark variieren: 
-Der Parameter $c$ entscheidet, ob man eine geschlossene, filamentöse Struktur oder ein zerfetztes Punktensemble erhält.
+Damit wird verständlich,
+warum Julia-Mengen beim Hineinzoomen zwar ebenfalls oft selbstähnliche Motive zeigen,
+aber in ihrer Erscheinung stark variieren:
+Der Parameter $c$ entscheidet darüber,
+ob man eine geschlossene, filamentöse Struktur
+oder ein zerfallendes Punktensemble erhält.
+
 
 \subsubsection*{Skaleninvarianz messbar machen: fraktale Dimension}
-Dass ein Objekt auf vielen Skalen Detail trägt, lässt sich auch quantitativ ausdrücken.
+
+Dass ein Objekt auf vielen Skalen Detail trägt,
+lässt sich auch quantitativ erfassen.
 Eine robuste Methode ist das \emph{Box-Counting}:
-Man überdeckt die Menge mit Quadraten der Kantenlänge $\varepsilon$ und zählt, wie viele Kästchen $N(\varepsilon)$ benötigt werden.
+Man überdeckt die zu untersuchende Grenzmenge mit Quadraten der Kantenlänge $\varepsilon$
+und zählt,
+wie viele Kästchen $N(\varepsilon)$ benötigt werden.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=0.75]
+		
+		% -------------------------
+		% Linkes Bild: grobes Gitter
+		% -------------------------
+		\begin{scope}[shift={(0,0)}]
+			\node at (2.5,4.8) {\small Grobes Gitter (\(\varepsilon\) groß)};
+			
+			% Rahmen
+			\draw[thick] (0,0) rectangle (5,4);
+			
+			% Gitter
+			\draw[gray!60, step=1] (0,0) grid (5,4);
+			
+			% Fraktalähnliche Grenzlinie
+			\draw[thick]
+			(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
+			-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
+			-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
+			
+			% Markierte Kästchen
+			\fill[blue!20] (0,1) rectangle (1,2);
+			\fill[blue!20] (1,1) rectangle (2,2);
+			\fill[blue!20] (1,2) rectangle (2,3);
+			\fill[blue!20] (2,1) rectangle (3,2);
+			\fill[blue!20] (2,2) rectangle (3,3);
+			\fill[blue!20] (3,1) rectangle (4,2);
+			\fill[blue!20] (3,2) rectangle (4,3);
+			\fill[blue!20] (4,2) rectangle (5,3);
+			\fill[blue!20] (4,3) rectangle (5,4);
+			
+			% Gitter und Kurve erneut
+			\draw[gray!60, step=1] (0,0) grid (5,4);
+			\draw[thick] (0,0) rectangle (5,4);
+			\draw[thick]
+			(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
+			-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
+			-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
+			
+			\node at (2.5,-0.45) {\small gezählte Kästchen: \(N(\varepsilon)\)};
+		\end{scope}
+		
+		% -------------------------
+		% Rechtes Bild: feineres Gitter
+		% -------------------------
+		\begin{scope}[shift={(7,0)}]
+			\node at (2.5,4.8) {\small Feineres Gitter (\(\varepsilon\) klein)};
+			
+			% Rahmen
+			\draw[thick] (0,0) rectangle (5,4);
+			
+			% Gitter
+			\draw[gray!50, step=0.5] (0,0) grid (5,4);
+			
+			% Markierte Kästchen
+			\foreach \x/\y in {
+				0/1,0.5/1,0.5/1.5,
+				1/1,1/1.5,1.5/1.5,
+				1.5/2,2/1.5,2/2,
+				2.5/2,2.5/2.5,3/2,
+				3/2.5,3.5/2.5,3.5/3,
+				4/2.5,4/3,4.5/3
+			}{
+				\fill[blue!20] (\x,\y) rectangle ++(0.5,0.5);
+			}
+			
+			% Kurve
+			\draw[thick]
+			(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
+			-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
+			-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
+			
+			% Gitter und Kurve erneut
+			\draw[gray!50, step=0.5] (0,0) grid (5,4);
+			\draw[thick] (0,0) rectangle (5,4);
+			\draw[thick]
+			(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
+			-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
+			-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
+			
+			\node at (2.5,-0.45) {\small mehr Kästchen \(\Rightarrow N(\varepsilon)\) wächst};
+		\end{scope}
+		
+	\end{tikzpicture}
+	\caption{Box-Counting-Idee: Überdeckt wird nicht die ganze Ebene, sondern die zu untersuchende Grenzmenge. Gezählt werden die Kästchen, die diese Struktur schneiden. Wird das Gitter feiner, so wächst die Zahl \(N(\varepsilon)\).}
+	\label{fig:box-counting-prinzip}
+\end{figure}
+
+Anschaulich zählt man also nicht die ganze Fläche,
+sondern nur jene kleinen Kästchen,
+die die fraktale Grenzstruktur tatsächlich treffen.
 
 \begin{MathBox}[Box-Counting-Dimension]
 	\phantomsection\label{box:boxcounting}
@@ -727,21 +983,31 @@ Man überdeckt die Menge mit Quadraten der Kantenlänge $\varepsilon$ und zählt
 	\[
 	N(\varepsilon)\sim \varepsilon^{-D}.
 	\]
-	Dann definiert man die (Box-Counting-)Dimension durch
+	Dann definiert man die Box-Counting-Dimension durch
 	\[
 	D=\lim_{\varepsilon\to 0}\frac{\log N(\varepsilon)}{\log(1/\varepsilon)}.
 	\]
-	Für glatte Kurven ist $D=1$, für Flächen $D=2$. 
-	Fraktale Grenzen liegen typischerweise dazwischen: $1<D<2$.
+	Für glatte Kurven gilt $D=1$,
+	für Flächen $D=2$.
+	Fraktale Grenzen liegen typischerweise dazwischen:
+	\[
+	1<D<2.
+	\]
 \end{MathBox}
 
-In diesem Sinn ist Skaleninvarianz nicht nur ein optischer Eindruck, sondern eine messbare Eigenschaft:
+In diesem Sinn ist Skaleninvarianz nicht nur ein optischer Eindruck,
+sondern eine messbare Eigenschaft:
 Die Komplexität der Grenze bleibt beim Hineinzoomen erhalten.
 
 \subsubsection*{Fazit}
-Selbstähnlichkeit und Skaleninvarianz sind keine ``Dekoration'' der Mandelbrot- und Julia-Mengen, sondern Ausdruck ihrer Entstehung:
-Iterierte komplexe Abbildungen erzeugen Struktur gerade dort, wo Stabilität kippt.
-Damit wirken diese Mengen wie Naturmuster -- und genau deshalb ist die nächste Frage zwingend:
+
+Selbstähnlichkeit und Skaleninvarianz sind keine bloße \glqq Dekoration\grqq{}
+der Mandelbrot- und Julia-Mengen,
+sondern Ausdruck ihrer Entstehung.
+Iterierte komplexe Abbildungen erzeugen Struktur gerade dort,
+wo Stabilität kippt.
+Darum wirken diese Mengen wie Naturmuster --
+und genau deshalb stellt sich als nächstes eine entscheidende Frage:
 
 \medskip
 \noindent\emph{Warum sind diese Formen trotz ihrer Naturähnlichkeit keine direkten Naturmodelle?}
@@ -751,164 +1017,238 @@ Damit wirken diese Mengen wie Naturmuster -- und genau deshalb ist die nächste 
 % =====================================================
 \subsection{Warum diese Formen keine Naturmodelle sind}
 
-\textbf{Leitfrage:} Wenn Mandelbrot- und Julia-Mengen wie ``Naturstrukturen'' aussehen -- warum sind sie dann trotzdem \emph{keine} Naturmodelle?
+\textbf{Leitfrage:} Wenn Mandelbrot- und Julia-Mengen wie Naturstrukturen wirken -- warum sind sie dann trotzdem \emph{keine} Naturmodelle?
 
-\medskip
-Fraktale Bilder wirken oft verblüffend vertraut: Küstenlinien, Wolkenränder, Verästelungen, Flammenformen, biologische Muster. 
-Es ist daher verlockend zu sagen: \emph{Die Natur ist eben ``mandelbrotartig''.}
-Genau hier muss man jedoch sauber trennen: zwischen \emph{Ähnlichkeit im Bild} und \emph{Modellcharakter in der Physik}.
-Mandelbrot- und Julia-Mengen sind primär \emph{mathematische Grenzobjekte}, die aus einer idealisierten Iteration entstehen.
-Die Natur produziert dagegen Strukturen durch reale Prozesse: Material, Energieflüsse, Dissipation, Rauschen, Wechselwirkungen und Randbedingungen.
+Fraktale Bilder erscheinen oft verblüffend vertraut:
+Sie erinnern an Küstenlinien, Wolkenränder, Verästelungen, Flammenformen oder biologische Muster.
+Daher liegt die Versuchung nahe zu sagen:
+\emph{Die Natur ist eben mandelbrotartig.}
+Genau hier ist jedoch eine saubere Unterscheidung nötig:
+zwischen \emph{optischer Ähnlichkeit} und \emph{Modellcharakter in der Physik}.
+
+Mandelbrot- und Julia-Mengen sind in erster Linie \emph{mathematische Grenzobjekte},
+die aus einer idealisierten Iteration hervorgehen.
+Natürliche Strukturen entstehen dagegen durch reale Prozesse:
+durch Materialeigenschaften, Energieflüsse, Dissipation, Rauschen, Wechselwirkungen und Randbedingungen.
+Dass zwei Formen ähnlich aussehen,
+bedeutet noch nicht,
+dass sie auf denselben Mechanismen beruhen.
 
 \begin{NoteBox}[Warum manche Fraktale wie Blätter aussehen]
 	\phantomsection\label{box:blaetter}
 	\small
-	Es gibt Fraktale, die wie Blätter oder Farne wirken (klassisch: rekursive ``Farn''-Konstruktionen).
-	Das ist nicht überraschend: Auch Pflanzen erzeugen ihre Formen oft durch wiederholte lokale Wachstumsregeln
-	(Verzweigung: Hauptader $\to$ Nebenader $\to$ feinere Adern).
-	Die optische Ähnlichkeit erklärt sich also aus dem \emph{Prinzip der Wiederholung} -- sie macht die Mandelbrot- oder Julia-Mengen
-	aber noch nicht zu einem Naturmodell.
-	In der Natur endet Selbstähnlichkeit an physikalischen Skalen (Zellen, Material, Diffusion, Rauschen); die mathematische Iteration kennt diese Grenze nicht.
+	Es gibt Fraktale, die wie Blätter oder Farne wirken,
+	etwa klassische rekursive Farn-Konstruktionen.
+	Das ist nicht überraschend:
+	Auch Pflanzen erzeugen ihre Formen häufig durch wiederholte lokale Wachstumsregeln
+	-- Hauptadern verzweigen sich in Nebenadern,
+	diese wieder in feinere Adern.
+	Die optische Ähnlichkeit erklärt sich daher aus dem \emph{Prinzip der Wiederholung}.
+	Sie macht Mandelbrot- oder Julia-Mengen aber noch nicht zu Naturmodellen.
+	In der Natur endet Selbstähnlichkeit an physikalischen Skalen
+	-- etwa an Zellen, Materialgrenzen, Diffusion oder Rauschen --,
+	während die mathematische Iteration diese Grenze nicht kennt.
 \end{NoteBox}
 
 \subsubsection*{Ein Naturmodell braucht Mechanismus, nicht nur Geometrie}
-Ein physikalisches Modell erklärt nicht nur \emph{wie etwas aussieht}, sondern \emph{warum} es so entsteht.
+
+Ein physikalisches Modell erklärt nicht nur,
+\emph{wie etwas aussieht},
+sondern \emph{warum} es so entsteht.
 Bei Fraktalen aus komplexer Iteration ist der Mechanismus rein formal:
 \[
 z_{n+1}=f(z_n)
 \]
-und ein Kriterium wie ``beschränkt oder unbeschränkt''. 
-Das erzeugt Grenzstrukturen, aber es beschreibt keinen Stofftransport, keine Kräfte, keine Materialgesetze, keine thermodynamischen Bedingungen.
+zusammen mit einem Kriterium wie
+\glqq beschränkt oder unbeschränkt\grqq.
+Das erzeugt Grenzstrukturen,
+aber es beschreibt keinen Stofftransport,
+keine Kräfte,
+keine Materialgesetze
+und keine thermodynamischen Bedingungen.
 
 \begin{DidacticBox}[Optische Ähnlichkeit ist kein Modell]
 	\phantomsection\label{box:optisch}
 	\small
-	Dass zwei Formen ähnlich aussehen, heißt nicht, dass sie durch denselben Prozess entstehen.
-	In der Physik zählt die \emph{Erzeugungsregel} (Mechanismus) mehr als die Geometrie des Endbilds.
+	Dass zwei Formen ähnlich aussehen,
+	heißt nicht,
+	dass sie durch denselben Prozess entstehen.
+	In der Physik zählt die \emph{Erzeugungsregel}
+	mehr als die Geometrie des Endbildes.
 \end{DidacticBox}
 
 \subsubsection*{Die Natur hat Rauschen, Imperfektionen und endliche Auflösung}
-Die Mandelbrotmenge besitzt mathematisch unendliche Detailtiefe: 
-Man kann ohne Ende hineinzoomen und findet immer neue Struktur.
+
+Die Mandelbrotmenge besitzt mathematisch unendliche Detailtiefe:
+Man kann immer weiter hineinzoomen
+und entdeckt auf jeder Skala neue Struktur.
 In der Natur ist das unmöglich.
 Jeder reale Prozess hat eine kleinste relevante Skala:
 Atomabstände, Körnung, Viskosität, Wärmeleitung, Diffusion, Quantenrauschen oder Messgrenzen.
-Damit bricht Skaleninvarianz irgendwann ab.
-Viele Naturstrukturen sind daher nur \emph{über einen begrenzten Skalenbereich} fraktalähnlich.
+Darum bricht Skaleninvarianz in realen Systemen irgendwann ab.
+Viele Naturstrukturen sind nur \emph{über einen begrenzten Skalenbereich} fraktalähnlich.
 
-\subsubsection*{Die Iteration ist nicht ``dynamisch'' im physikalischen Sinn}
-Die Iteration $z_{n+1}=z_n^2+c$ beschreibt keine Zeitentwicklung eines Systems in Raum und Zeit.
+\subsubsection*{Die Iteration ist nicht dynamisch im physikalischen Sinn}
+
+Die Iteration
+\[
+z_{n+1}=z_n^2+c
+\]
+beschreibt keine Zeitentwicklung eines Systems in Raum und Zeit.
 Sie ist eine Rechenvorschrift im Zahlenraum.
-Der Index $n$ ist ein Iterationsschritt, nicht notwendigerweise eine physikalische Zeit.
-Ein Naturmodell müsste angeben:
-\begin{itemize}
-	\item welche Größen sich in der Zeit ändern (Felder, Dichten, Geschwindigkeiten),
-	\item welche Gleichungen gelten (z.\,B. Differentialgleichungen),
-	\item welche Rand- und Anfangsbedingungen vorliegen,
-	\item wie Dissipation und Fluktuationen wirken.
-\end{itemize}
-Bei Mandelbrot/Julia fehlt diese Kopplung an physikalische Größen vollständig.
+Der Index $n$ ist ein Iterationsschritt,
+nicht notwendig eine physikalische Zeit.
 
-\subsubsection*{Parameterraum vs. Realraum}
-Ein weiterer entscheidender Punkt: 
+Ein Naturmodell müsste dagegen angeben,
+\begin{itemize}
+	\item welche Größen sich mit der Zeit ändern,
+	\item welche Gleichungen gelten, etwa Differentialgleichungen,
+	\item welche Anfangs- und Randbedingungen vorliegen,
+	\item und wie Dissipation oder Fluktuationen wirken.
+\end{itemize}
+Bei Mandelbrot- und Julia-Mengen fehlt diese Kopplung an physikalische Größen vollständig.
+
+\subsubsection*{Parameterraum und Realraum}
+
+Ein weiterer entscheidender Punkt ist die Unterscheidung zwischen Parameterraum und Realraum.
 Die Mandelbrotmenge ist eine Struktur im \emph{Parameterraum} $c$.
-Sie ist eine Landkarte darüber, für welche Parameter die Dynamik stabil bleibt.
-Naturmodelle beschreiben dagegen Strukturen im \emph{Realraum} (in Metern, Sekunden, Kilogramm).
-Die Verwechslung ist häufig:
-Man sieht eine ``Landkarte'' und interpretiert sie als ``Landschaft''.
+Sie ist eine Landkarte dafür,
+für welche Parameter die Iteration stabil bleibt.
+Naturmodelle beschreiben dagegen Strukturen im \emph{Realraum},
+also in physikalischen Größen mit Einheiten wie Metern, Sekunden oder Kilogramm.
+
+Gerade hier entsteht leicht eine Verwechslung:
+Man sieht eine \glqq Landkarte\grqq{}
+und deutet sie als \glqq Landschaft\grqq.
+Doch die Mandelbrotmenge ist keine räumliche Form im physikalischen Sinn,
+sondern eine Stabilitätskarte mathematischer Dynamik.
 
 \begin{NoteBox}[Wichtige Unterscheidung: Parameterraum vs.\ Realraum]
 	\phantomsection\label{box:unterscheidung}
 	\small
-	Die Mandelbrotmenge lebt im $c$-Raum (Parameterraum), nicht im physikalischen Raum.
-	Sie ist eine Stabilitätskarte: Sie zeigt, für welche Parameter $c$ die Iteration
+	Die Mandelbrotmenge lebt im $c$-Raum,
+	also im Parameterraum,
+	nicht im physikalischen Raum.
+	Sie zeigt,
+	für welche Parameter $c$ die Iteration
 	\[
 	z_{n+1}=z_n^2+c
 	\]
 	beschränkt bleibt.
-	Ein Naturmodell dagegen beschreibt Strukturen im Realraum und muss Größen, Einheiten und Prozesse (Zeit, Felder, Flüsse) explizit enthalten.
+	Ein Naturmodell dagegen beschreibt Strukturen im Realraum
+	und muss Größen, Einheiten und Prozesse
+	-- etwa Zeit, Felder oder Flüsse --
+	explizit enthalten.
 \end{NoteBox}
-\newpage
-\noindent
+
 \subsubsection*{Warum die Natur trotzdem oft fraktalähnlich wirkt}
-Dass Mandelbrot-Bilder naturähnlich wirken, ist kein Zufall: 
+
+Dass Mandelbrot-Bilder naturähnlich wirken,
+ist dennoch kein Zufall.
 Viele reale Prozesse erzeugen Grenzflächen, Verzweigungen oder Instabilitätsmuster.
-Typische Mechanismen sind z.\,B.
+Typische Mechanismen sind etwa
 \begin{itemize}
-	\item Wachstum unter Diffusion (z.\,B. Kristallwachstum, DLA),
+	\item Wachstum unter Diffusion, zum Beispiel Kristallwachstum oder DLA,
 	\item Turbulenz und Kaskaden,
 	\item Rissbildung und Bruchmechanik,
 	\item Perkolation und kritische Phänomene,
-	\item Konkurrenz von Stabilität und Instabilität.
+	\item sowie die Konkurrenz von Stabilität und Instabilität.
 \end{itemize}
-Diese Prozesse können über gewisse Skalenbereiche fraktale Kennwerte zeigen.
-Aber: Der erzeugende Mechanismus ist physikalisch, nicht die komplexe Iteration selbst.
 
-
+Solche Prozesse können über bestimmte Skalenbereiche
+fraktale Kennwerte zeigen.
+Aber der entscheidende Punkt bleibt:
+Der erzeugende Mechanismus ist physikalisch,
+nicht die komplexe Iteration selbst.
 
 \subsubsection*{Fazit}
+
 Mandelbrot- und Julia-Mengen sind keine Naturmodelle, weil sie
 \begin{itemize}
-	\item keinen physikalischen Mechanismus (Kräfte, Flüsse, Dissipation) enthalten,
+	\item keinen physikalischen Mechanismus wie Kräfte, Flüsse oder Dissipation enthalten,
 	\item unendliche Skaleninvarianz besitzen, die in der Natur immer endet,
 	\item keine Zeitentwicklung im Realraum beschreiben,
-	\item im Parameterraum entstehen und daher nicht direkt ``räumliche'' Naturformen sind.
+	\item und im Parameterraum entstehen, nicht als direkte Formen physikalischer Systeme.
 \end{itemize}
-Sie sind dennoch extrem wertvoll:
-Sie zeigen, wie aus einer einfachen mathematischen Vorschrift \emph{Struktur ohne Materie} entsteht --
-als Grenzobjekt zwischen Stabilität und Chaos.
+
+Gerade deshalb sind sie jedoch so aufschlussreich.
+Sie zeigen,
+wie aus einer einfachen mathematischen Vorschrift
+\emph{Struktur ohne Materie} entstehen kann --
+als Grenzobjekt zwischen Stabilität und Divergenz.
 
 % =====================================================
 % 7.7 Fazit: Struktur ohne Materie
 % =====================================================
 
-
 \subsection{Fazit: Struktur ohne Materie}\label{sec:7.7}
 
-\textbf{Leitfrage:} Was ist die eigentliche Erkenntnis dieses Kapitels -- jenseits der spektakulären Bilder?
+\textbf{Leitfrage:} Was ist die eigentliche Erkenntnis dieses Kapitels -- jenseits der eindrucksvollen Bilder?
 
-\medskip
-Dieses Kapitel begann mit einem erstaunlich einfachen Prinzip: \emph{Iteration}.
+Dieses Kapitel begann mit einem erstaunlich einfachen Prinzip:
+\emph{Iteration}.
 Eine feste Regel wird immer wieder angewandt, Schritt für Schritt.
-Keine Materie, keine Kräfte, keine Energieflüsse, keine Messgeräte.
-Und dennoch entsteht eine Welt von Formen, die reich, stabil, reproduzierbar und zugleich unerschöpflich ist.
+Keine Materie, keine Kräfte, keine Energieflüsse, keine Messgeräte --
+und dennoch entsteht eine Welt von Formen,
+die reich, stabil, reproduzierbar
+und zugleich unerschöpflich ist.
 
-\medskip
 \begin{quote}
 	\emph{Struktur kann aus reiner Mathematik entstehen.}
 \end{quote}
-\medskip
 
-Die Mandelbrotmenge ist dabei nicht nur ein ``Fraktalbild'', sondern eine präzise Aussage über Stabilität:
-Sie ist eine Landkarte, die Parameter nach dem Kriterium trennt, ob eine Iteration beschränkt bleibt oder divergiert.
-Und gerade an der Grenze zwischen Stabilität und Divergenz entsteht jene feine, fraktale Struktur, die beim Hineinzoomen immer neue Details zeigt.
-Die Selbstähnlichkeit ist hier nicht Dekoration, sondern die geometrische Signatur eines Übergangs.
+Die Mandelbrotmenge ist dabei nicht nur ein eindrucksvolles Fraktalbild,
+sondern eine präzise Aussage über Stabilität.
+Sie ist eine Landkarte,
+die Parameter danach ordnet,
+ob eine Iteration beschränkt bleibt oder divergiert.
+Gerade an der Grenze zwischen Stabilität und Divergenz
+entsteht jene feine, fraktale Struktur,
+die beim Hineinzoomen immer neue Details zeigt.
+Selbstähnlichkeit ist hier keine Dekoration,
+sondern die geometrische Signatur eines Übergangs.
 
 \subsubsection*{Was bleibt als zentrale Einsicht?}
+
 \begin{itemize}
-	\item Eine einfache mathematische Vorschrift kann eine Grenze erzeugen, die geometrisch extrem reich ist.
-	\item Selbstähnlichkeit und Skaleninvarianz sind Ausdruck davon, dass diese Grenze keine charakteristische Skala besitzt:
-	Struktur tritt auf vielen Größenordnungen auf.
-	\item Mandelbrot- und Julia-Mengen sind \emph{keine} Naturmodelle: Sie erklären keine physikalischen Prozesse.
-	Aber gerade dadurch zeigen sie etwas Grundsätzliches: \emph{Mathematik kann Struktur aus sich heraus erzeugen.}
+	\item Eine einfache mathematische Vorschrift kann eine Grenze erzeugen, die geometrisch außerordentlich reich ist.
+	\item Selbstähnlichkeit und Skaleninvarianz zeigen, dass diese Grenze keine charakteristische Skala besitzt:
+	Struktur erscheint auf vielen Größenordnungen.
+	\item Mandelbrot- und Julia-Mengen sind \emph{keine} Naturmodelle, weil sie keine physikalischen Prozesse erklären.
+	Gerade dadurch machen sie jedoch etwas Grundsätzliches sichtbar:
+	\emph{Mathematik kann aus sich heraus Struktur hervorbringen.}
 \end{itemize}
 
 \begin{NoteBox}[Kernaussage dieses Kapitels]
 	\phantomsection\label{box:kernaussage}
 	\small
-	Die Formen wirken naturähnlich, aber ihr Ursprung ist rein formal:
+	Die Formen wirken naturähnlich,
+	doch ihr Ursprung ist rein formal:
 	Iteration + Stabilitätskriterium $\Rightarrow$ Grenzstruktur.
-	Damit ist dieses Kapitel ein Beispiel dafür, dass Mathematik nicht nur \emph{beschreibt}, sondern als System von Regeln selbst \emph{Struktur hervorbringt}.
+	Damit zeigt dieses Kapitel,
+	dass Mathematik nicht nur \emph{beschreibt},
+	sondern als System von Regeln selbst \emph{Struktur erzeugen} kann.
 \end{NoteBox}
 
 \subsubsection*{Einordnung in den roten Faden des Buchs}
-Damit schließt sich der Bogen zu der Leitidee dieses Buchs:
-Mathematik ist nicht bloß eine Sprache, die wir der Welt überstülpen.
-Sie ist eine \emph{entdeckbare Struktur}, die aus klaren Regeln folgt und objektive Konsequenzen besitzt.
-Dass aus einer simplen Iteration eine ``Welt'' von Formen entsteht, ist ein besonders anschaulicher Beleg dafür.
+
+Damit schließt sich der Bogen zur Leitidee dieses Buchs:
+Mathematik ist nicht bloß eine Sprache,
+die wir der Welt äußerlich anlegen.
+Sie ist eine \emph{entdeckbare Struktur},
+die aus klaren Regeln folgt
+und objektive Konsequenzen besitzt.
+Dass aus einer einfachen Iteration
+eine ganze Welt von Formen entsteht,
+ist dafür ein besonders anschaulicher Beleg.
 
 \subsubsection*{Übergang}
-Kapitel~VII hat gezeigt, wie aus einer elementaren Vorschrift im Zahlenraum eine geometrische Komplexität entsteht,
-die sich nicht auf einzelne Rechenschritte reduzieren lässt, sondern als Struktur verstanden werden muss.
-Damit sind wir bereit, den Blick wieder zu weiten: weg von der reinen Iteration hin zu den nächsten Bausteinen,
-mit denen Mathematik die Welt strukturiert.
+
+Kapitel~VII hat gezeigt,
+wie aus einer elementaren Vorschrift im Zahlenraum
+eine geometrische Komplexität entsteht,
+die nicht auf einzelne Rechenschritte reduziert werden kann,
+sondern als Struktur verstanden werden muss.
+Damit ist der Blick wieder frei
+für die nächsten Bausteine,
+mit denen Mathematik die Welt ordnet und verständlich macht.
