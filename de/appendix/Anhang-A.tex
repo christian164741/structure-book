@@ -1,14 +1,14 @@
-
 \cleardoublepage
 \appendix
+
 % --- Start Anhang (A, B, C, ...) ---
-\setcounter{chapter}{0} % 1 -> A
+\setcounter{chapter}{0}
 \renewcommand{\thechapter}{\Alph{chapter}}
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
 \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 
-% --- Hyperref: eindeutige Link-Anker (wichtig für korrektes Inhaltsverzeichnis) ---
+% --- Hyperref: eindeutige Link-Anker ---
 \renewcommand{\theHchapter}{app.\Alph{chapter}}
 \renewcommand{\theHsection}{\theHchapter.\arabic{section}}
 \renewcommand{\theHsubsection}{\theHsection.\arabic{subsection}}
@@ -17,37 +17,33 @@
 \chapter{Mathematische Hintergründe und Herleitungen}
 \label{anhangA}
 
-In diesem Anhang werden die im Haupttext angesprochenen physikalischen Konzepte
-formal und mathematisch vertieft. Ziel ist es, die didaktische Lesbarkeit der
-Kapitel nicht zu beeinträchtigen und zugleich interessierten Lesern die
-vollständigen Herleitungen zugänglich zu machen. 
+In diesem Anhang werden die im Haupttext angesprochenen mathematischen und physikalischen Konzepte
+formal und vertiefend dargestellt. Ziel ist es, die didaktische Lesbarkeit der Kapitel
+nicht zu überladen und zugleich interessierten Leserinnen und Lesern
+die vollständigen Herleitungen zugänglich zu machen.
 
-
-%\section{Kapitel I}
-\phantomsection
+% ============================================================
 \section{Herleitung der Irrationalität der $\sqrt{2}$}
 \label{anhangA_wurzel2}
 
-
 \subsection*{Die Irrationalität von \texorpdfstring{$\sqrt{2}$}{sqrt(2)}}
-\phantomsection
 
 Der Beweis, dass $\sqrt{2}$ irrational ist, gehört zu den ältesten und
-elegantesten Widerspruchsbeweisen \index{Widerspruchsbeweis}der Mathematik. 
+elegantesten Widerspruchsbeweisen\index{Widerspruchsbeweis} der Mathematik.
 Die Idee ist einfach: Wir nehmen an, dass $\sqrt{2}$ rational sei, und
 zeigen dann, dass diese Annahme zu einem logischen Widerspruch führt.
 
 \subsubsection*{Annahme}
-\phantomsection
+
 Wir nehmen an, dass $\sqrt{2}$ als vollständig gekürzter Bruch
 \[
 \sqrt{2} = \frac{p}{q},
 \]
 geschrieben werden kann, wobei $p$ und $q$ ganze Zahlen sind,
-$q \neq 0$ und $p$ und $q$ teilerfremd sind.
+$q \neq 0$ gilt und $p$ und $q$ teilerfremd sind.
 
 \subsubsection*{Quadratbildung}
-\phantomsection
+
 Quadrieren beider Seiten ergibt
 \[
 2 = \frac{p^2}{q^2}
@@ -62,8 +58,8 @@ p = 2r.
 \]
 
 \subsubsection*{Einsetzen und erneuter Schluss}
-\phantomsection
-Setzen wir dies in die Gleichung $p^2 = 2q^2$ ein, erhalten wir
+
+Setzen wir dies in die Gleichung $p^2 = 2q^2$ ein, so erhalten wir
 \[
 (2r)^2 = 2q^2,
 \]
@@ -77,11 +73,11 @@ Teilen durch $2$ liefert
 2r^2 = q^2.
 \]
 
-Also ist auch $q^2$ gerade – und damit $q$ selbst gerade.
+Also ist auch $q^2$ gerade -- und damit $q$ selbst gerade.
 
 \subsubsection*{Der Widerspruch}
-\phantomsection
 \index{Widerspruch}
+
 Wir haben nun gezeigt:
 \[
 p \text{ ist gerade}, \qquad q \text{ ist gerade}.
@@ -90,10 +86,12 @@ Damit besitzen $p$ und $q$ einen gemeinsamen Faktor $2$ und sind nicht
 teilerfremd.
 
 Das widerspricht unserer Ausgangsannahme, dass $\frac{p}{q}$ vollständig
-gekürzt ist.
+gekürzt sei.
 
 \subsubsection*{Folgerung}
-Die Annahme, $\sqrt{2}$ sei rational, führt zum Widerspruch. Daher muss
+
+Die Annahme, $\sqrt{2}$ sei rational, führt also zu einem Widerspruch.
+Daher muss
 \[
 \sqrt{2} \text{ irrational sein.}
 \]
@@ -101,27 +99,23 @@ Die Annahme, $\sqrt{2}$ sei rational, führt zum Widerspruch. Daher muss
 Dieser klassische Beweis geht in seinen Grundzügen bereits auf Euklid\index{Euklid}
 zurück und zeigt eindrucksvoll, wie Widerspruchsbeweise funktionieren.
 
-
-
 \begin{DidacticBox}[Warum dieser Beweis so elegant ist]
+	\phantomsection\label{box:beweis-elegant}
 	Der Beweis für die Irrationalität von $\sqrt{2}$ ist ein klassisches
-	Beispiel dafür, wie mächtig Widerspruchsbeweise sein können. 
+	Beispiel dafür, wie mächtig Widerspruchsbeweise sein können.
 	Aus einer scheinbar harmlosen Annahme folgt eine logische Unmöglichkeit.
-	Damit zeigt der Beweis nicht nur, dass $\sqrt{2}$ irrational ist, 
+	Damit zeigt der Beweis nicht nur, dass $\sqrt{2}$ irrational ist,
 	sondern auch, wie präzise mathematisches Denken funktioniert.
 \end{DidacticBox}
 
-
-
-
-\section{Konstruktion der komplexen Zahlen}\index{komplexe Zahlen}
+% ============================================================
+\section{Konstruktion der komplexen Zahlen}
 \label{anhangA_komplexe}
-%\subsection*{A.2 Konstruktion der komplexen Zahl}
-\phantomsection
 \index{komplexe Zahlen}
+
 Die Notwendigkeit komplexer Zahlen ergibt sich aus einem einfachen
 Problem: Manche Gleichungen besitzen in den reellen Zahlen keine Lösung.
-Das deutlichste Beispiel ist
+Ein besonders klares Beispiel ist
 \[
 x^2 + 1 = 0.
 \]
@@ -131,25 +125,27 @@ Durch Umformen erhält man
 x^2 = -1.
 \]
 
-Doch keine reelle Zahl besitzt ein negatives Quadrat. Damit zeigt sich
-eine Grenze des reellen Zahlensystems. Trotzdem treten solche Ausdrücke
-beim Lösen bestimmter Gleichungen – etwa im \emph{casus irreducibilis}\index{casus irreducibilis}
-kubischer Gleichungen – zwangsläufig auf.
+Doch keine reelle Zahl besitzt ein negatives Quadrat.
+Hier zeigt sich also eine Grenze des reellen Zahlensystems.
+Dennoch treten solche Ausdrücke
+beim Lösen bestimmter Gleichungen -- etwa im \emph{casus irreducibilis}\index{casus irreducibilis}
+kubischer Gleichungen -- zwangsläufig auf.
 
 \subsubsection*{Ein neuer Zahlentyp}
-\phantomsection
+
 Um die Gleichung $x^2 = -1$ lösbar zu machen, führt man eine neue Zahl
 ein und definiert
 \[
 i := \sqrt{-1}.
 \]
 \index{imaginäre Einheit $i$}
-Diese Definition ist kein Trick, sondern eine Erweiterung des
-Zahlensystems: Wir ergänzen die reellen Zahlen so, dass auch Gleichungen
+
+Diese Definition ist kein bloßer Trick, sondern eine echte Erweiterung
+des Zahlensystems: Wir ergänzen die reellen Zahlen so, dass auch Gleichungen
 mit negativen Quadraten sinnvoll lösbar werden.
 
 \subsubsection*{Der Aufbau des neuen Zahlentyps}
-\phantomsection
+
 Jede Zahl der Form
 \[
 a + bi, \qquad a,b \in \mathbb{R},
@@ -170,32 +166,39 @@ Ein Beispiel:
 \]
 
 \begin{DidacticBox}[Warum die Einführung von $i$ notwendig ist]
-	Die Zahl $i$ wird nicht eingeführt, weil man sie „erfinden“ wollte.
-	Sie entsteht aus der inneren Logik der Algebra. Sobald man die
-	Rechenregeln für Gleichungen akzeptiert, erzwingt die Gleichung
-	$x^2 = -1$ die Einführung eines neuen Zahlentyps. 
+	\phantomsection\label{box:i-notwendig}
+	Die Zahl $i$ wird nicht eingeführt, weil man sie \glqq erfinden\grqq{} wollte.
+	Sie entsteht aus der inneren Logik der Algebra.
+	Sobald man die Rechenregeln für Gleichungen akzeptiert,
+	erzwingt die Gleichung
+	$x^2 = -1$
+	die Einführung eines neuen Zahlentyps.
 	
 	Alle komplexen Zahlen folgen dann aus der minimalen Annahme
-	$i^2 = -1$. Damit wird das Zahlensystem abgeschlossen: Jedes Polynom
-	besitzt nun mindestens eine Lösung (Fundamentalsatz der Algebra).\index{Fundamentalsatz der Algebra}
+	$i^2 = -1$.
+	Damit wird das Zahlensystem abgeschlossen:
+	Jedes nichtkonstante Polynom besitzt nun mindestens eine Lösung
+	(Fundamentalsatz der Algebra).\index{Fundamentalsatz der Algebra}
 \end{DidacticBox}
+
 \subsubsection*{Die Euler-Formel als geometrische Ergänzung}
 \index{Euler-Formel}
-\phantomsection
+
 Die Einführung der Zahl $i$ erschließt nicht nur einen neuen Zahlenbereich,
 sondern verbindet auch die Exponentialfunktion mit Kreisbewegungen.
 Dies zeigt sich in der berühmten Euler-Formel
 \[
 e^{i\varphi} = \cos\varphi + i\sin\varphi.
 \]
+
 \subsubsection*{Kurze Herleitung der Euler-Formel mit Taylor-Reihen}
-\phantomsection
 \index{Taylor-Reihe}
+
 Die Euler-Formel
 \[
 e^{i\varphi} = \cos\varphi + i\sin\varphi
 \]
-lässt sich elegant mit Potenzreihen (Taylor-Reihen) herleiten.
+lässt sich elegant mit Potenzreihen herleiten.
 
 Zunächst betrachten wir die Reihenentwicklungen der Funktionen
 $e^x$, $\cos x$ und $\sin x$ um den Punkt $x=0$:
@@ -230,19 +233,20 @@ Damit ist die Euler-Formel
 \[
 e^{i\varphi} = \cos\varphi + i\sin\varphi
 \]
-als direkte Folge der Reihenentwicklungen von Exponential-, Sinus- 
+als direkte Folge der Reihenentwicklungen von Exponential-, Sinus-
 und Kosinusfunktion hergeleitet.
 
 \subsubsection*{Geometrische Idee}
-\phantomsection
+
 Betrachtet man die komplexe Ebene, so beschreibt ein Punkt auf dem
-Einheitskreis \index{Einheitskreis} einen Winkel $\varphi$ zur reellen Achse.
+Einheitskreis\index{Einheitskreis} einen Winkel $\varphi$ zur reellen Achse.
 Die Projektion auf die beiden Achsen ergibt
 \[
 (\cos\varphi,\;\sin\varphi).
 \]
 \index{Sinus}
 \index{Kosinus}
+
 Da die imaginäre Achse als Vielfaches von $i$ interpretiert wird,
 entspricht dieser Punkt der komplexen Zahl
 \[
@@ -250,7 +254,7 @@ entspricht dieser Punkt der komplexen Zahl
 \]
 
 Die Euler-Formel zeigt, dass die komplexe Exponentialfunktion
-genau diese Kreisbewegung beschreibt.
+genau diese Kreisbewegung auf dem Einheitskreis beschreibt.
 
 \begin{center}
 	\begin{tikzpicture}[scale=2]
@@ -274,25 +278,26 @@ genau diese Kreisbewegung beschreibt.
 \end{center}
 
 \subsubsection*{Multiplikation mit \boldmath$i$ als Drehung}
-\phantomsection
 \index{Drehung (Multiplikation mit $i$)}
-In der komplexen Ebene hat die Multiplikation mit $i$ eine einfache geometrische 
+
+In der komplexen Ebene hat die Multiplikation mit $i$ eine einfache geometrische
 Bedeutung: Sie dreht jede Zahl um $90^\circ$ gegen den Uhrzeigersinn.
 
 Beispiele:
 \[
-1 \xrightarrow{\;\cdot i\;} i \xrightarrow{\;\cdot i\;} -1 
+1 \xrightarrow{\;\cdot i\;} i \xrightarrow{\;\cdot i\;} -1
 \xrightarrow{\;\cdot i\;} -i \xrightarrow{\;\cdot i\;} 1
 \]
 
-Jede weitere Multiplikation mit $i$ fügt eine weitere Drehung von $90^\circ$ hinzu.  
-Wichtig: Die Länge (der Betrag) ändert sich dabei nicht – nur die Richtung.
+Jede weitere Multiplikation mit $i$ fügt eine weitere Drehung von $90^\circ$ hinzu.
+Wichtig ist: Der Betrag bleibt dabei unverändert -- nur die Richtung ändert sich.
 
-Die Exponentialfunktion $e^{i\varphi}$ kombiniert unendlich viele solcher 
-kleinen Drehungen. Dadurch entsteht eine kontinuierliche Rotation auf dem 
+Die Exponentialfunktion $e^{i\varphi}$ kombiniert unendlich viele solcher
+kleinen Drehungen. Dadurch entsteht eine kontinuierliche Rotation auf dem
 Einheitskreis, deren Winkel genau $\varphi$ beträgt.
+
 \subsubsection*{Warum Multiplikation mit \boldmath$i$ eine Drehung erzeugt}
-\phantomsection
+
 Betrachten wir einen Punkt auf dem Einheitskreis:
 \[
 e^{i\varphi} = \cos\varphi + i\sin\varphi.
@@ -319,15 +324,16 @@ um \(90^\circ\) gegen den Uhrzeigersinn dreht:
 (-\sin\varphi,\;\cos\varphi).
 \]
 
-Damit ist klar:  
+Damit ist klar:
 \[
 i \cdot e^{i\varphi}
 \]
-ist \emph{genau} der Punkt, der um \(90^\circ\) gedreht wurde – bei unverändertem Radius.
+ist genau der Punkt, der um \(90^\circ\) gedreht wurde -- bei unverändertem Radius.
 
 \begin{DidacticBox}[Kernidee der Euler-Formel]
-	Multiplikation mit $i$ bedeutet eine Drehung um $90^\circ$ in der komplexen Ebene.  
-	Die Exponentialfunktion $e^{i\varphi}$ kombiniert viele solcher kleinen Drehungen 
+	\phantomsection\label{box:euler-kernidee}
+	Multiplikation mit $i$ bedeutet eine Drehung um $90^\circ$ in der komplexen Ebene.
+	Die Exponentialfunktion $e^{i\varphi}$ kombiniert viele solcher kleinen Drehungen
 	zu einer einzigen Rotation um den Winkel $\varphi$.
 	
 	Darum gilt:
@@ -337,12 +343,13 @@ ist \emph{genau} der Punkt, der um \(90^\circ\) gedreht wurde – bei unverände
 \end{DidacticBox}
 
 \subsubsection*{Abschluss}
-\phantomsection
-Die komplexen Zahlen erweitern die reellen Zahlen um genau das, was
-fehlt, um alle Gleichungen lösbar zu machen. Aus der einzelnen
-Definition $i^2=-1$ entsteht ein vollständiger Zahlenbereich mit klaren
-Regeln und einer geometrischen Struktur.
-%============================================================
+
+Die komplexen Zahlen erweitern die reellen Zahlen um genau das,
+was fehlt, um algebraische Gleichungen vollständig zu behandeln.
+Aus der einzelnen Festlegung $i^2=-1$ entsteht ein vollständiger Zahlenbereich
+mit klaren Rechenregeln und einer anschaulichen geometrischen Struktur.
+
+% ============================================================
 \section{Mandelbrot-Landkarte: mathematische Erzeugung und Farbgebung}
 \label{app:mandelbrot-rendering}
 
@@ -356,9 +363,10 @@ Regeln und einer geometrischen Struktur.
 \index{Algorithmus}
 
 \textbf{Ziel dieses Anhangs:} Hier wird gezeigt, wie eine typische Mandelbrot-Grafik algorithmisch entsteht:
-vom Bildpixel über den Parameter \(c\) bis zur Fluchtzeit und zur Farbzuordnung.
+vom Bildpixel über den Parameter \(c\) bis zur Fluchtzeit und schließlich zur Farbzuordnung.
 
 \begin{MathBox}[Grundprinzip: Pixel \(\rightarrow\) Parameter \(c\) \(\rightarrow\) Iteration]
+		\phantomsection\label{box:mandelbrot-grundprinzip}
 	Wir berechnen für jeden Bildpunkt einen Parameter \(c\in\mathbb{C}\) und iterieren
 	\[
 	z_{n+1}=z_n^2+c,\qquad z_0=0.
@@ -366,7 +374,6 @@ vom Bildpixel über den Parameter \(c\) bis zur Fluchtzeit und zur Farbzuordnung
 	Die Mandelbrotmenge ist die Menge der Parameter \(c\), für die die Folge \(\{z_n\}\) beschränkt bleibt.
 \end{MathBox}
 
-%------------------------------------------------------------
 \subsection{Koordinatentransformation: vom Pixel in die komplexe Ebene}
 \index{Koordinatentransformation}
 
@@ -385,14 +392,14 @@ c(i,j)=x(i)+i\,y(j).
 Das Minuszeichen bei \(y(j)\) kommt daher, dass Bildkoordinaten typischerweise nach unten wachsen.
 
 \begin{NoteBox}[Typisches Standardfenster]
-	Ein häufig verwendetes Fenster ist
+	\phantomsection\label{box:mandelbrot-standardfenster}
+	Ein häufig verwendetes Sichtfenster ist
 	\[
 	x\in[-2.5,1.0],\qquad y\in[-1.2,1.2].
 	\]
-	Für Details (Zoom) wählt man ein kleineres Fenster um ein Zentrum \(c_0\).
+	Für Detailansichten (Zooms) wählt man ein kleineres Fenster um ein Zentrum \(c_0\).
 \end{NoteBox}
 
-%------------------------------------------------------------
 \subsection{Escape-Time-Algorithmus: Fluchtkriterium und Iterationszahl}
 \index{Fluchtkriterium}
 
@@ -400,6 +407,7 @@ Für jedes \(c\) iterieren wir bis zu einer Maximalzahl \(N_{\max}\). Sobald \(|
 Für die Mandelbrotiteration reicht klassisch \(R=2\):
 
 \begin{MathBox}[Escape-Radius \(R=2\)]
+	\phantomsection\label{box:mandelbrot-escape-radius}
 	Für \(z_{n+1}=z_n^2+c\) gilt: Wenn für ein \(n\) \(|z_n|>2\), dann divergiert die Folge sicher.
 \end{MathBox}
 
@@ -407,40 +415,40 @@ Formal definieren wir die \textbf{Fluchtzeit}
 \[
 n_\text{esc}(c)=\min\{n\in\mathbb{N}\mid |z_n|>2\},
 \]
-falls sie existiert; andernfalls setzen wir \(n_\text{esc}(c)=N_{\max}\) und markieren den Punkt als „innen“ (typisch schwarz).
+falls sie existiert; andernfalls setzen wir \(n_\text{esc}(c)=N_{\max}\) und markieren den Punkt als \glqq innen\grqq{} (typisch schwarz).
 
-%------------------------------------------------------------
-\subsection{Farbgebung: diskret, glatt und „schön“}
+\subsection{Farbgebung: diskret, glatt und anschaulich}
 \index{Farbskala}
 
 \subsubsection{(a) Diskrete Farbgebung über Fluchtzeit}
-Die einfachste Methode: ordne die Farbe nur nach \(n_\text{esc}\) zu.
-Das führt oft zu sichtbaren „Bändern“ (Banding), ist aber didaktisch klar.
+
+Die einfachste Methode: Man ordnet die Farbe nur nach \(n_\text{esc}\) zu.
+Das führt oft zu sichtbaren \glqq Bändern\grqq{}, ist aber didaktisch sehr klar.
 
 \subsubsection{(b) Glatte Farbgebung (Continuous Coloring)}
+
 Um Banding zu vermeiden, nutzt man eine \textbf{kontinuierliche} Iterationszahl. Eine verbreitete Variante ist:
 \[
 \nu(c)=n + 1 - \log_2\!\bigl(\log |z_n|\bigr),
 \]
-wobei \(n\) der erste Index ist mit \(|z_n|>2\). (Hier ist \(z_n\) bereits außerhalb; \(\nu\) liegt zwischen \(n\) und \(n+1\).)
+wobei \(n\) der erste Index ist mit \(|z_n|>2\). Hier liegt \(\nu\) zwischen \(n\) und \(n+1\).
 
 \begin{DidacticBox}[Warum diese „Log-Log“-Formel?]
-	Außerhalb wächst \(|z_n|\) ungefähr quadratisch. Durch \(\log(\log(\cdot))\) wird dieses Wachstum „linearisiert“,
-	sodass Farbverläufe glatt werden und die Struktur am Rand deutlich besser sichtbar ist.
+	\phantomsection\label{box:mandelbrot-loglog}
+	Außerhalb wächst \(|z_n|\) ungefähr quadratisch.
+	Durch \(\log(\log(\cdot))\) wird dieses Wachstum so umskaliert,
+	dass Farbverläufe glatt werden und die Struktur am Rand deutlich besser sichtbar ist.
 \end{DidacticBox}
 
-Aus \(\nu\) macht man dann eine Zahl \(t\in[0,1]\) (z.B. durch Skalierung) und führt \(t\) durch eine Farbpalette.
+Aus \(\nu\) macht man dann eine Zahl \(t\in[0,1]\) (etwa durch Skalierung) und führt \(t\) durch eine Farbpalette.
 
-\subsubsection{(c) Histogramm-Equalization (optional, für sehr gleichmäßige Kontraste)}
-Fortgeschritten: man zählt, wie viele Pixel welche Fluchtzeit haben, bildet eine kumulative Verteilung und verteilt Farben so,
-dass häufige Werte nicht „zusammenkleben“. Das liefert sehr ausgewogene Bilder, ist aber reiner Rendering-Komfort.
+\subsubsection{(c) Histogramm-Equalization (optional)}
 
-%------------------------------------------------------------
+Fortgeschrittene Darstellungen zählen, wie viele Pixel welche Fluchtzeit haben, bilden eine kumulative Verteilung und verteilen Farben so,
+dass häufige Werte nicht \glqq zusammenkleben\grqq. Das liefert sehr ausgewogene Bilder, ist aber Darstellungstechnik, nicht Mathematik der Menge selbst.
+
 \subsection{Pseudocode: kompakt und nachvollziehbar}
 \index{Pseudocode}
-
-% Wenn du listings nutzt:
-% \usepackage{listings}
 
 \begin{verbatim}
 	Input: W,H, x_min,x_max, y_min,y_max, N_max, R=2
@@ -455,102 +463,104 @@ dass häufige Werte nicht „zusammenkleben“. Das liefert sehr ausgewogene Bil
 	z = z*z + c
 	n = n + 1
 	if n == N_max:
-	color(i,j) = black   // inside (bounded up to N_max)
+	color(i,j) = black
 	else:
-	// smooth iteration count (optional):
 	nu = n + 1 - log2(log(|z|))
 	color(i,j) = palette(nu)
 	Output: PNG image
 \end{verbatim}
 
 \begin{NoteBox}[Wichtig für den Leser]
-	Die Mandelbrotmenge selbst ist \emph{mathematisch} nur „innen vs. außen“ (beschränkt vs. divergent).
-	Alles, was danach kommt (Palette, Glättung, Histogramm), ist \textbf{Darstellungstechnik}.
+	\phantomsection\label{box:mandelbrot-leserhinweis}
+	Die Mandelbrotmenge selbst ist mathematisch nur durch die Unterscheidung
+	\emph{innen} vs.\ \emph{außen} bestimmt, also durch
+	\emph{beschränkt} vs.\ \emph{divergent}.
+	Alles Weitere -- Farbpalette, Glättung, Histogrammverfahren --
+	gehört zur Darstellungstechnik, nicht zur Definition der Menge selbst.
 \end{NoteBox}
 
-%============================================================
-%========================================================
-\section{Von Minimall\"ange zu Minimalfl\"ache: Optimale Verzweigungsnetzwerke}
+% ============================================================
+\section{Von Minimallänge zu Minimalfläche: Optimale Verzweigungsnetzwerke}
 \label{app:netzwerke-minimalflaeche}
 \index{Optimierung}
-\index{Minimalfl\"ache}
+\index{Minimalfläche}
 \index{Netzwerk}
 \index{Verzweigung}
 \index{Transportnetzwerk}
 
 Im Haupttext wurde ein moderner Methodentransfer angesprochen:
-Biologische Strukturen wie Nervenzellen, Blutgef\"a{\ss}e oder B\"aume sind keine idealen \glqq Dr\"ahte\grqq,
-sondern \emph{R\"ohrennetzwerke} mit endlicher Dicke.
-Dadurch \"andert sich die nat\"urliche Zielfunktion der Optimierung:
-Nicht nur die Gesamtl\"ange ist relevant, sondern insbesondere die ben\"otigte \emph{Oberfl\"ache}
-(sowie der geometrische Aufwand an Verzweigungsstellen).
+Biologische Strukturen wie Nervenzellen, Blutgefäße oder Bäume sind keine idealen \glqq Drähte\grqq{},
+sondern Röhrennetzwerke mit endlicher Dicke.
+Dadurch ändert sich auch die natürliche Zielfunktion der Optimierung:
+Nicht nur die Gesamtlänge ist relevant, sondern vor allem die benötigte Oberfläche
+sowie der geometrische Aufwand an Verzweigungsstellen.
 
-\subsection{Das 1D-Modell: Minimierung der Gesamtl\"ange}
+\subsection{Das 1D-Modell: Minimierung der Gesamtlänge}
 \index{Graph}
 \index{Steiner-Baum}
 
-Ein Netzwerk werde als Graph modelliert: Knoten sind Verzweigungen oder Endpunkte, Kanten $e$ sind Verbindungen mit L\"ange $\ell_e$.
+Ein Netzwerk werde als Graph modelliert: Knoten sind Verzweigungen oder Endpunkte, Kanten $e$ sind Verbindungen mit Länge $\ell_e$.
 Ein naheliegendes Minimalprinzip lautet:
 \begin{equation}
 	K_{\text{L}} = \sum_{e} \ell_e.
 	\label{eq:cost_length}
 \end{equation}
-Dieses Modell ist geeignet f\"ur Systeme, in denen \glqq Material\grqq\ proportional zur L\"ange ist und Verzweigungen als ideale Punkte gelten.
-In der Mathematik f\"uhrt das in die N\"ahe des Steiner-Problems: Man sucht ein Netzwerk, das vorgegebene Endpunkte mit minimaler Gesamtl\"ange verbindet.
+Dieses Modell ist geeignet für Systeme, in denen \glqq Material\grqq{} proportional zur Länge ist und Verzweigungen als ideale Punkte gelten.
+In der Mathematik führt das in die Nähe des Steiner-Problems: Man sucht ein Netzwerk, das vorgegebene Endpunkte mit minimaler Gesamtlänge verbindet.
 
 \medskip
 \noindent
 \textbf{Grenze des 1D-Modells.}
-Sobald Verbindungen eine endliche Dicke besitzen, wird ein reines L\"angenfunktional zu grob:
-Ein \glqq Kabel\grqq\ ist dann nicht mehr eindimensional, sondern besitzt eine Mantelfl\"ache, die gebaut und erhalten werden muss.
+Sobald Verbindungen eine endliche Dicke besitzen, wird ein reines Längenfunktional zu grob:
+Ein \glqq Kabel\grqq{} ist dann nicht mehr eindimensional, sondern besitzt eine Mantelfläche, die gebaut und erhalten werden muss.
 
-\subsection{Das 2D-Modell: R\"ohrenoberfl\"ache statt L\"ange}
+\subsection{Das 2D-Modell: Röhrenoberfläche statt Länge}
 \index{Zylinder}
-\index{Oberfl\"ache}
+\index{Oberfläche}
 
-Eine Kante $e$ werde als Zylinder mit Radius $r_e$ und L\"ange $\ell_e$ angen\"ahert.
-Dann ist die Mantelfl\"ache
+Eine Kante $e$ werde als Zylinder mit Radius $r_e$ und Länge $\ell_e$ angenähert.
+Dann ist die Mantelfläche
 \begin{equation}
 	A_e \approx 2\pi r_e\, \ell_e,
 	\qquad
 	A \approx \sum_e 2\pi r_e\, \ell_e.
 	\label{eq:area_sum}
 \end{equation}
-Hier ist mit \glqq Fl\"ache\grqq\ die Summe der Mantelfl\"achen der R\"ohrensegmente als Kostenma{\ss} gemeint,
-nicht eine zusammenh\"angende Minimalfl\"ache wie bei einer Seifenhaut.
+Hier ist mit \glqq Fläche\grqq{} die Summe der Mantelflächen der Röhrensegmente als Kostenmaß gemeint,
+nicht eine zusammenhängende Minimalfläche wie bei einer Seifenhaut.
 
-Wenn Oberfl\"ache als Kosten f\"ur Material, Membran, Wartung oder Stabilit\"at steht, ist eine einfache Kostenfunktion
+Wenn Oberfläche als Kosten für Material, Membran, Wartung oder Stabilität steht, ist eine einfache Kostenfunktion
 \begin{equation}
 	K_{\text{A}} = \alpha \sum_e r_e\, \ell_e.
 	\label{eq:cost_area}
 \end{equation}
 Dabei ist $\alpha>0$ ein Gewichtungsfaktor, der Einheiten und Skalierung festlegt und in Anwendungen
-weitere Effekte (Materialkonstante, biologische Kosten) zusammenfassen kann.
-
+weitere Effekte zusammenfassen kann.
+	\index{Minimalfläche}
 \begin{MathBox}[Vom Draht zum Rohr: der entscheidende Schritt]
-	\index{Minimalfl\"ache}
-	Das 1D-Modell minimiert L\"ange $\sum \ell_e$.
-	Das 2D-Modell ber\"ucksichtigt Dicke und minimiert (proportional) Oberfl\"ache
+	\phantomsection\label{box:draht-rohr}
+
+	Das 1D-Modell minimiert Länge $\sum \ell_e$.
+	Das 2D-Modell berücksichtigt Dicke und minimiert proportional dazu Oberflächenkosten
 	$\sum r_e\ell_e$.
-	Damit wird aus einem \emph{Linienproblem} ein \emph{Fl\"achenproblem}:
-	Die Geometrie von Verzweigungen wird nicht nur durch \glqq k\"urzeste Wege\grqq\,
-	sondern durch \glqq m\"oglichst glatte und fl\"achenarme Struktur\grqq\ bestimmt.
+	Damit wird aus einem \emph{Linienproblem} ein \emph{Flächenproblem}:
+	Die Geometrie von Verzweigungen wird nicht nur durch \glqq kürzeste Wege\grqq{},
+	sondern durch \glqq möglichst glatte und flächenarme Struktur\grqq{} bestimmt.
 \end{MathBox}
 
 \subsection{Verzweigungen sind nicht kostenlos: Junction-Kosten}
 \index{Junction}
-\index{Kr\"ummung}
+\index{Krümmung}
 
 In realen Netzwerken ist eine Verzweigung keine ideale Punktoperation.
-Geometrisch entstehen lokale Kr\"ummungen, \"Ubergangsregionen, mechanische Spannungen; funktional kommen
-Regelung, Stabilit\"at und Fehlertoleranz hinzu.
+Geometrisch entstehen lokale Krümmungen, Übergangsregionen und mechanische Spannungen;
+funktional kommen Regelung, Stabilität und Fehlertoleranz hinzu.
 Das kann modellhaft durch einen Zusatzterm erfasst werden:
 \begin{equation}
 	K = \alpha \sum_e r_e\,\ell_e \;+\; J\,N_{\text{J}},
 	\label{eq:cost_with_junctions}
 \end{equation}
-wobei $N_{\text{J}}$ die Anzahl der Verzweigungsstellen und $J>0$ eine \glqq Nahtstellenstrafe\grqq\ ist.
-Die Parameter $\alpha$ und $J$ tragen die Einheiten und gewichten die Beitr\"age; entscheidend sind ihre relativen Gr\"o{\ss}enordnungen.
+wobei $N_{\text{J}}$ die Anzahl der Verzweigungsstellen und $J>0$ eine \glqq Nahtstellenstrafe\grqq{} ist.
 
 \paragraph{Mini-Beispiel: Trifurkation vs.\ zwei Bifurkationen.}
 \index{Trifurkation}
@@ -558,33 +568,33 @@ Die Parameter $\alpha$ und $J$ tragen die Einheiten und gewichten die Beitr\"age
 
 Drei Endpunkte sollen versorgt werden. Zwei plausible Designs:
 \begin{itemize}
-	\item \textbf{Design A:} eine Dreifach-Verzweigung (eine Junction), Gesamtl\"ange $L_A$.
-	\item \textbf{Design B:} zwei Zweifach-Verzweigungen (zwei Junctions), Gesamtl\"ange $L_B$.
+	\item \textbf{Design A:} eine Dreifach-Verzweigung (eine Junction), Gesamtlänge $L_A$.
+	\item \textbf{Design B:} zwei Zweifach-Verzweigungen (zwei Junctions), Gesamtlänge $L_B$.
 \end{itemize}
-F\"ur konstanten Radius (oder \"ahnliche Radien) gen\"ugt der Vergleich
+Für konstanten Radius genügt der Vergleich
 \[
 K_A \approx \alpha L_A + J,
 \qquad
 K_B \approx \alpha L_B + 2J.
 \]
-Design A ist g\"unstiger, falls
+Design A ist günstiger, falls
 \begin{equation}
 	\alpha(L_A-L_B) < J.
 	\label{eq:threshold_J}
 \end{equation}
+
 \textbf{Interpretation:}
-Selbst wenn Design A etwas l\"anger ist, kann es optimal sein, sobald die Verzweigungsstelle \glqq teuer genug\grqq\ ist.
-Die Schwelle ist $J/\alpha$: Erst wenn die \glqq Nahtstelle\grqq\ teurer ist als die eingesparte effektive L\"ange,
-lohnt sich die zus\"atzliche Verzweigung nicht.
-Das erkl\"art, warum reale Netze systematisch von reinen Minimall\"angen-L\"osungen abweichen k\"onnen.
+Selbst wenn Design A etwas länger ist, kann es optimal sein, sobald die Verzweigungsstelle \glqq teuer genug\grqq{} ist.
+Die Schwelle ist $J/\alpha$: Erst wenn die Nahtstelle teurer ist als die eingesparte effektive Länge,
+lohnt sich die zusätzliche Verzweigung nicht.
 
-\subsection{Transportkosten (Druckverlust) als zweiter Mechanismus}
+\subsection{Transportkosten als zweiter Mechanismus}
 \index{Poiseuille-Gesetz}
-\index{Str\"omungswiderstand}
+\index{Strömungswiderstand}
 
-Oberfl\"ache ist nicht alles: Ein Netzwerk transportiert Fluss (Wasser, Blut, Signale).
-F\"ur laminare Str\"omung in einem zylindrischen Rohr (Poiseuille-Regime) skaliert der Str\"omungswiderstand stark mit dem Radius,
-n\"aherungsweise $R \sim \ell/r^4$ (bis auf Konstanten wie Viskosit\"at).
+Oberfläche ist nicht alles: Ein Netzwerk transportiert Fluss, etwa Wasser, Blut oder Signale.
+Für laminare Strömung in einem zylindrischen Rohr skaliert der Strömungswiderstand näherungsweise wie
+$R \sim \ell/r^4$.
 Daraus folgt eine weitere plausible Kostenkomponente:
 \begin{equation}
 	K_{\text{T}} = \beta \sum_e \frac{\ell_e}{r_e^4},
@@ -598,32 +608,39 @@ Ein zusammengesetztes Modell lautet dann:
 	\;+\; J\,N_{\text{J}}.
 	\label{eq:full_cost}
 \end{equation}
+
 \textbf{Interpretation:}
 \begin{itemize}
-	\item Gr\"o{\ss}ere Radien senken Transportverluste (zweiter Term), sind aber fl\"achen- bzw.\ materialteurer (erster Term).
-	\item Zus\"atzliche Verzweigungen k\"onnen Fluss verteilen, erzeugen aber Nahtstellenkosten (dritter Term).
+	\item Größere Radien senken Transportverluste, sind aber flächen- bzw.\ materialteurer.
+	\item Zusätzliche Verzweigungen können Fluss verteilen, erzeugen aber Nahtstellenkosten.
 \end{itemize}
-Genau solche Zielkonflikte erzeugen die typischen, \emph{auffallend optimierten} Verzweigungsarchitekturen in der Natur.
 
-\begin{DidacticBox}[Merksatz: Nicht Strings im Gehirn -- sondern Fl\"achen-Optimierung]
+Genau solche Zielkonflikte erzeugen die typischen, auffallend optimierten Verzweigungsarchitekturen in der Natur.
 	\index{Stringtheorie}
+\begin{DidacticBox}[Merksatz: Nicht Strings im Gehirn -- sondern Flächen-Optimierung]
+	\phantomsection\label{box:stringtheorie-flaechenoptimierung}
 	Der Bezug zur Stringtheorie ist \emph{methodisch}, nicht ontologisch:
-	Viele Aufgaben lassen sich als Minimierung eines Fl\"achenfunktionals formulieren.
-	In der modernen Physik (u.\,a.\ in der Stringtheorie) wurden daf\"ur leistungsf\"ahige mathematische Werkzeuge entwickelt.
-	Hier werden diese Werkzeuge genutzt, um reale Verzweigungsnetzwerke als Optimierungsproblem zu beschreiben.
+	Viele Aufgaben lassen sich als Minimierung eines Flächenfunktionals formulieren.
+	In der modernen Physik wurden dafür leistungsfähige mathematische Werkzeuge entwickelt.
+	Hier werden sie genutzt, um reale Verzweigungsnetzwerke als Optimierungsproblem zu beschreiben.
 \end{DidacticBox}
 
 \subsection{Fazit}
 \index{Mathematik}
 
 Der zentrale Schritt ist der Wechsel des Modells:
-Von \glqq k\"urzesten Linien\grqq\ zu \glqq fl\"achenarmen R\"ohren mit Verzweigungsaufwand\grqq.
-Damit wird klar, warum die Natur in vielen Kontexten (B\"aume, Gef\"a{\ss}e, Neuronen) auf \"ahnliche Geometrien f\"uhrt:
-Nicht weil die Systeme identisch sind, sondern weil die \emph{Optimierungslogik} strukturell verwandt ist.
+von \glqq kürzesten Linien\grqq{} zu \glqq flächenarmen Röhren mit Verzweigungsaufwand\grqq{}.
+Damit wird verständlich, warum die Natur in vielen Kontexten
+-- etwa bei Bäumen, Gefäßen oder Neuronen --
+auf ähnliche Geometrien führt.
+Nicht weil die Systeme identisch wären, sondern weil ihre Optimierungslogik strukturell verwandt ist.
+
+% ============================================================
 \section{Die Fibonacci-Folge und der goldene Schnitt}
 \label{app:fibonacci-goldener-schnitt}
 
-Die Fibonacci-Folge ist eine rekursiv definierte Zahlenfolge. Sie beginnt mit
+Die Fibonacci-Folge ist eine rekursiv definierte Zahlenfolge.
+Sie beginnt mit
 \[
 F_1 = 1,\qquad F_2 = 1
 \]
@@ -632,12 +649,12 @@ und jede weitere Zahl entsteht als Summe der beiden vorhergehenden:
 F_{n+2} = F_{n+1} + F_n \qquad (n \geq 1).
 \]
 
-Die ersten Glieder lauten also:
+Die ersten Glieder lauten daher:
 \[
 1,\;1,\;2,\;3,\;5,\;8,\;13,\;21,\;34,\dots
 \]
 
-Mathematisch interessant ist, dass sich die Quotienten zweier aufeinanderfolgender Fibonacci-Zahlen
+Mathematisch besonders interessant ist, dass sich die Quotienten zweier aufeinanderfolgender Fibonacci-Zahlen
 \[
 \frac{F_{n+1}}{F_n}
 \]
@@ -651,4 +668,7 @@ Es gilt also:
 \lim_{n\to\infty} \frac{F_{n+1}}{F_n} = \varphi.
 \]
 
-Dieser Zusammenhang ist für viele Wachstums- und Anordnungsprobleme interessant. In Pflanzen erscheinen Fibonacci-Zahlen nicht deshalb, weil eine Pflanze \glqq rechnet\grqq, sondern weil bestimmte Regeln der Platzverteilung und des Wachstums zu Spiralstrukturen führen, bei denen solche Zahlen häufig auftreten.
+Dieser Zusammenhang ist für viele Wachstums- und Anordnungsprobleme bedeutsam.
+In Pflanzen erscheinen Fibonacci-Zahlen nicht deshalb, weil eine Pflanze \glqq rechnet\grqq{},
+sondern weil bestimmte Regeln der Platzverteilung und des Wachstums zu Spiralstrukturen führen,
+bei denen solche Zahlen häufig auftreten.

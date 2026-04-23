@@ -1,5 +1,6 @@
 \chapter{Wie komplexe Zahlen Struktur erzeugen}
 \label{chap:VII_komplexe_struktur}
+
 Komplexe Zahlen sind nicht nur eine Erweiterung des Zahlbegriffs,
 sondern ein Raum, in dem aus einfachen Regeln überraschend reiche Strukturen entstehen können.
 Besonders deutlich zeigt sich das bei iterierten Abbildungen:
@@ -23,6 +24,7 @@ sondern Struktur aus Mathematik selbst erzeugt wird.
 
 \index{Dynamisches System}
 \index{Abbildung}
+\index{Orbit}
 
 Iteration ist eines der einfachsten und zugleich mächtigsten Prinzipien der Mathematik:
 Eine Vorschrift wird angewandt, und dann wird ihr Ergebnis erneut derselben Vorschrift unterworfen.
@@ -34,7 +36,6 @@ Formal ist Iteration die wiederholte Anwendung einer Abbildung $f$:
 z_0,\quad z_1=f(z_0),\quad z_2=f(z_1)=f(f(z_0)),\quad \ldots,\quad z_{n+1}=f(z_n).
 \]
 Damit wird aus einem einzigen Startwert $z_0$ eine ganze Bahn im Zustandsraum.
-\index{Orbit}
 
 \subsubsection*{Ein einfaches Zahlenbeispiel}
 
@@ -60,20 +61,6 @@ Diese Zahl heißt \emph{Fixpunkt}, denn es gilt
 f(2)=2.
 \]
 \index{Fixpunkt}
-
-\begin{DidacticBox}[Was man hier lernen soll]
-	\phantomsection\label{box:lernen}
-	Iteration bedeutet nicht einfach eine einzelne Rechnung,
-	sondern die wiederholte Anwendung einer Regel.
-	Aus $x_0$ wird $x_1$,
-	daraus $x_2$,
-	daraus $x_3$.
-	Schon bei sehr einfachen Vorschriften
-	entstehen typische Verhaltensweisen:
-	\emph{Annäherung} (stabil),
-	\emph{Schwanken} (periodisch)
-	oder \emph{Weglaufen} (divergent).
-\end{DidacticBox}
 
 Gerade diese Sichtweise ist entscheidend:
 Zahlen werden zu Zuständen,
@@ -134,39 +121,44 @@ Was genau heißt \glqq beschränkt\grqq{},
 was heißt \glqq divergent\grqq{}
 und warum sitzt die eigentliche Struktur gerade am Rand zwischen beidem?
 
-
-
-
-
 % =====================================================
 % 7.2 Stabilität, Divergenz und Grenzfälle
 % =====================================================
+
 \subsection{Stabilität, Divergenz und Grenzfälle}
 
 \index{Grenzfall}
 \index{Beschränktheit}
 \index{Betrag}
 
-Wenn wir eine Iteration $z_{n+1}=f(z_n)$ betrachten, dann ist die zentrale Frage nicht „Welche Zahl kommt als nächste?“,
-sondern: \emph{Was passiert langfristig?}
+Wenn wir eine Iteration $z_{n+1}=f(z_n)$ betrachten, dann ist die zentrale Frage nicht:
+\glqq Welche Zahl kommt als nächste?\grqq{},
+sondern:
+\emph{Was passiert langfristig?}
 Bleibt die Bahn in einem begrenzten Bereich, oder läuft sie davon?
 Diese einfache Unterscheidung trennt stabile von instabilen Dynamiken.
 
 \subsubsection*{Stabilität: Bahnen bleiben in der Nähe}
-Im stabilen Fall ist ein Startwert „robust“: Kleine Änderungen am Startwert verändern zwar die Folge,
-aber nicht ihr qualitatives Verhalten. Man kann sich das so vorstellen:
-Die Iteration zieht Bahnen in einen bestimmten Bereich hinein, statt sie hinauszutreiben.
+
+Im stabilen Fall ist ein Startwert robust:
+Kleine Änderungen am Startwert verändern zwar die Folge,
+aber nicht ihr qualitatives Verhalten.
+Man kann sich das so vorstellen:
+Die Iteration zieht Bahnen in einen bestimmten Bereich hinein,
+statt sie hinauszutreiben.
 Typisch ist dabei die Annäherung an einen Fixpunkt oder an einen periodischen Zyklus.
 \index{Fixpunkt}
 
 \subsubsection*{Divergenz: Bahnen fliegen weg}
-Im instabilen Fall passiert das Gegenteil: Die Iteration verstärkt Abweichungen.
-Die Folge wächst im Betrag immer weiter, sie „entkommt“ aus jedem beschränkten Bereich.
-Genau dieses Verhalten werden wir später als Kriterium verwenden: \emph{Wer wegfliegt, gehört nicht zur Struktur.}
-\index{Betrag}
+
+Im instabilen Fall passiert das Gegenteil:
+Die Iteration verstärkt Abweichungen.
+Die Folge wächst im Betrag immer weiter,
+sie \glqq entkommt\grqq{} aus jedem beschränkten Bereich.
+Genau dieses Verhalten werden wir später als Kriterium verwenden:
+\emph{Wer wegfliegt, gehört nicht zur Struktur.}
+
 \subsubsection*{Zwei Mini-Beispiele: stabil vs.\ divergent}
-
-
 
 \begin{figure}[h]
 	\centering
@@ -219,28 +211,32 @@ Genau dieses Verhalten werden wir später als Kriterium verwenden: \emph{Wer weg
 			};
 		\end{axis}
 	\end{tikzpicture}
-	
 \end{figure}
+
 \begin{DidacticBox}[Stabil vs.\ chaotisch: nicht verwechseln]
 	\phantomsection\label{box:stabil}
-Stabilität bedeutet nicht „langweilig“, und Instabilität bedeutet nicht automatisch „Zufall“.
-	Auch chaotische Bahnen sind deterministisch, aber sie sind empfindlich gegenüber kleinsten Änderungen.
-	Für unsere Zwecke reicht zunächst eine robustere Leitidee:
+	Stabilität bedeutet nicht \glqq langweilig\grqq{},
+	und Instabilität bedeutet nicht automatisch \glqq Zufall\grqq.
+	Auch chaotische Bahnen sind deterministisch,
+	aber sie sind empfindlich gegenüber kleinsten Änderungen.
+	Für unsere Zwecke reicht zunächst die robustere Leitidee:
 	\emph{beschränkt} versus \emph{unbeschränkt}.
 	Der Grenzbereich zwischen beidem ist später der Ort der sichtbaren Struktur.
 \end{DidacticBox}
 
 \subsubsection*{Beschränktheit als Kriterium}
+
 In der komplexen Ebene ist es besonders natürlich, den \emph{Betrag} $|z_n|$ zu betrachten.
 Wir nennen einen Orbit \emph{beschränkt}, wenn es eine Zahl $R>0$ gibt, so dass
 \[
 |z_n|\le R \quad \text{für alle } n.
 \]
-Existiert kein solches $R$, dann läuft der Orbit ins Unendliche: $|z_n|\to\infty$.
+Existiert kein solches $R$, dann läuft der Orbit ins Unendliche:
+$|z_n|\to\infty$.
 
 \begin{MathBox}[Beschränkt oder unbeschränkt]
 	\phantomsection\label{box:beschraenkt}
-    Für die Iteration $z_{n+1}=f(z_n)$ heißt der Orbit von $z_0$ \emph{beschränkt}, wenn
+	Für die Iteration $z_{n+1}=f(z_n)$ heißt der Orbit von $z_0$ \emph{beschränkt}, wenn
 	\[
 	\exists\, R>0:\ \forall n\in\mathbb{N}\ \ |z_n|\le R.
 	\]
@@ -249,6 +245,7 @@ Existiert kein solches $R$, dann läuft der Orbit ins Unendliche: $|z_n|\to\inft
 \end{MathBox}
 
 \subsubsection*{Ein einfaches komplexes Beispiel: Spiralbahn im Kreis}
+
 Wir betrachten die Iteration
 \[
 z_{n+1}=a\,z_n,\qquad a=0{,}85\,e^{i\pi/5},\qquad z_0=2+i.
@@ -258,7 +255,9 @@ Da $|a|=0{,}85<1$ gilt für alle $n$:
 |z_n|=|a|^n|z_0|\le |z_0|=:R=\sqrt{5}.
 \]
 Der Orbit bleibt also im Kreisradius $R$ und spiralisiert gegen $0$.
+
 \subsubsection*{Zwei Iterationsschritte zum Verständnis}
+
 Wir schreiben
 \[
 a=0{,}85e^{i\pi/5}=0{,}85(\cos36^\circ+i\sin36^\circ)
@@ -276,13 +275,13 @@ Der nächste Schritt ist
 z_2=a z_1\approx (0{,}687664+i\,0{,}499617)(0{,}876+i\,1{,}687)
 \approx -0{,}241+i\,1{,}598.
 \]
-Man erkennt bereits: jeder Schritt dreht den Punkt um $36^\circ$ und verkleinert den Betrag um den Faktor $0{,}85$.
+Man erkennt bereits:
+jeder Schritt dreht den Punkt um $36^\circ$ und verkleinert den Betrag um den Faktor $0{,}85$.
 Allgemein gilt nämlich
 \[
 |z_n|=0{,}85^n|z_0|,\qquad \arg(z_n)=\arg(z_0)+n\frac{\pi}{5},
 \]
 also spiralisiert der Orbit gegen $0$.
-Der Orbit bleibt also für alle $n$ im Kreisradius $R$ und spiralt gegen $0$.
 
 \begin{figure}[h]
 	\centering
@@ -298,10 +297,7 @@ Der Orbit bleibt also für alle $n$ im Kreisradius $R$ und spiralt gegen $0$.
 			ymin=-2.5, ymax=2.5,
 			grid=both
 			]
-			% Kreisradius R = sqrt(5)
 			\addplot[domain=0:360, samples=361] ({sqrt(5)*cos(x)},{sqrt(5)*sin(x)});
-			
-			% Orbitpunkte (n=0..25)
 			\addplot+[only marks, mark=*] coordinates {
 				(2.000,1.000)
 				(0.876,1.687)
@@ -338,23 +334,27 @@ Der Orbit bleibt also für alle $n$ im Kreisradius $R$ und spiralt gegen $0$.
 \noindent
 
 \subsubsection*{Der Grenzfall: die eigentliche Bühne der Struktur}
+
 Jetzt kommt der entscheidende Punkt für das ganze Kapitel:
 Zwischen eindeutig stabil und eindeutig divergent liegt ein Randbereich, der extrem empfindlich ist.
 Startwerte, die nur minimal voneinander abweichen, können völlig verschieden enden:
 Der eine Orbit bleibt beschränkt, der andere fliegt weg.
-Dieser „Übergang“ ist kein Nebeneffekt, sondern das Zentrum des Phänomens.
+Dieser Übergang ist kein Nebeneffekt, sondern das Zentrum des Phänomens.
 
 Genau deshalb entstehen später scharfe, fransige Grenzen und scheinbar unendliche Detailtiefe.
 Nicht weil wir Natur modellieren, sondern weil wir eine Grenzfrage stellen.
+
 \subsubsection*{Extrem empfindlich: minimale Änderung, völlig anderes Verhalten}
+
 Wir betrachten die Iteration
 \[
 z_{n+1}=z_n^2,
 \]
-also die Quadratik $f(z)=z^2$. Hier lässt sich der Grenzfall vollständig verstehen:
+also die Quadratik $f(z)=z^2$.
+Hier lässt sich der Grenzfall vollständig verstehen:
 \emph{Die Grenze zwischen beschränkt und unbeschränkt ist der Einheitskreis $|z|=1$.}
 Damit ist bereits sichtbar, was später bei Mandelbrot- und Julia-Mengen in viel komplizierterer Form auftritt:
-Ein Randbereich entscheidet über „bleibt drin“ oder „fliegt weg“.
+Ein Randbereich entscheidet über \glqq bleibt drin\grqq{} oder \glqq fliegt weg\grqq.
 
 Wir wählen zwei fast identische Startwerte:
 \[
@@ -365,7 +365,6 @@ z_0=0{,}99 \quad (\text{knapp innerhalb}),
 \begin{figure}[h]
 	\centering
 	
-	% --- Bild links: komplexe Ebene mit Einheitskreis und Startpunkten ---
 	\begin{tikzpicture}
 		\begin{axis}[
 			axis equal,
@@ -378,14 +377,11 @@ z_0=0{,}99 \quad (\text{knapp innerhalb}),
 			ymin=-1.2, ymax=1.2,
 			grid=both
 			]
-			% Einheitskreis
 			\addplot[domain=0:360, samples=361] ({cos(x)},{sin(x)});
-			% Startpunkte
 			\addplot+[only marks, mark=*] coordinates {(0.99,0) (1.01,0)};
 		\end{axis}
 	\end{tikzpicture}
 	\hfill
-	% --- Bild rechts: Betrag als Funktion von n (log-Skala) ---
 	\begin{tikzpicture}
 		\begin{axis}[
 			width=0.46\textwidth,
@@ -398,7 +394,6 @@ z_0=0{,}99 \quad (\text{knapp innerhalb}),
 			xtick={0,1,2,3,4,5,6,7,8,9,10},
 			grid=both
 			]
-			% z0=0.99
 			\addplot+[mark=*] coordinates {
 				(0,0.99)
 				(1,0.9801)
@@ -414,7 +409,6 @@ z_0=0{,}99 \quad (\text{knapp innerhalb}),
 			};
 			\addlegendentry{$z_0=0{,}99$}
 			
-			% z0=1.01
 			\addplot+[mark=*] coordinates {
 				(0,1.01)
 				(1,1.0201)
@@ -434,17 +428,21 @@ z_0=0{,}99 \quad (\text{knapp innerhalb}),
 	
 	\caption{Grenzfall bei $z_{n+1}=z_n^2$: Innerhalb des Einheitskreises bleiben Bahnen beschränkt, außerhalb divergieren sie. Schon eine minimale Änderung des Startwerts kann das Verhalten vollständig kippen.}
 \end{figure}
+
 \subsubsection*{Vorbereitung auf die Quadratik $z^2+c$}
 \index{Quadratische Abbildung}
+
 Für die Familie $f_c(z)=z^2+c$ wird es sogar ein praktisches Kriterium geben:
-Wenn der Betrag eines Orbit irgendwann groß genug wird, dann ist sicher, dass er weiter wächst und entkommt.
-Damit lässt sich „dazugehörig“ versus „nicht dazuzugehörig“ rechnerisch entscheiden.
-Jetzt wird die Idee zur Landkarte: Für welche Parameter $c$ bleibt der Orbit von $z_0=0$ beschränkt?
+Wenn der Betrag eines Orbits irgendwann groß genug wird, dann ist sicher, dass er weiter wächst und entkommt.
+Damit lässt sich \glqq dazugehö rig\grqq{} versus \glqq nicht dazugehörig\grqq{} rechnerisch entscheiden.
+Jetzt wird die Idee zur Landkarte:
+Für welche Parameter $c$ bleibt der Orbit von $z_0=0$ beschränkt?
 Genau diese Menge ist die Mandelbrot-Menge.
 
 % =====================================================
 % 7.3 Die Mandelbrotmenge als Landkarte
 % =====================================================
+
 \subsection{Die Mandelbrotmenge als Landkarte}
 \label{sec:VII-7-3}
 \index{Mandelbrotmenge}
@@ -497,19 +495,14 @@ sondern mathematisch präzise:
 	\item \textbf{Küste} (die Grenze): Übergangsgebiet, in dem kleinste Änderungen von \(c\) das Verhalten kippen lassen.
 \end{itemize}
 
-\begin{NoteBox}[Fluchtkriterium und Einfärbung]
-	\phantomsection\label{box:einfaerbung}
-	Für die Iteration \(z_{n+1}=z_n^2+c\) gilt:
-	Sobald \(|z_n|>2\) erreicht wird,
-	ist Divergenz sicher.
-	Diese Zahl \(2\) heißt \textbf{Escape-Radius}.
-	
-	Außerhalb der Mandelbrotmenge zeigt die Farbgebung meist die \textbf{Fluchtzeit},
-	also die Anzahl der Iterationen,
-	bis \(|z_n|>2\) erreicht wird.
-	Das ist ein Mittel der Visualisierung,
-	nicht Teil der eigentlichen Definition.
-\end{NoteBox}
+Sobald bei der Iteration \(z_{n+1}=z_n^2+c\) ein Wert mit \(|z_n|>2\) auftritt,
+ist Divergenz sicher.
+Diese Zahl \(2\) heißt \emph{Escape-Radius}.
+Außerhalb der Mandelbrotmenge zeigt die Farbgebung meist die \emph{Fluchtzeit},
+also die Anzahl der Iterationen,
+bis \(|z_n|>2\) erreicht wird.
+Das ist ein Mittel der Visualisierung,
+nicht Teil der eigentlichen Definition.
 
 \subsubsection*{Die Grenze als Bühne der Struktur}
 
@@ -530,7 +523,7 @@ das ist das charakteristische Merkmal fraktaler Geometrie.
 	\caption{Die Mandelbrotmenge als Landkarte im Parameterraum \(c\):
 		innen beschränkt (Land),
 		außen Fluchtzeit-Färbung (Meer),
-		und an der Grenze ein strukturreiches „Küstengebiet“.}
+		und an der Grenze ein strukturreiches \glqq Küstengebiet\grqq.}
 	\label{fig:mandelbrot_landkarte}
 \end{figure}
 
@@ -558,6 +551,7 @@ und welche entkommen.
 % =====================================================
 % 7.4 Julia-Mengen: lokale Dynamik und Struktur
 % =====================================================
+
 \subsection{Julia-Mengen: lokale Dynamik und Struktur}
 \label{sec:julia-mengen}
 \index{Julia-Menge}
@@ -576,25 +570,25 @@ die Frage:
 \glqq Welche Startwerte $z_0$ bleiben gebunden -- und welche entkommen?\grqq
 
 \begin{MathBox}[Definition: Iteration, gefüllte Julia-Menge, Julia-Rand]
-	\phantomsection\label{box:iteration}
-	Wir betrachten die quadratische Iteration
+\phantomsection\label{box:iteration}
+Wir betrachten die quadratische Iteration
+\[
+z_{n+1}=f_c(z_n)=z_n^2+c \qquad (c\in\mathbb{C}\ \text{fest}).
+\]
+\begin{itemize}
+	\item Die \emph{Bahn} von $z_0$ ist die Folge $(z_n)_{n\ge 0}$.
+	\item Die \emph{gefüllte Julia-Menge} ist
 	\[
-	z_{n+1}=f_c(z_n)=z_n^2+c \qquad (c\in\mathbb{C}\ \text{fest}).
+	K_c=\{z_0\in\mathbb{C}\mid (z_n)\ \text{bleibt beschränkt}\}.
 	\]
-	\begin{itemize}
-		\item Die \emph{Bahn} von $z_0$ ist die Folge $(z_n)_{n\ge 0}$.
-		\item Die \emph{gefüllte Julia-Menge} ist
-		\[
-		K_c=\{z_0\in\mathbb{C}\mid (z_n)\ \text{bleibt beschränkt}\}.
-		\]
-		\item Die \emph{Julia-Menge} ist der Rand
-		\[
-		J_c=\partial K_c.
-		\]
-	\end{itemize}
-	Anschaulich gesprochen:
-	$K_c$ sind die Startwerte, die nicht entkommen,
-	und $J_c$ ist die scharfe, fraktale Grenze zwischen gebunden und divergent.
+	\item Die \emph{Julia-Menge} ist der Rand
+	\[
+	J_c=\partial K_c.
+	\]
+\end{itemize}
+Anschaulich gesprochen:
+$K_c$ sind die Startwerte, die nicht entkommen,
+und $J_c$ ist die scharfe, fraktale Grenze zwischen gebunden und divergent.
 \end{MathBox}
 
 \subsubsection*{Lokale Dynamik: Stabilität, Flucht und empfindliche Grenzen}
@@ -611,43 +605,32 @@ Ein minimaler Unterschied in $z_0$
 kann darüber entscheiden,
 ob die Bahn gebunden bleibt oder entkommt.
 
-\begin{DidacticBox}[Warum ist der Rand so kompliziert?]
-	\phantomsection\label{box:rand}
-	Im Inneren von $K_c$ und auch außerhalb davon
-	ist das Verhalten oft robust:
-	Kleine Änderungen von $z_0$ ändern das qualitative Ergebnis nicht.
-	\emph{Am Rand} gilt das Gegenteil:
-	Dort liegen gebundene und fliehende Startwerte beliebig nahe beieinander.
-	Genau diese Vermischung auf immer kleineren Skalen
-	erzeugt die fraktale Struktur der Julia-Menge.
-\end{DidacticBox}
-
 \subsubsection*{Drei einfache Beispiele zur Orientierung}
 
 Man muss nicht viele Formeln kennen --
 drei Beispiele genügen, um das Grundmuster zu verstehen:
 
 \begin{itemize}
-	\item \textbf{$c=0$:} Dann gilt $z_{n+1}=z_n^2$.
-	Die gefüllte Julia-Menge $K_0$ ist die Einheitskreisscheibe,
-	und $J_0$ ist ihr Rand, also der Einheitskreis.
-	Hier ist die Grenze glatt und noch nicht fraktal.
-	\index{Einheitskreis}
-	\item \textbf{$c=-1$:} Es entsteht das klassische \glqq Basilica\grqq-Bild:
-	zwei große Loben, klar erkennbar,
-	aber mit bereits hochkomplexem Rand.
-	\index{Basilica}
-	\item \textbf{$c$ nahe dem Rand der Mandelbrotmenge:} Dann werden Julia-Mengen oft besonders filigran.
-	Dendriten und Staubstrukturen treten auf,
-	und die lokale Dynamik reagiert besonders empfindlich.
+\item \textbf{$c=0$:} Dann gilt $z_{n+1}=z_n^2$.
+Die gefüllte Julia-Menge $K_0$ ist die Einheitskreisscheibe,
+und $J_0$ ist ihr Rand, also der Einheitskreis.
+Hier ist die Grenze glatt und noch nicht fraktal.
+\index{Einheitskreis}
+\item \textbf{$c=-1$:} Es entsteht das klassische \glqq Basilica\grqq-Bild:
+zwei große Loben, klar erkennbar,
+aber mit bereits hochkomplexem Rand.
+\index{Basilica}
+\item \textbf{$c$ nahe dem Rand der Mandelbrotmenge:} Dann werden Julia-Mengen oft besonders filigran.
+Dendriten und Staubstrukturen treten auf,
+und die lokale Dynamik reagiert besonders empfindlich.
 \end{itemize}
 
 \begin{HistoryBox}[Historischer Kontext: Julia und Fatou]
-	\phantomsection\label{box:julia}
-	Die systematische Untersuchung komplexer Iterationen begann um 1918 bis 1920 mit Gaston Julia und Pierre Fatou.
-	Die zentralen Begriffe des stabilen Bereichs (Fatou-Menge) und des chaotischen Randes (Julia-Menge) stammen aus dieser Zeit.
-	Das ist ein eindrucksvolles Beispiel dafür,
-	wie reine Mathematik Jahrzehnte später zur Bildsprache moderner Fraktale wurde.
+\phantomsection\label{box:julia}
+Die systematische Untersuchung komplexer Iterationen begann um 1918 bis 1920 mit Gaston Julia und Pierre Fatou.
+Die zentralen Begriffe des stabilen Bereichs (Fatou-Menge) und des chaotischen Randes (Julia-Menge) stammen aus dieser Zeit.
+Das ist ein eindrucksvolles Beispiel dafür,
+wie reine Mathematik Jahrzehnte später zur Bildsprache moderner Fraktale wurde.
 \end{HistoryBox}
 
 \subsubsection*{Der Schlüsselzusammenhang zwischen Julia und Mandelbrot}
@@ -660,20 +643,16 @@ den Typ der zugehörigen Julia-Menge zu.
 Genau hier treffen Parameterraum ($c$)
 und Zustandsraum ($z$) unmittelbar aufeinander.
 
-\begin{NoteBox}[Merksatz: Zusammenhang von $c$ und der Geometrie von $J_c$]
-	\phantomsection\label{box:merksatz}
-	Für die Iteration $z_{n+1}=z_n^2+c$ gilt:
-	\begin{itemize}
-		\item Liegt $c$ \emph{in} der Mandelbrotmenge,
-		dann ist die gefüllte Julia-Menge $K_c$
-		und damit auch ihr Rand $J_c$
-		\emph{zusammenhängend}.
-		\item Liegt $c$ \emph{außerhalb},
-		dann zerfällt $J_c$ typischerweise
-		in viele getrennte Inseln,
-		also in einen \glqq Staub\grqq.
-	\end{itemize}
-\end{NoteBox}
+\subsubsection*{Zusammenhang von $c$ und der Geometrie von $J_c$}
+
+Für die Iteration $z_{n+1}=z_n^2+c$ gilt:
+Liegt $c$ \emph{in} der Mandelbrotmenge,
+dann ist die gefüllte Julia-Menge $K_c$
+und damit auch ihr Rand $J_c$ zusammenhängend.
+Liegt $c$ \emph{außerhalb},
+dann zerfällt $J_c$ typischerweise
+in viele getrennte Inseln,
+also in einen \glqq Staub\grqq.
 
 Damit wird die Idee aus Abschnitt~\ref{sec:VII-7-3} präzise:
 Die Mandelbrotmenge sagt nicht,
@@ -694,16 +673,6 @@ Die saubere und nachvollziehbare Rendering-Idee
 ist im Anhang ausführlich dokumentiert;
 siehe Anhang~\ref{app:mandelbrot-rendering}.
 
-\begin{NoteBox}[Mini-Checkliste für den Leser]
-	\phantomsection\label{box:checkliste}
-	\begin{itemize}
-		\item Mandelbrot: \emph{Parameterraum} ($c$ variieren, $z_0=0$).
-		\item Julia: \emph{Zustandsraum} ($c$ fest, $z_0$ variieren).
-		\item $K_c$: gebundene Startwerte; $J_c$: fraktaler Rand.
-		\item Randnahes $c$ $\Rightarrow$ besonders empfindliche, filamentartige Strukturen.
-	\end{itemize}
-\end{NoteBox}
-
 \newpage
 \noindent
 \subsubsection*{Beispiel 1: Glatter Grenzfall ($c=0$)}
@@ -717,10 +686,10 @@ innen bleiben die Bahnen gebunden,
 außen entkommen sie.
 
 \begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.82\textwidth]{Bilder/Julia_0.png}
-	\caption{Julia-Menge für $c=0$: $J_c$ ist der Einheitskreis.}
-	\label{fig:julia-c0}
+\centering
+\includegraphics[width=0.82\textwidth]{Bilder/Julia_0.png}
+\caption{Julia-Menge für $c=0$: $J_c$ ist der Einheitskreis.}
+\label{fig:julia-c0}
 \end{figure}
 
 \newpage
@@ -733,10 +702,10 @@ Gebundene und entkommende Startwerte
 liegen dort beliebig nahe beieinander.
 
 \begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.82\textwidth]{Bilder/Julia-1.png}
-	\caption{Julia-Menge für $c=-1$ (\glqq Basilica\grqq): zusammenhängend, aber mit fraktalem Rand.}
-	\label{fig:julia-cminus1}
+\centering
+\includegraphics[width=0.82\textwidth]{Bilder/Julia-1.png}
+\caption{Julia-Menge für $c=-1$ (\glqq Basilica\grqq): zusammenhängend, aber mit fraktalem Rand.}
+\label{fig:julia-cminus1}
 \end{figure}
 
 \newpage
@@ -751,17 +720,16 @@ Die Grenze ist dann nicht mehr zusammenhängend,
 sondern erscheint als zerstreuter \glqq Staub\grqq.
 
 \begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.82\textwidth]{Bilder/Julia-2.png}
-	\caption{Julia-Menge für ein $c$ außerhalb der Mandelbrotmenge: zerfallender \glqq Staub\grqq.}
-	\label{fig:julia-c2}
+\centering
+\includegraphics[width=0.82\textwidth]{Bilder/Julia-2.png}
+\caption{Julia-Menge für ein $c$ außerhalb der Mandelbrotmenge: zerfallender \glqq Staub\grqq.}
+\label{fig:julia-c2}
 \end{figure}
-
-
 
 % =====================================================
 % 7.5 Selbstähnlichkeit und Skaleninvarianz
 % =====================================================
+
 \subsection{Selbstähnlichkeit und Skaleninvarianz}
 \label{sec:7.5}
 \index{Selbstähnlichkeit}
@@ -788,14 +756,14 @@ treten auf unterschiedlichen Skalen wieder auf,
 jedoch nicht als perfekte Duplikate.
 
 \begin{DidacticBox}[Selbstähnlichkeit heißt nicht: identische Kopie]
-	\phantomsection\label{box:kopie}
-	\small
-	Bei iterierten komplexen Abbildungen ist Selbstähnlichkeit oft \emph{qualitativ}:
-	Beim Zoomen erscheinen ähnliche Formen und Stabilitätsinseln erneut,
-	aber meist mit Verzerrungen, Rotationen oder leichten Variationen.
-	Der entscheidende Punkt ist daher nicht \glqq Copy--Paste\grqq,
-	sondern:
-	\emph{Die Art der Struktur bleibt erhalten.}
+\phantomsection\label{box:kopie}
+\small
+Bei iterierten komplexen Abbildungen ist Selbstähnlichkeit oft \emph{qualitativ}:
+Beim Zoomen erscheinen ähnliche Formen und Stabilitätsinseln erneut,
+aber meist mit Verzerrungen, Rotationen oder leichten Variationen.
+Der entscheidende Punkt ist daher nicht \glqq Copy--Paste\grqq,
+sondern:
+\emph{Die Art der Struktur bleibt erhalten.}
 \end{DidacticBox}
 
 Trotzdem ist es hilfreich, die exakte Idee kurz zu kennen.
@@ -843,7 +811,7 @@ also kleine mandelbrotähnliche Teilstrukturen.
 Didaktisch ist das der entscheidende Punkt:
 
 \begin{quote}
-	\emph{Selbstähnlichkeit ist die geometrische Signatur von Dynamik am Rand der Stabilität.}
+\emph{Selbstähnlichkeit ist die geometrische Signatur von Dynamik am Rand der Stabilität.}
 \end{quote}
 
 Man sieht damit nicht nur ein beeindruckendes Bild,
@@ -861,8 +829,8 @@ f_c(z)=z^2+c.
 Ein fundamentaler Zusammenhang lautet:
 
 \begin{itemize}
-	\item Liegt $c$ \emph{in} der Mandelbrotmenge, dann ist die zugehörige Julia-Menge \emph{zusammenhängend}.
-	\item Liegt $c$ \emph{außerhalb}, dann zerfällt die Julia-Menge in einen \glqq Staub\grqq, also in eine Cantor-artige Menge.
+\item Liegt $c$ \emph{in} der Mandelbrotmenge, dann ist die zugehörige Julia-Menge \emph{zusammenhängend}.
+\item Liegt $c$ \emph{außerhalb}, dann zerfällt die Julia-Menge in einen \glqq Staub\grqq, also in eine Cantor-artige Menge.
 \end{itemize}
 
 Damit wird verständlich,
@@ -871,7 +839,6 @@ aber in ihrer Erscheinung stark variieren:
 Der Parameter $c$ entscheidet darüber,
 ob man eine geschlossene, filamentöse Struktur
 oder ein zerfallendes Punktensemble erhält.
-
 
 \subsubsection*{Skaleninvarianz messbar machen: fraktale Dimension}
 
@@ -883,93 +850,63 @@ und zählt,
 wie viele Kästchen $N(\varepsilon)$ benötigt werden.
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}[scale=0.75]
-		
-		% -------------------------
-		% Linkes Bild: grobes Gitter
-		% -------------------------
-		\begin{scope}[shift={(0,0)}]
-			\node at (2.5,4.8) {\small Grobes Gitter (\(\varepsilon\) groß)};
-			
-			% Rahmen
-			\draw[thick] (0,0) rectangle (5,4);
-			
-			% Gitter
-			\draw[gray!60, step=1] (0,0) grid (5,4);
-			
-			% Fraktalähnliche Grenzlinie
-			\draw[thick]
-			(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
-			-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
-			-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
-			
-			% Markierte Kästchen
-			\fill[blue!20] (0,1) rectangle (1,2);
-			\fill[blue!20] (1,1) rectangle (2,2);
-			\fill[blue!20] (1,2) rectangle (2,3);
-			\fill[blue!20] (2,1) rectangle (3,2);
-			\fill[blue!20] (2,2) rectangle (3,3);
-			\fill[blue!20] (3,1) rectangle (4,2);
-			\fill[blue!20] (3,2) rectangle (4,3);
-			\fill[blue!20] (4,2) rectangle (5,3);
-			\fill[blue!20] (4,3) rectangle (5,4);
-			
-			% Gitter und Kurve erneut
-			\draw[gray!60, step=1] (0,0) grid (5,4);
-			\draw[thick] (0,0) rectangle (5,4);
-			\draw[thick]
-			(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
-			-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
-			-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
-			
-			\node at (2.5,-0.45) {\small gezählte Kästchen: \(N(\varepsilon)\)};
-		\end{scope}
-		
-		% -------------------------
-		% Rechtes Bild: feineres Gitter
-		% -------------------------
-		\begin{scope}[shift={(7,0)}]
-			\node at (2.5,4.8) {\small Feineres Gitter (\(\varepsilon\) klein)};
-			
-			% Rahmen
-			\draw[thick] (0,0) rectangle (5,4);
-			
-			% Gitter
-			\draw[gray!50, step=0.5] (0,0) grid (5,4);
-			
-			% Markierte Kästchen
-			\foreach \x/\y in {
-				0/1,0.5/1,0.5/1.5,
-				1/1,1/1.5,1.5/1.5,
-				1.5/2,2/1.5,2/2,
-				2.5/2,2.5/2.5,3/2,
-				3/2.5,3.5/2.5,3.5/3,
-				4/2.5,4/3,4.5/3
-			}{
-				\fill[blue!20] (\x,\y) rectangle ++(0.5,0.5);
-			}
-			
-			% Kurve
-			\draw[thick]
-			(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
-			-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
-			-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
-			
-			% Gitter und Kurve erneut
-			\draw[gray!50, step=0.5] (0,0) grid (5,4);
-			\draw[thick] (0,0) rectangle (5,4);
-			\draw[thick]
-			(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
-			-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
-			-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
-			
-			\node at (2.5,-0.45) {\small mehr Kästchen \(\Rightarrow N(\varepsilon)\) wächst};
-		\end{scope}
-		
-	\end{tikzpicture}
-	\caption{Box-Counting-Idee: Überdeckt wird nicht die ganze Ebene, sondern die zu untersuchende Grenzmenge. Gezählt werden die Kästchen, die diese Struktur schneiden. Wird das Gitter feiner, so wächst die Zahl \(N(\varepsilon)\).}
-	\label{fig:box-counting-prinzip}
+\centering
+\begin{tikzpicture}[scale=0.75]
+\begin{scope}[shift={(0,0)}]
+	\node at (2.5,4.8) {\small Grobes Gitter (\(\varepsilon\) groß)};
+	\draw[thick] (0,0) rectangle (5,4);
+	\draw[gray!60, step=1] (0,0) grid (5,4);
+	\draw[thick]
+	(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
+	-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
+	-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
+	\fill[blue!20] (0,1) rectangle (1,2);
+	\fill[blue!20] (1,1) rectangle (2,2);
+	\fill[blue!20] (1,2) rectangle (2,3);
+	\fill[blue!20] (2,1) rectangle (3,2);
+	\fill[blue!20] (2,2) rectangle (3,3);
+	\fill[blue!20] (3,1) rectangle (4,2);
+	\fill[blue!20] (3,2) rectangle (4,3);
+	\fill[blue!20] (4,2) rectangle (5,3);
+	\fill[blue!20] (4,3) rectangle (5,4);
+	\draw[gray!60, step=1] (0,0) grid (5,4);
+	\draw[thick] (0,0) rectangle (5,4);
+	\draw[thick]
+	(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
+	-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
+	-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
+	\node at (2.5,-0.45) {\small gezählte Kästchen: \(N(\varepsilon)\)};
+\end{scope}
+
+\begin{scope}[shift={(7,0)}]
+	\node at (2.5,4.8) {\small Feineres Gitter (\(\varepsilon\) klein)};
+	\draw[thick] (0,0) rectangle (5,4);
+	\draw[gray!50, step=0.5] (0,0) grid (5,4);
+	\foreach \x/\y in {
+		0/1,0.5/1,0.5/1.5,
+		1/1,1/1.5,1.5/1.5,
+		1.5/2,2/1.5,2/2,
+		2.5/2,2.5/2.5,3/2,
+		3/2.5,3.5/2.5,3.5/3,
+		4/2.5,4/3,4.5/3
+	}{
+		\fill[blue!20] (\x,\y) rectangle ++(0.5,0.5);
+	}
+	\draw[thick]
+	(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
+	-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
+	-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
+	\draw[gray!50, step=0.5] (0,0) grid (5,4);
+	\draw[thick] (0,0) rectangle (5,4);
+	\draw[thick]
+	(0.3,1.0) -- (0.8,1.6) -- (1.2,1.1) -- (1.7,2.0)
+	-- (2.1,1.4) -- (2.6,2.5) -- (3.0,1.8) -- (3.4,2.9)
+	-- (3.9,2.2) -- (4.3,3.2) -- (4.7,2.7);
+	\node at (2.5,-0.45) {\small mehr Kästchen \(\Rightarrow N(\varepsilon)\) wächst};
+\end{scope}
+\end{tikzpicture}
+\caption{Box-Counting-Idee: Überdeckt wird nicht die ganze Ebene, sondern die zu untersuchende Grenzmenge. Gezählt werden die Kästchen, die diese Struktur schneiden. Wird das Gitter feiner, so wächst die Zahl \(N(\varepsilon)\).}
+\label{fig:box-counting-prinzip}
 \end{figure}
 
 Anschaulich zählt man also nicht die ganze Fläche,
@@ -977,22 +914,22 @@ sondern nur jene kleinen Kästchen,
 die die fraktale Grenzstruktur tatsächlich treffen.
 
 \begin{MathBox}[Box-Counting-Dimension]
-	\phantomsection\label{box:boxcounting}
-	\small
-	Für viele fraktale Mengen gilt näherungsweise eine Potenzrelation
-	\[
-	N(\varepsilon)\sim \varepsilon^{-D}.
-	\]
-	Dann definiert man die Box-Counting-Dimension durch
-	\[
-	D=\lim_{\varepsilon\to 0}\frac{\log N(\varepsilon)}{\log(1/\varepsilon)}.
-	\]
-	Für glatte Kurven gilt $D=1$,
-	für Flächen $D=2$.
-	Fraktale Grenzen liegen typischerweise dazwischen:
-	\[
-	1<D<2.
-	\]
+\phantomsection\label{box:boxcounting}
+\small
+Für viele fraktale Mengen gilt näherungsweise eine Potenzrelation
+\[
+N(\varepsilon)\sim \varepsilon^{-D}.
+\]
+Dann definiert man die Box-Counting-Dimension durch
+\[
+D=\lim_{\varepsilon\to 0}\frac{\log N(\varepsilon)}{\log(1/\varepsilon)}.
+\]
+Für glatte Kurven gilt $D=1$,
+für Flächen $D=2$.
+Fraktale Grenzen liegen typischerweise dazwischen:
+\[
+1<D<2.
+\]
 \end{MathBox}
 
 In diesem Sinn ist Skaleninvarianz nicht nur ein optischer Eindruck,
@@ -1015,6 +952,7 @@ und genau deshalb stellt sich als nächstes eine entscheidende Frage:
 % =====================================================
 % 7.6 Warum diese Formen keine Naturmodelle sind
 % =====================================================
+
 \subsection{Warum diese Formen keine Naturmodelle sind}
 
 \textbf{Leitfrage:} Wenn Mandelbrot- und Julia-Mengen wie Naturstrukturen wirken -- warum sind sie dann trotzdem \emph{keine} Naturmodelle?
@@ -1034,22 +972,6 @@ Dass zwei Formen ähnlich aussehen,
 bedeutet noch nicht,
 dass sie auf denselben Mechanismen beruhen.
 
-\begin{NoteBox}[Warum manche Fraktale wie Blätter aussehen]
-	\phantomsection\label{box:blaetter}
-	\small
-	Es gibt Fraktale, die wie Blätter oder Farne wirken,
-	etwa klassische rekursive Farn-Konstruktionen.
-	Das ist nicht überraschend:
-	Auch Pflanzen erzeugen ihre Formen häufig durch wiederholte lokale Wachstumsregeln
-	-- Hauptadern verzweigen sich in Nebenadern,
-	diese wieder in feinere Adern.
-	Die optische Ähnlichkeit erklärt sich daher aus dem \emph{Prinzip der Wiederholung}.
-	Sie macht Mandelbrot- oder Julia-Mengen aber noch nicht zu Naturmodellen.
-	In der Natur endet Selbstähnlichkeit an physikalischen Skalen
-	-- etwa an Zellen, Materialgrenzen, Diffusion oder Rauschen --,
-	während die mathematische Iteration diese Grenze nicht kennt.
-\end{NoteBox}
-
 \subsubsection*{Ein Naturmodell braucht Mechanismus, nicht nur Geometrie}
 
 Ein physikalisches Modell erklärt nicht nur,
@@ -1068,13 +990,13 @@ keine Materialgesetze
 und keine thermodynamischen Bedingungen.
 
 \begin{DidacticBox}[Optische Ähnlichkeit ist kein Modell]
-	\phantomsection\label{box:optisch}
-	\small
-	Dass zwei Formen ähnlich aussehen,
-	heißt nicht,
-	dass sie durch denselben Prozess entstehen.
-	In der Physik zählt die \emph{Erzeugungsregel}
-	mehr als die Geometrie des Endbildes.
+\phantomsection\label{box:optisch}
+\small
+Dass zwei Formen ähnlich aussehen,
+heißt nicht,
+dass sie durch denselben Prozess entstehen.
+In der Physik zählt die \emph{Erzeugungsregel}
+mehr als die Geometrie des Endbildes.
 \end{DidacticBox}
 
 \subsubsection*{Die Natur hat Rauschen, Imperfektionen und endliche Auflösung}
@@ -1101,10 +1023,10 @@ nicht notwendig eine physikalische Zeit.
 
 Ein Naturmodell müsste dagegen angeben,
 \begin{itemize}
-	\item welche Größen sich mit der Zeit ändern,
-	\item welche Gleichungen gelten, etwa Differentialgleichungen,
-	\item welche Anfangs- und Randbedingungen vorliegen,
-	\item und wie Dissipation oder Fluktuationen wirken.
+\item welche Größen sich mit der Zeit ändern,
+\item welche Gleichungen gelten, etwa Differentialgleichungen,
+\item welche Anfangs- und Randbedingungen vorliegen,
+\item und wie Dissipation oder Fluktuationen wirken.
 \end{itemize}
 Bei Mandelbrot- und Julia-Mengen fehlt diese Kopplung an physikalische Größen vollständig.
 
@@ -1124,21 +1046,21 @@ Doch die Mandelbrotmenge ist keine räumliche Form im physikalischen Sinn,
 sondern eine Stabilitätskarte mathematischer Dynamik.
 
 \begin{NoteBox}[Wichtige Unterscheidung: Parameterraum vs.\ Realraum]
-	\phantomsection\label{box:unterscheidung}
-	\small
-	Die Mandelbrotmenge lebt im $c$-Raum,
-	also im Parameterraum,
-	nicht im physikalischen Raum.
-	Sie zeigt,
-	für welche Parameter $c$ die Iteration
-	\[
-	z_{n+1}=z_n^2+c
-	\]
-	beschränkt bleibt.
-	Ein Naturmodell dagegen beschreibt Strukturen im Realraum
-	und muss Größen, Einheiten und Prozesse
-	-- etwa Zeit, Felder oder Flüsse --
-	explizit enthalten.
+\phantomsection\label{box:unterscheidung}
+\small
+Die Mandelbrotmenge lebt im $c$-Raum,
+also im Parameterraum,
+nicht im physikalischen Raum.
+Sie zeigt,
+für welche Parameter $c$ die Iteration
+\[
+z_{n+1}=z_n^2+c
+\]
+beschränkt bleibt.
+Ein Naturmodell dagegen beschreibt Strukturen im Realraum
+und muss Größen, Einheiten und Prozesse
+-- etwa Zeit, Felder oder Flüsse --
+explizit enthalten.
 \end{NoteBox}
 
 \subsubsection*{Warum die Natur trotzdem oft fraktalähnlich wirkt}
@@ -1148,11 +1070,11 @@ ist dennoch kein Zufall.
 Viele reale Prozesse erzeugen Grenzflächen, Verzweigungen oder Instabilitätsmuster.
 Typische Mechanismen sind etwa
 \begin{itemize}
-	\item Wachstum unter Diffusion, zum Beispiel Kristallwachstum oder DLA,
-	\item Turbulenz und Kaskaden,
-	\item Rissbildung und Bruchmechanik,
-	\item Perkolation und kritische Phänomene,
-	\item sowie die Konkurrenz von Stabilität und Instabilität.
+\item Wachstum unter Diffusion, zum Beispiel Kristallwachstum oder DLA,
+\item Turbulenz und Kaskaden,
+\item Rissbildung und Bruchmechanik,
+\item Perkolation und kritische Phänomene,
+\item sowie die Konkurrenz von Stabilität und Instabilität.
 \end{itemize}
 
 Solche Prozesse können über bestimmte Skalenbereiche
@@ -1165,10 +1087,10 @@ nicht die komplexe Iteration selbst.
 
 Mandelbrot- und Julia-Mengen sind keine Naturmodelle, weil sie
 \begin{itemize}
-	\item keinen physikalischen Mechanismus wie Kräfte, Flüsse oder Dissipation enthalten,
-	\item unendliche Skaleninvarianz besitzen, die in der Natur immer endet,
-	\item keine Zeitentwicklung im Realraum beschreiben,
-	\item und im Parameterraum entstehen, nicht als direkte Formen physikalischer Systeme.
+\item keinen physikalischen Mechanismus wie Kräfte, Flüsse oder Dissipation enthalten,
+\item unendliche Skaleninvarianz besitzen, die in der Natur immer endet,
+\item keine Zeitentwicklung im Realraum beschreiben,
+\item und im Parameterraum entstehen, nicht als direkte Formen physikalischer Systeme.
 \end{itemize}
 
 Gerade deshalb sind sie jedoch so aufschlussreich.
@@ -1181,7 +1103,8 @@ als Grenzobjekt zwischen Stabilität und Divergenz.
 % 7.7 Fazit: Struktur ohne Materie
 % =====================================================
 
-\subsection{Fazit: Struktur ohne Materie}\label{sec:7.7}
+\subsection{Fazit: Struktur ohne Materie}
+\label{sec:7.7}
 
 \textbf{Leitfrage:} Was ist die eigentliche Erkenntnis dieses Kapitels -- jenseits der eindrucksvollen Bilder?
 
@@ -1194,7 +1117,7 @@ die reich, stabil, reproduzierbar
 und zugleich unerschöpflich ist.
 
 \begin{quote}
-	\emph{Struktur kann aus reiner Mathematik entstehen.}
+\emph{Struktur kann aus reiner Mathematik entstehen.}
 \end{quote}
 
 Die Mandelbrotmenge ist dabei nicht nur ein eindrucksvolles Fraktalbild,
@@ -1211,23 +1134,23 @@ sondern die geometrische Signatur eines Übergangs.
 \subsubsection*{Was bleibt als zentrale Einsicht?}
 
 \begin{itemize}
-	\item Eine einfache mathematische Vorschrift kann eine Grenze erzeugen, die geometrisch außerordentlich reich ist.
-	\item Selbstähnlichkeit und Skaleninvarianz zeigen, dass diese Grenze keine charakteristische Skala besitzt:
-	Struktur erscheint auf vielen Größenordnungen.
-	\item Mandelbrot- und Julia-Mengen sind \emph{keine} Naturmodelle, weil sie keine physikalischen Prozesse erklären.
-	Gerade dadurch machen sie jedoch etwas Grundsätzliches sichtbar:
-	\emph{Mathematik kann aus sich heraus Struktur hervorbringen.}
+\item Eine einfache mathematische Vorschrift kann eine Grenze erzeugen, die geometrisch außerordentlich reich ist.
+\item Selbstähnlichkeit und Skaleninvarianz zeigen, dass diese Grenze keine charakteristische Skala besitzt:
+Struktur erscheint auf vielen Größenordnungen.
+\item Mandelbrot- und Julia-Mengen sind \emph{keine} Naturmodelle, weil sie keine physikalischen Prozesse erklären.
+Gerade dadurch machen sie jedoch etwas Grundsätzliches sichtbar:
+\emph{Mathematik kann aus sich heraus Struktur hervorbringen.}
 \end{itemize}
 
 \begin{NoteBox}[Kernaussage dieses Kapitels]
-	\phantomsection\label{box:kernaussage}
-	\small
-	Die Formen wirken naturähnlich,
-	doch ihr Ursprung ist rein formal:
-	Iteration + Stabilitätskriterium $\Rightarrow$ Grenzstruktur.
-	Damit zeigt dieses Kapitel,
-	dass Mathematik nicht nur \emph{beschreibt},
-	sondern als System von Regeln selbst \emph{Struktur erzeugen} kann.
+\phantomsection\label{box:kernaussage}
+\small
+Die Formen wirken naturähnlich,
+doch ihr Ursprung ist rein formal:
+Iteration + Stabilitätskriterium $\Rightarrow$ Grenzstruktur.
+Damit zeigt dieses Kapitel,
+dass Mathematik nicht nur \emph{beschreibt},
+sondern als System von Regeln selbst \emph{Struktur erzeugen} kann.
 \end{NoteBox}
 
 \subsubsection*{Einordnung in den roten Faden des Buchs}
