@@ -1,0 +1,74 @@
+\documentclass[10pt]{book}
+
+% --- KDP 6x9 MIT Bleed ---
+\usepackage[paperwidth=6.125in,paperheight=9.25in,margin=0in]{geometry}
+
+\usepackage[pages=all]{background}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{xcolor}
+\usepackage{anyfontsize}
+\pagestyle{empty}
+
+% Farben
+\definecolor{coveraccent}{HTML}{00B7C2} % Akzent (wie Rückseite)
+\definecolor{covertext}{HTML}{E6E6E6}   % Fließ-/Autor-Text (helles Grau)
+
+% Hintergrund
+\backgroundsetup{
+	scale=1,
+	angle=0,
+	opacity=1,
+	contents={\includegraphics[width=\paperwidth,height=\paperheight]{vorne.png}}
+}
+
+% Safe-Area Offsets
+\newlength{\bleed}\setlength{\bleed}{0.125in}
+\newlength{\safe}\setlength{\safe}{0.35in}
+\newlength{\inset}\setlength{\inset}{\dimexpr\bleed+\safe\relax} % = 0.475in
+
+\begin{document}
+	\thispagestyle{empty}
+	
+	% --- Dunkelblende (zentraler Bereich für Text) ---
+	\begin{tikzpicture}[remember picture,overlay]
+		\fill[black,opacity=0.30]
+		([xshift=0.45in,yshift=6.9in]current page.south west) rectangle
+		([xshift=-0.45in,yshift=1.3in]current page.north east);
+	\end{tikzpicture}
+	
+	% --- TITELBLOCK ---
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[
+		anchor=north,
+		inner sep=0pt,
+		text width=\dimexpr\paperwidth-2\inset\relax,
+		align=center
+		] at ($(current page.north)+(0,-1.05in)$) {%
+			
+			% Haupttitel
+			{\color{coveraccent}\fontsize{32}{38}\selectfont\bfseries
+				\kern0.5pt Die Struktur der Welt\par}
+			
+			\vspace{1.10em}
+			
+			% Untertitel ruhiger und kompakter
+			{\color{covertext}\fontsize{21}{25}\selectfont\bfseries
+				Mathematik zwischen\par}
+			
+			\vspace{0.35em}
+			
+			{\color{covertext}\fontsize{21}{25}\selectfont\bfseries
+				Abstraktion und Realität\par}
+		};
+	\end{tikzpicture}
+	
+	% --- AUTOR unten ---
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=south, inner sep=0pt]
+		at ($(current page.south)+(0,\inset+0.08in)$)
+		{\color{covertext}\fontsize{15}{19}\selectfont\bfseries CHRISTIAN WEILHARTER};
+	\end{tikzpicture}
+	
+\end{document}
