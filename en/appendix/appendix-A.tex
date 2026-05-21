@@ -674,3 +674,536 @@ This connection is significant for many growth and arrangement problems.
 In plants, Fibonacci numbers do not appear because a plant ``calculates,''
 but because certain rules of space distribution and growth lead to spiral structures
 in which such numbers often occur.
+
+% =====================================================
+% Appendix A: Mathematical derivation of Fourier analysis
+% =====================================================
+
+\section{Derivation of Fourier Analysis Using a Square Wave}
+\label{sec:anhang_fourieranalyse_rechtecksignal}
+
+\subsection{Starting Point: Periodic Functions}
+
+Many processes in nature and technology repeat regularly.
+These include oscillations, waves, tones, electrical signals, and periodic motions.
+Mathematically, such processes are described by periodic functions.
+
+A function \(f(x)\) is called periodic with period \(2\pi\) if
+\[
+f(x+2\pi)=f(x).
+\]
+
+The central idea of Fourier analysis is
+to represent such a periodic function as a sum of simple oscillations.
+The basic building blocks are sine and cosine functions.
+
+\begin{MathBox}[Basic idea of Fourier analysis]
+	\small
+	\phantomsection\label{box:anhangA-fourier-grundidee}
+	Under suitable conditions, a periodic function can be written as a superposition
+	of simple harmonic oscillations:
+	\[
+	f(x)=\frac{a_0}{2}
+	+\sum_{n=1}^{\infty}
+	\left(a_n\cos(nx)+b_n\sin(nx)\right).
+	\]
+	The numbers \(a_n\) and \(b_n\) are called Fourier coefficients.
+	They specify how strongly the corresponding oscillation is present in the signal.
+\end{MathBox}
+
+This representation is so powerful
+because it decomposes a complicated signal into simple basic components.
+A tone, an electrical voltage, or a light wave can thereby be analyzed by frequency.
+
+\subsection{Orthogonality of Sine and Cosine}
+
+The mathematical core of Fourier analysis is the orthogonality of trigonometric functions.
+The term \emph{orthogonality} originally comes from geometry.
+Two vectors are orthogonal if their scalar product vanishes.
+
+There is an analogous concept for functions.
+Here, an integral replaces the scalar product of two vectors.
+For two functions \(f(x)\) and \(g(x)\), one considers
+\[
+\int_{-\pi}^{\pi} f(x)g(x)\,dx.
+\]
+
+If this integral is equal to zero, the two functions are called orthogonal.
+Intuitively, this means:
+the positive and negative contributions of the product cancel exactly over the interval considered.
+
+\begin{MathBox}[Orthogonality of functions]
+	\small
+	\phantomsection\label{box:anhangA-fourier-orthogonalitaet}
+	Two functions \(f(x)\) and \(g(x)\) are called orthogonal on the interval
+	\([-\pi,\pi]\) if
+	\[
+	\int_{-\pi}^{\pi} f(x)g(x)\,dx=0.
+	\]
+	This is the functional counterpart of the scalar product of two perpendicular vectors.
+\end{MathBox}
+
+For sine and cosine functions, the following important relations hold:
+\[
+\int_{-\pi}^{\pi} \sin(mx)\sin(nx)\,dx=0
+\quad \text{for } m\neq n,
+\]
+\[
+\int_{-\pi}^{\pi} \cos(mx)\cos(nx)\,dx=0
+\quad \text{for } m\neq n,
+\]
+and
+\[
+\int_{-\pi}^{\pi} \sin(mx)\cos(nx)\,dx=0.
+\]
+
+This means:
+Different oscillations do not interfere with one another when the coefficients are calculated.
+Each frequency can be extracted from the signal in a targeted way.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.36\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-1.2, ymax=1.2,
+			samples=300,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-1,0,1},
+			legend style={at={(0.5,-0.18)},anchor=north,legend columns=2},
+			]
+			\addplot[thick, blue] {sin(deg(x))};
+			\addlegendentry{$\sin(x)$}
+			
+			\addplot[thick, red, dashed] {cos(deg(x))};
+			\addlegendentry{$\cos(x)$}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{The functions $\sin(x)$ and $\cos(x)$ are phase-shifted relative to one another.
+		However, what matters for orthogonality is not the visible distance between the curves,
+		but the integral over their product.}
+	\label{fig:sin_cos_orthogonalitaet}
+\end{figure}
+
+This becomes especially clear for the product \(\sin(x)\cos(x)\).
+This product has positive and negative regions.
+Over a symmetric interval, these contributions cancel one another.
+
+\[
+\int_{-\pi}^{\pi}\sin(x)\cos(x)\,dx=0.
+\]
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.36\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-0.6, ymax=0.6,
+			samples=300,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-0.5,0,0.5},
+			]
+			\addplot[thick, blue] {sin(deg(x))*cos(deg(x))};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{The product $\sin(x)\cos(x)$ has positive and negative regions.
+		Over the interval $[-\pi,\pi]$, these contributions cancel in the integral.
+		Thus $\sin(x)$ and $\cos(x)$ are orthogonal.}
+	\label{fig:sin_cos_produkt}
+\end{figure}
+
+This orthogonality is the decisive mechanism of Fourier analysis.
+It makes it possible to separate the individual frequency components of a function cleanly.
+
+\subsection{The Fourier Coefficients}
+
+Let \(f(x)\) be a periodic function with period \(2\pi\).
+It is represented by a Fourier series:
+\[
+f(x)=\frac{a_0}{2}
++\sum_{n=1}^{\infty}
+\left(a_n\cos(nx)+b_n\sin(nx)\right).
+\]
+
+The coefficients are obtained by multiplying the function by the appropriate basis functions
+and then integrating over one full period.
+
+For the constant part, one obtains:
+\[
+a_0=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\,dx.
+\]
+
+For the cosine coefficients:
+\[
+a_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)\,dx.
+\]
+
+For the sine coefficients:
+\[
+b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)\,dx.
+\]
+
+\begin{DidacticBox}[Why these formulas work]
+	\phantomsection\label{box:anhangA-fourier-koeffizienten}
+	\small
+	If the Fourier series is multiplied by \(\sin(nx)\) or \(\cos(nx)\)
+	and integrated over a full period,
+	all unrelated frequencies vanish because of orthogonality.
+	Only the desired component remains.
+	Fourier analysis therefore acts like a mathematical filter.
+\end{DidacticBox}
+
+\subsection{The Square Wave}
+
+As an example, we consider a simple square wave.
+It takes the value \(1\) on one half of the period and the value \(-1\) on the other half.
+
+\[
+f(x)=
+\begin{cases}
+	-1, & -\pi < x < 0,\\
+	\phantom{-}1, & 0 < x < \pi.
+\end{cases}
+\]
+
+This function is extended periodically with period \(2\pi\).
+
+The square wave is especially interesting from a didactic point of view.
+It has abrupt jumps and at first seems anything but harmonic.
+Nevertheless, it can be represented by a sum of smooth sine waves.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.36\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-1.4, ymax=1.4,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-1,0,1},
+			]
+			\addplot[thick, blue, const plot] coordinates {
+				(-3.1416,-1)
+				(0,-1)
+				(0,1)
+				(3.1416,1)
+			};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{A square wave has abrupt jumps.
+		That is precisely why it is an impressive example of the power of Fourier analysis.}
+	\label{fig:rechtecksignal}
+\end{figure}
+
+\subsection{Symmetry of the Square Wave}
+
+The chosen square wave is odd.
+This means:
+\[
+f(-x)=-f(x).
+\]
+
+Cosine functions are even:
+\[
+\cos(-x)=\cos(x).
+\]
+
+Sine functions are odd:
+\[
+\sin(-x)=-\sin(x).
+\]
+
+It follows that
+the square wave contains no cosine components.
+All coefficients \(a_n\) vanish:
+\[
+a_n=0.
+\]
+
+The constant mean value also vanishes:
+\[
+a_0=0.
+\]
+
+Thus only sine terms remain:
+\[
+f(x)=\sum_{n=1}^{\infty} b_n\sin(nx).
+\]
+
+\subsection{Calculation of the Sine Coefficients}
+
+The sine coefficients are
+\[
+b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)\,dx.
+\]
+
+Since both \(f(x)\) and \(\sin(nx)\) are odd,
+their product is even.
+Therefore, the integral can be simplified:
+\[
+b_n=\frac{2}{\pi}\int_{0}^{\pi}f(x)\sin(nx)\,dx.
+\]
+
+On the interval \(0<x<\pi\), we have \(f(x)=1\).
+Thus:
+\[
+b_n=\frac{2}{\pi}\int_{0}^{\pi}\sin(nx)\,dx.
+\]
+
+Now we integrate:
+\[
+\int \sin(nx)\,dx=-\frac{\cos(nx)}{n}.
+\]
+
+Therefore:
+\[
+b_n=\frac{2}{\pi}
+\left[
+-\frac{\cos(nx)}{n}
+\right]_{0}^{\pi}.
+\]
+
+Substituting the limits gives:
+\[
+b_n=\frac{2}{\pi}
+\left(
+-\frac{\cos(n\pi)}{n}
++\frac{\cos(0)}{n}
+\right).
+\]
+
+Since \(\cos(0)=1\), we obtain:
+\[
+b_n=\frac{2}{\pi n}
+\left(1-\cos(n\pi)\right).
+\]
+
+Using
+\[
+\cos(n\pi)=(-1)^n
+\]
+we get:
+\[
+b_n=\frac{2}{\pi n}
+\left(1-(-1)^n\right).
+\]
+
+For even \(n\),
+\[
+(-1)^n=1,
+\]
+and therefore:
+\[
+b_n=0.
+\]
+
+For odd \(n\),
+\[
+(-1)^n=-1,
+\]
+and therefore:
+\[
+b_n=\frac{4}{\pi n}.
+\]
+
+Thus:
+\[
+b_n=
+\begin{cases}
+	\frac{4}{\pi n}, & n \text{ odd},\\
+	0, & n \text{ even}.
+\end{cases}
+\]
+
+\subsection{The Fourier Series of the Square Wave}
+
+The Fourier series of the square wave is therefore:
+\[
+f(x)=\frac{4}{\pi}
+\left(
+\sin(x)
++\frac{1}{3}\sin(3x)
++\frac{1}{5}\sin(5x)
++\frac{1}{7}\sin(7x)
++\cdots
+\right).
+\]
+
+Or, in compact form:
+\[
+f(x)=\frac{4}{\pi}
+\sum_{k=0}^{\infty}
+\frac{1}{2k+1}
+\sin\left((2k+1)x\right).
+\]
+
+\begin{MathBox}[Fourier series of the square wave]
+	\phantomsection\label{box:anhangA-fourier-rechteckreihe}
+	\small
+	The square wave has the Fourier series
+	\[
+	f(x)=\frac{4}{\pi}
+	\left(
+	\sin(x)
+	+\frac{1}{3}\sin(3x)
+	+\frac{1}{5}\sin(5x)
+	+\frac{1}{7}\sin(7x)
+	+\cdots
+	\right).
+	\]
+	Only odd harmonics occur.
+	The amplitudes decrease proportionally to \(1/n\).
+\end{MathBox}
+
+\subsection{Approximation by a Finite Number of Terms}
+
+In practice, one does not use infinitely many terms,
+but only a finite number.
+The more terms are included,
+the better the sum approximates the square wave.
+
+\[
+S_1(x)=\frac{4}{\pi}\sin(x),
+\]
+
+\[
+S_3(x)=\frac{4}{\pi}
+\left(
+\sin(x)+\frac{1}{3}\sin(3x)
+\right),
+\]
+
+\[
+S_5(x)=\frac{4}{\pi}
+\left(
+\sin(x)+\frac{1}{3}\sin(3x)+\frac{1}{5}\sin(5x)
+\right).
+\]
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.42\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-1.6, ymax=1.6,
+			samples=500,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-1,0,1},
+			legend style={at={(0.5,-0.18)},anchor=north,legend columns=3},
+			]
+			\addplot[thick, blue] {(4/pi)*sin(deg(x))};
+			\addlegendentry{$S_1$}
+			
+			\addplot[thick, red, dashed] {(4/pi)*(sin(deg(x)) + (1/3)*sin(deg(3*x)))};
+			\addlegendentry{$S_3$}
+			
+			\addplot[thick, black, dotted] {(4/pi)*(sin(deg(x)) + (1/3)*sin(deg(3*x)) + (1/5)*sin(deg(5*x)) + (1/7)*sin(deg(7*x)) + (1/9)*sin(deg(9*x)))};
+			\addlegendentry{$S_9$}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Approximations of the square wave by an increasing number of sine waves.
+		As the number of terms increases, the rectangular shape becomes more distinct.}
+	\label{fig:rechtecksignal_fourier_naeherung}
+\end{figure}
+
+\subsection{Why Only Odd Harmonics Occur}
+
+The result reveals an important structure:
+In the square wave, only the frequencies
+\[
+1,\ 3,\ 5,\ 7,\ldots
+\]
+occur.
+
+These frequencies are called odd harmonics.
+Even harmonics are completely absent.
+
+The reason lies in the symmetry of the signal.
+The square wave is odd and also has a special half-wave symmetry.
+As a result, the even frequency components cancel exactly.
+
+Physically, this means:
+An idealized square wave contains not only a fundamental frequency,
+but infinitely many higher frequencies.
+The sharper the jump is meant to be,
+the more high-frequency components are required.
+
+\begin{PhysicsBox}[Square wave and bandwidth]
+	\small
+	\phantomsection\label{box:anhangA-fourier-bandbreite}
+	An ideal square wave theoretically contains infinitely many frequency components.
+	In real technical systems, however, bandwidth is limited.
+	For this reason, real square waves can never have perfectly sharp jumps.
+	Their edges are always somewhat rounded.
+\end{PhysicsBox}
+
+\subsection{The Gibbs Phenomenon}
+
+At the jump discontinuities of the square wave, a special behavior occurs.
+Even if more and more Fourier terms are included,
+a small overshoot at the jump discontinuity does not disappear completely.
+This behavior is called the Gibbs phenomenon.
+
+The approximation becomes better overall,
+but directly near the jump discontinuity a characteristic over- and undershoot remains.
+
+\begin{DidacticBox}[Gibbs phenomenon]
+	\small
+	\phantomsection\label{box:anhangA-fourier-gibbs}
+	For discontinuous functions, a Fourier series can overshoot near a jump discontinuity.
+	This overshoot becomes narrower as more terms are used,
+	but it does not disappear in its relative height.
+	This shows:
+	Fourier series describe discontinuous signals very effectively,
+	but jumps have a special mathematical structure.
+\end{DidacticBox}
+
+\subsection{Conclusion}
+
+The derivation using the square wave shows the power of Fourier analysis particularly clearly.
+A seemingly hard, discontinuous function can be composed of smooth sine waves.
+
+This makes visible:
+Complex forms can arise from simple mathematical building blocks.
+The square wave is therefore more than a technical example.
+It reveals a central idea of this book:
+
+\begin{NoteBox}[Order behind the form]
+	\small
+	\phantomsection\label{box:anhangA-fourier-ordnung-form}
+	Fourier analysis makes visible
+	that even seemingly abrupt or complicated structures
+	can be built from simple mathematical patterns.
+	It is therefore an impressive example of how mathematics reveals hidden order.
+\end{NoteBox}

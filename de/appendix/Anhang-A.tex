@@ -672,3 +672,537 @@ Dieser Zusammenhang ist für viele Wachstums- und Anordnungsprobleme bedeutsam.
 In Pflanzen erscheinen Fibonacci-Zahlen nicht deshalb, weil eine Pflanze \glqq rechnet\grqq{},
 sondern weil bestimmte Regeln der Platzverteilung und des Wachstums zu Spiralstrukturen führen,
 bei denen solche Zahlen häufig auftreten.
+% =====================================================
+% Anhang A: Mathematische Herleitung der Fourieranalyse
+% =====================================================
+
+\section{Herleitung der Fourieranalyse am Beispiel eines Rechtecksignals}
+\label{sec:anhang_fourieranalyse_rechtecksignal}
+
+\subsection{Ausgangspunkt: Periodische Funktionen}
+
+Viele Vorgänge in Natur und Technik wiederholen sich regelmäßig.
+Dazu gehören Schwingungen, Wellen, Töne, elektrische Signale oder periodische Bewegungen.
+Mathematisch beschreibt man solche Vorgänge durch periodische Funktionen.
+
+Eine Funktion \(f(x)\) heißt periodisch mit der Periode \(2\pi\), wenn gilt:
+\[
+f(x+2\pi)=f(x).
+\]
+
+Die zentrale Idee der Fourieranalyse besteht darin,
+eine solche periodische Funktion als Summe einfacher Schwingungen darzustellen.
+Die Grundbausteine sind Sinus- und Kosinusfunktionen.
+
+\begin{MathBox}[Grundidee der Fourieranalyse]
+	\small
+	\phantomsection\label{box:anhangA-fourier-grundidee}
+	Eine periodische Funktion kann unter geeigneten Bedingungen als Überlagerung
+	einfacher harmonischer Schwingungen geschrieben werden:
+	\[
+	f(x)=\frac{a_0}{2}
+	+\sum_{n=1}^{\infty}
+	\left(a_n\cos(nx)+b_n\sin(nx)\right).
+	\]
+	Die Zahlen \(a_n\) und \(b_n\) heißen Fourier-Koeffizienten.
+	Sie geben an, wie stark die jeweilige Schwingung im Signal enthalten ist.
+\end{MathBox}
+
+Diese Darstellung ist deshalb so mächtig,
+weil sie ein kompliziertes Signal in einfache Grundbestandteile zerlegt.
+Ein Ton, eine elektrische Spannung oder eine Lichtwelle kann dadurch nach Frequenzen analysiert werden.
+
+\subsection{Orthogonalität von Sinus und Kosinus}
+
+Der mathematische Kern der Fourieranalyse ist die Orthogonalität der trigonometrischen Funktionen.
+Der Begriff \emph{Orthogonalität} stammt ursprünglich aus der Geometrie.
+Zwei Vektoren stehen orthogonal aufeinander, wenn ihr Skalarprodukt verschwindet.
+
+Für Funktionen gibt es ein entsprechendes Konzept.
+Hier ersetzt ein Integral das Skalarprodukt zweier Vektoren.
+Für zwei Funktionen \(f(x)\) und \(g(x)\) betrachtet man:
+\[
+\int_{-\pi}^{\pi} f(x)g(x)\,dx.
+\]
+
+Ist dieses Integral gleich null, dann nennt man die beiden Funktionen orthogonal.
+Anschaulich bedeutet das:
+Die positiven und negativen Beiträge des Produkts heben sich über das betrachtete Intervall exakt auf.
+
+\begin{MathBox}[Orthogonalität von Funktionen]
+	\small
+	\phantomsection\label{box:anhangA-fourier-orthogonalitaet}
+	Zwei Funktionen \(f(x)\) und \(g(x)\) heißen auf dem Intervall
+	\([-\pi,\pi]\) orthogonal, wenn gilt:
+	\[
+	\int_{-\pi}^{\pi} f(x)g(x)\,dx=0.
+	\]
+	Dies ist das funktionale Gegenstück zum Skalarprodukt zweier senkrechter Vektoren.
+\end{MathBox}
+
+Für Sinus- und Kosinusfunktionen gelten die wichtigen Beziehungen:
+\[
+\int_{-\pi}^{\pi} \sin(mx)\sin(nx)\,dx=0
+\quad \text{für } m\neq n,
+\]
+\[
+\int_{-\pi}^{\pi} \cos(mx)\cos(nx)\,dx=0
+\quad \text{für } m\neq n,
+\]
+und
+\[
+\int_{-\pi}^{\pi} \sin(mx)\cos(nx)\,dx=0.
+\]
+
+Das bedeutet:
+Verschiedene Schwingungen stören sich bei der Koeffizientenberechnung nicht gegenseitig.
+Jede Frequenz kann gezielt aus dem Signal herausgefiltert werden.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.36\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-1.2, ymax=1.2,
+			samples=300,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-1,0,1},
+			legend style={at={(0.5,-0.18)},anchor=north,legend columns=2},
+			]
+			\addplot[thick, blue] {sin(deg(x))};
+			\addlegendentry{$\sin(x)$}
+			
+			\addplot[thick, red, dashed] {cos(deg(x))};
+			\addlegendentry{$\cos(x)$}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Die Funktionen $\sin(x)$ und $\cos(x)$ sind gegeneinander phasenverschoben.
+		Entscheidend für die Orthogonalität ist jedoch nicht der sichtbare Abstand der Kurven,
+		sondern das Integral über ihr Produkt.}
+	\label{fig:sin_cos_orthogonalitaet}
+\end{figure}
+
+Besonders anschaulich wird dies beim Produkt \(\sin(x)\cos(x)\).
+Dieses Produkt besitzt positive und negative Bereiche.
+Über ein symmetrisches Intervall heben sich diese Beiträge gegenseitig auf.
+
+\[
+\int_{-\pi}^{\pi}\sin(x)\cos(x)\,dx=0.
+\]
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.36\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-0.6, ymax=0.6,
+			samples=300,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-0.5,0,0.5},
+			]
+			\addplot[thick, blue] {sin(deg(x))*cos(deg(x))};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Das Produkt $\sin(x)\cos(x)$ besitzt positive und negative Bereiche.
+		Über das Intervall $[-\pi,\pi]$ heben sich diese Beiträge im Integral gegenseitig auf.
+		Daher sind $\sin(x)$ und $\cos(x)$ orthogonal.}
+	\label{fig:sin_cos_produkt}
+\end{figure}
+
+Diese Orthogonalität ist der entscheidende Mechanismus der Fourieranalyse.
+Sie erlaubt es, die einzelnen Frequenzanteile einer Funktion sauber voneinander zu trennen.
+
+\subsection{Die Fourier-Koeffizienten}
+
+Gegeben sei eine periodische Funktion \(f(x)\) mit Periode \(2\pi\).
+Sie werde durch eine Fourier-Reihe dargestellt:
+\[
+f(x)=\frac{a_0}{2}
++\sum_{n=1}^{\infty}
+\left(a_n\cos(nx)+b_n\sin(nx)\right).
+\]
+
+Die Koeffizienten erhält man durch gezieltes Multiplizieren mit den passenden Grundfunktionen
+und anschließendes Integrieren über eine vollständige Periode.
+
+Für den konstanten Anteil gilt:
+\[
+a_0=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\,dx.
+\]
+
+Für die Kosinus-Koeffizienten gilt:
+\[
+a_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)\,dx.
+\]
+
+Für die Sinus-Koeffizienten gilt:
+\[
+b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)\,dx.
+\]
+
+\begin{DidacticBox}[Warum diese Formeln funktionieren]
+	\phantomsection\label{box:anhangA-fourier-koeffizienten}
+	\small
+	Multipliziert man die Fourier-Reihe mit \(\sin(nx)\) oder \(\cos(nx)\)
+	und integriert über eine volle Periode,
+	dann verschwinden wegen der Orthogonalität alle fremden Frequenzen.
+	Übrig bleibt nur der gesuchte Anteil.
+	Die Fourieranalyse wirkt daher wie ein mathematischer Filter.
+\end{DidacticBox}
+
+\subsection{Das Rechtecksignal}
+
+Als Beispiel betrachten wir ein einfaches Rechtecksignal.
+Es nimmt auf einer Hälfte der Periode den Wert \(1\) und auf der anderen Hälfte den Wert \(-1\) an.
+
+\[
+f(x)=
+\begin{cases}
+	-1, & -\pi < x < 0,\\
+	\phantom{-}1, & 0 < x < \pi.
+\end{cases}
+\]
+
+Diese Funktion wird periodisch mit der Periode \(2\pi\) fortgesetzt.
+
+Das Rechtecksignal ist didaktisch besonders interessant.
+Es besitzt abrupte Sprünge und wirkt zunächst alles andere als harmonisch.
+Trotzdem kann es durch eine Summe glatter Sinusschwingungen dargestellt werden.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.36\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-1.4, ymax=1.4,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-1,0,1},
+			]
+			\addplot[thick, blue, const plot] coordinates {
+				(-3.1416,-1)
+				(0,-1)
+				(0,1)
+				(3.1416,1)
+			};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Ein Rechtecksignal besitzt abrupte Sprünge.
+		Gerade deshalb ist es ein eindrucksvolles Beispiel für die Leistungsfähigkeit der Fourieranalyse.}
+	\label{fig:rechtecksignal}
+\end{figure}
+
+\subsection{Symmetrie des Rechtecksignals}
+
+Das gewählte Rechtecksignal ist ungerade.
+Das bedeutet:
+\[
+f(-x)=-f(x).
+\]
+
+Kosinusfunktionen sind gerade:
+\[
+\cos(-x)=\cos(x).
+\]
+
+Sinusfunktionen sind ungerade:
+\[
+\sin(-x)=-\sin(x).
+\]
+
+Daraus folgt:
+Das Rechtecksignal enthält keine Kosinusanteile.
+Alle Koeffizienten \(a_n\) verschwinden:
+\[
+a_n=0.
+\]
+
+Auch der konstante Mittelwert verschwindet:
+\[
+a_0=0.
+\]
+
+Es bleiben also nur Sinus-Terme übrig:
+\[
+f(x)=\sum_{n=1}^{\infty} b_n\sin(nx).
+\]
+
+\subsection{Berechnung der Sinus-Koeffizienten}
+
+Die Sinus-Koeffizienten lauten:
+\[
+b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)\,dx.
+\]
+
+Da \(f(x)\) und \(\sin(nx)\) beide ungerade sind,
+ist ihr Produkt gerade.
+Deshalb kann man das Integral vereinfachen:
+\[
+b_n=\frac{2}{\pi}\int_{0}^{\pi}f(x)\sin(nx)\,dx.
+\]
+
+Im Bereich \(0<x<\pi\) gilt \(f(x)=1\).
+Damit folgt:
+\[
+b_n=\frac{2}{\pi}\int_{0}^{\pi}\sin(nx)\,dx.
+\]
+
+Nun integrieren wir:
+\[
+\int \sin(nx)\,dx=-\frac{\cos(nx)}{n}.
+\]
+
+Also:
+\[
+b_n=\frac{2}{\pi}
+\left[
+-\frac{\cos(nx)}{n}
+\right]_{0}^{\pi}.
+\]
+
+Einsetzen der Grenzen ergibt:
+\[
+b_n=\frac{2}{\pi}
+\left(
+-\frac{\cos(n\pi)}{n}
++\frac{\cos(0)}{n}
+\right).
+\]
+
+Da \(\cos(0)=1\), erhält man:
+\[
+b_n=\frac{2}{\pi n}
+\left(1-\cos(n\pi)\right).
+\]
+
+Mit
+\[
+\cos(n\pi)=(-1)^n
+\]
+folgt:
+\[
+b_n=\frac{2}{\pi n}
+\left(1-(-1)^n\right).
+\]
+
+Für gerade \(n\) gilt:
+\[
+(-1)^n=1,
+\]
+also:
+\[
+b_n=0.
+\]
+
+Für ungerade \(n\) gilt:
+\[
+(-1)^n=-1,
+\]
+also:
+\[
+b_n=\frac{4}{\pi n}.
+\]
+
+Damit erhält man:
+\[
+b_n=
+\begin{cases}
+	\frac{4}{\pi n}, & n \text{ ungerade},\\
+	0, & n \text{ gerade}.
+\end{cases}
+\]
+
+\subsection{Die Fourier-Reihe des Rechtecksignals}
+
+Damit lautet die Fourier-Reihe des Rechtecksignals:
+\[
+f(x)=\frac{4}{\pi}
+\left(
+\sin(x)
++\frac{1}{3}\sin(3x)
++\frac{1}{5}\sin(5x)
++\frac{1}{7}\sin(7x)
++\cdots
+\right).
+\]
+
+Oder kompakt:
+\[
+f(x)=\frac{4}{\pi}
+\sum_{k=0}^{\infty}
+\frac{1}{2k+1}
+\sin\left((2k+1)x\right).
+\]
+
+\begin{MathBox}[Fourier-Reihe des Rechtecksignals]
+	\phantomsection\label{box:anhangA-fourier-rechteckreihe}
+	\small
+	Das Rechtecksignal besitzt die Fourier-Reihe
+	\[
+	f(x)=\frac{4}{\pi}
+	\left(
+	\sin(x)
+	+\frac{1}{3}\sin(3x)
+	+\frac{1}{5}\sin(5x)
+	+\frac{1}{7}\sin(7x)
+	+\cdots
+	\right).
+	\]
+	Es treten nur ungerade Harmonische auf.
+	Die Amplituden fallen proportional zu \(1/n\).
+\end{MathBox}
+
+\subsection{Näherung durch endlich viele Terme}
+
+In der Praxis verwendet man nicht unendlich viele Terme,
+sondern nur eine endliche Anzahl.
+Je mehr Terme berücksichtigt werden,
+desto besser nähert sich die Summe dem Rechtecksignal an.
+
+\[
+S_1(x)=\frac{4}{\pi}\sin(x),
+\]
+
+\[
+S_3(x)=\frac{4}{\pi}
+\left(
+\sin(x)+\frac{1}{3}\sin(3x)
+\right),
+\]
+
+\[
+S_5(x)=\frac{4}{\pi}
+\left(
+\sin(x)+\frac{1}{3}\sin(3x)+\frac{1}{5}\sin(5x)
+\right).
+\]
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.42\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-1.6, ymax=1.6,
+			samples=500,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-1,0,1},
+			legend style={at={(0.5,-0.18)},anchor=north,legend columns=3},
+			]
+			\addplot[thick, blue] {(4/pi)*sin(deg(x))};
+			\addlegendentry{$S_1$}
+			
+			\addplot[thick, red, dashed] {(4/pi)*(sin(deg(x)) + (1/3)*sin(deg(3*x)))};
+			\addlegendentry{$S_3$}
+			
+			\addplot[thick, black, dotted] {(4/pi)*(sin(deg(x)) + (1/3)*sin(deg(3*x)) + (1/5)*sin(deg(5*x)) + (1/7)*sin(deg(7*x)) + (1/9)*sin(deg(9*x)))};
+			\addlegendentry{$S_9$}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Näherungen des Rechtecksignals durch immer mehr Sinusschwingungen.
+		Mit zunehmender Zahl der Terme wird die rechteckige Form immer deutlicher.}
+	\label{fig:rechtecksignal_fourier_naeherung}
+\end{figure}
+
+\subsection{Warum nur ungerade Harmonische auftreten}
+
+Das Ergebnis zeigt eine wichtige Struktur:
+Im Rechtecksignal treten nur die Frequenzen
+\[
+1,\ 3,\ 5,\ 7,\ldots
+\]
+auf.
+
+Diese Frequenzen heißen ungerade Harmonische.
+Gerade Harmonische fehlen vollständig.
+
+Der Grund liegt in der Symmetrie des Signals.
+Das Rechtecksignal ist ungerade und besitzt zusätzlich eine spezielle Halbwellen-Symmetrie.
+Dadurch löschen sich die geraden Frequenzanteile exakt aus.
+
+Physikalisch bedeutet das:
+Ein idealisiertes Rechtecksignal enthält nicht nur eine Grundfrequenz,
+sondern unendlich viele höhere Frequenzen.
+Je schärfer der Sprung sein soll,
+desto mehr hohe Frequenzen werden benötigt.
+
+\begin{PhysicsBox}[Rechtecksignal und Bandbreite]
+	\small
+	\phantomsection\label{box:anhangA-fourier-bandbreite}
+	Ein ideales Rechtecksignal besitzt theoretisch unendlich viele Frequenzanteile.
+	In realen technischen Systemen ist die Bandbreite jedoch begrenzt.
+	Deshalb können reale Rechtecksignale nie vollkommen scharfe Sprünge besitzen.
+	Die Kanten werden immer etwas abgerundet.
+\end{PhysicsBox}
+
+\subsection{Das Gibbs-Phänomen}
+
+An den Sprungstellen des Rechtecksignals tritt ein besonderes Verhalten auf.
+Auch wenn man immer mehr Fourier-Terme hinzunimmt,
+verschwindet ein kleines Überschwingen an der Sprungstelle nicht vollständig.
+Dieses Verhalten nennt man Gibbs-Phänomen.
+
+Die Näherung wird zwar insgesamt immer besser,
+aber direkt an der Sprungstelle bleibt ein charakteristisches Über- und Unterschwingen bestehen.
+
+\begin{DidacticBox}[Gibbs-Phänomen]
+	\small
+	\phantomsection\label{box:anhangA-fourier-gibbs}
+	Bei unstetigen Funktionen kann eine Fourier-Reihe in der Nähe einer Sprungstelle
+	überschwingen.
+	Dieses Überschwingen wird schmaler, wenn mehr Terme verwendet werden,
+	verschwindet aber in seiner relativen Höhe nicht vollständig.
+	Das zeigt:
+	Fourier-Reihen beschreiben auch unstetige Signale sehr wirkungsvoll,
+	aber Sprünge besitzen eine besondere mathematische Struktur.
+\end{DidacticBox}
+
+\subsection{Fazit}
+
+Die Herleitung am Rechtecksignal zeigt die Kraft der Fourieranalyse besonders deutlich.
+Eine scheinbar harte, unstetige Funktion lässt sich aus glatten Sinusschwingungen zusammensetzen.
+
+Damit wird sichtbar:
+Komplexe Formen können aus einfachen mathematischen Bausteinen entstehen.
+Das Rechtecksignal ist daher mehr als ein technisches Beispiel.
+Es zeigt eine zentrale Idee dieses Buches:
+
+\begin{NoteBox}[Ordnung hinter der Form]
+	\small
+		\phantomsection\label{box:anhangA-fourier-ordnung-form}
+	Die Fourieranalyse macht sichtbar,
+	dass auch scheinbar abrupte oder komplizierte Strukturen
+	aus einfachen mathematischen Grundmustern aufgebaut sein können.
+	Sie ist damit ein eindrucksvolles Beispiel dafür,
+	dass Mathematik verborgene Ordnung sichtbar macht.
+\end{NoteBox}
