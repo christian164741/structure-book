@@ -58,7 +58,7 @@ In fact, however, it is composed of several simple oscillations.
 % ============================================================
 % Figure 1: Complex waveform of a tone
 % ============================================================
-
+\FloatBarrier
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}
@@ -93,8 +93,8 @@ Only their superposition produces the complex waveform.
 % ============================================================
 % Figure 2: Decomposition into individual sine waves
 % ============================================================
-
-\begin{figure}[h]
+\FloatBarrier
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[
@@ -135,7 +135,7 @@ The seemingly complicated waveform suddenly appears ordered.
 % ============================================================
 % Figure 3: Frequency spectrum
 % ============================================================
-
+\FloatBarrier
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}
@@ -167,7 +167,8 @@ The seemingly complicated waveform suddenly appears ordered.
 	\caption{In the frequency domain, the hidden order of the signal becomes visible: a few frequency components determine its structure.}
 	\label{fig:frequenzspektrum}
 \end{figure}
-
+\newpage
+\noindent
 The original complicated waveform suddenly appears ordered
 in the frequency domain.
 We immediately recognize
@@ -245,7 +246,7 @@ how quickly an oscillation repeats.
 A low frequency has only a few oscillations per time interval,
 whereas a high frequency has many.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[
@@ -280,7 +281,8 @@ whereas a high frequency has many.
 	\caption{Frequency describes how quickly a periodic motion repeats.}
 	\label{fig:frequenzvergleich}
 \end{figure}
-
+\newpage
+\noindent
 % ============================================================
 % Figure 2: Different amplitudes
 % ============================================================
@@ -288,8 +290,8 @@ whereas a high frequency has many.
 The amplitude determines the strength of an oscillation.
 Large amplitudes correspond to stronger deflections,
 small amplitudes to weaker ones.
-
-\begin{figure}[h]
+\FloatBarrier
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[
@@ -332,8 +334,8 @@ small amplitudes to weaker ones.
 The phase describes the temporal shift of an oscillation.
 Two signals can have the same frequency
 but be shifted in time relative to each other.
-
-\begin{figure}[h]
+\FloatBarrier
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[
@@ -480,8 +482,8 @@ ultimately consist of a large number of superimposed frequencies.
 The following figure shows
 how two simple oscillations
 combine by superposition to form a more complex signal.
-
-\begin{figure}[h]
+\FloatBarrier
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[
@@ -640,7 +642,8 @@ that a mathematical order is hidden behind these signals.
 	waves,
 	and physical processes.
 \end{DidacticBox}
-
+\newpage
+\noindent
 A particularly striking example is the so-called square wave\index{square wave}.
 It has abrupt jumps and sharp transitions
 and therefore at first seems completely incompatible
@@ -653,8 +656,8 @@ can be approximated by the superposition of harmonic oscillations.
 % ============================================================
 % Figure: Square wave and Fourier approximation
 % ============================================================
-
-\begin{figure}[h]
+\FloatBarrier
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[
@@ -714,7 +717,8 @@ This makes visible
 how powerful Fourier's idea really was:
 Even seemingly irregular or abrupt structures
 can be traced back to simple mathematical oscillations.
-
+\newpage
+\noindent
 \begin{NoteBox}[Further exploration: square wave]
 	\small
 	\label{box:fourier-vertiefung-rechtecksignal}
@@ -760,12 +764,13 @@ This can be imagined in a way similar to a piece of music:
 While in the time domain we perceive only the overall sound,
 the frequency domain shows
 which individual tones and overtones are contained in it.
-
+\newpage
+\noindent
 % ============================================================
 % Figure: Time domain and frequency domain
 % ============================================================
-
-\begin{figure}[h]
+\FloatBarrier
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
 		
@@ -863,7 +868,8 @@ often contain a hidden mathematical order.
 	Fourier analysis connects both perspectives
 	and thereby makes hidden structures visible.
 \end{NoteBox}
-
+\newpage
+\noindent
 \subsection{Applications of Fourier Analysis}
 
 \subsubsection*{Music and Acoustics}
@@ -1026,7 +1032,7 @@ of a Fourier approximation at a sudden change in a signal.
 The more Fourier components are used,
 the smoother the regions between the jumps become.
 However, the overshoots at the jump discontinuities remain characteristic.
-
+\FloatBarrier
 % ============================================================
 % Figure: Gibbs phenomenon
 % ============================================================
@@ -1109,7 +1115,8 @@ In an electroencephalogram\index{electroencephalogram} (EEG\index{EEG}),
 electrical voltages are measured at the surface of the head.
 These signals consist of different frequency components
 that are associated with different activity states of the brain.
-
+\newpage
+\noindent
 For example, one distinguishes:
 
 \begin{itemize}
@@ -1279,7 +1286,7 @@ and keep disturbances as small as possible.
 % ============================================================
 % Figure: Frequency channels in communication
 % ============================================================
-
+\FloatBarrier
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}
