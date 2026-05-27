@@ -2,7 +2,7 @@
 
 \usepackage[
 margin=0in,
-paperwidth=12.6825in,  % 6.125 + 0.4325 + 6.125  (CREAM, 173 pages)
+paperwidth=12.705in,  % 6.125 + 0.455 + 6.125  (WHITE, 202 pages)
 paperheight=9.25in
 ]{geometry}
 
@@ -14,7 +14,7 @@ paperheight=9.25in
 
 % Dimensions
 \newlength{\panel}\setlength{\panel}{6.125in}    % each side including bleed
-\newlength{\spine}\setlength{\spine}{0.4325in}   % spine width (cream paper, 173 pages)
+\newlength{\spine}\setlength{\spine}{0.455in}    % spine width (white paper, 202 pages)
 
 % Colors
 \definecolor{coverblue}{HTML}{1E4A66}  % spine text color
@@ -25,6 +25,7 @@ paperheight=9.25in
 
 \begin{document}
 	\begin{tikzpicture}[remember picture,overlay]
+		
 		% Page reference
 		\coordinate (SW) at (current page.south west);
 		
@@ -43,6 +44,12 @@ paperheight=9.25in
 		% Spine text, rotated 90 degrees and centered
 		\node[rotate=90, align=center, text=coverblue]
 		at ($(SW)+(\panel+0.5\spine,0.5*9.25in)$)
-		{\bfseries\normalsize Christian Weilharter \hspace*{0.8cm} \bfseries\normalsize The Structure of the World};
+		{
+			\bfseries\normalsize
+			Christian Weilharter
+			\hspace*{0.8cm}
+			The Structure of the World
+		};
+		
 	\end{tikzpicture}
 \end{document}
