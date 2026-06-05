@@ -13,8 +13,14 @@ paperheight=9.25in
 \pagestyle{empty}
 
 % Dimensions
-\newlength{\panel}\setlength{\panel}{6.125in}    % each side including bleed
-\newlength{\spine}\setlength{\spine}{0.455in}    % spine width (white paper, 202 pages)
+\newlength{\panel}
+\setlength{\panel}{6.125in}    % each side including bleed
+
+\newlength{\spine}
+\setlength{\spine}{0.455in}    % spine width (white paper, 202 pages)
+
+\newlength{\coverheight}
+\setlength{\coverheight}{9.25in}
 
 % Colors
 \definecolor{coverblue}{HTML}{1E4A66}  % spine text color
@@ -24,6 +30,7 @@ paperheight=9.25in
 \definecolor{spinebg}{HTML}{E6D8B9} % warm beige, slightly stronger
 
 \begin{document}
+	
 	\begin{tikzpicture}[remember picture,overlay]
 		
 		% Page reference
@@ -31,19 +38,22 @@ paperheight=9.25in
 		
 		% --- Back cover on the left ---
 		\node[anchor=south west, inner sep=0pt] at (SW)
-		{\includegraphics[width=\panel,height=9.25in]{rueckseite.pdf}};
+		{\includegraphics[width=\panel,height=\coverheight]{rueckseite.pdf}};
+		
+		% --- Spine in the center ---
+		\fill[spinebg] 
+		($(SW)+(\panel,0)$) 
+		rectangle 
+		++(\spine,\coverheight);
 		
 		% --- Front cover on the right ---
 		\node[anchor=south west, inner sep=0pt]
 		at ($(SW)+(\panel+\spine,0)$)
-		{\includegraphics[width=\panel,height=9.25in]{vorderseite.pdf}};
+		{\includegraphics[width=\panel,height=\coverheight]{vorderseite.pdf}};
 		
-		% --- Spine in the center ---
-		\fill[spinebg] ($(SW)+(\panel,0)$) rectangle ++(\spine,9.25in);
-		
-		% Spine text, rotated 90 degrees and centered
+		% --- Spine text, rotated 90 degrees and centered ---
 		\node[rotate=90, align=center, text=coverblue]
-		at ($(SW)+(\panel+0.5\spine,0.5*9.25in)$)
+		at ($(SW)+(\panel+0.5*\spine,0.5*\coverheight)$)
 		{
 			\bfseries\normalsize
 			Christian Weilharter
@@ -51,5 +61,22 @@ paperheight=9.25in
 			The Structure of the World
 		};
 		
+		% -------------------------------------------------
+		% Kontrolllinien: später auskommentieren
+		% -------------------------------------------------
+		
+		% Linke Rückenkante
+		%\draw[red, line width=0.3pt] 
+	%	($(SW)+(\panel,0)$) -- ($(SW)+(\panel,\coverheight)$);
+		
+		% Rechte Rückenkante
+		%\draw[red, line width=0.3pt] 
+		%($(SW)+(\panel+\spine,0)$) -- ($(SW)+(\panel+\spine,\coverheight)$);
+		
+		% Rückenmitte
+		%\draw[blue, line width=0.3pt] 
+		%($(SW)+(\panel+0.5*\spine,0)$) -- ($(SW)+(\panel+0.5*\spine,\coverheight)$);
+		
 	\end{tikzpicture}
+	
 \end{document}

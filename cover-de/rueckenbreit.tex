@@ -1,4 +1,5 @@
 \documentclass{article}
+
 \usepackage[
 margin=0in,
 paperwidth=12.723in,  % 6.125 + 0.473 + 6.125  (WEISS, 210 Seiten)
@@ -12,8 +13,14 @@ paperheight=9.25in
 \pagestyle{empty}
 
 % Maße
-\newlength{\panel}\setlength{\panel}{6.125in}    % jede Seite inkl. Bleed
-\newlength{\spine}\setlength{\spine}{0.473in}    % Rückenbreite (Weiß, 210 Seiten)
+\newlength{\panel}
+\setlength{\panel}{6.125in}     % Rückseite/Vorderseite inkl. Bleed
+
+\newlength{\spine}
+\setlength{\spine}{0.473in}     % Rückenbreite
+
+\newlength{\coverheight}
+\setlength{\coverheight}{9.25in}
 
 % Farben
 \definecolor{coverblue}{HTML}{1E4A66}
@@ -23,30 +30,54 @@ paperheight=9.25in
 	
 	\begin{tikzpicture}[remember picture,overlay]
 		
-		% Seitenreferenzen
+		% Seitenreferenz
 		\coordinate (SW) at (current page.south west);
 		
-		% --- Rückseite links ---
-		\node[anchor=south west, inner sep=0pt] at (SW)
-		{\includegraphics[width=\panel,height=9.25in]{rueckseite.pdf}};
+		% -------------------------------------------------
+		% Rückseite links
+		% -------------------------------------------------
+		\node[anchor=south west, inner sep=0pt] 
+		at (SW)
+		{\includegraphics[width=\panel,height=\coverheight]{rueckseite.pdf}};
 		
-		% --- Vorderseite rechts ---
-		\node[anchor=south west, inner sep=0pt]
+		% -------------------------------------------------
+		% Rücken exakt zwischen Rückseite und Vorderseite
+		% -------------------------------------------------
+		\fill[spinebg] 
+		($(SW)+(\panel,0)$) 
+		rectangle 
+		++(\spine,\coverheight);
+		
+		% -------------------------------------------------
+		% Vorderseite rechts
+		% -------------------------------------------------
+		\node[anchor=south west, inner sep=0pt] 
 		at ($(SW)+(\panel+\spine,0)$)
-		{\includegraphics[width=\panel,height=9.25in]{vorderseite.pdf}};
+		{\includegraphics[width=\panel,height=\coverheight]{vorderseite.pdf}};
 		
-		% --- Rücken mittig ---
-		\fill[spinebg] ($(SW)+(\panel,0)$) rectangle ++(\spine,9.25in);
-		
-		% --- Rücken-Text ---
+		% -------------------------------------------------
+		% Rücken-Text exakt auf Rückenmitte
+		% -------------------------------------------------
 		\node[rotate=90, align=center, text=coverblue]
-		at ($(SW)+(\panel+0.5\spine,0.5*9.25in)$)
+		at ($(SW)+(\panel+0.5*\spine,0.5*\coverheight)$)
 		{
-			\bfseries\normalsize
+			\bfseries\large
 			Christian Weilharter
-			\hspace*{0.8cm}
+			\hspace*{1.5cm}
 			Die Struktur der Welt
 		};
+		
+		% -------------------------------------------------
+		% Kontrolllinien: später auskommentieren
+		% -------------------------------------------------
+		%\draw[red, line width=0.3pt] 
+	%	($(SW)+(\panel,0)$) -- ($(SW)+(\panel,\coverheight)$);
+		
+		%\draw[red, line width=0.3pt] 
+	%	($(SW)+(\panel+\spine,0)$) -- ($(SW)+(\panel+\spine,\coverheight)$);
+		
+	%	\draw[blue, line width=0.3pt] 
+	%	($(SW)+(\panel+0.5*\spine,0)$) -- ($(SW)+(\panel+0.5*\spine,\coverheight)$);
 		
 	\end{tikzpicture}
 	
