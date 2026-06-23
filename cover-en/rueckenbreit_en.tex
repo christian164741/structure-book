@@ -38,7 +38,11 @@ paperheight=9.25in
 		
 		% --- Back cover on the left ---
 		\node[anchor=south west, inner sep=0pt] at (SW)
-		{\includegraphics[width=\panel,height=\coverheight]{rueckseite.pdf}};
+		{\includegraphics[
+			width=\panel,
+			height=\coverheight,
+			pagebox=mediabox
+			]{rueckseite_en.pdf}};
 		
 		% --- Spine in the center ---
 		\fill[spinebg] 
@@ -49,32 +53,36 @@ paperheight=9.25in
 		% --- Front cover on the right ---
 		\node[anchor=south west, inner sep=0pt]
 		at ($(SW)+(\panel+\spine,0)$)
-		{\includegraphics[width=\panel,height=\coverheight]{vorderseite.pdf}};
+		{\includegraphics[
+			width=\panel,
+			height=\coverheight,
+			pagebox=mediabox
+			]{vorderseite_en.pdf}};
 		
 		% --- Spine text, rotated 90 degrees and centered ---
 		\node[rotate=90, align=center, text=coverblue]
 		at ($(SW)+(\panel+0.5*\spine,0.5*\coverheight)$)
 		{
-			\bfseries\normalsize
+			\bfseries\large
 			Christian Weilharter
-			\hspace*{0.8cm}
+			\hspace*{1.5cm}
 			The Structure of the World
 		};
 		
-		% -------------------------------------------------
-		% Kontrolllinien: später auskommentieren
+		 -------------------------------------------------
+		%% Kontrolllinien: später auskommentieren
 		% -------------------------------------------------
 		
 		% Linke Rückenkante
 		%\draw[red, line width=0.3pt] 
 	%	($(SW)+(\panel,0)$) -- ($(SW)+(\panel,\coverheight)$);
 		
-		% Rechte Rückenkante
-		%\draw[red, line width=0.3pt] 
-		%($(SW)+(\panel+\spine,0)$) -- ($(SW)+(\panel+\spine,\coverheight)$);
+	%	 Rechte Rückenkante
+	%	\draw[red, line width=0.3pt] 
+	%	($(SW)+(\panel+\spine,0)$) -- ($(SW)+(\panel+\spine,\coverheight)$);
 		
-		% Rückenmitte
-		%\draw[blue, line width=0.3pt] 
+	%	 Rückenmitte
+	%	\draw[blue, line width=0.3pt] 
 		%($(SW)+(\panel+0.5*\spine,0)$) -- ($(SW)+(\panel+0.5*\spine,\coverheight)$);
 		
 	\end{tikzpicture}

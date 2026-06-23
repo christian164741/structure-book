@@ -38,7 +38,11 @@ paperheight=9.25in
 		% -------------------------------------------------
 		\node[anchor=south west, inner sep=0pt] 
 		at (SW)
-		{\includegraphics[width=\panel,height=\coverheight]{rueckseite.pdf}};
+		{\includegraphics[
+			width=\panel,
+			height=\coverheight,
+			pagebox=mediabox
+			]{rueckseite.pdf}};
 		
 		% -------------------------------------------------
 		% Rücken exakt zwischen Rückseite und Vorderseite
@@ -53,7 +57,11 @@ paperheight=9.25in
 		% -------------------------------------------------
 		\node[anchor=south west, inner sep=0pt] 
 		at ($(SW)+(\panel+\spine,0)$)
-		{\includegraphics[width=\panel,height=\coverheight]{vorderseite.pdf}};
+		{\includegraphics[
+			width=\panel,
+			height=\coverheight,
+			pagebox=mediabox
+			]{vorderseite.pdf}};
 		
 		% -------------------------------------------------
 		% Rücken-Text exakt auf Rückenmitte
