@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[margin=0in,
+paperwidth=12.7975in,  % 6.125 + 0.5475 + 6.125  (CREAM, 219 pages)
+paperheight=9.25in
+]{geometry}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{xcolor}
+\pagestyle{empty}
+
+% Dimensions
+\newlength{\panel}\setlength{\panel}{6.125in}    % each side incl. bleed
+\newlength{\spine}\setlength{\spine}{0.5475in}   % spine width (Cream, 219 pages)
+
+% Colors
+\definecolor{coverblue}{HTML}{1E4A66}  % Spine/title color
+\definecolor{spinebg}{HTML}{E6D8B9}    % Warm beige, slightly stronger
+
+\begin{document}
+	\begin{tikzpicture}[remember picture,overlay]
+		% Page reference
+		\coordinate (SW) at (current page.south west);
+		
+		% --- Back cover left ---
+		\node[anchor=south west, inner sep=0pt] at (SW)
+		{\includegraphics[width=\panel,height=9.25in]{backcover.pdf}};
+		
+		% --- Front cover right ---
+		\node[anchor=south west, inner sep=0pt]
+		at ($(SW)+(\panel+\spine,0)$)
+		{\includegraphics[width=\panel,height=9.25in]{frontcover.pdf}};
+		
+		% --- Spine in the middle ---
+		\fill[spinebg] ($(SW)+(\panel,0)$) rectangle ++(\spine,9.25in);
+		
+		% Spine text (rotated 90°, centered)
+		\node[rotate=90, align=center, text=coverblue]
+		at ($(SW)+(\panel+0.5\spine,0.5*9.25in)$)
+		{\bfseries \large PHOTON \\[-2pt] \normalsize Theory and Applications \\[2pt] \bfseries Christian Weilharter};
+	\end{tikzpicture}
+\end{document}

@@ -1,0 +1,1040 @@
+\chapter{Mathematics in the Twenty-First Century}
+\label{chap:IX_21st_century}
+
+% =====================================================
+% 9.1 Mathematics in a New Era
+% =====================================================
+
+\subsection{Mathematics in a New Era}
+
+Mathematics is often regarded as the very embodiment of the timeless.
+It works with definitions, axioms, and proofs;
+its truths seem independent of fashion, technology, or historical period.
+This image is correct -- but it captures only part of what mathematics is today.
+
+For in the twenty-first century, mathematical practice has expanded considerably.
+Computers no longer serve merely as calculation aids,
+but as tools for exploring complex structures.
+For example, fractal objects such as the Mandelbrot set or Julia sets
+can be investigated with high precision;
+with every magnification, new forms and self-similarities appear
+that would hardly be accessible without computer-assisted visualization.
+In dynamical systems and differential equations as well,
+simulations make relationships visible
+long before a complete analytic description is available.
+Numerical experiments thus lead to new conjectures,
+visualizations open access to abstract objects,
+and formal systems can check even extensive proof steps.
+In addition, artificial intelligence methods can organize,
+structure, and to some extent support the development of mathematical content.
+
+None of this changes mathematics at its core.
+Proof remains the decisive criterion of mathematical validity.
+What has changed, however, is the path toward it.
+Between the first idea and secured insight,
+there are now often computer calculations,
+numerical tests,
+algorithmic pattern recognition,
+and formal verification.
+Mathematics has thereby become not only the science of rigorous proof,
+but also the science of discovery,
+modeling,
+and systematic exploration.
+
+Precisely for this reason, it is indispensable for modern science.
+In physics, mathematical structures do not merely describe observations,
+but often the deeper order behind them.
+Symmetries, fields, quantum states, information, and dynamics
+become precisely formulable only through mathematical concepts.
+In computer science, engineering, and data analysis as well,
+it becomes clear that mathematics is not merely an auxiliary tool,
+but the actual medium
+in which structure is recognized and made usable.
+
+With this development, however, the demands on clarity and responsibility also increase.
+Not every piece of numerical evidence is already a proof.
+Not every detected pattern withstands mathematical examination.
+And not every linguistically convincing result is true.
+Especially when dealing with computers and artificial intelligence,
+one must therefore clearly distinguish between conjecture,
+calculation,
+verification,
+and proof.
+The more powerful the tools become,
+the more important human judgment becomes.
+
+The mathematics of the twenty-first century is therefore neither merely traditional nor merely technological.
+It remains faithful to its inner rigor
+and at the same time expands its reach.
+It is older than ever in its foundations
+and newer than ever in its methods.
+Precisely in this lies its continuing power:
+mathematics remains the science of structure --
+and in the twenty-first century, this structure becomes visible in new ways.
+
+% =====================================================
+% 9.2 Gödel and the Limits of Formal Systems
+% =====================================================
+
+\subsection{Gödel and the Limits of Formal Systems}
+
+At the beginning of the twentieth century,
+there grew within mathematics -- not least in the environment of David Hilbert --
+the hope of securing its foundations completely.
+The goal was to show
+that all mathematical truths could be derived
+from a clear system of axioms and rules.
+Such a formal system was to be consistent,
+unambiguous,
+and as complete as possible:
+every mathematical statement should be either provable or refutable within the system.
+
+In 1931, Kurt Gödel intervened in this hope with a result
+that belongs to the deepest insights of modern mathematics.
+He showed that in every sufficiently powerful consistent formal system,
+there exist statements
+that can neither be proved nor disproved within that system.
+Thus it became clear:
+formal systems can be extraordinarily powerful,
+but they do not capture every mathematical truth completely from within themselves.
+
+The basic idea is surprising at first.
+Gödel found a way to encode statements
+so that a system can, in a sense, speak about its own proofs.
+In doing so, he constructed a statement
+which, roughly speaking, says that it is not provable in this system.
+If the system is consistent,
+then it can neither prove nor disprove this statement
+without endangering its own consistency.
+Precisely in this way, the limit of the system becomes visible.
+
+Later, more natural examples of such independence were also found.
+A well-known example is Goodstein's theorem:
+a concrete statement about sequences of numbers
+that is provable in stronger systems,
+but not in Peano arithmetic.
+This shows particularly clearly
+that the issue is not only artificial self-reference,
+but genuine mathematical statements
+that exceed the reach of a formal system.
+
+Even more fundamental is Gödel's second incompleteness theorem.
+Simplified, it states that
+a sufficiently powerful consistent system
+cannot prove its own consistency
+using only the means of that system.
+Here, too, what becomes visible is not weakness in the everyday sense,
+but a structural limit of what can be formalized.
+
+These insights are often misunderstood.
+Gödel did not show
+that everything in mathematics is ``uncertain''
+or that truth becomes arbitrary.
+Nor did he prove
+that human thought fundamentally stands above every formal method.
+His theorems show something much more precise:
+even the limits of formal systems
+can be made mathematically visible.
+
+Precisely in this lies their philosophical significance.
+Mathematics here does not encounter a vague boundary of knowledge,
+but a precisely describable boundary of formalizability.
+It therefore discovers not only structures within its systems,
+but also the conditions and limitations of these systems themselves.
+
+For the twenty-first century, this insight remains highly relevant.
+For the more strongly mathematics works with computers,
+formal proof systems,
+and algorithmic procedures,
+the more important the question becomes
+of what formal methods can achieve --
+and what they cannot.
+Gödel reminds us
+that formal rigor is irreplaceable,
+but must not be confused with absolute completeness.
+
+Mathematics is therefore neither an arbitrary game with symbols
+nor a completely closed system.
+It is an open, rigorously structured field of knowledge
+that can reflect on its own possibilities and limits
+with unusual precision.
+Precisely in this capacity for self-limitation
+its intellectual greatness becomes visible.
+
+\begin{DidacticBox}[The Real Point of Gödel]
+	\phantomsection\label{box:godel-point}
+	Gödel does not show that mathematics is uncertain or arbitrary.
+	He shows something much deeper:
+	even rigorous formal systems have internal limits.
+	Precisely therein lies the philosophical significance of his theorems.
+	Mathematics describes not only the structure of the world,
+	but also recognizes the structure of its own limits.
+\end{DidacticBox}
+
+% =====================================================
+% 9.3 Computers and Proof
+% =====================================================
+
+\subsection{Computers and Proof}
+
+For centuries, mathematical proof was regarded as a purely mental act.
+A theorem was formulated,
+derived using known methods,
+and finally proved in a comprehensible chain of conclusions.
+This ideal has not disappeared,
+but with the use of computers,
+mathematical practice has changed considerably.
+
+Computers have long ceased to serve in mathematics only for carrying out long calculations faster.
+They can systematically check large case distinctions,
+perform extensive symbolic transformations,
+and verify individual steps in formal proofs.
+This makes results accessible
+that would be difficult or possible only with disproportionate effort by hand.
+
+A particularly well-known example is the four color theorem.
+It states that every map in the plane
+can be colored with at most four colors
+so that neighboring regions receive different colors.
+The proof presented in 1976 showed for the first time with great clarity
+what new role computers could play in mathematics.
+An essential part of the proof consisted in systematically checking
+a very large number of possible configurations --
+a task that would have been practically impossible without computers.
+
+Precisely in this example,
+a fundamental question became visible:
+What is a mathematical proof
+if no human being can fully check every single step by hand anymore?
+The mathematical idea of the proof remained human,
+but its execution was partly delegated to the computer.
+This was exactly what initially caused noticeable unease
+among many mathematicians.
+
+This development, however, has not abolished the concept of proof,
+but sharpened it.
+A numerical result alone is not yet a proof.
+Nor is a large number of checked individual cases sufficient by itself.
+Only when it is clear
+why a procedure covers all relevant possibilities
+and works logically correctly
+does a mathematical proof in the proper sense emerge.
+
+At the same time, the computer has made mathematics more productive.
+It helps not only in checking completed proofs,
+but also in finding patterns,
+testing conjectures,
+and exploring possible proof strategies.
+In this sense, it is not merely a technical aid,
+but a new tool of mathematical knowledge.
+
+Nevertheless, responsibility remains with the human being.
+The computer does not understand truth in the mathematical sense;
+it executes procedures.
+Which concepts are chosen,
+which assumptions are made,
+and which conclusions are drawn from them
+remain matters of mathematical judgment.
+Precisely for this reason, dealing with computers shows especially clearly:
+proof remains the center of mathematics,
+even if its practical form has taken on new shapes today.
+
+\begin{DidacticBox}[Computers and Proof]
+	\phantomsection\label{box:computer-proof}
+	Computers can support mathematical proofs,
+	check extensive case distinctions,
+	and verify formal steps.
+	They do not replace proof, however.
+	A mathematical result becomes a proof only when it is clear
+	why the procedure used covers all relevant cases
+	and works logically correctly.
+\end{DidacticBox}
+
+% =====================================================
+% 9.4 Simulation and Experimental Mathematics
+% =====================================================
+
+\subsection{Simulation and Experimental Mathematics}
+
+The classical image of mathematics emphasizes above all the completed proof.
+At the end stands a theorem that is logically secured.
+The path toward it often appears straightforward:
+definition, calculation, conclusion.
+In actual mathematical work, however,
+this path is often less direct.
+Especially in the twentieth and twenty-first centuries,
+it has become increasingly clear
+that many mathematical insights do not begin with proof,
+but with observation, conjecture, and systematic exploration.
+
+This is where experimental mathematics comes into play.
+What is meant by this is not mathematics
+in the physical sense of the word ``experiment,''
+but the computer-assisted investigation of mathematical structures.
+Number sequences are calculated,
+functions are visualized,
+parameters are varied,
+boundary cases are tested,
+and patterns are sought.
+In this way, conjectures arise
+that can later be precisely formulated
+and, in the best case, proved.
+
+Fractal structures such as the Mandelbrot set or Julia sets provide an intuitive example.
+Their mathematical definition is often surprisingly simple,
+but their geometric form becomes fully visible
+only through computer-assisted visualization.
+With every magnification,
+new forms, repetitions, and fine self-similarities appear.
+Here the computer proves nothing in the strict sense,
+but it makes structures visible
+that first raise mathematical questions.
+
+Simulations also play a central role
+in the study of dynamical systems.
+Even simple nonlinear equations can generate behavior
+that is analytically difficult to survey.
+Computer-assisted simulations then show
+whether solutions remain stable,
+oscillate,
+become chaotic,
+or depend sensitively on initial conditions.
+Such observations do not replace proof,
+but they give mathematical intuition a direction.
+
+Precisely therein lies the strength of experimental mathematics.
+It expands the space of the thinkable.
+It makes it possible to explore structures
+before they are fully understood.
+It helps distinguish conjectures from mere coincidences
+and to search for regularities in a targeted way.
+The computer thus becomes an instrument of mathematical discovery.
+
+Nevertheless, a clear boundary remains.
+Even a thousand examples are not yet a proof.
+A numerical agreement can mislead,
+a visible pattern can later turn out to be accidental,
+and a simulation can be misleading
+because of rounding errors,
+model assumptions,
+or unnoticed restrictions.
+Precisely for this reason,
+experimental mathematics demands the same intellectual discipline
+as any other mathematical work:
+clear concepts,
+critical examination,
+and the will to turn conjectures into genuine proofs.
+
+The mathematics of the twenty-first century is therefore not only a science of certain knowledge,
+but also a science of systematic exploration.
+Simulation and experimental procedures open up new paths
+without abandoning the classical demand for provability.
+They show
+that mathematical knowledge often begins where structures first become visible --
+and only later are fully understood.
+
+\begin{DidacticBox}[Experimental Mathematics]
+	\phantomsection\label{box:experimental-mathematics}
+	Simulations, visualizations, and numerical experiments
+	can make mathematical structures visible
+	and lead to new conjectures.
+	They do not replace proof.
+	Their strength lies not in final certainty,
+	but in the systematic exploration of what is mathematically possible.
+\end{DidacticBox}
+
+% =====================================================
+% 9.5 AI as a Tool -- Patterns, Assistance, and Hallucinations
+% =====================================================
+
+\subsection{AI as a Tool -- Patterns, Assistance, and Hallucinations}
+
+With the emergence of powerful artificial intelligence systems,
+the mathematical working world has changed as well.
+AI can structure texts,
+explain concepts,
+generate examples,
+suggest calculation steps,
+formulate code,
+and organize large amounts of information in a short time.
+It thereby becomes a new tool for many people
+in learning,
+in formulating,
+and to some degree also in mathematical work itself.
+
+Precisely here lies its practical value.
+AI can help find a first approach to a topic,
+summarize known methods,
+compare different representations of a problem,
+or turn vague questions into a clearer structure.
+It can provide impulses for thinking,
+offer alternative formulations,
+and support numerical or symbolic experiments.
+In this sense, it extends the reach of human work,
+much as earlier mathematical tools expanded the handling of calculation,
+symbolism,
+or visualization.
+
+Yet precisely because AI often appears linguistically convincing,
+its limits are especially important.
+An AI system does not understand mathematical truth in the proper sense.
+It recognizes patterns in data,
+generates probable continuations,
+and can thereby formulate results
+that appear correct,
+but are factually false or incomplete.
+Such errors are often called hallucinations:
+plausible, well-formulated,
+but factually incorrect statements.
+
+In mathematics, this danger is especially great.
+For linguistic plausibility is not enough there.
+A suggested calculation path may contain an error in an inconspicuous place,
+a definition may be used imprecisely,
+a proof may contain a hidden gap,
+and a formally elegant-sounding explanation may still miss the core.
+Precisely because mathematical language must be precise,
+the impression of certainty can be deceptive.
+
+For this reason, AI must not be misunderstood in mathematics as a source of truth.
+Its value does not lie in replacing proofs
+or automatically guaranteeing correctness.
+Rather, its value lies in support:
+in organizing,
+formulating,
+exploring,
+finding perspectives,
+and making possible connections visible.
+Responsibility for concepts,
+assumptions,
+conclusions,
+and proofs,
+however, remains with the human being.
+
+Thus AI changes mathematics not in its essence,
+but certainly in its practice.
+It accelerates access,
+facilitates first steps,
+and can significantly increase productivity.
+At the same time, however,
+it makes an old insight even more urgent:
+the more powerful a tool becomes,
+the more important judgment,
+control,
+and conceptual clarity become.
+Especially in dealing with artificial intelligence,
+it becomes particularly clear
+that mathematical knowledge requires more than linguistic elegance --
+it requires truth,
+justification,
+and responsibility.
+
+\begin{DidacticBox}[AI and Mathematical Truth]
+	\phantomsection\label{box:ai-truth}
+	Artificial intelligence can support mathematical work,
+	but it does not guarantee truth.
+	Its strength lies in structuring, formulating, and exploring;
+	its weakness lies in the lack of conceptual and logical reliability.
+	Precisely for this reason, mathematical responsibility always remains with the human being.
+\end{DidacticBox}
+
+% =====================================================
+% 9.6 Responsibility in the Age of Intelligent Tools
+% =====================================================
+
+\subsection{Responsibility in the Age of Intelligent Tools}
+
+The expansion of mathematical possibilities through computers,
+simulations,
+and artificial intelligence is a major gain.
+Many problems can be addressed more quickly,
+complex structures become visible,
+conjectures can be tested systematically,
+and results can be generated at previously unreachable speed.
+Precisely therein lies the strength of modern tools:
+they expand the reach of mathematical work.
+
+But with this expansion, responsibility also grows.
+For a tool is not responsible for the truth of its results.
+It executes procedures,
+processes data,
+generates patterns,
+or formulates suggestions.
+Whether these results are meaningful,
+correct,
+complete,
+or misleading
+must still be judged by human beings.
+The more powerful the tools become,
+the less their mere efficiency should be confused with knowledge.
+
+This responsibility begins already with the choice of assumptions.
+Every mathematical model rests on assumptions,
+simplifications,
+and concept formation.
+Every simulation depends on parameters,
+initial conditions,
+and numerical methods.
+And every AI system produces outputs on the basis of patterns,
+not on the basis of its own understanding of truth.
+Anyone who works with such tools must therefore know
+what is assumed,
+what is calculated,
+and what is merely suggested.
+
+Especially important is the distinction between plausibility and validity.
+A result can look convincing,
+be well visualized,
+or be formulated in elegant language,
+and still remain false or insufficiently justified.
+Modern tools in particular often create an impression of certainty
+because they appear fast,
+precise,
+and technically impressive.
+But mathematical validity does not arise from computing power,
+but from conceptual clarity,
+logical rigor,
+and verifiable justification.
+
+Responsibility therefore does not mean rejecting modern tools.
+On the contrary:
+those who use them responsibly
+can gain new insights with them
+and significantly deepen mathematical work.
+Responsibility means using their possibilities
+without overlooking their limits.
+It requires critical ability instead of mere enthusiasm,
+judgment instead of dependence,
+and conceptual care instead of technical self-reassurance.
+
+Precisely in the twenty-first century,
+an old mathematical virtue becomes newly visible:
+intellectual honesty.
+Mathematics requires not only correct results,
+but also clarity about how they arise,
+under which assumptions they hold,
+and where their limits lie.
+Intelligent tools do not change this.
+They only make the demand more urgent.
+
+Thus the deeper connection of this chapter appears here as well:
+mathematics expands its reach through new tools
+without giving up its standard.
+Its strength does not lie in blind trust in technology,
+but in the ability to make technology itself
+an object of critical examination.
+Precisely therein mathematical responsibility in the present becomes visible.
+
+% =====================================================
+% 9.7 Mathematics and Modern Physics
+% =====================================================
+
+\subsection{Mathematics and Modern Physics}
+
+\subsubsection{Introduction}
+
+Since the beginnings of modern natural science,
+mathematics has been the central tool of physics.
+But in modern physics, its role has deepened once again.
+It no longer serves merely to order measurement data
+or calculate known motions.
+Rather, mathematical structure itself often becomes
+the starting point of physical knowledge.
+What in classical physics could still be described intuitively
+and then formulated mathematically
+often appears in modern physics first as a mathematical relationship.
+
+This becomes especially clear in the concept of symmetry.
+In contemporary physics, symmetries are not merely aesthetic properties of equations,
+but supporting structural principles.
+They determine
+which quantities remain conserved,
+which interactions are possible,
+and which forms physical laws may take.
+Mathematics thereby becomes not only the language of physics,
+but the form of its inner order.
+
+This development is also visible in quantum mechanics
+and even more strongly in quantum field theory.
+States,
+operators,
+fields,
+gauge symmetries,
+and conserved quantities
+can no longer be meaningfully grasped in purely intuitive images.
+Only the mathematical structure makes precise
+what a theory is claiming in the first place.
+Here mathematics does not describe something
+that was already completely given intuitively beforehand;
+rather, it uncovers the conceptual form of the theory itself.
+
+In addition, modern physical theories often reach far beyond immediate everyday experience.
+Concepts such as spacetime,
+quantum state,
+vacuum fluctuation,
+or symmetry breaking
+resist simple pictorial representation.
+Precisely for this reason,
+mathematics gains an even more fundamental function.
+It does not arbitrarily replace intuition,
+but replaces it with structure.
+Where the image fails,
+the mathematical relationship remains.
+
+This reveals a deep connection between mathematics and physical knowledge.
+Modern physics discovers the world not despite,
+but precisely through abstract mathematical concepts.
+The more fundamental a theory becomes,
+the less intuitive description alone is sufficient,
+and the more important the ability becomes
+to formulate structures precisely.
+Mathematics is therefore not merely one auxiliary tool among others in modern physics,
+but the actual medium
+in which lawfulness,
+possibility,
+and limitation become visible.
+
+This development has become especially clear
+in the twentieth and twenty-first centuries.
+Many advances in physics are based not on a return
+to what is immediately visible,
+but on an increasingly precise mathematical penetration of nature.
+This applies to symmetry principles
+as well as to quantum fields,
+concepts of information,
+or modern models of fundamental interactions.
+Mathematics thus appears not as an external tool,
+but as the inner structure of physical reality.
+
+Modern physics therefore confirms the guiding idea of this book in a new way:
+the world is not only described mathematically afterward.
+Its deepest laws emerge precisely in mathematical form.
+
+\subsubsection{Symmetries as an Ordering Principle}
+
+In modern physics, symmetries are far more than mere aesthetic properties.
+They are not only expressions of regularity,
+but often the actual key
+to the structure of physical theories.
+A symmetry is present
+when something changes
+without the underlying laws changing.
+Precisely this invariance proves to be
+a deep ordering principle of nature.
+
+Already in classical physics,
+this idea plays an important role.
+If the laws of nature have the same form at different times,
+the conservation of energy follows.
+If they hold equally at different places,
+this corresponds to the conservation of momentum.
+And if they are invariant under rotations,
+this leads to the conservation of angular momentum.
+Symmetries therefore do not appear here as secondary properties,
+but as the foundation of central conservation laws.
+
+In modern physics, this insight has deepened further.
+Symmetries concern not only space,
+time,
+and motion,
+but also the internal structure of physical theories.
+Especially in quantum field theory,
+symmetry principles determine
+which interactions are possible
+and what mathematical form a theory may assume.
+The laws of nature thus appear not as a random collection of formulas,
+but as expressions of deep structural requirements.
+
+Here the special role of mathematics becomes clear.
+Symmetries cannot simply be described intuitively;
+they must be formulated precisely.
+For this, mathematical concepts such as transformation,
+invariance,
+and group are used.
+Only through this language does it become clear
+what remains unchanged in a theory
+and what consequences follow from it.
+Mathematics therefore not only makes existing regularities visible,
+but opens up the inner architecture of physical lawfulness.
+
+Symmetries thereby connect simplicity and depth.
+At first glance, they mean only
+that something remains the same under certain changes.
+Physically, however, they mean far more:
+they limit what is possible,
+force certain structures,
+and make hidden connections recognizable.
+Precisely therein lies their enormous epistemological power.
+
+For modern physics, symmetries are therefore not an addition,
+but a foundation.
+They show
+that nature does not consist only of individual phenomena,
+but follows a deeper order.
+This order is not immediately visible,
+but it can be formulated mathematically.
+Symmetry thus becomes one of the strongest indications
+that the world is structured in its depth --
+and that mathematics is the appropriate means
+to uncover this structure.
+
+\begin{DidacticBox}[Symmetry and Conservation]
+	
+	\phantomsection\label{box:symmetry-conservation}
+	In physics, symmetries do not mean only uniformity or beauty.
+	They determine what does not change under certain transformations --
+	and precisely from this arise the fundamental conservation laws of nature.
+\end{DidacticBox}
+
+\subsubsection{Quantum Field Theory and Mathematical Structure}
+
+In classical physics, many processes can still be described intuitively:
+bodies move,
+forces act,
+trajectories can be drawn.
+Already in quantum mechanics, this intuitiveness becomes fragile.
+By the time one reaches quantum field theory, it is no longer sufficient.
+There, the focus is no longer on individual particle trajectories,
+but on fields,
+states,
+operators,
+and symmetries.
+The physical theory thereby increasingly becomes a mathematical structure.
+
+Precisely therein lies the special challenge of modern physics.
+Its concepts often elude immediate visualization.
+A quantum state is not a small object in space,
+a field is not simply a substance,
+and a virtual particle is not a particle in the everyday sense.
+Anyone who wants to understand such concepts
+must let go of overly simple pictures
+and instead pay attention to the mathematical relationships
+that exist between the quantities.
+
+In quantum field theory, this becomes especially clear.
+Which particles appear,
+which interactions are possible,
+and which quantities remain conserved
+depend essentially on the underlying mathematical structure.
+Symmetries,
+field equations,
+operator relations,
+and gauge principles
+are not later formulations of facts already understood;
+rather, they first determine what the theory says at all.
+
+This also changes the relationship between mathematics and physics.
+Mathematics no longer serves merely to calculate experimentally known phenomena.
+It becomes the conceptual framework
+in which physical relationships become precisely formulable in the first place.
+Especially in quantum field theory,
+it therefore becomes particularly clear
+that the deeper order of nature
+is not necessarily intuitive,
+but is mathematically accessible.
+
+This development does not mean
+that physics moves away from reality.
+On the contrary:
+precisely because phenomena at a fundamental level
+contradict everyday experience,
+a language is needed
+that is more precise than imagery.
+Here mathematics takes over the task
+of formulating relationships
+where intuition reaches its limits.
+It does not replace understanding,
+but shifts it from pictorial imagination
+to structural insight.
+
+Quantum field theory thus becomes
+a particularly impressive example
+of the guiding idea of this book.
+At its deepest level, the world does not appear
+as a collection of intuitive things,
+but as a network of mathematically formulable relationships.
+Precisely where the image becomes uncertain,
+structure gains its greatest significance.
+\newpage
+\noindent
+\subsubsection{Information as a Physical Concept}
+
+In modern physics, the concept of information has gained a significance
+that reaches far beyond everyday use.
+Information here does not merely mean a message or communication,
+but the structure of possible states,
+their distinguishability,
+and the question
+of what can in principle be known,
+stored,
+or transmitted about a physical system.
+Thus information itself becomes a physically relevant concept.
+
+Already in statistical physics and thermodynamics,
+this connection becomes visible.
+There, a central role is played by the question
+of how many possible microstates belong to an observable macrostate.
+In this context, entropy appears not only as a measure of disorder,
+but also as a measure of missing information
+about the exact state of a system.
+Thus an idea emerges
+that has become increasingly important for modern physics:
+physical description is closely linked
+to the structure of information.
+
+In quantum mechanics, this idea gains even greater depth.
+A quantum state does not simply describe hidden properties of a particle,
+but determines
+which measurement results are possible
+and with what probabilities they occur.
+Concepts such as superposition,
+entanglement,
+and measurement
+can therefore be understood not only as dynamical processes,
+but also as questions of information.
+What can be said about a system?
+What is determinable?
+What is changed by a measurement?
+
+Especially in quantum information theory,
+it becomes clear
+that information is not merely an external addition to physics.
+States,
+correlations,
+and transmission processes
+themselves become objects of precise mathematical investigation.
+It becomes apparent
+that information is not a purely psychological or technical category,
+but reaches deeply into the structure of physical theories.
+
+Here, too, mathematics is indispensable.
+Probability spaces,
+state vectors,
+operators,
+concepts of entropy,
+and measures of correlation
+first make it possible
+to formulate precisely what information means in the physical sense.
+Mathematics therefore describes not only particles,
+fields,
+or motions,
+but increasingly also the structure of what is knowable,
+distinguishable,
+and transmissible.
+
+This expands our view of reality once again.
+Modern physics asks not only
+which things exist and how they move,
+but also
+which states are possible,
+how they are connected,
+and what information is contained in them.
+Precisely here it becomes clear
+how closely mathematics,
+physics,
+and the concept of information
+are connected today.
+
+Information is therefore not merely a technical buzzword of the present,
+but an expression of the fact
+that reality must be described at a fundamental level
+as relational and structured.
+Here again the guiding idea of this book is confirmed:
+the isolated thing is not central,
+but the mathematically graspable structure
+of its states and relationships.
+
+% =====================================================
+% 9.8 Method Transfer Between Mathematics, Physics, and Computer Science
+% =====================================================
+
+\subsection{Method Transfer Between Mathematics,  \newline Physics, and Computer Science}
+
+One of the most remarkable developments in modern science
+is that mathematical methods do not remain bound to a single discipline.
+Concepts, structures, and procedures
+that arise in one context
+often reappear in entirely different fields.
+What was initially developed as a tool of geometry,
+physics,
+or number theory
+later proves fruitful for computer science,
+data analysis,
+cryptography,
+or complex networks.
+Precisely here the overarching power of mathematical thinking becomes visible.
+
+This method transfer is no accident.
+It becomes possible
+because mathematics is not bound to the material nature of a problem,
+but to its structure.
+Where similar relationships,
+symmetries,
+dynamics,
+or combinatorial patterns occur,
+similar mathematical tools can often be used.
+Mathematics therefore does not abstract from reality
+in order to move away from it,
+but in order to uncover structures
+that recur in different domains.
+
+Thus geometric ideas move into theoretical physics,
+algebraic methods into coding theory,
+probability models into computer science,
+and topological concepts into the analysis of complex systems.
+The concept of the algorithm itself also stands at an intersection:
+it is a mathematical object,
+a computational procedure,
+and at the same time a tool for modeling real processes.
+Precisely at such transitions,
+it becomes clear
+that the boundaries between disciplines
+are often less sharp
+than their institutional separation suggests.
+
+This exchange is especially fruitful
+where new questions arise.
+Physics has repeatedly stimulated mathematical developments,
+for example through symmetry principles,
+variational methods,
+or field concepts.
+Conversely, mathematics provides physics with concepts and structures
+without which modern theories could not even be formulated.
+Computer science, in turn, has opened new perspectives
+on computability,
+complexity,
+information,
+and algorithmic construction.
+Thus a reciprocal process emerges
+in which the disciplines do not merely apply one another,
+but mutually shape one another.
+
+This transfer makes especially visible
+that mathematics is more than a toolbox of individual techniques.
+It is a network of methods
+that are transferable precisely because
+they aim at general structures.
+One and the same idea can become effective
+in very different areas
+because it is directed not at a particular material,
+but at relationships,
+patterns,
+and orders.
+
+For the twenty-first century, this is of special importance.
+Many of the great questions of our time --
+from quantum information
+through artificial intelligence
+to complex networks --
+can no longer be addressed within the boundaries of a single discipline.
+They require mathematical methods
+that move between disciplines,
+are adapted there,
+and create new connections.
+Precisely here the special position of mathematics becomes visible once again:
+it is not merely part of individual sciences,
+but often the connecting structural framework between them.
+
+The method transfer between mathematics, physics, and computer science
+is therefore not a marginal phenomenon,
+but an indication of the unity of scientific knowledge.
+Where the same mathematical forms become fruitful in different areas,
+the shared structure emerges more clearly
+than the external differences between the objects.
+Here again, the guiding idea of this book is confirmed:
+mathematics is not merely a useful aid,
+but the expression of an order
+that can be found in many domains of reality.
+
+% =====================================================
+% 9.9 Conclusion: Mathematics in the Twenty-First Century
+% =====================================================
+
+\subsection{Conclusion: Mathematics in the Twenty-First Century}
+
+The mathematics of the twenty-first century stands in a new situation.
+Its foundations reach deep into history,
+but its practice has expanded considerably through computers\index{computer},
+simulations\index{simulation},
+formal systems\index{formal system},
+and artificial intelligence\index{artificial intelligence}.
+Today mathematics is no longer only a science of proof,
+but also a science of exploration,
+modeling,
+testing,
+and structuring.
+Precisely through this, it has gained reach.
+
+This expansion, however, does not change its inner standard.
+Proof\index{proof} remains the decisive criterion
+of mathematical validity.
+Numerical experiments,
+visualizations,
+computer-assisted procedures,
+and AI-supported tools
+can open,
+accelerate,
+and deepen the path to knowledge.
+But they do not replace the demand for clarity,
+justification,
+and logical reliability.
+The more powerful the tools become,
+the more important human judgment becomes.
+
+At the same time, the twenty-first century has shown
+how closely mathematics is connected
+with the deepest questions of modern science.
+In physics, it appears in symmetries\index{symmetry},
+quantum fields\index{quantum field},
+concepts of information\index{information},
+and conservation structures\index{conserved quantity}
+as the actual form of theory.
+In computer science, it opens new perspectives
+on computability\index{computability},
+complexity\index{complexity},
+and algorithmic processes\index{algorithm}.
+And in the method transfer between disciplines,
+it becomes clear
+that mathematical ideas are so fruitful precisely because
+they are not bound to individual objects,
+but to general structures.
+
+Thus mathematics today stands in a peculiar double role.
+In its foundations, it is timeless;
+in its methods, it is more modern than ever.
+It remains faithful to its inner rigor
+and at the same time expands its forms of knowledge.
+Precisely therein lies its special strength.
+
+The twenty-first century has therefore not moved mathematics away from its essence,
+but has made this essence appear more clearly under new conditions.
+It is not merely a tool of the sciences
+and not merely a formal system of signs and rules.
+It is the science of structure --
+and especially in an age of intelligent tools,
+abstract theories,
+and growing complexity,
+it becomes clear
+how fundamental this structure is
+for our understanding of the world.
+
+\medskip
+
+Thus the path of this book returns to its starting idea:
+mathematics is not only a means
+for calculating individual problems,
+but a form
+in which structure becomes visible.
+From numbers through equations,
+laws of nature,
+abstraction,
+chance,
+complex dynamics,
+and philosophical interpretation
+to the tools of the twenty-first century,
+the same guiding thread appears:
+the world is not arbitrary.
+
+It possesses order.
+And mathematics is the most precise language
+in which we can recognize this order.

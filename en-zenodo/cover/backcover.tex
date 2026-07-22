@@ -1,0 +1,77 @@
+\documentclass[10pt]{book}
+
+% --- KDP 6x9 WITH Bleed: page = 6.125" x 9.25" ---
+\usepackage[
+paperwidth=6.125in,
+paperheight=9.25in,
+inner=1.125in,   % 1.000" + 0.125"
+outer=1.025in,   % 0.900" + 0.125"
+top=0.925in,     % 0.800" + 0.125"
+bottom=1.125in   % 1.000" + 0.125"
+]{geometry}
+
+% --- Packages ---
+\usepackage[pages=all]{background}
+\usepackage{graphicx}
+\usepackage{ragged2e}
+\usepackage{parskip}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage[protrusion=true,expansion=true]{microtype} % better print image
+
+\setlength{\parindent}{0pt}
+
+% --- Colors (adjustable) ---
+\definecolor{coveraccent}{HTML}{00B7C2} % Accent (title highlight)
+\definecolor{covertext}{HTML}{E6E6E6}   % Body text on dark background
+
+% --- Background image (full page, incl. bleed) ---
+% Ideal: 300 dpi at 6.125"x9.25" (~1838x2775 px)
+\backgroundsetup{
+	scale=1, angle=0, opacity=1,
+	contents={\includegraphics[width=\paperwidth,height=\paperheight]{lichtspuren.png}}
+}
+
+\begin{document}
+	\thispagestyle{empty}\pagestyle{empty}
+	
+	% --- Subtle dark overlay behind text block for readability ---
+	\begin{tikzpicture}[remember picture,overlay]
+		\fill[black,opacity=0.35]
+		([xshift=0.45in,yshift=7.9in]current page.south west) rectangle
+		([xshift=-0.45in,yshift=3.25in]current page.north east);
+	\end{tikzpicture}
+	
+	% --- Text block ---
+	{\color{coveraccent}\Large\bfseries Photon – Theory and Applications}\par
+	\vspace{-0.3em}
+	
+	{\color{covertext}
+		\linespread{1.08}\selectfont
+		\justifying
+		\sffamily
+		\noindent
+		What is a photon—wave, particle, or both? This book takes you from the classical picture of light
+		to quantum mechanics, showing why photons shape both modern technology and fundamental research.
+		Clear, precise, and scientifically sound.
+		
+		\medskip
+		\noindent
+		\textbf{For curious readers, students, and anyone who truly wants to understand physics.}
+		
+		\medskip
+		\noindent
+		\emph{Christian Weilharter, Dipl.-Ing.(FH),} combines engineering insight with a passion for physics education.
+		This book bridges the gap between mathematical depth and clear explanation.
+	}% End text block
+	
+	% --- (Optional) Author photo bottom left ---
+	% \begin{tikzpicture}[remember picture,overlay]
+		%   \node[anchor=south west, xshift=0.475in, yshift=0.475in]
+		%     at (current page.south west)
+		%     {\includegraphics[width=1.20in]{authorphoto.png}};
+		% \end{tikzpicture}
+	
+	
+	
+\end{document}

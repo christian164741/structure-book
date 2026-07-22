@@ -1,0 +1,1208 @@
+\cleardoublepage
+\appendix
+
+% --- Start Anhang (A, B, C, ...) ---
+\setcounter{chapter}{0}
+\renewcommand{\thechapter}{\Alph{chapter}}
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+% --- Hyperref: eindeutige Link-Anker ---
+\renewcommand{\theHchapter}{app.\Alph{chapter}}
+\renewcommand{\theHsection}{\theHchapter.\arabic{section}}
+\renewcommand{\theHsubsection}{\theHsection.\arabic{subsection}}
+\renewcommand{\theHsubsubsection}{\theHsubsection.\arabic{subsubsection}}
+
+\chapter{Mathematische Hintergründe und Herleitungen}
+\label{anhangA}
+
+In diesem Anhang werden die im Haupttext angesprochenen mathematischen und physikalischen Konzepte
+formal und vertiefend dargestellt. Ziel ist es, die didaktische Lesbarkeit der Kapitel
+nicht zu überladen und zugleich interessierten Leserinnen und Lesern
+die vollständigen Herleitungen zugänglich zu machen.
+
+% ============================================================
+\section{Herleitung der Irrationalität der $\sqrt{2}$}
+\label{anhangA_wurzel2}
+
+\subsection*{Die Irrationalität von \texorpdfstring{$\sqrt{2}$}{sqrt(2)}}
+
+Der Beweis, dass $\sqrt{2}$ irrational ist, gehört zu den ältesten und
+elegantesten Widerspruchsbeweisen\index{Widerspruchsbeweis} der Mathematik.
+Die Idee ist einfach: Wir nehmen an, dass $\sqrt{2}$ rational sei, und
+zeigen dann, dass diese Annahme zu einem logischen Widerspruch führt.
+
+\subsubsection*{Annahme}
+
+Wir nehmen an, dass $\sqrt{2}$ als vollständig gekürzter Bruch
+\[
+\sqrt{2} = \frac{p}{q},
+\]
+geschrieben werden kann, wobei $p$ und $q$ ganze Zahlen sind,
+$q \neq 0$ gilt und $p$ und $q$ teilerfremd sind.
+
+\subsubsection*{Quadratbildung}
+
+Quadrieren beider Seiten ergibt
+\[
+2 = \frac{p^2}{q^2}
+\qquad\Rightarrow\qquad
+p^2 = 2q^2.
+\]
+
+Die rechte Seite ist gerade, also muss auch $p^2$ gerade sein.
+Damit ist auch $p$ gerade. Es gibt also eine ganze Zahl $r$ mit
+\[
+p = 2r.
+\]
+
+\subsubsection*{Einsetzen und erneuter Schluss}
+
+Setzen wir dies in die Gleichung $p^2 = 2q^2$ ein, so erhalten wir
+\[
+(2r)^2 = 2q^2,
+\]
+also
+\[
+4r^2 = 2q^2.
+\]
+
+Teilen durch $2$ liefert
+\[
+2r^2 = q^2.
+\]
+
+Also ist auch $q^2$ gerade -- und damit $q$ selbst gerade.
+
+\subsubsection*{Der Widerspruch}
+\index{Widerspruch}
+
+Wir haben nun gezeigt:
+\[
+p \text{ ist gerade}, \qquad q \text{ ist gerade}.
+\]
+Damit besitzen $p$ und $q$ einen gemeinsamen Faktor $2$ und sind nicht
+teilerfremd.
+
+Das widerspricht unserer Ausgangsannahme, dass $\frac{p}{q}$ vollständig
+gekürzt sei.
+
+\subsubsection*{Folgerung}
+
+Die Annahme, $\sqrt{2}$ sei rational, führt also zu einem Widerspruch.
+Daher muss
+\[
+\sqrt{2} \text{ irrational sein.}
+\]
+
+Dieser klassische Beweis geht in seinen Grundzügen bereits auf Euklid\index{Euklid}
+zurück und zeigt eindrucksvoll, wie Widerspruchsbeweise funktionieren.
+
+\begin{DidacticBox}[Warum dieser Beweis so elegant ist]
+	\phantomsection\label{box:beweis-elegant}
+	Der Beweis für die Irrationalität von $\sqrt{2}$ ist ein klassisches
+	Beispiel dafür, wie mächtig Widerspruchsbeweise sein können.
+	Aus einer scheinbar harmlosen Annahme folgt eine logische Unmöglichkeit.
+	Damit zeigt der Beweis nicht nur, dass $\sqrt{2}$ irrational ist,
+	sondern auch, wie präzise mathematisches Denken funktioniert.
+\end{DidacticBox}
+
+% ============================================================
+\section{Konstruktion der komplexen Zahlen}
+\label{anhangA_komplexe}
+\index{komplexe Zahlen}
+
+Die Notwendigkeit komplexer Zahlen ergibt sich aus einem einfachen
+Problem: Manche Gleichungen besitzen in den reellen Zahlen keine Lösung.
+Ein besonders klares Beispiel ist
+\[
+x^2 + 1 = 0.
+\]
+
+Durch Umformen erhält man
+\[
+x^2 = -1.
+\]
+
+Doch keine reelle Zahl besitzt ein negatives Quadrat.
+Hier zeigt sich also eine Grenze des reellen Zahlensystems.
+Dennoch treten solche Ausdrücke
+beim Lösen bestimmter Gleichungen -- etwa im \emph{casus irreducibilis}\index{casus irreducibilis}
+kubischer Gleichungen -- zwangsläufig auf.
+
+\subsubsection*{Ein neuer Zahlentyp}
+
+Um die Gleichung $x^2 = -1$ lösbar zu machen, führt man eine neue Zahl
+ein und definiert
+\[
+i := \sqrt{-1}.
+\]
+\index{imaginäre Einheit $i$}
+
+Diese Definition ist kein bloßer Trick, sondern eine echte Erweiterung
+des Zahlensystems: Wir ergänzen die reellen Zahlen so, dass auch Gleichungen
+mit negativen Quadraten sinnvoll lösbar werden.
+
+\subsubsection*{Der Aufbau des neuen Zahlentyps}
+
+Jede Zahl der Form
+\[
+a + bi, \qquad a,b \in \mathbb{R},
+\]
+\index{komplexe Zahl $a+bi$}
+heißt \emph{komplexe Zahl}. Die bekannten Rechenregeln bleiben gültig;
+die einzige neue Information ist
+\[
+i^2 = -1.
+\]
+
+Daraus lassen sich Addition und Multiplikation vollständig bestimmen.
+Ein Beispiel:
+\[
+(2 + 3i)(4 - i)
+= 8 - 2i + 12i - 3i^2
+= 11 + 10i.
+\]
+
+\begin{DidacticBox}[Warum die Einführung von $i$ notwendig ist]
+	\phantomsection\label{box:i-notwendig}
+	Die Zahl $i$ wird nicht eingeführt, weil man sie \glqq erfinden\grqq{} wollte.
+	Sie entsteht aus der inneren Logik der Algebra.
+	Sobald man die Rechenregeln für Gleichungen akzeptiert,
+	erzwingt die Gleichung
+	$x^2 = -1$
+	die Einführung eines neuen Zahlentyps.
+	
+	Alle komplexen Zahlen folgen dann aus der minimalen Annahme
+	$i^2 = -1$.
+	Damit wird das Zahlensystem abgeschlossen:
+	Jedes nichtkonstante Polynom besitzt nun mindestens eine Lösung
+	(Fundamentalsatz der Algebra).\index{Fundamentalsatz der Algebra}
+\end{DidacticBox}
+
+\subsubsection*{Die Euler-Formel als geometrische Ergänzung}
+\index{Euler-Formel}
+
+Die Einführung der Zahl $i$ erschließt nicht nur einen neuen Zahlenbereich,
+sondern verbindet auch die Exponentialfunktion mit Kreisbewegungen.
+Dies zeigt sich in der berühmten Euler-Formel
+\[
+e^{i\varphi} = \cos\varphi + i\sin\varphi.
+\]
+
+\subsubsection*{Kurze Herleitung der Euler-Formel mit Taylor-Reihen}
+\index{Taylor-Reihe}
+
+Die Euler-Formel
+\[
+e^{i\varphi} = \cos\varphi + i\sin\varphi
+\]
+lässt sich elegant mit Potenzreihen herleiten.
+
+Zunächst betrachten wir die Reihenentwicklungen der Funktionen
+$e^x$, $\cos x$ und $\sin x$ um den Punkt $x=0$:
+\begin{align*}
+	e^x &= 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots,\\[1ex]
+	\cos x &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots,\\[1ex]
+	\sin x &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots.
+\end{align*}
+
+Setzen wir nun in die Exponentialreihe $x = i\varphi$ ein, so erhalten wir
+\[
+e^{i\varphi} = 1 + i\varphi + \frac{(i\varphi)^2}{2!}
++ \frac{(i\varphi)^3}{3!}
++ \frac{(i\varphi)^4}{4!}
++ \cdots.
+\]
+
+Mit den Potenzen von $i$,
+\[
+i^2 = -1,\quad i^3 = -i,\quad i^4 = 1,\quad i^5 = i,\;\dots,
+\]
+können wir die Terme sortieren. Wir trennen Real- und Imaginärteil:
+
+\begin{align*}
+	e^{i\varphi}
+	&= \Bigl(1 - \frac{\varphi^2}{2!} + \frac{\varphi^4}{4!} - \frac{\varphi^6}{6!} + \cdots\Bigr)
+	\;+\; i\Bigl(\varphi - \frac{\varphi^3}{3!} + \frac{\varphi^5}{5!} - \frac{\varphi^7}{7!} + \cdots\Bigr)\\[1ex]
+	&= \cos\varphi + i\sin\varphi.
+\end{align*}
+
+Damit ist die Euler-Formel
+\[
+e^{i\varphi} = \cos\varphi + i\sin\varphi
+\]
+als direkte Folge der Reihenentwicklungen von Exponential-, Sinus-
+und Kosinusfunktion hergeleitet.
+
+\subsubsection*{Geometrische Idee}
+
+Betrachtet man die komplexe Ebene, so beschreibt ein Punkt auf dem
+Einheitskreis\index{Einheitskreis} einen Winkel $\varphi$ zur reellen Achse.
+Die Projektion auf die beiden Achsen ergibt
+\[
+(\cos\varphi,\;\sin\varphi).
+\]
+\index{Sinus}
+\index{Kosinus}
+
+Da die imaginäre Achse als Vielfaches von $i$ interpretiert wird,
+entspricht dieser Punkt der komplexen Zahl
+\[
+\cos\varphi + i\sin\varphi.
+\]
+
+Die Euler-Formel zeigt, dass die komplexe Exponentialfunktion
+genau diese Kreisbewegung auf dem Einheitskreis beschreibt.
+\FloatBarrier
+\begin{center}
+	\begin{tikzpicture}[scale=2]
+		% Kreis
+		\draw[thick] (0,0) circle (1);
+		% Achsen
+		\draw[->] (-1.2,0) -- (1.2,0) node[right] {Re};
+		\draw[->] (0,-1.2) -- (0,1.2) node[above] {Im};
+		% Winkel
+		\draw[thick,->] (0,0) -- ({cos(35)},{sin(35)});
+		\draw (0.3,0) arc (0:35:0.3);
+		\node at (0.45,0.15) {$\varphi$};
+		% Projektionen
+		\draw[dashed] ({cos(35)},0) -- ({cos(35)},{sin(35)});
+		\draw[dashed] (0,{sin(35)}) -- ({cos(35)},{sin(35)});
+		% Beschriftungen
+		\node[below] at ({cos(35)},0) {$\cos\varphi$};
+		\node[left] at (0,{sin(35)}) {$\sin\varphi$};
+		\node at ({cos(35)+0.25},{sin(35)+0.25}) {$e^{i\varphi}$};
+	\end{tikzpicture}
+\end{center}
+
+\subsubsection*{Multiplikation mit \boldmath$i$ als Drehung}
+\index{Drehung (Multiplikation mit $i$)}
+
+In der komplexen Ebene hat die Multiplikation mit $i$ eine einfache geometrische
+Bedeutung: Sie dreht jede Zahl um $90^\circ$ gegen den Uhrzeigersinn.
+
+Beispiele:
+\[
+1 \xrightarrow{\;\cdot i\;} i \xrightarrow{\;\cdot i\;} -1
+\xrightarrow{\;\cdot i\;} -i \xrightarrow{\;\cdot i\;} 1
+\]
+
+Jede weitere Multiplikation mit $i$ fügt eine weitere Drehung von $90^\circ$ hinzu.
+Wichtig ist: Der Betrag bleibt dabei unverändert -- nur die Richtung ändert sich.
+
+Die Exponentialfunktion $e^{i\varphi}$ kombiniert unendlich viele solcher
+kleinen Drehungen. Dadurch entsteht eine kontinuierliche Rotation auf dem
+Einheitskreis, deren Winkel genau $\varphi$ beträgt.
+
+\subsubsection*{Warum Multiplikation mit \boldmath$i$ eine Drehung erzeugt}
+
+Betrachten wir einen Punkt auf dem Einheitskreis:
+\[
+e^{i\varphi} = \cos\varphi + i\sin\varphi.
+\]
+
+Multiplizieren wir diesen Punkt mit $i$, so erhalten wir
+\[
+i \cdot e^{i\varphi}
+= i(\cos\varphi + i\sin\varphi)
+= i\cos\varphi - \sin\varphi.
+\]
+
+Dies entspricht der neuen komplexen Zahl
+\[
+-\sin\varphi + i\cos\varphi.
+\]
+
+Genau das erhält man auch, wenn man den ursprünglichen Punkt
+\((\cos\varphi,\;\sin\varphi)\)
+um \(90^\circ\) gegen den Uhrzeigersinn dreht:
+\[
+(\cos\varphi,\;\sin\varphi)
+\;\longrightarrow\;
+(-\sin\varphi,\;\cos\varphi).
+\]
+
+Damit ist klar:
+\[
+i \cdot e^{i\varphi}
+\]
+ist genau der Punkt, der um \(90^\circ\) gedreht wurde -- bei unverändertem Radius.
+
+\begin{DidacticBox}[Kernidee der Euler-Formel]
+	\phantomsection\label{box:euler-kernidee}
+	Multiplikation mit $i$ bedeutet eine Drehung um $90^\circ$ in der komplexen Ebene.
+	Die Exponentialfunktion $e^{i\varphi}$ kombiniert viele solcher kleinen Drehungen
+	zu einer einzigen Rotation um den Winkel $\varphi$.
+	
+	Darum gilt:
+	\[
+	e^{i\varphi} = \cos\varphi + i\sin\varphi.
+	\]
+\end{DidacticBox}
+
+\subsubsection*{Abschluss}
+
+Die komplexen Zahlen erweitern die reellen Zahlen um genau das,
+was fehlt, um algebraische Gleichungen vollständig zu behandeln.
+Aus der einzelnen Festlegung $i^2=-1$ entsteht ein vollständiger Zahlenbereich
+mit klaren Rechenregeln und einer anschaulichen geometrischen Struktur.
+
+% ============================================================
+\section{Mandelbrot-Landkarte: mathematische Erzeugung und Farbgebung}
+\label{app:mandelbrot-rendering}
+
+\index{Mandelbrotmenge}
+\index{Iteration}
+\index{Escape-Radius}
+\index{Fluchtzeit}
+\index{Parameterraum}
+\index{komplexe Ebene}
+\index{Farbgebung}
+\index{Algorithmus}
+
+\textbf{Ziel dieses Anhangs:} Hier wird gezeigt, wie eine typische Mandelbrot-Grafik algorithmisch entsteht:
+vom Bildpixel über den Parameter \(c\) bis zur Fluchtzeit und schließlich zur Farbzuordnung.
+
+\begin{MathBox}[Grundprinzip: Pixel \(\rightarrow\) Parameter \(c\) \(\rightarrow\) Iteration]
+		\phantomsection\label{box:mandelbrot-grundprinzip}
+	Wir berechnen für jeden Bildpunkt einen Parameter \(c\in\mathbb{C}\) und iterieren
+	\[
+	z_{n+1}=z_n^2+c,\qquad z_0=0.
+	\]
+	Die Mandelbrotmenge ist die Menge der Parameter \(c\), für die die Folge \(\{z_n\}\) beschränkt bleibt.
+\end{MathBox}
+
+\subsection{Koordinatentransformation: vom Pixel in die komplexe Ebene}
+\index{Koordinatentransformation}
+
+Ein Bild habe Breite \(W\) und Höhe \(H\). Wir wählen ein Sichtfenster
+\[
+x\in[x_{\min},x_{\max}],\qquad y\in[y_{\min},y_{\max}]
+\]
+und ordnen jedem Pixel \((i,j)\) (mit \(0\le i<W\), \(0\le j<H\)) einen Parameter \(c=x+iy\) zu:
+\[
+x(i)=x_{\min}+\frac{i}{W-1}\,(x_{\max}-x_{\min}),\qquad
+y(j)=y_{\max}-\frac{j}{H-1}\,(y_{\max}-y_{\min}),
+\]
+\[
+c(i,j)=x(i)+i\,y(j).
+\]
+Das Minuszeichen bei \(y(j)\) kommt daher, dass Bildkoordinaten typischerweise nach unten wachsen.
+
+\begin{NoteBox}[Typisches Standardfenster]
+	\phantomsection\label{box:mandelbrot-standardfenster}
+	Ein häufig verwendetes Sichtfenster ist
+	\[
+	x\in[-2.5,1.0],\qquad y\in[-1.2,1.2].
+	\]
+	Für Detailansichten (Zooms) wählt man ein kleineres Fenster um ein Zentrum \(c_0\).
+\end{NoteBox}
+
+\subsection{Escape-Time-Algorithmus: Fluchtkriterium und Iterationszahl}
+\index{Fluchtkriterium}
+
+Für jedes \(c\) iterieren wir bis zu einer Maximalzahl \(N_{\max}\). Sobald \(|z_n|>R\) gilt, stoppen wir.
+Für die Mandelbrotiteration reicht klassisch \(R=2\):
+
+\begin{MathBox}[Escape-Radius \(R=2\)]
+	\phantomsection\label{box:mandelbrot-escape-radius}
+	Für \(z_{n+1}=z_n^2+c\) gilt: Wenn für ein \(n\) \(|z_n|>2\), dann divergiert die Folge sicher.
+\end{MathBox}
+
+Formal definieren wir die \textbf{Fluchtzeit}
+\[
+n_\text{esc}(c)=\min\{n\in\mathbb{N}\mid |z_n|>2\},
+\]
+falls sie existiert; andernfalls setzen wir \(n_\text{esc}(c)=N_{\max}\) und markieren den Punkt als \glqq innen\grqq{} (typisch schwarz).
+
+\subsection{Farbgebung: diskret, glatt und anschaulich}
+\index{Farbskala}
+
+\subsubsection{(a) Diskrete Farbgebung über Fluchtzeit}
+
+Die einfachste Methode: Man ordnet die Farbe nur nach \(n_\text{esc}\) zu.
+Das führt oft zu sichtbaren \glqq Bändern\grqq{}, ist aber didaktisch sehr klar.
+
+\subsubsection{(b) Glatte Farbgebung (Continuous Coloring)}
+
+Um Banding zu vermeiden, nutzt man eine \textbf{kontinuierliche} Iterationszahl. Eine verbreitete Variante ist:
+\[
+\nu(c)=n + 1 - \log_2\!\bigl(\log |z_n|\bigr),
+\]
+wobei \(n\) der erste Index ist mit \(|z_n|>2\). Hier liegt \(\nu\) zwischen \(n\) und \(n+1\).
+
+\begin{DidacticBox}[Warum diese „Log-Log“-Formel?]
+	\phantomsection\label{box:mandelbrot-loglog}
+	Außerhalb wächst \(|z_n|\) ungefähr quadratisch.
+	Durch \(\log(\log(\cdot))\) wird dieses Wachstum so umskaliert,
+	dass Farbverläufe glatt werden und die Struktur am Rand deutlich besser sichtbar ist.
+\end{DidacticBox}
+
+Aus \(\nu\) macht man dann eine Zahl \(t\in[0,1]\) (etwa durch Skalierung) und führt \(t\) durch eine Farbpalette.
+
+\subsubsection{(c) Histogramm-Equalization (optional)}
+
+Fortgeschrittene Darstellungen zählen, wie viele Pixel welche Fluchtzeit haben, bilden eine kumulative Verteilung und verteilen Farben so,
+dass häufige Werte nicht \glqq zusammenkleben\grqq. Das liefert sehr ausgewogene Bilder, ist aber Darstellungstechnik, nicht Mathematik der Menge selbst.
+
+\subsection{Pseudocode: kompakt und nachvollziehbar}
+\index{Pseudocode}
+
+\begin{verbatim}
+	Input: W,H, x_min,x_max, y_min,y_max, N_max, R=2
+	for j = 0..H-1:
+	y = y_max - j*(y_max-y_min)/(H-1)
+	for i = 0..W-1:
+	x = x_min + i*(x_max-x_min)/(W-1)
+	c = x + I*y
+	z = 0
+	n = 0
+	while n < N_max and |z| <= R:
+	z = z*z + c
+	n = n + 1
+	if n == N_max:
+	color(i,j) = black
+	else:
+	nu = n + 1 - log2(log(|z|))
+	color(i,j) = palette(nu)
+	Output: PNG image
+\end{verbatim}
+
+\begin{NoteBox}[Wichtig für den Leser]
+	\phantomsection\label{box:mandelbrot-leserhinweis}
+	Die Mandelbrotmenge selbst ist mathematisch nur durch die Unterscheidung
+	\emph{innen} vs.\ \emph{außen} bestimmt, also durch
+	\emph{beschränkt} vs.\ \emph{divergent}.
+	Alles Weitere -- Farbpalette, Glättung, Histogrammverfahren --
+	gehört zur Darstellungstechnik, nicht zur Definition der Menge selbst.
+\end{NoteBox}
+
+% ============================================================
+\section{Von Minimallänge zu Minimalfläche: Optimale Verzweigungsnetzwerke}
+\label{app:netzwerke-minimalflaeche}
+\index{Optimierung}
+\index{Minimalfläche}
+\index{Netzwerk}
+\index{Verzweigung}
+\index{Transportnetzwerk}
+
+Im Haupttext wurde ein moderner Methodentransfer angesprochen:
+Biologische Strukturen wie Nervenzellen, Blutgefäße oder Bäume sind keine idealen \glqq Drähte\grqq{},
+sondern Röhrennetzwerke mit endlicher Dicke.
+Dadurch ändert sich auch die natürliche Zielfunktion der Optimierung:
+Nicht nur die Gesamtlänge ist relevant, sondern vor allem die benötigte Oberfläche
+sowie der geometrische Aufwand an Verzweigungsstellen.
+
+\subsection{Das 1D-Modell: Minimierung der Gesamtlänge}
+\index{Graph}
+\index{Steiner-Baum}
+
+Ein Netzwerk werde als Graph modelliert: Knoten sind Verzweigungen oder Endpunkte, Kanten $e$ sind Verbindungen mit Länge $\ell_e$.
+Ein naheliegendes Minimalprinzip lautet:
+\begin{equation}
+	K_{\text{L}} = \sum_{e} \ell_e.
+	\label{eq:cost_length}
+\end{equation}
+Dieses Modell ist geeignet für Systeme, in denen \glqq Material\grqq{} proportional zur Länge ist und Verzweigungen als ideale Punkte gelten.
+In der Mathematik führt das in die Nähe des Steiner-Problems: Man sucht ein Netzwerk, das vorgegebene Endpunkte mit minimaler Gesamtlänge verbindet.
+
+\medskip
+\noindent
+\textbf{Grenze des 1D-Modells.}
+Sobald Verbindungen eine endliche Dicke besitzen, wird ein reines Längenfunktional zu grob:
+Ein \glqq Kabel\grqq{} ist dann nicht mehr eindimensional, sondern besitzt eine Mantelfläche, die gebaut und erhalten werden muss.
+
+\subsection{Das 2D-Modell: Röhrenoberfläche statt Länge}
+\index{Zylinder}
+\index{Oberfläche}
+
+Eine Kante $e$ werde als Zylinder mit Radius $r_e$ und Länge $\ell_e$ angenähert.
+Dann ist die Mantelfläche
+\begin{equation}
+	A_e \approx 2\pi r_e\, \ell_e,
+	\qquad
+	A \approx \sum_e 2\pi r_e\, \ell_e.
+	\label{eq:area_sum}
+\end{equation}
+Hier ist mit \glqq Fläche\grqq{} die Summe der Mantelflächen der Röhrensegmente als Kostenmaß gemeint,
+nicht eine zusammenhängende Minimalfläche wie bei einer Seifenhaut.
+
+Wenn Oberfläche als Kosten für Material, Membran, Wartung oder Stabilität steht, ist eine einfache Kostenfunktion
+\begin{equation}
+	K_{\text{A}} = \alpha \sum_e r_e\, \ell_e.
+	\label{eq:cost_area}
+\end{equation}
+Dabei ist $\alpha>0$ ein Gewichtungsfaktor, der Einheiten und Skalierung festlegt und in Anwendungen
+weitere Effekte zusammenfassen kann.
+	\index{Minimalfläche}
+\begin{MathBox}[Vom Draht zum Rohr: der entscheidende Schritt]
+	\phantomsection\label{box:draht-rohr}
+
+	Das 1D-Modell minimiert Länge $\sum \ell_e$.
+	Das 2D-Modell berücksichtigt Dicke und minimiert proportional dazu Oberflächenkosten
+	$\sum r_e\ell_e$.
+	Damit wird aus einem \emph{Linienproblem} ein \emph{Flächenproblem}:
+	Die Geometrie von Verzweigungen wird nicht nur durch \glqq kürzeste Wege\grqq{},
+	sondern durch \glqq möglichst glatte und flächenarme Struktur\grqq{} bestimmt.
+\end{MathBox}
+
+\subsection{Verzweigungen sind nicht kostenlos: Junction-Kosten}
+\index{Junction}
+\index{Krümmung}
+
+In realen Netzwerken ist eine Verzweigung keine ideale Punktoperation.
+Geometrisch entstehen lokale Krümmungen, Übergangsregionen und mechanische Spannungen;
+funktional kommen Regelung, Stabilität und Fehlertoleranz hinzu.
+Das kann modellhaft durch einen Zusatzterm erfasst werden:
+\begin{equation}
+	K = \alpha \sum_e r_e\,\ell_e \;+\; J\,N_{\text{J}},
+	\label{eq:cost_with_junctions}
+\end{equation}
+wobei $N_{\text{J}}$ die Anzahl der Verzweigungsstellen und $J>0$ eine \glqq Nahtstellenstrafe\grqq{} ist.
+
+\paragraph{Mini-Beispiel: Trifurkation vs.\ zwei Bifurkationen.}
+\index{Trifurkation}
+\index{Bifurkation}
+
+Drei Endpunkte sollen versorgt werden. Zwei plausible Designs:
+\begin{itemize}
+	\item \textbf{Design A:} eine Dreifach-Verzweigung (eine Junction), Gesamtlänge $L_A$.
+	\item \textbf{Design B:} zwei Zweifach-Verzweigungen (zwei Junctions), Gesamtlänge $L_B$.
+\end{itemize}
+Für konstanten Radius genügt der Vergleich
+\[
+K_A \approx \alpha L_A + J,
+\qquad
+K_B \approx \alpha L_B + 2J.
+\]
+Design A ist günstiger, falls
+\begin{equation}
+	\alpha(L_A-L_B) < J.
+	\label{eq:threshold_J}
+\end{equation}
+
+\textbf{Interpretation:}
+Selbst wenn Design A etwas länger ist, kann es optimal sein, sobald die Verzweigungsstelle \glqq teuer genug\grqq{} ist.
+Die Schwelle ist $J/\alpha$: Erst wenn die Nahtstelle teurer ist als die eingesparte effektive Länge,
+lohnt sich die zusätzliche Verzweigung nicht.
+
+\subsection{Transportkosten als zweiter Mechanismus}
+\index{Poiseuille-Gesetz}
+\index{Strömungswiderstand}
+
+Oberfläche ist nicht alles: Ein Netzwerk transportiert Fluss, etwa Wasser, Blut oder Signale.
+Für laminare Strömung in einem zylindrischen Rohr skaliert der Strömungswiderstand näherungsweise wie
+$R \sim \ell/r^4$.
+Daraus folgt eine weitere plausible Kostenkomponente:
+\begin{equation}
+	K_{\text{T}} = \beta \sum_e \frac{\ell_e}{r_e^4},
+	\label{eq:transport_cost}
+\end{equation}
+wobei $\beta>0$ die Gewichtung der Transportverluste beschreibt.
+Ein zusammengesetztes Modell lautet dann:
+\begin{equation}
+	K = \alpha \sum_e r_e\,\ell_e \;+\;
+	\beta \sum_e \frac{\ell_e}{r_e^4}
+	\;+\; J\,N_{\text{J}}.
+	\label{eq:full_cost}
+\end{equation}
+
+\textbf{Interpretation:}
+\begin{itemize}
+	\item Größere Radien senken Transportverluste, sind aber flächen- bzw.\ materialteurer.
+	\item Zusätzliche Verzweigungen können Fluss verteilen, erzeugen aber Nahtstellenkosten.
+\end{itemize}
+
+Genau solche Zielkonflikte erzeugen die typischen, auffallend optimierten Verzweigungsarchitekturen in der Natur.
+	\index{Stringtheorie}
+\begin{DidacticBox}[Merksatz: Nicht Strings im Gehirn -- sondern Flächen-Optimierung]
+	\phantomsection\label{box:stringtheorie-flaechenoptimierung}
+	Der Bezug zur Stringtheorie ist \emph{methodisch}, nicht ontologisch:
+	Viele Aufgaben lassen sich als Minimierung eines Flächenfunktionals formulieren.
+	In der modernen Physik wurden dafür leistungsfähige mathematische Werkzeuge entwickelt.
+	Hier werden sie genutzt, um reale Verzweigungsnetzwerke als Optimierungsproblem zu beschreiben.
+\end{DidacticBox}
+
+\subsection{Fazit}
+\index{Mathematik}
+
+Der zentrale Schritt ist der Wechsel des Modells:
+von \glqq kürzesten Linien\grqq{} zu \glqq flächenarmen Röhren mit Verzweigungsaufwand\grqq{}.
+Damit wird verständlich, warum die Natur in vielen Kontexten
+-- etwa bei Bäumen, Gefäßen oder Neuronen --
+auf ähnliche Geometrien führt.
+Nicht weil die Systeme identisch wären, sondern weil ihre Optimierungslogik strukturell verwandt ist.
+
+% ============================================================
+\section{Die Fibonacci-Folge und der goldene Schnitt}
+\label{app:fibonacci-goldener-schnitt}
+
+Die Fibonacci-Folge ist eine rekursiv definierte Zahlenfolge.
+Sie beginnt mit
+\[
+F_1 = 1,\qquad F_2 = 1
+\]
+und jede weitere Zahl entsteht als Summe der beiden vorhergehenden:
+\[
+F_{n+2} = F_{n+1} + F_n \qquad (n \geq 1).
+\]
+
+Die ersten Glieder lauten daher:
+\[
+1,\;1,\;2,\;3,\;5,\;8,\;13,\;21,\;34,\dots
+\]
+
+Mathematisch besonders interessant ist, dass sich die Quotienten zweier aufeinanderfolgender Fibonacci-Zahlen
+\[
+\frac{F_{n+1}}{F_n}
+\]
+mit wachsendem \(n\) immer mehr einer festen Zahl annähern, nämlich dem \emph{goldenen Schnitt}
+\[
+\varphi = \frac{1+\sqrt{5}}{2} \approx 1{,}618.
+\]
+
+Es gilt also:
+\[
+\lim_{n\to\infty} \frac{F_{n+1}}{F_n} = \varphi.
+\]
+
+Dieser Zusammenhang ist für viele Wachstums- und Anordnungsprobleme bedeutsam.
+In Pflanzen erscheinen Fibonacci-Zahlen nicht deshalb, weil eine Pflanze \glqq rechnet\grqq{},
+sondern weil bestimmte Regeln der Platzverteilung und des Wachstums zu Spiralstrukturen führen,
+bei denen solche Zahlen häufig auftreten.
+% =====================================================
+% Anhang A: Mathematische Herleitung der Fourieranalyse
+% =====================================================
+
+\section{Herleitung der Fourieranalyse am Beispiel eines Rechtecksignals}
+\label{sec:anhang_fourieranalyse_rechtecksignal}
+
+\subsection{Ausgangspunkt: Periodische Funktionen}
+
+Viele Vorgänge in Natur und Technik wiederholen sich regelmäßig.
+Dazu gehören Schwingungen, Wellen, Töne, elektrische Signale oder periodische Bewegungen.
+Mathematisch beschreibt man solche Vorgänge durch periodische Funktionen.
+
+Eine Funktion \(f(x)\) heißt periodisch mit der Periode \(2\pi\), wenn gilt:
+\[
+f(x+2\pi)=f(x).
+\]
+
+Die zentrale Idee der Fourieranalyse besteht darin,
+eine solche periodische Funktion als Summe einfacher Schwingungen darzustellen.
+Die Grundbausteine sind Sinus- und Kosinusfunktionen.
+
+\begin{MathBox}[Grundidee der Fourieranalyse]
+	\small
+	\phantomsection\label{box:anhangA-fourier-grundidee}
+	Eine periodische Funktion kann unter geeigneten Bedingungen als Überlagerung
+	einfacher harmonischer Schwingungen geschrieben werden:
+	\[
+	f(x)=\frac{a_0}{2}
+	+\sum_{n=1}^{\infty}
+	\left(a_n\cos(nx)+b_n\sin(nx)\right).
+	\]
+	Die Zahlen \(a_n\) und \(b_n\) heißen Fourier-Koeffizienten.
+	Sie geben an, wie stark die jeweilige Schwingung im Signal enthalten ist.
+\end{MathBox}
+
+Diese Darstellung ist deshalb so mächtig,
+weil sie ein kompliziertes Signal in einfache Grundbestandteile zerlegt.
+Ein Ton, eine elektrische Spannung oder eine Lichtwelle kann dadurch nach Frequenzen analysiert werden.
+
+\subsection{Orthogonalität von Sinus und Kosinus}
+
+Der mathematische Kern der Fourieranalyse ist die Orthogonalität der trigonometrischen Funktionen.
+Der Begriff \emph{Orthogonalität} stammt ursprünglich aus der Geometrie.
+Zwei Vektoren stehen orthogonal aufeinander, wenn ihr Skalarprodukt verschwindet.
+
+Für Funktionen gibt es ein entsprechendes Konzept.
+Hier ersetzt ein Integral das Skalarprodukt zweier Vektoren.
+Für zwei Funktionen \(f(x)\) und \(g(x)\) betrachtet man:
+\[
+\int_{-\pi}^{\pi} f(x)g(x)\,dx.
+\]
+
+Ist dieses Integral gleich null, dann nennt man die beiden Funktionen orthogonal.
+Anschaulich bedeutet das:
+Die positiven und negativen Beiträge des Produkts heben sich über das betrachtete Intervall exakt auf.
+
+\begin{MathBox}[Orthogonalität von Funktionen]
+	\small
+	\phantomsection\label{box:anhangA-fourier-orthogonalitaet}
+	Zwei Funktionen \(f(x)\) und \(g(x)\) heißen auf dem Intervall
+	\([-\pi,\pi]\) orthogonal, wenn gilt:
+	\[
+	\int_{-\pi}^{\pi} f(x)g(x)\,dx=0.
+	\]
+	Dies ist das funktionale Gegenstück zum Skalarprodukt zweier senkrechter Vektoren.
+\end{MathBox}
+
+Für Sinus- und Kosinusfunktionen gelten die wichtigen Beziehungen:
+\[
+\int_{-\pi}^{\pi} \sin(mx)\sin(nx)\,dx=0
+\quad \text{für } m\neq n,
+\]
+\[
+\int_{-\pi}^{\pi} \cos(mx)\cos(nx)\,dx=0
+\quad \text{für } m\neq n,
+\]
+und
+\[
+\int_{-\pi}^{\pi} \sin(mx)\cos(nx)\,dx=0.
+\]
+
+Das bedeutet:
+Verschiedene Schwingungen stören sich bei der Koeffizientenberechnung nicht gegenseitig.
+Jede Frequenz kann gezielt aus dem Signal herausgefiltert werden.
+\FloatBarrier
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.36\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-1.2, ymax=1.2,
+			samples=300,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-1,0,1},
+			legend style={at={(0.5,-0.18)},anchor=north,legend columns=2},
+			]
+			\addplot[thick, blue] {sin(deg(x))};
+			\addlegendentry{$\sin(x)$}
+			
+			\addplot[thick, red, dashed] {cos(deg(x))};
+			\addlegendentry{$\cos(x)$}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Die Funktionen $\sin(x)$ und $\cos(x)$ sind gegeneinander phasenverschoben.
+		Entscheidend für die Orthogonalität ist jedoch nicht der sichtbare Abstand der Kurven,
+		sondern das Integral über ihr Produkt.}
+	\label{fig:sin_cos_orthogonalitaet}
+\end{figure}
+
+Besonders anschaulich wird dies beim Produkt \(\sin(x)\cos(x)\).
+Dieses Produkt besitzt positive und negative Bereiche.
+Über ein symmetrisches Intervall heben sich diese Beiträge gegenseitig auf.
+
+\[
+\int_{-\pi}^{\pi}\sin(x)\cos(x)\,dx=0.
+\]
+\FloatBarrier
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.36\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-0.6, ymax=0.6,
+			samples=300,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-0.5,0,0.5},
+			]
+			\addplot[thick, blue] {sin(deg(x))*cos(deg(x))};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Das Produkt $\sin(x)\cos(x)$ besitzt positive und negative Bereiche.
+		Über das Intervall $[-\pi,\pi]$ heben sich diese Beiträge im Integral gegenseitig auf.
+		Daher sind $\sin(x)$ und $\cos(x)$ orthogonal.}
+	\label{fig:sin_cos_produkt}
+\end{figure}
+
+Diese Orthogonalität ist der entscheidende Mechanismus der Fourieranalyse.
+Sie erlaubt es, die einzelnen Frequenzanteile einer Funktion sauber voneinander zu trennen.
+
+\subsection{Die Fourier-Koeffizienten}
+
+Gegeben sei eine periodische Funktion \(f(x)\) mit Periode \(2\pi\).
+Sie werde durch eine Fourier-Reihe dargestellt:
+\[
+f(x)=\frac{a_0}{2}
++\sum_{n=1}^{\infty}
+\left(a_n\cos(nx)+b_n\sin(nx)\right).
+\]
+
+Die Koeffizienten erhält man durch gezieltes Multiplizieren mit den passenden Grundfunktionen
+und anschließendes Integrieren über eine vollständige Periode.
+
+Für den konstanten Anteil gilt:
+\[
+a_0=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\,dx.
+\]
+
+Für die Kosinus-Koeffizienten gilt:
+\[
+a_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)\,dx.
+\]
+
+Für die Sinus-Koeffizienten gilt:
+\[
+b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)\,dx.
+\]
+
+\begin{DidacticBox}[Warum diese Formeln funktionieren]
+	\phantomsection\label{box:anhangA-fourier-koeffizienten}
+	\small
+	Multipliziert man die Fourier-Reihe mit \(\sin(nx)\) oder \(\cos(nx)\)
+	und integriert über eine volle Periode,
+	dann verschwinden wegen der Orthogonalität alle fremden Frequenzen.
+	Übrig bleibt nur der gesuchte Anteil.
+	Die Fourieranalyse wirkt daher wie ein mathematischer Filter.
+\end{DidacticBox}
+
+\subsection{Das Rechtecksignal}
+
+Als Beispiel betrachten wir ein einfaches Rechtecksignal.
+Es nimmt auf einer Hälfte der Periode den Wert \(1\) und auf der anderen Hälfte den Wert \(-1\) an.
+
+\[
+f(x)=
+\begin{cases}
+	-1, & -\pi < x < 0,\\
+	\phantom{-}1, & 0 < x < \pi.
+\end{cases}
+\]
+
+Diese Funktion wird periodisch mit der Periode \(2\pi\) fortgesetzt.
+
+Das Rechtecksignal ist didaktisch besonders interessant.
+Es besitzt abrupte Sprünge und wirkt zunächst alles andere als harmonisch.
+Trotzdem kann es durch eine Summe glatter Sinusschwingungen dargestellt werden.
+\FloatBarrier
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.36\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-1.4, ymax=1.4,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-1,0,1},
+			]
+			\addplot[thick, blue, const plot] coordinates {
+				(-3.1416,-1)
+				(0,-1)
+				(0,1)
+				(3.1416,1)
+			};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Ein Rechtecksignal besitzt abrupte Sprünge.
+		Gerade deshalb ist es ein eindrucksvolles Beispiel für die Leistungsfähigkeit der Fourieranalyse.}
+	\label{fig:rechtecksignal}
+\end{figure}
+
+\subsection{Symmetrie des Rechtecksignals}
+
+Das gewählte Rechtecksignal ist ungerade.
+Das bedeutet:
+\[
+f(-x)=-f(x).
+\]
+
+Kosinusfunktionen sind gerade:
+\[
+\cos(-x)=\cos(x).
+\]
+
+Sinusfunktionen sind ungerade:
+\[
+\sin(-x)=-\sin(x).
+\]
+
+Daraus folgt:
+Das Rechtecksignal enthält keine Kosinusanteile.
+Alle Koeffizienten \(a_n\) verschwinden:
+\[
+a_n=0.
+\]
+
+Auch der konstante Mittelwert verschwindet:
+\[
+a_0=0.
+\]
+
+Es bleiben also nur Sinus-Terme übrig:
+\[
+f(x)=\sum_{n=1}^{\infty} b_n\sin(nx).
+\]
+
+\subsection{Berechnung der Sinus-Koeffizienten}
+
+Die Sinus-Koeffizienten lauten:
+\[
+b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)\,dx.
+\]
+
+Da \(f(x)\) und \(\sin(nx)\) beide ungerade sind,
+ist ihr Produkt gerade.
+Deshalb kann man das Integral vereinfachen:
+\[
+b_n=\frac{2}{\pi}\int_{0}^{\pi}f(x)\sin(nx)\,dx.
+\]
+
+Im Bereich \(0<x<\pi\) gilt \(f(x)=1\).
+Damit folgt:
+\[
+b_n=\frac{2}{\pi}\int_{0}^{\pi}\sin(nx)\,dx.
+\]
+
+Nun integrieren wir:
+\[
+\int \sin(nx)\,dx=-\frac{\cos(nx)}{n}.
+\]
+
+Also:
+\[
+b_n=\frac{2}{\pi}
+\left[
+-\frac{\cos(nx)}{n}
+\right]_{0}^{\pi}.
+\]
+
+Einsetzen der Grenzen ergibt:
+\[
+b_n=\frac{2}{\pi}
+\left(
+-\frac{\cos(n\pi)}{n}
++\frac{\cos(0)}{n}
+\right).
+\]
+
+Da \(\cos(0)=1\), erhält man:
+\[
+b_n=\frac{2}{\pi n}
+\left(1-\cos(n\pi)\right).
+\]
+
+Mit
+\[
+\cos(n\pi)=(-1)^n
+\]
+folgt:
+\[
+b_n=\frac{2}{\pi n}
+\left(1-(-1)^n\right).
+\]
+
+Für gerade \(n\) gilt:
+\[
+(-1)^n=1,
+\]
+also:
+\[
+b_n=0.
+\]
+
+Für ungerade \(n\) gilt:
+\[
+(-1)^n=-1,
+\]
+also:
+\[
+b_n=\frac{4}{\pi n}.
+\]
+
+Damit erhält man:
+\[
+b_n=
+\begin{cases}
+	\frac{4}{\pi n}, & n \text{ ungerade},\\
+	0, & n \text{ gerade}.
+\end{cases}
+\]
+
+\subsection{Die Fourier-Reihe des Rechtecksignals}
+
+Damit lautet die Fourier-Reihe des Rechtecksignals:
+\[
+f(x)=\frac{4}{\pi}
+\left(
+\sin(x)
++\frac{1}{3}\sin(3x)
++\frac{1}{5}\sin(5x)
++\frac{1}{7}\sin(7x)
++\cdots
+\right).
+\]
+
+Oder kompakt:
+\[
+f(x)=\frac{4}{\pi}
+\sum_{k=0}^{\infty}
+\frac{1}{2k+1}
+\sin\left((2k+1)x\right).
+\]
+
+\begin{MathBox}[Fourier-Reihe des Rechtecksignals]
+	\phantomsection\label{box:anhangA-fourier-rechteckreihe}
+	\small
+	Das Rechtecksignal besitzt die Fourier-Reihe
+	\[
+	f(x)=\frac{4}{\pi}
+	\left(
+	\sin(x)
+	+\frac{1}{3}\sin(3x)
+	+\frac{1}{5}\sin(5x)
+	+\frac{1}{7}\sin(7x)
+	+\cdots
+	\right).
+	\]
+	Es treten nur ungerade Harmonische auf.
+	Die Amplituden fallen proportional zu \(1/n\).
+\end{MathBox}
+
+\subsection{Näherung durch endlich viele Terme}
+
+In der Praxis verwendet man nicht unendlich viele Terme,
+sondern nur eine endliche Anzahl.
+Je mehr Terme berücksichtigt werden,
+desto besser nähert sich die Summe dem Rechtecksignal an.
+
+\[
+S_1(x)=\frac{4}{\pi}\sin(x),
+\]
+
+\[
+S_3(x)=\frac{4}{\pi}
+\left(
+\sin(x)+\frac{1}{3}\sin(3x)
+\right),
+\]
+
+\[
+S_5(x)=\frac{4}{\pi}
+\left(
+\sin(x)+\frac{1}{3}\sin(3x)+\frac{1}{5}\sin(5x)
+\right).
+\]
+\FloatBarrier
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=0.92\textwidth,
+			height=0.42\textwidth,
+			axis lines=middle,
+			xmin=-3.3, xmax=3.3,
+			ymin=-1.6, ymax=1.6,
+			samples=500,
+			grid=both,
+			minor tick num=1,
+			xlabel={$x$},
+			ylabel={},
+			xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+			xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
+			ytick={-1,0,1},
+			legend style={at={(0.5,-0.18)},anchor=north,legend columns=3},
+			]
+			\addplot[thick, blue] {(4/pi)*sin(deg(x))};
+			\addlegendentry{$S_1$}
+			
+			\addplot[thick, red, dashed] {(4/pi)*(sin(deg(x)) + (1/3)*sin(deg(3*x)))};
+			\addlegendentry{$S_3$}
+			
+			\addplot[thick, black, dotted] {(4/pi)*(sin(deg(x)) + (1/3)*sin(deg(3*x)) + (1/5)*sin(deg(5*x)) + (1/7)*sin(deg(7*x)) + (1/9)*sin(deg(9*x)))};
+			\addlegendentry{$S_9$}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Näherungen des Rechtecksignals durch immer mehr Sinusschwingungen.
+		Mit zunehmender Zahl der Terme wird die rechteckige Form immer deutlicher.}
+	\label{fig:rechtecksignal_fourier_naeherung}
+\end{figure}
+
+\subsection{Warum nur ungerade Harmonische auftreten}
+
+Das Ergebnis zeigt eine wichtige Struktur:
+Im Rechtecksignal treten nur die Frequenzen
+\[
+1,\ 3,\ 5,\ 7,\ldots
+\]
+auf.
+
+Diese Frequenzen heißen ungerade Harmonische.
+Gerade Harmonische fehlen vollständig.
+
+Der Grund liegt in der Symmetrie des Signals.
+Das Rechtecksignal ist ungerade und besitzt zusätzlich eine spezielle Halbwellen-Symmetrie.
+Dadurch löschen sich die geraden Frequenzanteile exakt aus.
+
+Physikalisch bedeutet das:
+Ein idealisiertes Rechtecksignal enthält nicht nur eine Grundfrequenz,
+sondern unendlich viele höhere Frequenzen.
+Je schärfer der Sprung sein soll,
+desto mehr hohe Frequenzen werden benötigt.
+
+\begin{PhysicsBox}[Rechtecksignal und Bandbreite]
+	\small
+	\phantomsection\label{box:anhangA-fourier-bandbreite}
+	Ein ideales Rechtecksignal besitzt theoretisch unendlich viele Frequenzanteile.
+	In realen technischen Systemen ist die Bandbreite jedoch begrenzt.
+	Deshalb können reale Rechtecksignale nie vollkommen scharfe Sprünge besitzen.
+	Die Kanten werden immer etwas abgerundet.
+\end{PhysicsBox}
+
+\subsection{Das Gibbs-Phänomen}
+
+An den Sprungstellen des Rechtecksignals tritt ein besonderes Verhalten auf.
+Auch wenn man immer mehr Fourier-Terme hinzunimmt,
+verschwindet ein kleines Überschwingen an der Sprungstelle nicht vollständig.
+Dieses Verhalten nennt man Gibbs-Phänomen.
+
+Die Näherung wird zwar insgesamt immer besser,
+aber direkt an der Sprungstelle bleibt ein charakteristisches Über- und Unterschwingen bestehen.
+
+\begin{DidacticBox}[Gibbs-Phänomen]
+	\small
+	\phantomsection\label{box:anhangA-fourier-gibbs}
+	Bei unstetigen Funktionen kann eine Fourier-Reihe in der Nähe einer Sprungstelle
+	überschwingen.
+	Dieses Überschwingen wird schmaler, wenn mehr Terme verwendet werden,
+	verschwindet aber in seiner relativen Höhe nicht vollständig.
+	Das zeigt:
+	Fourier-Reihen beschreiben auch unstetige Signale sehr wirkungsvoll,
+	aber Sprünge besitzen eine besondere mathematische Struktur.
+\end{DidacticBox}
+
+\subsection{Fazit}
+
+Die Herleitung am Rechtecksignal zeigt die Kraft der Fourieranalyse besonders deutlich.
+Eine scheinbar harte, unstetige Funktion lässt sich aus glatten Sinusschwingungen zusammensetzen.
+
+Damit wird sichtbar:
+Komplexe Formen können aus einfachen mathematischen Bausteinen entstehen.
+Das Rechtecksignal ist daher mehr als ein technisches Beispiel.
+Es zeigt eine zentrale Idee dieses Buches:
+
+\begin{NoteBox}[Ordnung hinter der Form]
+	\small
+		\phantomsection\label{box:anhangA-fourier-ordnung-form}
+	Die Fourieranalyse macht sichtbar,
+	dass auch scheinbar abrupte oder komplizierte Strukturen
+	aus einfachen mathematischen Grundmustern aufgebaut sein können.
+	Sie ist damit ein eindrucksvolles Beispiel dafür,
+	dass Mathematik verborgene Ordnung sichtbar macht.
+\end{NoteBox}
